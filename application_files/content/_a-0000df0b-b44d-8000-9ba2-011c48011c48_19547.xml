@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <versionUuid>_a-0000df4f-3e48-8000-9ba2-011c48011c48_60741</versionUuid>
+    <rule>
+        <name>ASC_CustomerRecordList_Section</name>
+        <uuid>_a-0000df0b-b44d-8000-9ba2-011c48011c48_19547</uuid>
+        <description>List of customers in the record summary</description>
+        <parentUuid>_a-0000deba-19b3-8000-9ba2-011c48011c48_32858</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>= #"SYSTEM_SYSRULES_listViewItem"(
+  image: if(
+    #"_a-0000dd3a-dada-8000-daab-640000640000_11122"(
+      rf!customerLogo
+    ),
+    todocument(
+      #"_a-0000def3-0227-8000-9ba2-011c48011c48_10874"
+    ),
+    todocument(
+      rf!customerLogo
+    )
+  ),
+  title: "Customer : " &amp; rf!accountName &amp; " | " &amp; " Owner: " &amp; rf!accountOwner,
+  details: "Headquarters: " &amp; rf!headquarters &amp; " | " &amp; " Customer Since: " &amp; rf!customerSince &amp; " | " &amp; " Status: " &amp; rf!status
+)</definition>
+        <metadataExpr></metadataExpr>
+        <preferredEditor>interface</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role inherit="true" allowForAll="false" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="administrators">
+            <users>
+                <userUuid>samuel.bruns@perficient.com</userUuid>
+            </users>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <history>
+        <historyInfo versionUuid="_a-0000df4f-3e48-8000-9ba2-011c48011c48_60741"/>
+    </history>
+</contentHaul>

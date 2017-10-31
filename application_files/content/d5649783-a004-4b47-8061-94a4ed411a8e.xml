@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <versionUuid>_a-0000df4f-3e48-8000-9ba2-011c48011c48_60664</versionUuid>
+    <decision>
+        <name>ASC_Accounting_Notification_Decision</name>
+        <uuid>d5649783-a004-4b47-8061-94a4ed411a8e</uuid>
+        <description>Decision to determine whether or not accounting should be notified of a contract modification.</description>
+        <parentUuid>_a-0000dee6-acf9-8000-9ba2-011c48011c48_7309</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>fn!override_exception_appian_internal(fn!with(local!decisiondefinition: a!decisiondesigner_cache(uuid: "d5649783-a004-4b47-8061-94a4ed411a8e",versionKey: "b3d53be2-98f8-49cb-8982-36adae27d969",value: #"SYSTEM_SYSRULES_dd_dd"(hitPolicy:#"SYSTEM_SYSRULES_dd_dhp"("UNIQUE"), inputs:{#"SYSTEM_SYSRULES_dd_di"(name:"customer", type:'type!{http://www.appian.com/ae/types/2009}Text', id:1, restrictionType:#"SYSTEM_SYSRULES_dd_dirt"("LOOKUP"), restriction:#"SYSTEM_SYSRULES_dd_dirl"(allowedLabels:{"Boeing"}, allowedValues:{"1"})), #"SYSTEM_SYSRULES_dd_di"(name:"modificationType", type:'type!{http://www.appian.com/ae/types/2009}Text', id:3, restrictionType:#"SYSTEM_SYSRULES_dd_dirt"("LOOKUP"), restriction:#"SYSTEM_SYSRULES_dd_dirl"(allowedLabels:{"Change Incorporation Request", "LCCT", "Master Change", "Master Schedule", "Settlement", "Price Adjustment Agreement", "Part Pricing", "Product Revision Record", "Tool Memo", "Tooling"}, allowedValues:{"CIR", "LCCT", "MC", "MS", "Settlement", "PAA", "Part Pricing", "PRR", "Tool Memo", "Tooling"})), #"SYSTEM_SYSRULES_dd_di"(name:"firingOrder", type:'type!{http://www.appian.com/ae/types/2009}Text', id:2, restrictionType:#"SYSTEM_SYSRULES_dd_dirt"("LOOKUP"), restriction:#"SYSTEM_SYSRULES_dd_dirl"(allowedLabels:{"# of Units", "Lead Time Violation", "Unit Reduction"}, allowedValues:{"1", "2", "3"}))}, outputs:{#"SYSTEM_SYSRULES_dd_do"(id:1, name:"notifyAccounting", type:'type!{http://www.appian.com/ae/types/2009}Boolean', restrictionType:#"SYSTEM_SYSRULES_dd_dort"("NONE"), returnListType:false)}, rules:{#"SYSTEM_SYSRULES_dd_dr"(id:1, inputs:{#"SYSTEM_SYSRULES_dd_dri"(id:1, decisionInputId:1, operator:#"SYSTEM_SYSRULES_dd_dop"(operator:#"SYSTEM_SYSRULES_dd_dopt"("IN"), value1:{"1"})), #"SYSTEM_SYSRULES_dd_dri"(id:21, decisionInputId:3, operator:#"SYSTEM_SYSRULES_dd_dop"(operator:#"SYSTEM_SYSRULES_dd_dopt"("IN"), value1:{"CIR"})), #"SYSTEM_SYSRULES_dd_dri"(id:2, decisionInputId:2, operator:#"SYSTEM_SYSRULES_dd_dop"(operator:#"SYSTEM_SYSRULES_dd_dopt"("ANY")))}, outputs:{#"SYSTEM_SYSRULES_dd_dro"(id:1, decisionOutputId:1, value:true)}), #"SYSTEM_SYSRULES_dd_dr"(id:2, inputs:{#"SYSTEM_SYSRULES_dd_dri"(id:3, decisionInputId:1, operator:#"SYSTEM_SYSRULES_dd_dop"(operator:#"SYSTEM_SYSRULES_dd_dopt"("IN"), value1:{"1"})), #"SYSTEM_SYSRULES_dd_dri"(id:22, decisionInputId:3, operator:#"SYSTEM_SYSRULES_dd_dop"(operator:#"SYSTEM_SYSRULES_dd_dopt"("IN"), value1:{"LCCT"})), #"SYSTEM_SYSRULES_dd_dri"(id:4, decisionInputId:2, operator:#"SYSTEM_SYSRULES_dd_dop"(operator:#"SYSTEM_SYSRULES_dd_dopt"("ANY")))}, outputs:{#"SYSTEM_SYSRULES_dd_dro"(id:2, decisionOutputId:1, value:false)}), #"SYSTEM_SYSRULES_dd_dr"(id:3, inputs:{#"SYSTEM_SYSRULES_dd_dri"(id:5, decisionInputId:1, operator:#"SYSTEM_SYSRULES_dd_dop"(operator:#"SYSTEM_SYSRULES_dd_dopt"("IN"), value1:{"1"})), #"SYSTEM_SYSRULES_dd_dri"(id:23, decisionInputId:3, operator:#"SYSTEM_SYSRULES_dd_dop"(operator:#"SYSTEM_SYSRULES_dd_dopt"("IN"), value1:{"MC"})), #"SYSTEM_SYSRULES_dd_dri"(id:6, decisionInputId:2, operator:#"SYSTEM_SYSRULES_dd_dop"(operator:#"SYSTEM_SYSRULES_dd_dopt"("ANY")))}, outputs:{#"SYSTEM_SYSRULES_dd_dro"(id:3, decisionOutputId:1, value:true)}), #"SYSTEM_SYSRULES_dd_dr"(id:4, inputs:{#"SYSTEM_SYSRULES_dd_dri"(id:7, decisionInputId:1, operator:#"SYSTEM_SYSRULES_dd_dop"(operator:#"SYSTEM_SYSRULES_dd_dopt"("IN"), value1:{"1"})), #"SYSTEM_SYSRULES_dd_dri"(id:24, decisionInputId:3, operator:#"SYSTEM_SYSRULES_dd_dop"(operator:#"SYSTEM_SYSRULES_dd_dopt"("IN"), value1:{"MS"})), #"SYSTEM_SYSRULES_dd_dri"(id:8, decisionInputId:2, operator:#"SYSTEM_SYSRULES_dd_dop"(operator:#"SYSTEM_SYSRULES_dd_dopt"("IN"), value1:{"1", "2", "3"}))}, outputs:{#"SYSTEM_SYSRULES_dd_dro"(id:4, decisionOutputId:1, value:true)}), #"SYSTEM_SYSRULES_dd_dr"(id:5, inputs:{#"SYSTEM_SYSRULES_dd_dri"(id:9, decisionInputId:1, operator:#"SYSTEM_SYSRULES_dd_dop"(operator:#"SYSTEM_SYSRULES_dd_dopt"("IN"), value1:{"1"})), #"SYSTEM_SYSRULES_dd_dri"(id:25, decisionInputId:3, operator:#"SYSTEM_SYSRULES_dd_dop"(operator:#"SYSTEM_SYSRULES_dd_dopt"("IN"), value1:{"Settlement"})), #"SYSTEM_SYSRULES_dd_dri"(id:10, decisionInputId:2, operator:#"SYSTEM_SYSRULES_dd_dop"(operator:#"SYSTEM_SYSRULES_dd_dopt"("ANY")))}, outputs:{#"SYSTEM_SYSRULES_dd_dro"(id:5, decisionOutputId:1, value:true)}), #"SYSTEM_SYSRULES_dd_dr"(id:6, inputs:{#"SYSTEM_SYSRULES_dd_dri"(id:11, decisionInputId:1, operator:#"SYSTEM_SYSRULES_dd_dop"(operator:#"SYSTEM_SYSRULES_dd_dopt"("IN"), value1:{"1"})), #"SYSTEM_SYSRULES_dd_dri"(id:26, decisionInputId:3, operator:#"SYSTEM_SYSRULES_dd_dop"(operator:#"SYSTEM_SYSRULES_dd_dopt"("IN"), value1:{"PAA"})), #"SYSTEM_SYSRULES_dd_dri"(id:12, decisionInputId:2, operator:#"SYSTEM_SYSRULES_dd_dop"(operator:#"SYSTEM_SYSRULES_dd_dopt"("ANY")))}, outputs:{#"SYSTEM_SYSRULES_dd_dro"(id:6, decisionOutputId:1, value:true)}), #"SYSTEM_SYSRULES_dd_dr"(id:7, inputs:{#"SYSTEM_SYSRULES_dd_dri"(id:13, decisionInputId:1, operator:#"SYSTEM_SYSRULES_dd_dop"(operator:#"SYSTEM_SYSRULES_dd_dopt"("IN"), value1:{"1"})), #"SYSTEM_SYSRULES_dd_dri"(id:27, decisionInputId:3, operator:#"SYSTEM_SYSRULES_dd_dop"(operator:#"SYSTEM_SYSRULES_dd_dopt"("IN"), value1:{"Part Pricing"})), #"SYSTEM_SYSRULES_dd_dri"(id:14, decisionInputId:2, operator:#"SYSTEM_SYSRULES_dd_dop"(operator:#"SYSTEM_SYSRULES_dd_dopt"("ANY")))}, outputs:{#"SYSTEM_SYSRULES_dd_dro"(id:7, decisionOutputId:1, value:true)}), #"SYSTEM_SYSRULES_dd_dr"(id:8, inputs:{#"SYSTEM_SYSRULES_dd_dri"(id:15, decisionInputId:1, operator:#"SYSTEM_SYSRULES_dd_dop"(operator:#"SYSTEM_SYSRULES_dd_dopt"("IN"), value1:{"1"})), #"SYSTEM_SYSRULES_dd_dri"(id:28, decisionInputId:3, operator:#"SYSTEM_SYSRULES_dd_dop"(operator:#"SYSTEM_SYSRULES_dd_dopt"("IN"), value1:{"PRR"})), #"SYSTEM_SYSRULES_dd_dri"(id:16, decisionInputId:2, operator:#"SYSTEM_SYSRULES_dd_dop"(operator:#"SYSTEM_SYSRULES_dd_dopt"("ANY")))}, outputs:{#"SYSTEM_SYSRULES_dd_dro"(id:8, decisionOutputId:1, value:true)}), #"SYSTEM_SYSRULES_dd_dr"(id:9, inputs:{#"SYSTEM_SYSRULES_dd_dri"(id:17, decisionInputId:1, operator:#"SYSTEM_SYSRULES_dd_dop"(operator:#"SYSTEM_SYSRULES_dd_dopt"("IN"), value1:{"1"})), #"SYSTEM_SYSRULES_dd_dri"(id:29, decisionInputId:3, operator:#"SYSTEM_SYSRULES_dd_dop"(operator:#"SYSTEM_SYSRULES_dd_dopt"("IN"), value1:{"Tool Memo"})), #"SYSTEM_SYSRULES_dd_dri"(id:18, decisionInputId:2, operator:#"SYSTEM_SYSRULES_dd_dop"(operator:#"SYSTEM_SYSRULES_dd_dopt"("ANY")))}, outputs:{#"SYSTEM_SYSRULES_dd_dro"(id:9, decisionOutputId:1, value:false)}), #"SYSTEM_SYSRULES_dd_dr"(id:10, inputs:{#"SYSTEM_SYSRULES_dd_dri"(id:19, decisionInputId:1, operator:#"SYSTEM_SYSRULES_dd_dop"(operator:#"SYSTEM_SYSRULES_dd_dopt"("IN"), value1:{"1"})), #"SYSTEM_SYSRULES_dd_dri"(id:30, decisionInputId:3, operator:#"SYSTEM_SYSRULES_dd_dop"(operator:#"SYSTEM_SYSRULES_dd_dopt"("IN"), value1:{"Tooling"})), #"SYSTEM_SYSRULES_dd_dri"(id:20, decisionInputId:2, operator:#"SYSTEM_SYSRULES_dd_dop"(operator:#"SYSTEM_SYSRULES_dd_dopt"("ANY")))}, outputs:{#"SYSTEM_SYSRULES_dd_dro"(id:10, decisionOutputId:1, value:false)})}, isUnique:true)),#"SYSTEM_SYSRULES_dd_exr"(decisionDefinition:local!decisiondefinition,executionInputs:{#"SYSTEM_SYSRULES_dd_dei"(decisionInputId:1,value:'ri!customer'),#"SYSTEM_SYSRULES_dd_dei"(decisionInputId:3,value:'ri!modificationType'),#"SYSTEM_SYSRULES_dd_dei"(decisionInputId:2,value:'ri!firingOrder')})))</definition>
+        <namedTypedValue>
+            <name>customer</name>
+            <type>
+                <name>string</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+            <value/>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>modificationType</name>
+            <type>
+                <name>string</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+            <value/>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>firingOrder</name>
+            <type>
+                <name>string</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+            <value/>
+        </namedTypedValue>
+        <preferredEditor>legacy</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+        <inputMetadataList>
+            <inputMetadata>
+                <inputId>1</inputId>
+                <nameRef>customer</nameRef>
+                <allowedLabelsExpr>#"_a-0000def3-0227-8000-9ba2-011c48011c48_10896"(1)</allowedLabelsExpr>
+                <allowedValuesExpr>{"1"}</allowedValuesExpr>
+            </inputMetadata>
+            <inputMetadata>
+                <inputId>3</inputId>
+                <nameRef>modificationType</nameRef>
+                <allowedLabelsExpr>#"_a-0000df0b-b44d-8000-9ba2-011c48011c48_16339"</allowedLabelsExpr>
+                <allowedValuesExpr>#"_a-0000df0b-b44d-8000-9ba2-011c48011c48_16338"</allowedValuesExpr>
+            </inputMetadata>
+            <inputMetadata>
+                <inputId>2</inputId>
+                <nameRef>firingOrder</nameRef>
+                <allowedLabelsExpr>#"_a-0000df0b-b44d-8000-9ba2-011c48011c48_16150"</allowedLabelsExpr>
+                <allowedValuesExpr>#"_a-0000df0b-b44d-8000-9ba2-011c48011c48_16149"</allowedValuesExpr>
+            </inputMetadata>
+        </inputMetadataList>
+        <outputMetadataList>
+            <outputMetadata>
+                <outputId>1</outputId>
+                <nameRef>notifyAccounting</nameRef>
+                <typeName>{http://www.appian.com/ae/types/2009}Boolean</typeName>
+            </outputMetadata>
+        </outputMetadataList>
+        <hitPolicy>UNIQUE</hitPolicy>
+    </decision>
+    <roleMap public="true">
+        <role inherit="true" allowForAll="false" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="administrators">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <history>
+        <historyInfo versionUuid="_a-0000df4f-3e48-8000-9ba2-011c48011c48_60664"/>
+    </history>
+</contentHaul>

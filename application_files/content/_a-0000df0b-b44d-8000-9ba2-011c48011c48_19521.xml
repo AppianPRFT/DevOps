@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <versionUuid>_a-0000df63-1167-8000-9ba2-011c48011c48_110686</versionUuid>
+    <rule>
+        <name>ASC_ContractModificationReport_Dashboard</name>
+        <uuid>_a-0000df0b-b44d-8000-9ba2-011c48011c48_19521</uuid>
+        <description>Contract Modifications Dashboard</description>
+        <parentUuid>_a-0000deba-19b3-8000-9ba2-011c48011c48_32858</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>= load(
+  local!pagingInfo: #"SYSTEM_SYSRULES_pagingInfo"(
+    startIndex: 1,
+    batchSize: 5
+  ),
+  local!openContracts,
+  local!selectedType,
+  local!selectedRecievedQuarter,
+  local!pagingInfo2: #"SYSTEM_SYSRULES_pagingInfo"(
+    startIndex: 1,
+    batchSize: - 1,
+    sort: #"SYSTEM_SYSRULES_sortInfo"(
+      field: "Id",
+      ascending: true
+    )
+  ),
+  with(
+    local!datasubset: #"SYSTEM_SYSRULES_queryEntity"(
+      entity: #"_a-0000df0b-b44d-8000-9ba2-011c48011c48_15942",
+      query: #"SYSTEM_SYSRULES_query"(
+        aggregation: #"SYSTEM_SYSRULES_queryAggregation"(
+          aggregationColumns: {
+            #"SYSTEM_SYSRULES_queryAggregationColumn"(
+              field: "Id",
+              aggregationFunction: "COUNT"
+            ),
+            #"SYSTEM_SYSRULES_queryAggregationColumn"(
+              field: "milestoneStep",
+              isGrouping: true
+            ),
+            
+          }
+        ),
+        pagingInfo: local!pagingInfo2
+      )
+    ),
+    local!openContracts2:#"SYSTEM_SYSRULES_forEach"( index(local!datasubset.data, "Id", null), fv!item),
+    
+    #"SYSTEM_SYSRULES_dashboardLayout_v1"(
+      contents: {
+        #"SYSTEM_SYSRULES_sectionLayout_v1"(
+          contents: {
+            #"SYSTEM_SYSRULES_billboardLayout"(
+              backgroundColor: "#619ed6",
+              overlayPositionBar: "BOTTOM",
+              overlayStyle: "DARK",
+              overlayContents: {
+                #"SYSTEM_SYSRULES_columnsLayout"(
+                  columns: {
+                    #"SYSTEM_SYSRULES_columnLayout"(
+                      contents: {
+                        #"SYSTEM_SYSRULES_richTextDisplayField"(
+                          labelPosition: "COLLAPSED",
+                          value: {
+                            #"SYSTEM_SYSRULES_richTextItem"(
+                              text: "Overall Change Notice Request (CNR) Dashboard",
+                              style: "LARGE"
+                            )
+                          }
+                        )
+                      }
+                    ),
+                    #"SYSTEM_SYSRULES_columnLayout"(
+                      contents: {
+                        #"SYSTEM_SYSRULES_columnsLayout"(
+                          columns: {
+                            #"SYSTEM_SYSRULES_columnLayout"(
+                              contents: {}
+                            ),
+                            #"SYSTEM_SYSRULES_columnLayout"(
+                              contents: {}
+                            )
+                          },
+                          alignVertical: "TOP"
+                        )
+                      }
+                    )
+                  },
+                  alignVertical: "MIDDLE"
+                ),
+   /*fix the open contract amount*/             
+                #"SYSTEM_SYSRULES_columnsLayout"(
+                  columns: {
+                    #"SYSTEM_SYSRULES_columnLayout"(
+                      contents: {
+                        #"SYSTEM_SYSRULES_richTextDisplayField"(
+                          label: "Open Modification",
+                          labelPosition: "ADJACENT",
+                          value: #"SYSTEM_SYSRULES_richTextItem"(
+                            text: 70,
+                            style: "NORMAL"
+                          )
+                        )
+                      }
+                    ),
+                    #"SYSTEM_SYSRULES_columnLayout"(
+                      contents: {
+                        #"SYSTEM_SYSRULES_richTextDisplayField"(
+                          label: "Pending Coordination",
+                          labelposition: "ADJACENT",
+                          value: #"SYSTEM_SYSRULES_richTextItem"(
+                            text: index(local!datasubset.data[4], "Id", null),
+                            style: "NORMAL"
+                          )
+                        )
+                      }
+                    ),
+                    #"SYSTEM_SYSRULES_columnLayout"(
+                      contents: {
+                        #"SYSTEM_SYSRULES_richTextDisplayField"(
+                          label: "Pending Approval",
+                          labelposition: "ADJACENT",
+                          value: #"SYSTEM_SYSRULES_richTextItem"(
+                            text: index(local!datasubset.data[6], "Id", null),
+                            style: "NORMAL"
+                          )
+                        )
+                      }
+                    ),
+                    #"SYSTEM_SYSRULES_columnLayout"(
+                      contents: {
+                        #"SYSTEM_SYSRULES_richTextDisplayField"(
+                          label: "Completed",
+                          labelPosition: "ADJACENT",
+                          value: #"SYSTEM_SYSRULES_richTextItem"(
+                            text: index(local!datasubset.data[7], "Id", null),
+                            style: "STRONG"
+                          )
+                        )
+                      }
+                    )
+                  }
+                )
+              },
+              height: "SHORT"
+            )
+          }
+        ),
+        #"SYSTEM_SYSRULES_sectionLayout_v1"(
+          contents: {
+            #"SYSTEM_SYSRULES_columnsLayout"(
+              columns: {
+                #"SYSTEM_SYSRULES_columnLayout"(
+                  contents: {
+                    #"_a-0000df0b-b44d-8000-9ba2-011c48011c48_19519"(
+                      selected: local!selectedType
+                    ),
+                    #"SYSTEM_SYSRULES_linkField"(
+                      label: "",
+                      labelPosition: "ABOVE",
+                      links: {
+                        #"SYSTEM_SYSRULES_dynamicLink"(
+                          label: "Clear Type Filter",
+                          value: null,
+                          saveInto: local!selectedType
+                        )
+                      },
+                      align: "CENTER"
+                    )
+                  }
+                ),
+                #"SYSTEM_SYSRULES_columnLayout"(
+                  contents: {
+                    #"_a-0000df0b-b44d-8000-9ba2-011c48011c48_19522"(
+                      selected: local!selectedRecievedQuarter
+                    ),
+                    #"SYSTEM_SYSRULES_linkField"(
+                      label: "",
+                      labelPosition: "ABOVE",
+                      links: {
+                        #"SYSTEM_SYSRULES_dynamicLink"(
+                          label: "Clear Quarter Filter",
+                          value: null,
+                          saveInto: local!selectedRecievedQuarter
+                        )
+                      },
+                      align: "CENTER"
+                    ),
+                    #"SYSTEM_SYSRULES_textField"(
+                      value: "Fiscal Revenue YTD: " &amp; dollar(
+                        13528232
+                      ),
+                      showwhen: true,
+                      readonly: true,
+                      align: "CENTER"
+                    )
+                  }
+                )
+              }
+            )
+          }
+        ),
+        #"_a-0000df0b-b44d-8000-9ba2-011c48011c48_19515"(
+          cancel: false,
+          selectable: false,
+          selectedTypeFilter: local!selectedType,
+          selectedQuarter: local!selectedRecievedQuarter
+        )
+      }
+    )
+  )
+)</definition>
+        <metadataExpr></metadataExpr>
+        <preferredEditor>interface</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role inherit="true" allowForAll="false" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="administrators">
+            <users>
+                <userUuid>samuel.bruns@perficient.com</userUuid>
+            </users>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <history>
+        <historyInfo versionUuid="_a-0000df4f-3e48-8000-9ba2-011c48011c48_60731"/>
+        <historyInfo versionUuid="_a-0000df4f-3e48-8000-9ba2-011c48011c48_63703"/>
+        <historyInfo versionUuid="_a-0000df63-1167-8000-9ba2-011c48011c48_108568"/>
+        <historyInfo versionUuid="_a-0000df63-1167-8000-9ba2-011c48011c48_110686"/>
+    </history>
+</contentHaul>

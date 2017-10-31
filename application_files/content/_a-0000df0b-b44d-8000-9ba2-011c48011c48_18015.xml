@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <versionUuid>_a-0000df4f-3e48-8000-9ba2-011c48011c48_60695</versionUuid>
+    <queryRule>
+        <name>ASC_getContractModificationByChangeNoticeID</name>
+        <uuid>_a-0000df0b-b44d-8000-9ba2-011c48011c48_18015</uuid>
+        <description>given change notice ID returns the contract Modification</description>
+        <folderUuid>_a-0000def3-0227-8000-9ba2-011c48011c48_10527</folderUuid>
+        <dataStoreEntityCompositeUuid>7f2d464e-d58a-42ec-ae06-f523757e040c@_a-0000def3-0227-8000-9ba2-011c48011c48_10564</dataStoreEntityCompositeUuid>
+        <params>
+            <param>
+                <description></description>
+                <name>Id</name>
+                <type>{http://www.w3.org/2001/XMLSchema}int</type>
+            </param>
+        </params>
+        <filters>
+            <filter>
+                <field>
+                    <name>modificationTypeId</name>
+                    <type>{http://www.w3.org/2001/XMLSchema}int</type>
+                </field>
+                <op>=</op>
+                <value>Id</value>
+                <valueType>PARAMETER</valueType>
+            </filter>
+        </filters>
+        <orderings/>
+    </queryRule>
+    <roleMap public="false">
+        <role inherit="true" allowForAll="false" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="administrators">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <history>
+        <historyInfo versionUuid="_a-0000df4f-3e48-8000-9ba2-011c48011c48_60695"/>
+    </history>
+</contentHaul>

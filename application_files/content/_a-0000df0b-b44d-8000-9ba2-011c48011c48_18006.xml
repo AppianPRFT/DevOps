@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <versionUuid>_a-0000df63-1167-8000-9ba2-011c48011c48_109663</versionUuid>
+    <rule>
+        <name>ASC_ProcessAudit_Grid</name>
+        <uuid>_a-0000df0b-b44d-8000-9ba2-011c48011c48_18006</uuid>
+        <description>process audit information pertaining to contract modifications</description>
+        <parentUuid>_a-0000deba-19b3-8000-9ba2-011c48011c48_32858</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>#"SYSTEM_SYSRULES_sectionLayout_v1"(
+  label: "Audit Sheet(s)",
+  contents: {
+    load(
+      local!pagingInfo: #"SYSTEM_SYSRULES_pagingInfo"(
+        startIndex: 1,
+        batchSize: 20,
+        sort: #"SYSTEM_SYSRULES_sortInfo"(
+          field: "eventTimestamp",
+          ascending: true
+        )
+      ),
+      with(
+        local!datasubset: #"SYSTEM_SYSRULES_queryEntity"(
+          entity: #"_a-0000daa1-9d78-8000-6ee0-010000010000_1088",
+          query: #"SYSTEM_SYSRULES_query"(
+            filter: #"SYSTEM_SYSRULES_queryFilter"(
+              field: "recordId",
+              operator: "=",
+              value: ri!recordId
+            ),
+            selection: #"SYSTEM_SYSRULES_querySelection"(
+              columns: {
+                #"SYSTEM_SYSRULES_queryColumn"(
+                  field: "initiatorName"
+                ),
+                #"SYSTEM_SYSRULES_queryColumn"(
+                  field: "eventTimestamp"
+                ),
+                #"SYSTEM_SYSRULES_queryColumn"(
+                  field: "actionType"
+                ),
+                #"SYSTEM_SYSRULES_queryColumn"(
+                  field: "actionDescription"
+                )
+                
+              }
+            ),
+            pagingInfo: local!pagingInfo
+          )
+        ),
+        #"SYSTEM_SYSRULES_gridField"(
+          totalCount: local!datasubset.totalCount,
+          columns: {
+            
+            #"SYSTEM_SYSRULES_gridTextColumn"(
+              label: "Event Time Stamp",
+              field: "eventTimestamp",
+              data: index(
+                local!datasubset.data,
+                "eventTimestamp",
+                null
+              )
+            ),
+            #"SYSTEM_SYSRULES_gridTextColumn"(
+              label: "Initiator Name",
+              field: "initiatorName",
+              data: #"SYSTEM_SYSRULES_forEach"(index(
+                local!datasubset.data,
+                "initiatorName",
+                null
+              ),#"_a-0000dd3a-dada-8000-daab-640000640000_11313"(fv!item))
+            ),
+            #"SYSTEM_SYSRULES_gridTextColumn"(
+              label: "Type",
+              field: "actionType",
+              data: index(
+                local!datasubset.data,
+                "actionType",
+                null
+              )
+            ),
+            #"SYSTEM_SYSRULES_gridTextColumn"(
+              label: "Action Description",
+              field: "actionDescription",
+              data: 
+                index(
+                  local!datasubset.data,
+                  "actionDescription",
+                  null
+                )
+              
+            )
+          },
+          value: local!pagingInfo,
+          saveInto: local!pagingInfo
+        )
+      )
+    )
+  },
+  isCollapsible: true
+)</definition>
+        <namedTypedValue>
+            <name>recordId</name>
+            <type>
+                <name>int</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+        </namedTypedValue>
+        <metadataExpr></metadataExpr>
+        <preferredEditor>interface</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role inherit="true" allowForAll="false" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="administrators">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <history>
+        <historyInfo versionUuid="_a-0000df4f-3e48-8000-9ba2-011c48011c48_60694"/>
+        <historyInfo versionUuid="_a-0000df63-1167-8000-9ba2-011c48011c48_109663"/>
+    </history>
+</contentHaul>

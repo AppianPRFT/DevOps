@@ -1,0 +1,310 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <versionUuid>_a-0000df63-1167-8000-9ba2-011c48011c48_110475</versionUuid>
+    <rule>
+        <name>ASC_ContractsModificationApprovalSelection_Section</name>
+        <uuid>_a-0000df0b-b44d-8000-9ba2-011c48011c48_15427</uuid>
+        <description>Section that contains the approval selection for the contracts modification form. This allows the Accounting group to dynamically add internal approvers</description>
+        <parentUuid>_a-0000deba-19b3-8000-9ba2-011c48011c48_32858</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>load(
+  local!type,
+  #"SYSTEM_SYSRULES_sectionLayout_v1"(
+    label: "Internal Approver Details",
+    contents: {
+      #"SYSTEM_SYSRULES_gridLayout"(
+        totalCount: count(
+          ri!contractModApprovals
+        ),
+        headerCells: {
+          #"SYSTEM_SYSRULES_gridLayoutHeaderCell"(
+            label: "Approver"
+          ),
+          #"SYSTEM_SYSRULES_gridLayoutHeaderCell"(
+            label: "Approval Request Details"
+          ),
+          if(
+            or(
+              contains(
+                ri!contractModApprovals.approved,
+                true
+              ),
+              contains(
+                ri!contractModApprovals.approved,
+                false
+              )
+            ),
+            #"SYSTEM_SYSRULES_gridLayoutHeaderCell"(
+              label: "Approved"
+            ),
+            {}
+          ),
+          /* For the "Remove" column */
+          /*if(*/
+            /*ri!readOnly,*/
+            /*a!gridLayoutHeaderCell(*/
+              /*label: "Approved"*/
+            /*),*/
+            /*{}*/
+          /*)*/
+        },
+        /* Only needed when some columns need to be narrow */
+        columnConfigs: {
+          #"SYSTEM_SYSRULES_gridLayoutColumnConfig"(
+            width: "DISTRIBUTE",
+            weight: 2
+          ),
+          #"SYSTEM_SYSRULES_gridLayoutColumnConfig"(
+            width: "DISTRIBUTE",
+            weight: 7
+          ),
+          if(
+            or(
+              contains(
+                ri!contractModApprovals.approved,
+                true
+              ),
+              contains(
+                ri!contractModApprovals.approved,
+                false
+              )
+            ),
+            #"SYSTEM_SYSRULES_gridLayoutColumnConfig"(
+              width: "DISTRIBUTE",
+              weight: 7
+            ),
+            {}
+          ),
+          /*if(*/
+            /*ri!readOnly,*/
+            /*{},*/
+            /*a!gridLayoutColumnConfig(*/
+              /*width: "ICON"*/
+            /*)*/
+          /*),if(*/
+            /*ri!readOnly,*/
+            /*a!gridLayoutColumnConfig(*/
+              /*width: "ICON"*/
+            /*),*/
+            /*{}*/
+          /*)*/
+        },
+        /*
+        * a!forEach() will take local!employee data and used that data to loop through an
+        * expression that creates each row. 
+        *
+        * When modifying the recipe to work with your data, you only need to change:
+        * 1.) the number of fields in each row
+        * 2.) the types of fields for each column (i.e. a!textField() for text data elements)
+        * 3.) the fv!item elements. For example fv!item.firstName would change to fv!item.yourdata
+        */
+        rows: #"SYSTEM_SYSRULES_forEach"(
+          items: ri!contractModApprovals,
+          expression: #"SYSTEM_SYSRULES_gridRowLayout"(
+            contents: {
+              /* For the First Name Column*/
+              #"SYSTEM_SYSRULES_pickerFieldUsers"(
+                /* Labels are not visible in grid cells but are necessary to meet accessibility requirements */
+                label: "approverUserName " &amp; fv!index,
+                value: fv!item.approverUserName,
+                saveInto: fv!item.approverUserName,
+                required: true,
+                readOnly: ri!readOnly,
+                maxSelections: 1,
+                groupFilter: #"_a-0000df0b-b44d-8000-9ba2-011c48011c48_15355"
+              ),
+              #"SYSTEM_SYSRULES_paragraphField"(
+                /* Labels are not visible in grid cells but are necessary to meet accessibility requirements */
+                label: "requesterDetails " &amp; fv!index,
+                value: fv!item.requesterDetails,
+                saveInto: fv!item.requesterDetails,
+                readOnly: ri!readOnly,
+                required: true
+              ),
+              /*a!textField(*/
+                /*label: "Approved",*/
+                /*readOnly: ri!readOnly,*/
+                /*value: fv!item.approved,*/
+                /*showWhen: or(*/
+              /*contains(*/
+                /*ri!contractModApprovals.approved,*/
+                /*true*/
+              /*),*/
+              /*contains(*/
+                /*ri!contractModApprovals.approved,*/
+                /*false*/
+              /*)*/
+              /*)),*/
+              if(
+            or(
+              contains(
+                ri!contractModApprovals.approved,
+                true
+              ),
+              contains(
+                ri!contractModApprovals.approved,
+                false
+              )
+            ),
+              #"SYSTEM_SYSRULES_imageField"(
+                label: "Has been overridden " &amp; fv!index,
+                images: #"_a-0000df63-1167-8000-9ba2-011c48011c48_110209"(fv!item),
+                showWhen: 
+                ri!readOnly
+                ,
+                size: "ICON"
+              ),{})
+              /* For the Removal Column*/
+              /*a!imageField(*/
+                /*label: "delete " &amp; fv!index,*/
+                /*images: a!documentImage(*/
+                  /*document: a!iconIndicator(*/
+                    /*"REMOVE"*/
+                  /*),*/
+                  /*altText: "Remove Approval Request",*/
+                  /*link: a!dynamicLink(*/
+                    /*value: fv!index,*/
+                    /*saveInto: {*/
+                      /*a!save(*/
+                        /*target: ri!contractModApprovals,*/
+                        /*value: remove(*/
+                          /*ri!contractModApprovals,*/
+                          /*save!value*/
+                        /*)*/
+                      /*)*/
+                    /*}*/
+                  /*)*/
+                /*),*/
+                /*size: "ICON",*/
+                /*readOnly: ri!readOnly,*/
+                /*showWhen: not(*/
+                  /*ri!readOnly*/
+                /*)*/
+              /*)*/
+            },
+            id: fv!index
+          )
+        ),
+        addRowlink: if(
+          ri!readOnly,
+          #"SYSTEM_SYSRULES_dynamicLink"(),
+          #"SYSTEM_SYSRULES_dynamicLink"(
+            label: "Add Approval Request",
+            /** For your use case, set the value to a blank instance of your CDT using*/
+            /** the type constructor, e.g. type!Employee(). Only specify the field*/
+            /** if you want to give it a default value e.g. startDate: today()+1.*/
+            value: {
+              createdDateTime: now(),
+              createdBy: loggedInUser(),
+              contractId: ri!contractId
+            },
+            saveInto: {
+              a!save(
+                ri!contractModApprovals,
+                append(
+                  ri!contractModApprovals,
+                  save!value
+                )
+              )
+            }
+          )
+        )
+      )
+    },
+    isCollapsible: true
+  )
+)</definition>
+        <namedTypedValue>
+            <name>contractModApprovals</name>
+            <type>
+                <name>ASC_ContractModApproval?list</name>
+                <namespace>urn:com:appian:types</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>contractId</name>
+            <type>
+                <name>int</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>readOnly</name>
+            <type>
+                <name>boolean</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+        </namedTypedValue>
+        <metadataExpr></metadataExpr>
+        <preferredEditor>interface</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role inherit="true" allowForAll="false" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="administrators">
+            <users>
+                <userUuid>jerome.wong</userUuid>
+            </users>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <typedValue>
+        <type>
+            <name>RuleTestConfig?list</name>
+            <namespace>http://www.appian.com/ae/types/2009</namespace>
+        </type>
+        <value>
+            <el>
+                <a:name/>
+                <a:ruleInputTestConfigs>
+                    <a:value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="a:Expression">#"_a-0000df0b-b44d-8000-9ba2-011c48011c48_17135"(147)</a:value>
+                    <a:nameRef>contractModApprovals</a:nameRef>
+                    <a:id/>
+                </a:ruleInputTestConfigs>
+                <a:ruleInputTestConfigs>
+                    <a:value xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true" xsi:type="xsd:int"/>
+                    <a:nameRef>contractId</a:nameRef>
+                    <a:id/>
+                </a:ruleInputTestConfigs>
+                <a:ruleInputTestConfigs>
+                    <a:value xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true" xsi:type="xsd:boolean"/>
+                    <a:nameRef>readOnly</a:nameRef>
+                    <a:id/>
+                </a:ruleInputTestConfigs>
+                <a:assertions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+            </el>
+        </value>
+    </typedValue>
+    <history>
+        <historyInfo versionUuid="_a-0000df4f-3e48-8000-9ba2-011c48011c48_60627"/>
+        <historyInfo versionUuid="_a-0000df4f-3e48-8000-9ba2-011c48011c48_62517"/>
+        <historyInfo versionUuid="_a-0000df63-1167-8000-9ba2-011c48011c48_110475"/>
+    </history>
+</contentHaul>

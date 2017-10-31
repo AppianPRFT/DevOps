@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <versionUuid>_a-0000df4f-3e48-8000-9ba2-011c48011c48_60693</versionUuid>
+    <queryRule>
+        <name>ASC_ContractUpdate</name>
+        <uuid>_a-0000df0b-b44d-8000-9ba2-011c48011c48_17451</uuid>
+        <description>Checks to see if the new document is a new version</description>
+        <folderUuid>_a-0000def3-0227-8000-9ba2-011c48011c48_10527</folderUuid>
+        <dataStoreEntityCompositeUuid>fd2192d0-4e4e-4643-9ed0-d689e2eb1347@_a-0000def3-0227-8000-9ba2-011c48011c48_10564</dataStoreEntityCompositeUuid>
+        <params>
+            <param>
+                <description></description>
+                <name>ContractID</name>
+                <type>{http://www.w3.org/2001/XMLSchema}int</type>
+            </param>
+            <param>
+                <description></description>
+                <name>DocumentName</name>
+                <type>{http://www.w3.org/2001/XMLSchema}string</type>
+            </param>
+        </params>
+        <filters>
+            <filter>
+                <field>
+                    <name>contractId</name>
+                    <type>{http://www.w3.org/2001/XMLSchema}int</type>
+                </field>
+                <op>=</op>
+                <value>ContractID</value>
+                <valueType>PARAMETER</valueType>
+            </filter>
+            <filter>
+                <field>
+                    <name>documentName</name>
+                    <type>{http://www.w3.org/2001/XMLSchema}string</type>
+                </field>
+                <op>not in</op>
+                <value>DocumentName</value>
+                <valueType>PARAMETER</valueType>
+            </filter>
+        </filters>
+        <orderings/>
+    </queryRule>
+    <roleMap public="false">
+        <role inherit="true" allowForAll="false" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="administrators">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <history>
+        <historyInfo versionUuid="_a-0000df4f-3e48-8000-9ba2-011c48011c48_60693"/>
+    </history>
+</contentHaul>

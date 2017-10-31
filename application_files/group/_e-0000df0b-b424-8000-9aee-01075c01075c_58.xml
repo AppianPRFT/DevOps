@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<groupHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <group>
+        <name>ASC Contracts Administrators</name>
+        <securityMap>SECURITYMAP_PUBLIC</securityMap>
+        <uuid>_e-0000df0b-b424-8000-9aee-01075c01075c_58</uuid>
+        <groupTypeUuid>SYSTEM_GROUP_TYPE_CUSTOM</groupTypeUuid>
+        <parentUuid>_e-0000df0b-b424-8000-9aee-01075c01075c_55</parentUuid>
+        <description>Contract Administrators group for the Contract Management Application. This group is responsible for reviewing all contract modifications and determining the users to provide more information and approves of coordination sheets.</description>
+        <delegatedCreation>false</delegatedCreation>
+        <memberPolicy>MEMBERPOLICY_CLOSED</memberPolicy>
+        <viewingPolicy>VIEWINGPOLICY_LOW</viewingPolicy>
+        <attributes/>
+    </group>
+    <members>
+        <users/>
+        <groups/>
+    </members>
+    <admins>
+        <users>
+            <userUuid>mwandama.mutanuka@perficient.com</userUuid>
+        </users>
+        <groups/>
+    </admins>
+    <ruleSet/>
+</groupHaul>

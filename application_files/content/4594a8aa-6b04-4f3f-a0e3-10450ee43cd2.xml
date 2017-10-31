@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <versionUuid>_a-0000df63-1167-8000-9ba2-011c48011c48_107735</versionUuid>
+    <rule>
+        <name>CASE_APP_uiDetailedTaskView</name>
+        <uuid>4594a8aa-6b04-4f3f-a0e3-10450ee43cd2</uuid>
+        <description>Shows a more detailed task view for current user.</description>
+        <parentUuid>_a-0000da5f-caaa-8000-9ba2-011c48011c48_2880</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>=load(
+  local!gridPI:#"SYSTEM_SYSRULES_pagingInfo"(1,10,#"SYSTEM_SYSRULES_sortInfo"(field:"c1")),
+  local!statusFilter:-1,
+  with(
+    local!tasksForUser:a!queryProcessAnalytics(
+      report:#"_a-0000da89-b5e9-8000-9ba2-011c48011c48_3978",
+      query:#"SYSTEM_SYSRULES_query"(
+        filter:if(local!statusFilter=-1, null,#"SYSTEM_SYSRULES_queryFilter"(field:"c1",operator:"=",value:local!statusFilter)),
+        pagingInfo:local!gridPI
+      )
+    ),
+    {
+      #"SYSTEM_SYSRULES_dropdownField"(
+        label: "Status",
+        choiceLabels: {"All", "Assigned", "Accepted"},
+        choiceValues: {-1,0,1},
+        value: local!statusFilter,
+        saveInto: {
+          local!statusFilter,
+          a!save(local!gridPI.startIndex, 1)
+        }
+      ),
+      #"SYSTEM_SYSRULES_gridField"(
+        label:"Current Tasks",
+        instructions:"A list of all tasks for the current user.",
+        totalCount:local!tasksForUser.totalCount,
+        columns:apply(
+          #"_a-0000da5f-caaa-8000-9ba2-011c48011c48_2897"(columnConfig:_, data:local!tasksForUser.data, showLink:true),
+          local!tasksForUser.columnConfigs
+        ),
+        value:local!gridPI,
+        saveInto:local!gridPI
+      )
+    }
+  )
+)</definition>
+        <preferredEditor>interface</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role inherit="true" allowForAll="false" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="administrators">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <history>
+        <historyInfo versionUuid="_a-0000df63-1167-8000-9ba2-011c48011c48_107735"/>
+    </history>
+</contentHaul>

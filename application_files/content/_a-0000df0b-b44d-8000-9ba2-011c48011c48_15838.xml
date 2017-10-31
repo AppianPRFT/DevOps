@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <versionUuid>_a-0000df63-1167-8000-9ba2-011c48011c48_110150</versionUuid>
+    <rule>
+        <name>ASC_Debug_Rule</name>
+        <uuid>_a-0000df0b-b44d-8000-9ba2-011c48011c48_15838</uuid>
+        <description></description>
+        <parentUuid>_a-0000deba-19b3-8000-9ba2-011c48011c48_32853</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>= dollar(
+  tostring(
+    sum(
+      #"SYSTEM_SYSRULES_forEach"(
+        pv!contractModInfo,
+        if(
+          fv!item.infoSubType = "Stress",
+          if(
+            isnull(
+              fv!item.amount
+            ),
+            if(
+              isnull(
+                fv!item.overrideAmount
+              ),
+              #"_a-0000df0b-b44d-8000-9ba2-011c48011c48_16316"(
+                type: fv!item.infoType,
+                subType: fv!item.infoSubType,
+                hours: fv!item.hourAmount
+              ),
+              fv!item.overrideAmount
+            ),
+            fv!item.amount
+          ),
+          0
+        )
+      )
+    ) + sum(
+      #"SYSTEM_SYSRULES_forEach"(
+        pv!contractModInfo,
+        if(
+          fv!item.infoSubType = "Design",
+          if(
+            isnull(
+              fv!item.amount
+            ),
+            if(
+              isnull(
+                fv!item.overrideAmount
+              ),
+              #"_a-0000df0b-b44d-8000-9ba2-011c48011c48_16316"(
+                type: fv!item.infoType,
+                subType: fv!item.infoSubType,
+                hours: fv!item.hourAmount
+              ),
+              fv!item.overrideAmount
+            ),
+            fv!item.amount
+          ),
+          0
+        )
+      )
+    )+ sum(
+      #"SYSTEM_SYSRULES_forEach"(
+        pv!contractModInfo,
+        if(
+          fv!item.infoSubType = "Premium Freight",
+          if(
+            isnull(
+              fv!item.amount
+            ),
+            if(
+              isnull(
+                fv!item.overrideAmount
+              ),
+              #"_a-0000df0b-b44d-8000-9ba2-011c48011c48_16316"(
+                type: fv!item.infoType,
+                subType: fv!item.infoSubType,
+                hours: fv!item.hourAmount
+              ),
+              fv!item.overrideAmount
+            ),
+            fv!item.amount
+          ),
+          0
+        )
+      )
+    )
+  )
+)</definition>
+        <namedTypedValue>
+            <name>contractModInfo</name>
+            <type>
+                <name>ASC_ContractModInfo?list</name>
+                <namespace>urn:com:appian:types</namespace>
+            </type>
+        </namedTypedValue>
+        <preferredEditor>legacy</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role inherit="true" allowForAll="false" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="administrators">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <history>
+        <historyInfo versionUuid="_a-0000df4f-3e48-8000-9ba2-011c48011c48_60638"/>
+        <historyInfo versionUuid="_a-0000df63-1167-8000-9ba2-011c48011c48_108564"/>
+        <historyInfo versionUuid="_a-0000df63-1167-8000-9ba2-011c48011c48_110150"/>
+    </history>
+</contentHaul>

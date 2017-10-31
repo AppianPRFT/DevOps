@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <versionUuid>_a-0000df63-1167-8000-9ba2-011c48011c48_109392</versionUuid>
+    <folder>
+        <name>ASC Metric Reports</name>
+        <uuid>_a-0000df4f-3e48-8000-9ba2-011c48011c48_61060</uuid>
+        <description></description>
+        <parentUuid>_a-0000def3-0227-8000-9ba2-011c48011c48_10571</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+    </folder>
+    <roleMap public="true">
+        <role inherit="false" allowForAll="false" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="authors">
+            <users/>
+            <groups>
+                <groupUuid>_e-0000df4f-3e02-8000-9aee-01075c01075c_63</groupUuid>
+                <groupUuid>_e-0000df0b-b424-8000-9aee-01075c01075c_55</groupUuid>
+            </groups>
+        </role>
+        <role inherit="false" allowForAll="false" name="administrators">
+            <users>
+                <userUuid>samuel.bruns@perficient.com</userUuid>
+            </users>
+            <groups>
+                <groupUuid>_e-0000df0b-b424-8000-9aee-01075c01075c_58</groupUuid>
+            </groups>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <history>
+        <historyInfo versionUuid="_a-0000df63-1167-8000-9ba2-011c48011c48_107802"/>
+        <historyInfo versionUuid="_a-0000df63-1167-8000-9ba2-011c48011c48_109392"/>
+    </history>
+</contentHaul>

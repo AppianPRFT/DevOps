@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <versionUuid>_a-0000df4f-3e48-8000-9ba2-011c48011c48_60659</versionUuid>
+    <rule>
+        <name>ASC_ContractsModificationApproval_Form</name>
+        <uuid>_a-0000df0b-b44d-8000-9ba2-011c48011c48_16324</uuid>
+        <description>This allows the selected approvers to view all of the contract modification detail and make an approval decision.</description>
+        <parentUuid>_a-0000deba-19b3-8000-9ba2-011c48011c48_32858</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>= load(
+  local!step: 1,
+  local!canComplete: false,
+  #"SYSTEM_SYSRULES_formLayout_v1"(
+    label: "Contract Modification Approval",
+    contents: {
+      #"_a-0000df0b-b44d-8000-9ba2-011c48011c48_15469"(
+        milestoneStep: ri!milestoneStep
+      ),
+      #"_a-0000df0b-b44d-8000-9ba2-011c48011c48_15325"(
+        contract: ri!contract,
+        modification: ri!modification
+      ),
+      if(
+        ri!modification.modificationType = "Change Notice Revision Request",
+        #"_a-0000df0b-b44d-8000-9ba2-011c48011c48_15330"(
+          contract: ri!contract,
+          readOnly: true,
+          changeNotice: ri!changeRequest,
+          contractModification: ri!modification
+        ),
+        if(
+          ri!modification.modificationType = "General",
+          #"_a-0000df0b-b44d-8000-9ba2-011c48011c48_19555"(
+            contractModification: ri!modification,
+            contract: ri!contract,
+            readOnly: true
+          ),
+          {}
+        )
+      ),
+      #"_a-0000df0b-b44d-8000-9ba2-011c48011c48_15345"(
+        contractModInfo: ri!contractModInfo,
+        contractId: ri!contract.contractId,
+        formAction: #"_a-0000df0b-b44d-8000-9ba2-011c48011c48_16258"
+      ),
+      
+      /*uplad document section*/
+      
+      
+      #"_a-0000df0b-b44d-8000-9ba2-011c48011c48_19530"(
+        changeNotice: ri!changeRequest
+      ),
+      
+      /*rule!ASC_ContractsModificationApprovalSelection_Section(*/
+      /*contractModApprovals: ri!contractModApprovals,*/
+      /*contractId: ri!contract.contractId,*/
+      /*readOnly: true*/
+      /*)*/
+      #"_a-0000df0b-b44d-8000-9ba2-011c48011c48_16327"(
+        contractModApproval: ri!contractModApproval,
+        readOnly: false,
+        folder: tofolder(ri!changeRequest.referenceDocsFolder)
+      )
+    },
+    buttons: #"SYSTEM_SYSRULES_ButtonLayout"(
+      primaryButtons: {
+        #"SYSTEM_SYSRULES_ButtonWidgetSubmit"(
+          label: "Approve",
+          style: "PRIMARY",
+          value: "Approve",
+          saveInto: ri!userAction
+        )
+      },
+      secondaryButtons: {
+        #"SYSTEM_SYSRULES_ButtonWidgetSubmit"(
+          label: "Close",
+          style: "NORMAL",
+          value: "Close",
+          saveInto: ri!userAction,
+          skipValidation: true
+        ),
+        #"SYSTEM_SYSRULES_ButtonWidgetSubmit"(
+          label: "Reject",
+          style: "DESTRUCTIVE",
+          value: "Reject",
+          saveInto: ri!userAction
+        )
+      }
+    )
+  )
+)</definition>
+        <namedTypedValue>
+            <name>contractModInfo</name>
+            <type>
+                <name>ASC_ContractModInfo?list</name>
+                <namespace>urn:com:appian:types</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>contract</name>
+            <type>
+                <name>ASC_Contract</name>
+                <namespace>urn:com:appian:types</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>readOnly</name>
+            <type>
+                <name>boolean</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>userAction</name>
+            <type>
+                <name>string</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+            <value/>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>contractModApproval</name>
+            <type>
+                <name>ASC_ContractModApproval</name>
+                <namespace>urn:com:appian:types</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>milestoneStep</name>
+            <type>
+                <name>int</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>modification</name>
+            <type>
+                <name>ASC_Contract_Modifications</name>
+                <namespace>urn:com:appian:types</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>changeRequest</name>
+            <type>
+                <name>ASC_ChangeNoticeRequest</name>
+                <namespace>urn:com:appian:types</namespace>
+            </type>
+        </namedTypedValue>
+        <metadataExpr></metadataExpr>
+        <preferredEditor>interface</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role inherit="true" allowForAll="false" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="administrators">
+            <users>
+                <userUuid>jerome.wong</userUuid>
+            </users>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <typedValue>
+        <type>
+            <name>RuleTestConfig?list</name>
+            <namespace>http://www.appian.com/ae/types/2009</namespace>
+        </type>
+        <value>
+            <el>
+                <a:name/>
+                <a:ruleInputTestConfigs>
+                    <a:value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="a:Expression">'type!{urn:com:appian:types}ASC_Contract_Modifications'(Id:1)</a:value>
+                    <a:nameRef>contractModInfo</a:nameRef>
+                    <a:id/>
+                </a:ruleInputTestConfigs>
+                <a:ruleInputTestConfigs>
+                    <a:value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="a:Expression">#"571fac17-e2ad-41e6-b60a-2c6295469786"(1)</a:value>
+                    <a:nameRef>contract</a:nameRef>
+                    <a:id/>
+                </a:ruleInputTestConfigs>
+                <a:ruleInputTestConfigs>
+                    <a:value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="a:Expression">false</a:value>
+                    <a:nameRef>readOnly</a:nameRef>
+                    <a:id/>
+                </a:ruleInputTestConfigs>
+                <a:ruleInputTestConfigs>
+                    <a:value xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xsd:string"/>
+                    <a:nameRef>userAction</a:nameRef>
+                    <a:id/>
+                </a:ruleInputTestConfigs>
+                <a:ruleInputTestConfigs>
+                    <a:value xmlns:n1="urn:com:appian:types" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true" xsi:type="n1:ASC_ContractModApproval"/>
+                    <a:nameRef>contractModApproval</a:nameRef>
+                    <a:id/>
+                </a:ruleInputTestConfigs>
+                <a:ruleInputTestConfigs>
+                    <a:value xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true" xsi:type="xsd:int"/>
+                    <a:nameRef>milestoneStep</a:nameRef>
+                    <a:id/>
+                </a:ruleInputTestConfigs>
+                <a:ruleInputTestConfigs>
+                    <a:value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="a:Expression">'type!{urn:com:appian:types}ASC_Contract_Modifications'(contractId:1)</a:value>
+                    <a:nameRef>modification</a:nameRef>
+                    <a:id/>
+                </a:ruleInputTestConfigs>
+                <a:ruleInputTestConfigs>
+                    <a:value xmlns:n1="urn:com:appian:types" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true" xsi:type="n1:ASC_ChangeNoticeRequest"/>
+                    <a:nameRef>changeRequest</a:nameRef>
+                    <a:id/>
+                </a:ruleInputTestConfigs>
+                <a:assertions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+            </el>
+        </value>
+    </typedValue>
+    <history>
+        <historyInfo versionUuid="_a-0000df4f-3e48-8000-9ba2-011c48011c48_60659"/>
+    </history>
+</contentHaul>

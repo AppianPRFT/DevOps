@@ -1,0 +1,320 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <versionUuid>_a-0000df63-1167-8000-9ba2-011c48011c48_113155</versionUuid>
+    <rule>
+        <name>ASC_ContractHistory_Grid</name>
+        <uuid>_a-0000dee6-acf9-8000-9ba2-011c48011c48_7289</uuid>
+        <description>Section with the list of contract medications for a customer</description>
+        <parentUuid>_a-0000deba-19b3-8000-9ba2-011c48011c48_32858</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>#"SYSTEM_SYSRULES_sectionLayout_v1"(
+  label: "Contracts With Modifications",
+  contents: {
+    load(
+      local!pagingInfo: #"SYSTEM_SYSRULES_pagingInfo"(
+        startIndex: 1,
+        batchSize: 20,
+        sort: #"SYSTEM_SYSRULES_sortInfo"(
+          field: "lastUpdateDate",
+          ascending: true
+        )
+      ),
+      with(
+        local!datasubset:#"SYSTEM_SYSRULES_queryEntity"(
+          entity: #"_a-0000def3-0227-8000-9ba2-011c48011c48_10675",
+          query: #"SYSTEM_SYSRULES_query"(
+            filter: #"SYSTEM_SYSRULES_queryFilter"(
+              field: "customerId",
+              operator: "=",
+              value: ri!customerID
+            ),
+            selection: #"SYSTEM_SYSRULES_querySelection"(
+              columns: {
+                #"SYSTEM_SYSRULES_queryColumn"(
+                  field: "contractTitle"
+                ),
+                #"SYSTEM_SYSRULES_queryColumn"(
+                  field: "contractStatus"
+                ),
+                #"SYSTEM_SYSRULES_queryColumn"(
+                  field: "contractType"
+                ),
+                #"SYSTEM_SYSRULES_queryColumn"(
+                  field: "mainContactName"
+                ),
+                #"SYSTEM_SYSRULES_queryColumn"(
+                  field: "lastUpdateDate"
+                ),
+                #"SYSTEM_SYSRULES_queryColumn"(
+                  field: "contractAmount"
+                ),
+                #"SYSTEM_SYSRULES_queryColumn"(
+                  field: "contractId"
+                ),
+                #"SYSTEM_SYSRULES_queryColumn"(
+                  field: "productId"
+                ),
+                #"SYSTEM_SYSRULES_queryColumn"(
+                  field: "daysAging"
+                ),
+                #"SYSTEM_SYSRULES_queryColumn"(
+                  field: "claimOfferAmount"
+                ),
+                #"SYSTEM_SYSRULES_queryColumn"(
+                  field: "contractIcon"
+                )
+              }
+            ),
+            pagingInfo: local!pagingInfo
+          )
+        ),
+        #"SYSTEM_SYSRULES_gridField"(
+          totalCount: local!datasubset.totalCount,
+          columns: {
+            /*a!gridImageColumn(
+              label: "Status",
+              data: {
+                a!forEach(
+                  items: local!datasubset.data,
+                  expression: rule!ASC_Contract_getIconIndicatorByStatus(
+                    index(
+                      index(
+                        local!datasubset.data,
+                        "contractStatus",
+                        null
+                      ),
+                      local!datasubset.totalCount,
+                      null
+                    )
+                  )
+                )
+              },
+              size: "ICON"
+            ),*/
+            #"SYSTEM_SYSRULES_gridTextColumn"(
+              label: "Contract Tile",
+              field: "contractTitle",
+              data: index(
+                local!datasubset.data,
+                "contractTitle",
+                null
+              ),
+              links: apply(
+                #"SYSTEM_SYSRULES_recordLink"(
+                  recordType: #"_a-0000df0b-b44d-8000-9ba2-011c48011c48_17227",
+                  identifier: _
+                ),
+                index(
+                  local!datasubset.data,
+                  "contractId",
+                  {}
+                )
+              )
+            ),
+            #"SYSTEM_SYSRULES_gridTextColumn"(
+              label: "Product",
+              field: "productDescription",
+              data: 
+                index(
+                  local!datasubset.data,
+                  "productId",
+                  null
+                ),
+                links: apply(
+                  #"SYSTEM_SYSRULES_recordLink"(
+                    label: #"_a-0000df63-1167-8000-9ba2-011c48011c48_113023"[1],
+                    recordType: #"_a-0000df63-1167-8000-9ba2-011c48011c48_113061",
+                    identifier: _
+                  ),
+                  index(
+                    local!datasubset.data,
+                    "productId",
+                    {}
+                  )
+                )
+            ),
+            #"SYSTEM_SYSRULES_gridTextColumn"(
+              label: "Claim/ Offer Amount",
+              field: "claimOfferAmount",
+              data: dollar(
+                index(
+                  local!datasubset.data,
+                  "claimOfferAmount",
+                  null
+                )
+              )
+            ),
+            #"SYSTEM_SYSRULES_gridTextColumn"(
+              label: "Projected Settlement Value",
+              field: "contractAmount",
+              data: dollar(
+                index(
+                  local!datasubset.data,
+                  "contractAmount",
+                  null
+                )
+              )
+            ),
+            #"SYSTEM_SYSRULES_gridTextColumn"(
+              label: "Days Aging",
+              field: "daysAging",
+              data: index(
+                  local!datasubset.data,
+                  "daysAging",
+                  null
+              )
+            ),            
+            #"SYSTEM_SYSRULES_gridTextColumn"(
+              label: "Has Assertions?",
+              field: "hasAssertions",
+               data: {
+                  #"SYSTEM_SYSRULES_forEach"(
+                    index(
+                      local!datasubset.data,
+                      "contractId",
+                      ""
+                    ),
+                    {
+                      if(
+                        #"_a-0000dd3a-dada-8000-daab-640000640000_11122"(
+                          #"_a-0000df4f-3e48-8000-9ba2-011c48011c48_61505"(fv!item)
+                        ),
+                        "No","Yes"
+                      )
+                    }
+                  )
+               }
+            ),
+            #"SYSTEM_SYSRULES_gridImageColumn"(
+              label: "Modification Status",
+              size: "ICON",
+              data: apply(
+                #"SYSTEM_SYSRULES_documentImage"(
+                  document: _,
+                  caption: _
+                ),
+                merge(
+                  apply(
+                    #"SYSTEM_SYSRULES_iconIndicator"(
+                      icon: _
+                    ),
+                    index(
+                      local!datasubset.data,
+                      "contractIcon",
+                      {}
+                    )
+                  ),
+                  index(
+                    local!datasubset.data,
+                    "contractStatus",
+                    {}
+                  )
+                )
+              )
+            ),
+            /*
+            a!gridTextColumn(
+              label: "Status Text",
+              field: "contractStatusText",
+              data: index(
+                local!datasubset.data,
+                "contractStatus",
+                null
+              )
+            ),*/
+            #"SYSTEM_SYSRULES_gridTextColumn"(
+              label: "Contact",
+              field: "mainContactName",
+              data: index(
+                local!datasubset.data,
+                "mainContactName",
+                null
+              )
+            ),
+            #"SYSTEM_SYSRULES_gridTextColumn"(
+              label: "Updated Date",
+              field: "lastUpdateDate",
+              data: index(
+                local!datasubset.data,
+                "lastUpdateDate",
+                null
+              )
+            )
+          },
+          value: local!pagingInfo,
+          saveInto: local!pagingInfo
+        )
+      )
+    )
+  }
+)</definition>
+        <namedTypedValue>
+            <name>customerID</name>
+            <type>
+                <name>int</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+        </namedTypedValue>
+        <metadataExpr></metadataExpr>
+        <preferredEditor>interface</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role inherit="true" allowForAll="false" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="administrators">
+            <users>
+                <userUuid>mwandama.mutanuka@perficient.com</userUuid>
+            </users>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <typedValue>
+        <type>
+            <name>RuleTestConfig?list</name>
+            <namespace>http://www.appian.com/ae/types/2009</namespace>
+        </type>
+        <value>
+            <el>
+                <a:name/>
+                <a:ruleInputTestConfigs>
+                    <a:value xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xsd:int">1</a:value>
+                    <a:nameRef>customerID</a:nameRef>
+                    <a:id/>
+                </a:ruleInputTestConfigs>
+                <a:assertions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+            </el>
+        </value>
+    </typedValue>
+    <history>
+        <historyInfo versionUuid="_a-0000df4f-3e48-8000-9ba2-011c48011c48_60581"/>
+        <historyInfo versionUuid="_a-0000df4f-3e48-8000-9ba2-011c48011c48_61694"/>
+        <historyInfo versionUuid="_a-0000df63-1167-8000-9ba2-011c48011c48_113155"/>
+    </history>
+</contentHaul>

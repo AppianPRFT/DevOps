@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<recordTypeHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <versionUuid>4f4a993f-8480-4364-aa59-4176fc1ce9aa</versionUuid>
+    <recordType a:uuid="73d7ae00-5926-46f7-95c7-1c76d5e4c8b5" name="Contract Modification">
+        <a:pluralName>Contract Modifications</a:pluralName>
+        <a:description>Contract modifications record list </a:description>
+        <a:urlStub>QQ_d0Q</a:urlStub>
+        <a:source xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="a:DataStoreEntity" a:uuid="b56c36ff-9eb1-454d-bfa7-9dbccebb948e@_a-0000dee6-acf9-8000-9ba2-011c48011c48_7300"/>
+        <a:listViewTemplateExpr>#"SYSTEM_SYSRULES_recordGridLayoutColumns"(
+  columns: {
+    #"SYSTEM_SYSRULES_gridLayoutColumn"(
+      label: "Title",
+      field: "Title",
+      component: #"SYSTEM_SYSRULES_recordGrid_linkField"(
+        links: #"SYSTEM_SYSRULES_recordLink"(
+          label: rf!Title,
+          recordType: rp!type,
+          identifier: rp!id
+        )
+      )
+    ),
+    #"SYSTEM_SYSRULES_gridLayoutColumn"(
+      label: "Description",
+      field: "description",
+      component: #"SYSTEM_SYSRULES_recordGrid_textField"(
+        displayValue: rf!description,
+        align: null
+      )
+    ),
+    #"SYSTEM_SYSRULES_gridLayoutColumn"(
+      label: "Modification Type",
+      field: "modificationType",
+      component: #"SYSTEM_SYSRULES_recordGrid_textField"(
+        displayvalue: rf!modificationType
+      )
+    ),
+    #"SYSTEM_SYSRULES_gridLayoutColumn"(
+      label: "Spirit Focal",
+      width: "DISTRIBUTE",
+      field: "spiritFocal",
+      component: #"SYSTEM_SYSRULES_recordGrid_textField"(
+        displayvalue: rf!spiritFocal
+      )
+    ),
+    #"SYSTEM_SYSRULES_gridLayoutColumn"(
+      label: "Milestone Step",
+      field: "milestoneStep",
+      component: #"SYSTEM_SYSRULES_recordGrid_integerField"(
+        displayValue: rf!milestoneStep,
+        align: "RIGHT"
+      )
+    )
+  },
+  pageSize: 50,
+  defaultSort: #"SYSTEM_SYSRULES_sortInfo"(
+    field: "Title",
+    ascending: fn!true()
+  )
+)</a:listViewTemplateExpr>
+        <a:detailViewCfg>
+            <a:nameExpr>="Summary"</a:nameExpr>
+            <a:uiExpr></a:uiExpr>
+            <a:visibilityExpr>=true()</a:visibilityExpr>
+            <a:urlStub>summary</a:urlStub>
+            <a:headerExpr></a:headerExpr>
+        </a:detailViewCfg>
+        <a:isSystem>false</a:isSystem>
+        <a:dataSrcExpr></a:dataSrcExpr>
+        <a:facetsListExpr></a:facetsListExpr>
+        <a:titleExpr></a:titleExpr>
+        <a:defaultFiltersExpr></a:defaultFiltersExpr>
+        <a:layoutType>GRID</a:layoutType>
+        <a:security>16383</a:security>
+        <a:hideLatestNews>false</a:hideLatestNews>
+    </recordType>
+    <roleMap>
+        <role name="record_type_administrator">
+            <users/>
+            <groups>
+                <groupUuid>_e-0000def3-0203-8000-9aee-01075c01075c_10</groupUuid>
+            </groups>
+        </role>
+        <role name="record_type_viewer">
+            <users/>
+            <groups>
+                <groupUuid>_e-0000df0b-b424-8000-9aee-01075c01075c_55</groupUuid>
+            </groups>
+        </role>
+    </roleMap>
+    <history>
+        <historyInfo versionUuid="4f4a993f-8480-4364-aa59-4176fc1ce9aa"/>
+    </history>
+</recordTypeHaul>

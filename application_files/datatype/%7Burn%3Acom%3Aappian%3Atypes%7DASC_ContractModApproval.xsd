@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema targetNamespace="urn:com:appian:types"
+  xmlns:tns="urn:com:appian:types" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:complexType name="ASC_ContractModApproval">
+    <xsd:annotation>
+      <xsd:appinfo source="appian.jpa">
+        @Table(name="ASC_CONTRACT_MOD_APPROVAL")
+      </xsd:appinfo>
+      <xsd:documentation><![CDATA[ASC_ContractModApproval - ASC_CONTRACT_MOD_APPROVAL - Internal Approvals for Contract Modification]]></xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element name="id" type="xsd:int">
+        <xsd:annotation>
+          <xsd:appinfo source="appian.jpa">@Column(name="ID")
+		  @Id
+		  @GeneratedValue
+		  </xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="contractModificationId" type="xsd:int">
+        <xsd:annotation>
+          <xsd:appinfo source="appian.jpa">@Column(name="CONTRACTMODIFICATIONID")
+		  </xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="approved" type="xsd:boolean">
+        <xsd:annotation>
+          <xsd:appinfo source="appian.jpa">@Column(name="APPROVED")
+		  </xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="approverUserName" nillable="true" type="xsd:string">
+        <xsd:annotation>
+          <xsd:appinfo source="appian.jpa">
+					@Column(name="APPROVERUSERNAME", length=50)
+				</xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="requesterUserName" nillable="true" type="xsd:string">
+        <xsd:annotation>
+          <xsd:appinfo source="appian.jpa">
+					@Column(name="REQUESTERUSERNAME", length=50)
+				</xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="requesterDetails" nillable="true" type="xsd:string">
+        <xsd:annotation>
+          <xsd:appinfo source="appian.jpa">@Column(name="REQUESTORCOMMENTS", length=2000)</xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="approverComments" nillable="true" type="xsd:string">
+        <xsd:annotation>
+          <xsd:appinfo source="appian.jpa">@Column(name="APPROVERCOMMENTS", length=2000)</xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="approverSignature" type="xsd:int">
+        <xsd:annotation>
+          <xsd:appinfo source="appian.jpa">@Column(name="APPROVERSIGNATURE")
+		  </xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="approvedDateTime" nillable="true" type="xsd:dateTime">
+        <xsd:annotation>
+          <xsd:appinfo source="appian.jpa">@Column(name="APPROVEDDATETIME")</xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="createdDateTime" nillable="true" type="xsd:dateTime">
+        <xsd:annotation>
+          <xsd:appinfo source="appian.jpa">@Column(name="CREATEDDATETIME")</xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="lastUpdatedDateTime" nillable="true" type="xsd:dateTime">
+        <xsd:annotation>
+          <xsd:appinfo source="appian.jpa">@Column(name="LASTUPDATEDDATETIME")</xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="createdBy" nillable="true" type="xsd:string">
+        <xsd:annotation>
+          <xsd:appinfo source="appian.jpa">@Column(name="CREATEDBY")</xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="lastUpdatedBy" nillable="true" type="xsd:string">
+        <xsd:annotation>
+          <xsd:appinfo source="appian.jpa">@Column(name="LASTUPDATEDBY")</xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+</xsd:schema>
