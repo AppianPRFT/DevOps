@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <versionUuid>_a-0000df6d-83a9-8000-9ba2-011c48011c48_50494</versionUuid>
+    <queryRule>
+        <name>SLA_GetSLAsByMilestoneID</name>
+        <uuid>_a-0000df6d-83a9-8000-9ba2-011c48011c48_50484</uuid>
+        <description>given the milestone id returns the sla'2</description>
+        <folderUuid>_a-0000df6d-83a9-8000-9ba2-011c48011c48_47567</folderUuid>
+        <dataStoreEntityCompositeUuid>931f13d6-58ee-4423-9497-6e1f4b42c5ab@_a-0000df6d-83a9-8000-9ba2-011c48011c48_47590</dataStoreEntityCompositeUuid>
+        <params>
+            <param>
+                <description></description>
+                <name>milestoneid</name>
+                <type>{http://www.w3.org/2001/XMLSchema}int</type>
+            </param>
+        </params>
+        <filters>
+            <filter>
+                <field>
+                    <name>milestoneId</name>
+                    <type>{http://www.w3.org/2001/XMLSchema}int</type>
+                </field>
+                <op>=</op>
+                <value>milestoneid</value>
+                <valueType>PARAMETER</valueType>
+            </filter>
+        </filters>
+        <orderings/>
+    </queryRule>
+    <roleMap public="false">
+        <role inherit="true" allowForAll="false" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="administrators">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <history>
+        <historyInfo versionUuid="_a-0000df6d-83a9-8000-9ba2-011c48011c48_50494"/>
+    </history>
+</contentHaul>

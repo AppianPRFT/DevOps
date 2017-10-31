@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <versionUuid>_a-0000df6d-83a9-8000-9ba2-011c48011c48_49523</versionUuid>
+    <rule>
+        <name>SLA_GenerateData2</name>
+        <uuid>_a-0000df6d-83a9-8000-9ba2-011c48011c48_49519</uuid>
+        <description>Given the data subset for SLA entries this rule returns arrays of (Above SLA, Meets SLA, Exceeds SLA) containing amount of records where the record met the category requirements.
+EX: (scenario with 4 milestones) aboveSLA: {2,3,4,1} , MeetsSLA: {2,3,4,1}, ExceedsSLA: {2,3,4,1}</description>
+        <parentUuid>_a-0000df6d-83a9-8000-9ba2-011c48011c48_47561</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>load(
+  /*local!h:"yes",*/
+  local!dataRecords: #"SYSTEM_SYSRULES_forEach"(
+    #"_a-0000df6d-83a9-8000-9ba2-011c48011c48_49108"(),
+    fv!item.recordId
+  ),
+  local!SLAData: #"SYSTEM_SYSRULES_forEach"(
+    {
+      1,
+      2,
+      3
+    },
+    {
+      data: 
+      /*if(local!h="no",*/
+      cast(101,#"SYSTEM_SYSRULES_forEach"(
+        #"_a-0000df6d-83a9-8000-9ba2-011c48011c48_49484",
+        cast(
+          1,
+          0
+        )
+      ))
+      /*,*/
+      /*"yes")*/
+    }
+  ),
+  with(
+  local!dataRecordIdentifiers: union(
+    local!dataRecords,
+    local!dataRecords
+  ),
+  local!Groupeddata: #"SYSTEM_SYSRULES_forEach"(
+    local!dataRecordIdentifiers,
+    #"_a-0000df6d-83a9-8000-9ba2-011c48011c48_49187"(
+      fv!item
+    )
+  ),
+  local!analizedData1: #"SYSTEM_SYSRULES_forEach"(
+    local!Groupeddata,
+    #"_a-0000df6d-83a9-8000-9ba2-011c48011c48_49207"(
+      fv!item
+    )
+  ),
+  local!analizedData: #"SYSTEM_SYSRULES_forEach"(
+    local!Groupeddata,
+    #"SYSTEM_SYSRULES_forEach"(
+      #"_a-0000df6d-83a9-8000-9ba2-011c48011c48_49207"(
+        fv!item
+      ),
+      if(
+        fv!item &lt; #"_a-0000df6d-83a9-8000-9ba2-011c48011c48_48101"[fv!index],
+        updatearray(
+          cast(101,local!SLAData[1].data),
+          1,
+          1
+        )
+        
+        ,
+        if(
+          fv!item &gt; #"_a-0000df6d-83a9-8000-9ba2-011c48011c48_48101"[fv!index],
+          updatearray(
+          cast(101,local!SLAData[1].data),
+          1,
+          1
+        ),
+          updatearray(
+          cast(101,local!SLAData[1].data),
+          1,
+          1
+        )
+        )
+      )
+    )
+  ),
+  local!testRun:a!save(
+    local!SLAData.data,
+    1
+  ),
+  
+  local!analizedData
+  )
+)</definition>
+        <namedTypedValue>
+            <name>data</name>
+            <type>
+                <name>DataSubset</name>
+                <namespace>http://www.appian.com/ae/types/2009</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>returnData</name>
+            <type>
+                <name>Variant</name>
+                <namespace>http://www.appian.com/ae/types/2009</namespace>
+            </type>
+        </namedTypedValue>
+        <preferredEditor>legacy</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role inherit="true" allowForAll="false" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="administrators">
+            <users>
+                <userUuid>jeremy.chen@perficient.com</userUuid>
+            </users>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <history>
+        <historyInfo versionUuid="_a-0000df6d-83a9-8000-9ba2-011c48011c48_49523"/>
+    </history>
+</contentHaul>
