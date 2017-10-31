@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <versionUuid>_a-0000df4f-3e48-8000-9ba2-011c48011c48_60633</versionUuid>
+    <queryRule>
+        <name>ASC_getContractDocumentsById</name>
+        <uuid>_a-0000df0b-b44d-8000-9ba2-011c48011c48_15493</uuid>
+        <description>Returns contract documents by id</description>
+        <folderUuid>_a-0000def3-0227-8000-9ba2-011c48011c48_10527</folderUuid>
+        <dataStoreEntityCompositeUuid>65db9a56-fc04-4e02-b833-ff009e08a83a@_a-0000dee6-acf9-8000-9ba2-011c48011c48_7300</dataStoreEntityCompositeUuid>
+        <params>
+            <param>
+                <description></description>
+                <name>contractId</name>
+                <type>{http://www.w3.org/2001/XMLSchema}int</type>
+            </param>
+        </params>
+        <filters>
+            <filter>
+                <field>
+                    <name>contractId</name>
+                    <type>{http://www.w3.org/2001/XMLSchema}int</type>
+                </field>
+                <op>=</op>
+                <value>contractId</value>
+                <valueType>PARAMETER</valueType>
+            </filter>
+        </filters>
+        <orderings/>
+    </queryRule>
+    <roleMap public="false">
+        <role inherit="true" allowForAll="false" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="administrators">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <history>
+        <historyInfo versionUuid="_a-0000df4f-3e48-8000-9ba2-011c48011c48_60633"/>
+    </history>
+</contentHaul>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<recordTypeHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <versionUuid>1fbe394d-d8cd-465a-9441-0d13b633716e</versionUuid>
+    <recordType a:uuid="2a10f868-f6b4-483c-a7f4-0f9d9d727973" name="Customer">
+        <a:pluralName>Customers</a:pluralName>
+        <a:description>View Customer Contracts and customer details</a:description>
+        <a:urlStub>Qsjq7g</a:urlStub>
+        <a:source xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="a:DataStoreEntity" a:uuid="1b9c643c-1637-497b-82a4-8a386b6442d4@_a-0000dee6-acf9-8000-9ba2-011c48011c48_7300"/>
+        <a:listViewTemplateExpr>#"_a-0000df0b-b44d-8000-9ba2-011c48011c48_19547"()</a:listViewTemplateExpr>
+        <a:detailViewCfg>
+            <a:nameExpr>="Summary"</a:nameExpr>
+            <a:uiExpr>#"_a-0000df0b-b44d-8000-9ba2-011c48011c48_19546"(cancel: false(), customerId: rf!id)</a:uiExpr>
+            <a:visibilityExpr>=true()</a:visibilityExpr>
+            <a:urlStub>summary</a:urlStub>
+            <a:headerExpr></a:headerExpr>
+        </a:detailViewCfg>
+        <a:defaultSortInfo>
+            <field>id</field>
+            <ascending>true</ascending>
+        </a:defaultSortInfo>
+        <a:isSystem>false</a:isSystem>
+        <a:dataSrcExpr></a:dataSrcExpr>
+        <a:facetsListExpr></a:facetsListExpr>
+        <a:titleExpr></a:titleExpr>
+        <a:defaultFiltersExpr></a:defaultFiltersExpr>
+        <a:layoutType>FEED</a:layoutType>
+        <a:security>16383</a:security>
+        <a:hideLatestNews>false</a:hideLatestNews>
+    </recordType>
+    <roleMap>
+        <role name="record_type_administrator">
+            <users/>
+            <groups>
+                <groupUuid>_e-0000def3-0203-8000-9aee-01075c01075c_10</groupUuid>
+            </groups>
+        </role>
+        <role name="record_type_viewer">
+            <users/>
+            <groups>
+                <groupUuid>_e-0000df0b-b424-8000-9aee-01075c01075c_55</groupUuid>
+            </groups>
+        </role>
+    </roleMap>
+    <history>
+        <historyInfo versionUuid="1fbe394d-d8cd-465a-9441-0d13b633716e"/>
+    </history>
+</recordTypeHaul>

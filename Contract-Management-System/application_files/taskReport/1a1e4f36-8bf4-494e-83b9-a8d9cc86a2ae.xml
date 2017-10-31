@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<taskReportHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <taskReport a:uuid="1a1e4f36-8bf4-494e-83b9-a8d9cc86a2ae" name="My Tasks">
+        <a:description>Logged In Users Tasks</a:description>
+        <a:uiExpr>=#"_a-0000df4f-3e48-8000-9ba2-011c48011c48_62045"()</a:uiExpr>
+        <a:urlStub>aatByA</a:urlStub>
+    </taskReport>
+    <roleMap/>
+</taskReportHaul>

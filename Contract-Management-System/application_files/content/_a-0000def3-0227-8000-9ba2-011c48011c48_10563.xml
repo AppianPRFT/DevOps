@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <versionUuid>_a-0000df4f-3e48-8000-9ba2-011c48011c48_61669</versionUuid>
+    <rule>
+        <name>ASC_Documents_Grid</name>
+        <uuid>_a-0000def3-0227-8000-9ba2-011c48011c48_10563</uuid>
+        <description>Grid of documents related to a document</description>
+        <parentUuid>_a-0000deba-19b3-8000-9ba2-011c48011c48_32858</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>load(
+  local!pagingInfo: #"SYSTEM_SYSRULES_pagingInfo"(
+    startIndex: 1,
+    batchSize: 20,
+    sort: #"SYSTEM_SYSRULES_sortInfo"(
+      field: "updateDate",
+      ascending: true
+    )
+  ),
+  with(
+    local!datasubset: #"SYSTEM_SYSRULES_queryEntity"(
+      entity: #"_a-0000def3-0227-8000-9ba2-011c48011c48_10566",
+      query: #"SYSTEM_SYSRULES_query"(
+        
+      filter: #"SYSTEM_SYSRULES_queryFilter"(
+        field: "contractId",
+        operator: "=",
+        value: ri!contractID
+       ),
+        selection: #"SYSTEM_SYSRULES_querySelection"(columns: {
+          #"SYSTEM_SYSRULES_queryColumn"(field: "id"),
+          #"SYSTEM_SYSRULES_queryColumn"(field: "documentName"),
+          #"SYSTEM_SYSRULES_queryColumn"(field: "upladedBy"),
+          #"SYSTEM_SYSRULES_queryColumn"(field: "updateDate"),
+          #"SYSTEM_SYSRULES_queryColumn"(field: "status"),
+          #"SYSTEM_SYSRULES_queryColumn"(field: "documentId"),
+          #"SYSTEM_SYSRULES_queryColumn"(field: "documentIcon"),
+          }
+        ),
+        pagingInfo: local!pagingInfo
+      )
+    ),
+    #"SYSTEM_SYSRULES_gridField"(
+      totalCount: local!datasubset.totalCount,
+      columns: {
+        #"SYSTEM_SYSRULES_gridTextColumn"(
+              label:"Document Name",
+              data: index(local!datasubset.data,"documentName",{}),
+              links:apply(
+                #"SYSTEM_SYSRULES_recordLink"(recordType:#"_a-0000def3-0227-8000-9ba2-011c48011c48_10721",identifier:_),
+                index(local!datasubset.data,"id",{})
+           )
+        ),
+        #"SYSTEM_SYSRULES_gridTextColumn"(
+          label: "Updated By",
+          field: "upladedBy",
+          data: index(local!datasubset.data, "upladedBy", null)
+        ),
+        #"SYSTEM_SYSRULES_gridTextColumn"(
+          label: "Update Date",
+          field: "updateDate",
+          data: index(local!datasubset.data, "updateDate", null)
+        ),
+        #"SYSTEM_SYSRULES_gridTextColumn"(
+          label: "Status",
+          field: "status",
+          data: index(local!datasubset.data, "status", null)
+        ),
+        #"SYSTEM_SYSRULES_gridImageColumn"(
+              label:"Status Icon",
+              size: "ICON",
+              data:apply(
+                #"SYSTEM_SYSRULES_documentImage"(document:_,caption:_),
+                merge(
+                  apply(#"SYSTEM_SYSRULES_iconIndicator"(icon:_),
+                  index(local!datasubset.data,"documentIcon",{})),
+                  index(local!datasubset.data,"status",{})
+              )
+           )
+           
+        ),
+        #"SYSTEM_SYSRULES_gridTextColumn"(
+          label: "Download Link",
+          field: "documentId",
+          data: index(local!datasubset.data, "documentId", null),
+          links:#"SYSTEM_SYSRULES_forEach"(items:index(local!datasubset.data, "documentId", null),expression:#"SYSTEM_SYSRULES_documentDownloadLink"(fv!item))
+          )
+      },
+      value: local!pagingInfo,
+      saveInto: local!pagingInfo
+    )
+  )
+)</definition>
+        <namedTypedValue>
+            <name>contractID</name>
+            <type>
+                <name>int</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+        </namedTypedValue>
+        <metadataExpr></metadataExpr>
+        <preferredEditor>interface</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role inherit="true" allowForAll="false" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="administrators">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <typedValue>
+        <type>
+            <name>RuleTestConfig?list</name>
+            <namespace>http://www.appian.com/ae/types/2009</namespace>
+        </type>
+        <value>
+            <el>
+                <a:name/>
+                <a:ruleInputTestConfigs>
+                    <a:value xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xsd:int">1</a:value>
+                    <a:nameRef>contractID</a:nameRef>
+                    <a:id/>
+                </a:ruleInputTestConfigs>
+                <a:assertions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+            </el>
+        </value>
+    </typedValue>
+    <history>
+        <historyInfo versionUuid="_a-0000df4f-3e48-8000-9ba2-011c48011c48_60588"/>
+        <historyInfo versionUuid="_a-0000df4f-3e48-8000-9ba2-011c48011c48_61669"/>
+    </history>
+</contentHaul>

@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <versionUuid>_a-0000df63-1167-8000-9ba2-011c48011c48_107879</versionUuid>
+    <rule>
+        <name>ASC_LoggedInUsersTasks_Grid</name>
+        <uuid>_a-0000df4f-3e48-8000-9ba2-011c48011c48_62045</uuid>
+        <description>Grid of all currently logged in users tasks.</description>
+        <parentUuid>_a-0000deba-19b3-8000-9ba2-011c48011c48_32858</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>=load(
+  local!gridPI:#"SYSTEM_SYSRULES_pagingInfo"(
+    1,
+    10,
+    #"SYSTEM_SYSRULES_sortInfo"(field:"c0")),
+  local!statusFilter:-1,
+  with(
+    local!tasksForUser:a!queryProcessAnalytics(
+      report:#"_a-0000df4f-3e48-8000-9ba2-011c48011c48_62059",
+      query:#"SYSTEM_SYSRULES_query"(
+        logicalExpression:#"SYSTEM_SYSRULES_queryLogicalExpression"(
+          operator:"AND",
+          filters:{
+            if(local!statusFilter=-1, null,
+          #"SYSTEM_SYSRULES_queryFilter"(field:"c5",operator:"=",value:local!statusFilter)),
+          #"SYSTEM_SYSRULES_queryFilter"(field:"c7",operator:"includes",value:loggedInUser())
+          }
+        ), 
+        pagingInfo:local!gridPI
+      )
+    ),
+    {
+      #"SYSTEM_SYSRULES_dropdownField"(
+        label: "Status",
+        choiceLabels: {"All", "Assigned", "Accepted"},
+        choiceValues: {-1,0,1},
+        value: local!statusFilter,
+        saveInto: {
+          local!statusFilter,
+          a!save(local!gridPI.startIndex, 1)
+        }
+      ),
+      #"SYSTEM_SYSRULES_gridField"(
+        label:"Current Tasks",
+        instructions:"",
+        totalCount:local!tasksForUser.totalCount,
+        columns:if(isnull(local!tasksForUser.columnConfigs),"You have no tasks", apply(
+          #"_a-0000da5f-caaa-8000-9ba2-011c48011c48_2897"(columnConfig:_, data:local!tasksForUser.data, showLink:true),
+          local!tasksForUser.columnConfigs
+        )),
+        value:local!gridPI,
+        saveInto:local!gridPI
+      )
+    }
+  )
+)</definition>
+        <metadataExpr></metadataExpr>
+        <preferredEditor>interface</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role inherit="false" allowForAll="true" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="true" name="authors">
+            <users/>
+            <groups>
+                <groupUuid>_e-0000df0b-b424-8000-9aee-01075c01075c_58</groupUuid>
+            </groups>
+        </role>
+        <role inherit="false" allowForAll="false" name="administrators">
+            <users/>
+            <groups>
+                <groupUuid>_e-0000def3-0203-8000-9aee-01075c01075c_10</groupUuid>
+            </groups>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <history>
+        <historyInfo versionUuid="_a-0000df4f-3e48-8000-9ba2-011c48011c48_63699"/>
+        <historyInfo versionUuid="_a-0000df63-1167-8000-9ba2-011c48011c48_107879"/>
+    </history>
+</contentHaul>

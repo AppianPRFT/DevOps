@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <versionUuid>_a-0000df4f-3e48-8000-9ba2-011c48011c48_60561</versionUuid>
+    <rule>
+        <name>ASC_getHourMinuteSecondsByTimeInterval</name>
+        <uuid>_a-0000df0b-b44d-8000-9ba2-011c48011c48_19004</uuid>
+        <description>given 0::00:13:03.072 , returns 13 minutes and 3 seconds</description>
+        <parentUuid>_a-0000deba-19b3-8000-9ba2-011c48011c48_32853</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>load(
+  local!bump:if(charat( ri!dateTime, 2 ) = ":", 0,1),
+  if(
+  isnull(ri!dateTime),
+  "",
+  if(
+    or(
+      isnull(
+        charat( ri!dateTime, 2 )&lt;&gt; ":"
+      ),
+      charat(ri!dateTime, 1 ) = 0
+    ),
+    "",
+    if(bump = 0,charat(ri!dateTime,1),charat(ri!dateTime,1) &amp; charat(ri!dateTime,2)) &amp; " day(s) " ) &amp; if(
+    charat(ri!dateTime,5) = 0,"",
+    charat(ri!dateTime,4 + local!bump
+    ) &amp; charat(ri!dateTime,5 + local!bump) &amp; " hours "
+  ) &amp; 
+    if(
+      charat(ri!dateTime,8 ) = 0,"",
+    charat(ri!dateTime,7+ local!bump
+    ) &amp; charat(ri!dateTime,8+ local!bump
+    ) &amp; " minute "
+  ) &amp; 
+  if(and(
+      charat(ri!dateTime,11) = 0,
+      charat(ri!dateTime,10) &lt; 9),
+    charat(ri!dateTime,10),
+    charat(
+      ri!dateTime,
+      10+ local!bump
+    ) &amp; charat(
+      ri!dateTime,
+      11+ local!bump
+    ) &amp; " seconds "
+  )
+))</definition>
+        <namedTypedValue>
+            <name>dateTime</name>
+            <type>
+                <name>string</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+            <value/>
+        </namedTypedValue>
+        <preferredEditor>legacy</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role inherit="true" allowForAll="false" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="administrators">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <typedValue>
+        <type>
+            <name>RuleTestConfig?list</name>
+            <namespace>http://www.appian.com/ae/types/2009</namespace>
+        </type>
+        <value>
+            <el>
+                <a:name>Unnamed Test Case</a:name>
+                <a:ruleInputTestConfigs>
+                    <a:value xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xsd:string">4::21:11:55.368</a:value>
+                    <a:nameRef>dateTime</a:nameRef>
+                    <a:id>1</a:id>
+                </a:ruleInputTestConfigs>
+                <a:assertions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+            </el>
+        </value>
+    </typedValue>
+    <history>
+        <historyInfo versionUuid="_a-0000df4f-3e48-8000-9ba2-011c48011c48_60561"/>
+    </history>
+</contentHaul>

@@ -1,0 +1,676 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <versionUuid>_a-0000df63-1167-8000-9ba2-011c48011c48_112253</versionUuid>
+    <rule>
+        <name>ASC_ContractModificationRequestDetails_Section</name>
+        <uuid>_a-0000df0b-b44d-8000-9ba2-011c48011c48_15330</uuid>
+        <description>Section that contains the request details for a contract modification.</description>
+        <parentUuid>_a-0000deba-19b3-8000-9ba2-011c48011c48_32858</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>load(
+  local!pickedSchedule,
+  local!scheduleLabels: #"_a-0000df0b-b44d-8000-9ba2-011c48011c48_15846",
+  #"SYSTEM_SYSRULES_sectionLayout_v1"(
+    label: "Contract Modification Details",
+    contents: {
+      /*a!milestoneField(
+      steps: cons!ASC_MILESTONELABELS_MODIFICATIONS,
+      active: ri!changeNotice.milestoneStep
+    ),*/
+      #"SYSTEM_SYSRULES_columnsLayout"(
+        columns: {
+          #"SYSTEM_SYSRULES_columnLayout"(
+            contents: {
+              #"SYSTEM_SYSRULES_textField"(
+                label: "Change Notice Number",
+                labelPosition: "ABOVE",
+                value: ri!changeNotice.CNN,
+                saveInto: ri!changeNotice.CNN,
+                required: true,
+                readOnly: ri!readOnly,
+                disabled: ri!readOnly,
+                validations: {}
+              ),
+              #"SYSTEM_SYSRULES_dropdownField"(
+                label: "Request Type",
+                labelPosition: "ABOVE",
+                placeholderLabel: "--- Select a Value ---",
+                choiceLabels: #"_a-0000df0b-b44d-8000-9ba2-011c48011c48_16358",
+                choiceValues: #"_a-0000df0b-b44d-8000-9ba2-011c48011c48_16358",
+                value:
+                      if(
+                        isnull(
+                          ri!changeNotice.requestType
+                        ) = true,
+                        #"_a-0000df0b-b44d-8000-9ba2-011c48011c48_16358"[1],
+                        ri!changeNotice.requestType
+                      ),
+                saveInto: ri!changeNotice.requestType,
+                required: true,
+                disabled: ri!readOnly,
+                validations: {}
+              ),
+              #"SYSTEM_SYSRULES_pickerFieldUsers"(
+                label: "Spirit Focal",
+                labelPosition: "ABOVE",
+                instructions: "Browse Users in Cooperate Directory",
+                placeholder: "",
+                value: ri!changeNotice.spiritFocal,
+                saveInto: ri!changeNotice.spiritFocal,
+                required: true,
+                readOnly: ri!readOnly,
+                disabled: ri!readOnly,
+                validations: {}
+              ),
+              #"SYSTEM_SYSRULES_dateField"(
+                label: "Change Notice Date",
+                labelPosition: "ABOVE",
+                value: ri!changeNotice.CNRRsubmitDate,
+                saveInto: ri!changeNotice.CNRRsubmitDate,
+                required: true,
+                readOnly: ri!readOnly,
+                validations: if(ri!changeNotice.CNRRsubmitDate&gt;today(),"Change Notice Date must not be in the future.",{})
+              ),
+              /*
+            a!dropdownField(
+              label: "Contract Execution Quarter ",
+              labelPosition: "ABOVE",
+              placeholderLabel: "--- Select a Value ---",
+              choiceLabels: cons!ASC_CONTRACT_EXECUTION_QUARTERS,
+              choiceValues: cons!ASC_CONTRACT_EXECUTION_QUARTERS,
+              value: ri!changeNotice.executionQuarter,
+              saveInto: ri!changeNotice.executionQuarter,
+              required: true,
+              disabled: ri!readOnly,
+              validations: {}
+            ),
+            */
+              /*
+            a!dropdownField(
+              label: "CNRR Category",
+              labelPosition: "ABOVE",
+              placeholderLabel: "--- Select a Value ---",
+              choiceLabels: cons!ASC_CONTRACT_MODIFICATION_CNRR_CATEGORIES,
+              choiceValues: cons!ASC_CONTRACT_MODIFICATION_CNRR_CATEGORIES,
+              value: ri!changeNotice.CNRRCategory,
+              saveInto: ri!changeNotice.CNRRCategory,
+              disabled: ri!readOnly,
+              validations: {}
+            ),
+            */
+              /*
+            a!integerField(
+              label: "CN Revision Request Number",
+              labelPosition: "ABOVE",
+              value: ri!changeNotice.CNRRNumber,
+              saveInto: ri!changeNotice.CNRRNumber,
+              refreshAfter: "UNFOCUS",
+              readonly: ri!readOnly,
+              validations: {}
+            ),*/
+              #"SYSTEM_SYSRULES_dropdownField"(
+                label: "Model #/ Program",
+                labelPosition: "ABOVE",
+                placeholderLabel: "--- Select a Value ---",
+                choiceLabels: #"_a-0000def3-0227-8000-9ba2-011c48011c48_12071",
+                choiceValues: #"_a-0000def3-0227-8000-9ba2-011c48011c48_12071",
+                value: ri!changeNotice.modelNumber,
+                saveInto: ri!changeNotice.modelNumber,
+                required: true,
+                disabled: ri!readOnly,
+                validations: {}
+              ),
+              #"SYSTEM_SYSRULES_paragraphField"(
+                label: "Modification Description",
+                labelPosition: "ABOVE",
+                placeholder: "Enter details on contract modification request here",
+                value: ri!changeNotice.description,
+                saveInto: ri!changeNotice.description,
+                refreshAfter: "UNFOCUS",
+                readonly: ri!readOnly,
+                height: "MEDIUM",
+                validations: {}
+              ),
+              #"SYSTEM_SYSRULES_radioButtonField"(
+                label: "Change in Cost?",
+                labelPosition: "ABOVE",
+                choiceLabels: {
+                  "Yes",
+                  "No"
+                },
+                choiceValues: {
+                  true(),
+                  false()
+                },
+                value: ri!changeNotice.changeInCost,
+                saveInto: ri!changeNotice.changeInCost,
+                required: true,
+                choiceLayout: "COMPACT",
+                validations: {}
+              ),
+              #"SYSTEM_SYSRULES_radioButtonField"(
+                label: "Assert Contract for Change?",
+                labelPosition: "ABOVE",
+                choiceLabels: {
+                  "Yes",
+                  "No"
+                },
+                choiceValues: {
+                  true(),
+                  false()
+                },
+                value: ri!changeNotice.assessForChange,
+                saveInto: ri!changeNotice.assessForChange,
+                showwhen: if(
+                  isnull(
+                    ri!changeNotice.Id
+                  ) = true,
+                  false,
+                  true
+                ),
+                required: true,
+                choiceLayout: "COMPACT",
+                validations: {}
+              )
+            }/*,
+          isCollapsible: true*/
+            
+          ),
+          #"SYSTEM_SYSRULES_columnLayout"(
+            contents: {
+              #"SYSTEM_SYSRULES_textField"(
+                label: "CN Title",
+                labelPosition: "ABOVE",
+                value: ri!changeNotice.CNTitle,
+                saveInto: ri!changeNotice.CNTitle,
+                required: true,
+                readOnly: ri!readOnly,
+                disabled: ri!readOnly,
+                validations: {}
+              ),
+              #"SYSTEM_SYSRULES_textField"(
+                label: "Boeing Focal",
+                labelPosition: "ABOVE",
+                value: "Helena Langowski",
+                saveInto: ri!changeNotice.boeingFocal,
+                required: true,
+                readOnly: ri!readOnly,
+                disabled: ri!readOnly,
+                validations: {}
+              ),
+              with(
+                local!isNumberValid: if(
+                  len(
+                    ri!changeNotice.phone
+                  ) &lt;= 12,
+                  true,
+                  false
+                ),
+                #"SYSTEM_SYSRULES_textField"(
+                  label: "Boeing Contact Number",
+                  labelPosition: "ABOVE",
+                  placeholder: "xxx-xxx-xxxx",
+                  value: #"_a-0000df63-1167-8000-9ba2-011c48011c48_111893"(ri!contract.customerId),
+                  saveInto: ri!changeNotice.phone,
+                  refreshAfter: "UNFOCUS",
+                  requiredMessage: "A phone number is needed if you're going to onboard this employee",
+                  readOnly: ri!readOnly,
+                  disabled: ri!readOnly,
+                  validations: if(
+                    local!isNumberValid,
+                    "",
+                    "Please enter a valid telephone less than 12 digits long."
+                  )
+                )
+              ),
+              /*
+            a!dropdownField(
+              label: "CNRR Incorporation Requirement",
+              labelPosition: "ABOVE",
+              placeholderLabel: "--- Select a Value ---",
+              choiceLabels: cons!ASC_CONTRACT_MODIFICATION_CNRR_INCORPERATION_REQUIREMENTS,
+              choiceValues: cons!ASC_CONTRACT_MODIFICATION_CNRR_INCORPERATION_REQUIREMENTS,
+              value: ri!changeNotice.CNRRIncorporationRequirement,
+              saveInto: ri!changeNotice.CNRRIncorporationRequirement,
+              disabled: ri!readOnly,
+              validations: {}
+            ),
+            */
+              #"SYSTEM_SYSRULES_dropdownField"(
+                label: "Spirit B/U",
+                labelPosition: "ABOVE",
+                placeholderLabel: "--- Select a Value ---",
+                choiceLabels: #"_a-0000def3-0227-8000-9ba2-011c48011c48_12076",
+                choiceValues: #"_a-0000def3-0227-8000-9ba2-011c48011c48_12076",
+                value: ri!changeNotice.spiritBU,
+                saveInto: ri!changeNotice.spiritBU,
+                required: true,
+                disabled: ri!readOnly,
+                validations: {}
+              ),
+              #"SYSTEM_SYSRULES_dropdownField"(
+                label: "Modification Type",
+                labelPosition: "ABOVE",
+                placeholderLabel: "--- Select a Value ---",
+                choiceLabels: #"_a-0000df0b-b44d-8000-9ba2-011c48011c48_16339",
+                choiceValues: #"_a-0000df0b-b44d-8000-9ba2-011c48011c48_16338",
+                value: ri!changeNotice.modificationType,
+                saveInto: ri!changeNotice.modificationType,
+                showwhen: if(
+                  len(
+                    ri!changeNotice.spiritBU
+                  ) &gt; 0,
+                  true,
+                  false
+                ),
+                disabled: ri!readOnly,
+                validations: {}
+              ),
+              #"SYSTEM_SYSRULES_dropdownField"(
+                label: "Settlement Component?",
+                labelPosition: "ABOVE",
+                placeholderLabel: "--- Select a Value ---",
+                choiceLabels: #"_a-0000def3-0227-8000-9ba2-011c48011c48_12077",
+                choiceValues: #"_a-0000def3-0227-8000-9ba2-011c48011c48_12077",
+                value: ri!changeNotice.settlement,
+                saveInto: ri!changeNotice.settlement,
+                showwhen: if(
+                  len(
+                    ri!changeNotice.modificationType
+                  ) &gt; 0,
+                  if(
+                    ri!changeNotice.modificationType = #"_a-0000df0b-b44d-8000-9ba2-011c48011c48_16338"[5],
+                    true,
+                    if(
+                      ri!changeNotice.modificationType = #"_a-0000df0b-b44d-8000-9ba2-011c48011c48_16338"[6],
+                      true,
+                      false
+                    )
+                  ),
+                  false
+                ),
+                disabled: ri!readOnly,
+                validations: {}
+              ),
+              #"SYSTEM_SYSRULES_radioButtonField"(
+                label: "Recurring Settlement?",
+                labelPosition: "ABOVE",
+                choiceLabels: #"_a-0000df0b-b44d-8000-9ba2-011c48011c48_16603",
+                choiceValues: #"_a-0000df0b-b44d-8000-9ba2-011c48011c48_16599",
+                value: ri!changeNotice.recurringSettlement,
+                saveInto: ri!changeNotice.recurringSettlement,
+                showwhen: if(
+                  or(
+                    ri!changeNotice.modificationType = #"_a-0000df0b-b44d-8000-9ba2-011c48011c48_16338"[5],
+                    ri!changeNotice.modificationType = #"_a-0000df0b-b44d-8000-9ba2-011c48011c48_16338"[6]
+                  ),
+                  if(
+                    ri!changeNotice.modificationType = #"_a-0000df0b-b44d-8000-9ba2-011c48011c48_16338"[5],
+                    true,
+                    if(
+                      ri!changeNotice.modificationType = #"_a-0000df0b-b44d-8000-9ba2-011c48011c48_16338"[6],
+                      true,
+                      false
+                    )
+                  ),
+                  false
+                ),
+                choiceLayout: "COMPACT",
+                validations: {}
+              ),
+              /*
+            a!checkboxField(
+              label: "Recurring Settlement?",
+              labelPosition: "ABOVE",
+              choiceLabels: cons!ASC_SETTLEMENTS_RECURRING_MODIFICATION_LABELS,
+              choiceValues: cons!ASC_SETTLEMENTS_RECURRING_MODIFICATION_VALUES,
+              value: ri!changeNotice.recurringSettlement,
+              saveInto: ri!changeNotice.recurringSettlement,
+              showwhen: if(len(ri!changeNotice.modificationType)&gt;0,
+                   if(ri!changeNotice.modificationType=cons!ASC_CONTRACT_MODIFICATION_VALUES[5],
+                      true,
+                      if(ri!changeNotice.modificationType=cons!ASC_CONTRACT_MODIFICATION_VALUES[6],
+                          true,false)
+                      ),
+                   false),
+              disabled: ri!readOnly,
+              choicelayout: "COMPACT",
+              validations: {}
+            ),*/
+              #"SYSTEM_SYSRULES_pickerFieldCustom"(
+                label: "Master Schedule #",
+                labelPosition: "ABOVE",
+                instructions: "",
+                suggestFunction: #"_a-0000df0b-b44d-8000-9ba2-011c48011c48_15854"(
+                  filter: _,
+                  labels: local!scheduleLabels,
+                  identifiers: local!scheduleLabels
+                ),
+                selectedLabels: #"SYSTEM_SYSRULES_forEach"(
+                  items: ri!changeNotice.masterSchedule,
+                  expression: index(
+                    local!scheduleLabels,
+                    wherecontains(
+                      fv!item,
+                      local!scheduleLabels
+                    )
+                  )
+                ),
+                value: ri!changeNotice.masterSchedule,
+                saveInto: ri!changeNotice.masterSchedule,
+                showwhen: if(
+                  len(
+                    ri!changeNotice.modificationType
+                  ) &gt; 0,
+                  if(
+                    ri!changeNotice.modificationType = #"_a-0000df0b-b44d-8000-9ba2-011c48011c48_16338"[1],
+                    true,
+                    if(
+                      ri!changeNotice.modificationType = #"_a-0000df0b-b44d-8000-9ba2-011c48011c48_16338"[4],
+                      true,
+                      if(
+                      ri!changeNotice.modificationType = #"_a-0000df0b-b44d-8000-9ba2-011c48011c48_16338"[3],
+                      true,
+                      if(
+                      ri!changeNotice.modificationType = #"_a-0000df0b-b44d-8000-9ba2-011c48011c48_16338"[8],
+                      true,
+                      false
+                    )
+                    )
+                    )
+                  ),
+                  false
+                ),
+                readOnly: ri!readOnly,
+                disabled: ri!readOnly,
+                validations: {}
+              ),
+              #"SYSTEM_SYSRULES_checkboxField"(
+                label: "Firing Order Change",
+                labelPosition: "ABOVE",
+                choiceLabels: #"_a-0000df0b-b44d-8000-9ba2-011c48011c48_16150",
+                choiceValues: #"_a-0000df0b-b44d-8000-9ba2-011c48011c48_16149",
+                value: ri!changeNotice.firingOrderChange,
+                saveInto: ri!changeNotice.firingOrderChange,
+                showwhen: if(
+                  len(
+                    ri!changeNotice.modificationType
+                  ) &gt; 0,
+                  if(
+                    ri!changeNotice.modificationType = #"_a-0000df0b-b44d-8000-9ba2-011c48011c48_16338"[1],
+                    true,
+                    if(
+                      ri!changeNotice.modificationType = #"_a-0000df0b-b44d-8000-9ba2-011c48011c48_16338"[4],
+                      true,
+                      if(
+                      ri!changeNotice.modificationType = #"_a-0000df0b-b44d-8000-9ba2-011c48011c48_16338"[3],
+                      true,
+                      if(
+                      ri!changeNotice.modificationType = #"_a-0000df0b-b44d-8000-9ba2-011c48011c48_16338"[8],
+                      true,
+                      false
+                    )
+                    )
+                    )
+                  ),
+                  false
+                ),
+                disabled: ri!readOnly,
+                choicelayout: "COMPACT",
+                validations: {}
+              ),
+              #"SYSTEM_SYSRULES_pickerFieldCustom"(
+                label: "CIR #",
+                labelPosition: "ABOVE",
+                suggestFunction: #"_a-0000df0b-b44d-8000-9ba2-011c48011c48_15854"(
+                  filter: _,
+                  labels: #"_a-0000df0b-b44d-8000-9ba2-011c48011c48_16019",
+                  identifiers: #"_a-0000df0b-b44d-8000-9ba2-011c48011c48_16019"
+                ),
+                selectedLabels: #"SYSTEM_SYSRULES_forEach"(
+                  items: ri!changeNotice.CIR,
+                  expression: index(
+                    #"_a-0000df0b-b44d-8000-9ba2-011c48011c48_16019",
+                    wherecontains(
+                      fv!item,
+                      #"_a-0000df0b-b44d-8000-9ba2-011c48011c48_16019"
+                    )
+                  )
+                ),
+                value: ri!changeNotice.CIR,
+                saveInto: ri!changeNotice.CIR,
+                showwhen: if(
+                  len(
+                    ri!changeNotice.modificationType
+                  ) &gt; 0,
+                  if(
+                    ri!changeNotice.modificationType = #"_a-0000df0b-b44d-8000-9ba2-011c48011c48_16338"[1],
+                    true,
+                    false
+                  ),
+                  false
+                ),
+                readOnly: ri!readOnly,
+                disabled: ri!readOnly,
+                validations: {}
+              )/*,
+            
+            a!checkboxField(
+              label: "Is Manufacturing Impacted",
+              labelPosition: "ABOVE",
+              choiceLabels: {"Yes", "No"},
+              choiceValues: {true, false},
+              value: ri!changeNotice.isManufacturingImpacted,
+              saveInto: ri!changeNotice.isManufacturingImpacted,
+              showwhen: true,
+              choicelayout: "COMPACT",
+              validations: {}
+            )*/,
+              #"SYSTEM_SYSRULES_columnsLayout"(
+                columns: {
+                  #"SYSTEM_SYSRULES_columnLayout"(
+                    contents: {
+                      #"SYSTEM_SYSRULES_textField"(
+                        label: "Recurring Amount ($)",
+                        labelPosition: "ABOVE",
+                        value: {
+                          
+                            ri!changeNotice.settlements.recurringAmount &amp; if(
+                              ri!changeNotice.modificationType &lt;&gt; "PAA",
+                              {
+                                if(
+                                  ri!changeNotice.modificationType &lt;&gt; "Settlement",
+                                  ri!changeNotice.recurringSettlement = "",
+                                  {}
+                                )
+                              },
+                              {}
+                            )
+                          
+                        },
+                        saveInto: ri!changeNotice.settlements.recurringAmount,
+                        refreshAfter: "UNFOCUS",
+                        showwhen: if(
+                          or(
+                            ri!changeNotice.modificationType = #"_a-0000df0b-b44d-8000-9ba2-011c48011c48_16338"[5],
+                            ri!changeNotice.modificationType = #"_a-0000df0b-b44d-8000-9ba2-011c48011c48_16338"[6]
+                          ),
+                          if(
+                            ri!changeNotice.recurringSettlement = #"_a-0000df0b-b44d-8000-9ba2-011c48011c48_16599"[1],
+                            true,
+                            if(
+                              ri!changeNotice.recurringSettlement = #"_a-0000df0b-b44d-8000-9ba2-011c48011c48_16599"[3],
+                              true,
+                              false
+                            )
+                          ),
+                          false
+                        ),
+                        readOnly: ri!readOnly,
+                        disabled: ri!readOnly,
+                        validations: {}
+                      )
+                    }
+                  ),
+                  #"SYSTEM_SYSRULES_columnLayout"(
+                    contents: {
+                      #"SYSTEM_SYSRULES_textField"(
+                        label: "Non-recurring Amount ($)",
+                        labelPosition: "ABOVE",
+                        value: {
+                          
+                            ri!changeNotice.settlements.nonRecurringAmount &amp; if(
+                              ri!changeNotice.modificationType &lt;&gt; "PAA",
+                              {
+                                if(
+                                  ri!changeNotice.modificationType &lt;&gt; "Settlement",
+                                  ri!changeNotice.settlements.nonRecurringAmount = "",
+                                  {}
+                                )
+                              },
+                              {}
+                            )
+                          
+                        }
+
+                      ,
+                        saveInto: ri!changeNotice.settlements.nonRecurringAmount,
+                        refreshAfter: "UNFOCUS",
+                        showwhen: if(
+                          or(
+                            ri!changeNotice.modificationType = #"_a-0000df0b-b44d-8000-9ba2-011c48011c48_16338"[5],
+                            ri!changeNotice.modificationType = #"_a-0000df0b-b44d-8000-9ba2-011c48011c48_16338"[6]
+                          ),
+                          if(
+                            ri!changeNotice.recurringSettlement = #"_a-0000df0b-b44d-8000-9ba2-011c48011c48_16599"[2],
+                            true,
+                            if(
+                              ri!changeNotice.recurringSettlement = #"_a-0000df0b-b44d-8000-9ba2-011c48011c48_16599"[3],
+                              true,
+                              false
+                            )
+                          ),
+                          false
+                        ),
+                        readOnly: ri!readOnly,
+                        disabled: ri!readOnly,
+                        validations: {}
+                      )
+                    }
+                  )
+                }
+              )
+            }
+          )
+        }
+      )
+    },
+    validations:{if(ri!changeNotice.settlements.nonRecurringAmount&gt;ri!contract.contractAmount,"Settlement amount cannot be less than the contract amount","")},
+    isCollapsible: true
+  )
+)</definition>
+        <namedTypedValue>
+            <name>contract</name>
+            <type>
+                <name>ASC_Contract</name>
+                <namespace>urn:com:appian:types</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>readOnly</name>
+            <type>
+                <name>boolean</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>changeNotice</name>
+            <type>
+                <name>ASC_ChangeNoticeRequest</name>
+                <namespace>urn:com:appian:types</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>contractModification</name>
+            <type>
+                <name>ASC_Contract_Modifications</name>
+                <namespace>urn:com:appian:types</namespace>
+            </type>
+        </namedTypedValue>
+        <metadataExpr></metadataExpr>
+        <preferredEditor>interface</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role inherit="true" allowForAll="false" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="administrators">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <typedValue>
+        <type>
+            <name>RuleTestConfig?list</name>
+            <namespace>http://www.appian.com/ae/types/2009</namespace>
+        </type>
+        <value>
+            <el>
+                <a:name/>
+                <a:ruleInputTestConfigs>
+                    <a:value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="a:Expression">#"571fac17-e2ad-41e6-b60a-2c6295469786"(1)</a:value>
+                    <a:nameRef>contract</a:nameRef>
+                    <a:id/>
+                </a:ruleInputTestConfigs>
+                <a:ruleInputTestConfigs>
+                    <a:value xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true" xsi:type="xsd:boolean"/>
+                    <a:nameRef>readOnly</a:nameRef>
+                    <a:id/>
+                </a:ruleInputTestConfigs>
+                <a:ruleInputTestConfigs>
+                    <a:value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="a:Expression">'type!{urn:com:appian:types}ASC_Contract_Modifications'(CNN:9)</a:value>
+                    <a:nameRef>changeNotice</a:nameRef>
+                    <a:id/>
+                </a:ruleInputTestConfigs>
+                <a:ruleInputTestConfigs>
+                    <a:value xmlns:n1="urn:com:appian:types" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true" xsi:type="n1:ASC_Contract_Modifications"/>
+                    <a:nameRef>contractModification</a:nameRef>
+                    <a:id/>
+                </a:ruleInputTestConfigs>
+                <a:assertions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+            </el>
+        </value>
+    </typedValue>
+    <history>
+        <historyInfo versionUuid="_a-0000df4f-3e48-8000-9ba2-011c48011c48_60620"/>
+        <historyInfo versionUuid="_a-0000df4f-3e48-8000-9ba2-011c48011c48_63723"/>
+        <historyInfo versionUuid="_a-0000df63-1167-8000-9ba2-011c48011c48_108407"/>
+        <historyInfo versionUuid="_a-0000df63-1167-8000-9ba2-011c48011c48_112253"/>
+    </history>
+</contentHaul>

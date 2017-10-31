@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<tempoFeedHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <tempoFeed>
+        <uuid>7b11cc69-eeb3-45e7-ae44-46745843c856</uuid>
+        <name>Contract Modifications Feed</name>
+        <description>Feed to provide information on the contract modification request</description>
+        <showInCatalog>true</showInCatalog>
+        <systemFeed>false</systemFeed>
+    </tempoFeed>
+    <roleMap>
+        <role name="administrator">
+            <users/>
+            <groups>
+                <groupUuid>_e-0000def3-0203-8000-9aee-01075c01075c_10</groupUuid>
+            </groups>
+        </role>
+    </roleMap>
+</tempoFeedHaul>

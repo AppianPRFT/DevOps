@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<recordTypeHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <versionUuid>273f751f-5fd5-4803-b2d9-24517d81578b</versionUuid>
+    <recordType a:uuid="06dd221c-0d64-4e30-b92f-78dc59adb037" name="Change Notice Request">
+        <a:pluralName>Change Notice Requests</a:pluralName>
+        <a:description>Change Notice Request record that contains Boeing Contract CNRs</a:description>
+        <a:urlStub>UVuvTw</a:urlStub>
+        <a:source xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="a:DataStoreEntity" a:uuid="887ac43e-7753-415d-b3c7-4fef7844ee62@_a-0000dee6-acf9-8000-9ba2-011c48011c48_7300"/>
+        <a:listViewTemplateExpr>#"SYSTEM_SYSRULES_recordGridLayoutColumns"(
+  columns: {
+    #"SYSTEM_SYSRULES_gridLayoutColumn"(
+      label: "CN Title",
+      field: "CNTitle",
+      align: "CENTER",
+      component: #"SYSTEM_SYSRULES_recordGrid_linkField"(
+        links: #"SYSTEM_SYSRULES_recordLink"(
+          label: rf!CNTitle,
+          recordType: rp!type,
+          identifier: rp!id
+        )
+      )
+    ),
+    #"SYSTEM_SYSRULES_gridLayoutColumn"(
+      label: "CCCN #",
+      field: "CNN",
+      align: "CENTER",
+      component: #"SYSTEM_SYSRULES_recordGrid_integerField"(
+        displayValue: rf!CNN,
+        align: "CENTER"
+      )
+    ),
+    #"SYSTEM_SYSRULES_gridLayoutColumn"(
+      label: "Modification Type",
+      width: "DISTRIBUTE",
+      align: "CENTER",
+      component: #"SYSTEM_SYSRULES_recordGrid_textField"(
+        displayvalue: rf!modificationType,
+        align: "CENTER"
+      )
+    ),
+    #"SYSTEM_SYSRULES_gridLayoutColumn"(
+      label: "Program",
+      width: "DISTRIBUTE",
+      align: "CENTER",
+      component: #"SYSTEM_SYSRULES_recordGrid_textField"(
+        displayvalue: rf!modelNumber,
+        align: "CENTER"
+      )
+    ),
+    #"SYSTEM_SYSRULES_gridLayoutColumn"(
+      label: "Date Created",
+      width: "DISTRIBUTE",
+      field: "createdDateTime",
+      component: #"SYSTEM_SYSRULES_recordGrid_dateTimeField"(
+        displayvalue: rf!createdDateTime
+      )
+    ),
+    #"SYSTEM_SYSRULES_gridLayoutColumn"(
+      label: "Progress",
+      width: "DISTRIBUTE",
+      component: #"SYSTEM_SYSRULES_recordGrid_progressBarField"(
+        percentage: if(isnull(rf!milestoneStep),1,(rf!milestoneStep / 7) * 100))
+    )
+  },
+  pageSize: 10,
+  defaultSort: #"SYSTEM_SYSRULES_sortInfo"(
+    field: "createdDateTime",
+    ascending: false
+  )
+)</a:listViewTemplateExpr>
+        <a:detailViewCfg>
+            <a:nameExpr>="Summary"</a:nameExpr>
+            <a:uiExpr>#"_a-0000df0b-b44d-8000-9ba2-011c48011c48_16375"(null, #"_a-0000df0b-b44d-8000-9ba2-011c48011c48_15734"(rf!Id),#"_a-0000df0b-b44d-8000-9ba2-011c48011c48_18015"(rf!Id))</a:uiExpr>
+            <a:visibilityExpr>=true()</a:visibilityExpr>
+            <a:urlStub>summary</a:urlStub>
+            <a:headerExpr></a:headerExpr>
+            <a:relatedActionCfg>79d8c00c-cb52-4b7d-9f1f-02d4cd2e0f1b</a:relatedActionCfg>
+        </a:detailViewCfg>
+        <a:detailViewCfg>
+            <a:nameExpr>"Coord. Sheet Tracker"</a:nameExpr>
+            <a:uiExpr>#"_a-0000df0b-b44d-8000-9ba2-011c48011c48_19540"(
+  contractModificationId: #"_a-0000df0b-b44d-8000-9ba2-011c48011c48_18015"(rf!Id).id
+)</a:uiExpr>
+            <a:visibilityExpr>=true()</a:visibilityExpr>
+            <a:urlStub>_NCpEIw</a:urlStub>
+            <a:headerExpr></a:headerExpr>
+            <a:relatedActionCfg>79d8c00c-cb52-4b7d-9f1f-02d4cd2e0f1b</a:relatedActionCfg>
+        </a:detailViewCfg>
+        <a:detailViewCfg>
+            <a:nameExpr>"Audit Tracker"</a:nameExpr>
+            <a:uiExpr> #"_a-0000df0b-b44d-8000-9ba2-011c48011c48_18006"(#"_a-0000df0b-b44d-8000-9ba2-011c48011c48_18015"(rf!Id).id)</a:uiExpr>
+            <a:visibilityExpr>=if(or(isusermemberofgroup(loggedInUser(),72),isusermemberofgroup(loggedInUser(),74)), true(),false())</a:visibilityExpr>
+            <a:urlStub>_WviU5Q</a:urlStub>
+            <a:headerExpr></a:headerExpr>
+            <a:relatedActionCfg>79d8c00c-cb52-4b7d-9f1f-02d4cd2e0f1b</a:relatedActionCfg>
+        </a:detailViewCfg>
+        <a:relatedActionCfg>
+            <a:target xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="a:ProcessModel" a:uuid="000edf4e-d4d6-8000-f92f-7f0000014e7a"/>
+            <a:contextExpr>{
+  changeNoticeID: rf!Id /* Number (Integer) */
+}</a:contextExpr>
+            <a:visibilityExpr>=false()</a:visibilityExpr>
+            <a:iconId>f0e7</a:iconId>
+            <a:refId>79d8c00c-cb52-4b7d-9f1f-02d4cd2e0f1b</a:refId>
+        </a:relatedActionCfg>
+        <a:isSystem>false</a:isSystem>
+        <a:dataSrcExpr></a:dataSrcExpr>
+        <a:facetsListExpr></a:facetsListExpr>
+        <a:titleExpr>rf!CNTitle</a:titleExpr>
+        <a:defaultFiltersExpr></a:defaultFiltersExpr>
+        <a:layoutType>GRID</a:layoutType>
+        <a:security>16383</a:security>
+        <a:hideLatestNews>false</a:hideLatestNews>
+    </recordType>
+    <roleMap>
+        <role name="record_type_administrator">
+            <users/>
+            <groups>
+                <groupUuid>_e-0000def3-0203-8000-9aee-01075c01075c_10</groupUuid>
+            </groups>
+        </role>
+        <role name="record_type_viewer">
+            <users/>
+            <groups>
+                <groupUuid>_e-0000df0b-b424-8000-9aee-01075c01075c_55</groupUuid>
+            </groups>
+        </role>
+    </roleMap>
+    <history>
+        <historyInfo versionUuid="a9ca308b-09d9-45b2-8c25-43ab52a9bc3d"/>
+        <historyInfo versionUuid="273f751f-5fd5-4803-b2d9-24517d81578b"/>
+    </history>
+</recordTypeHaul>

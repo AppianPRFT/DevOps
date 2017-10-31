@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <versionUuid>_a-0000df4f-3e48-8000-9ba2-011c48011c48_60734</versionUuid>
+    <rule>
+        <name>ASC_ViewDocument_Form</name>
+        <uuid>_a-0000df0b-b44d-8000-9ba2-011c48011c48_19525</uuid>
+        <description>Allows user to view document File</description>
+        <parentUuid>_a-0000deba-19b3-8000-9ba2-011c48011c48_32858</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>=#"SYSTEM_SYSRULES_formLayout_v1"(
+  label: "",
+  instructions: "",
+  contents: {
+    #"SYSTEM_SYSRULES_columnsLayout"(
+      columns: {
+        #"SYSTEM_SYSRULES_columnLayout"(
+          contents: {
+            #"SYSTEM_SYSRULES_textField"(
+              label: "Name",
+              labelPosition: "ADJACENT",
+              value: ri!document.documentName,
+              saveInto: ri!document.documentName,
+              refreshAfter: "UNFOCUS",
+              readonly: true,
+              validations: {}
+            ),
+            #"SYSTEM_SYSRULES_textField"(
+              label: "Status",
+              labelPosition: "ADJACENT",
+              value: ri!document.status,
+              saveInto: ri!document.status,
+              refreshAfter: "UNFOCUS",
+              readonly: true,
+              validations: {}
+            ),
+            #"SYSTEM_SYSRULES_textField"(
+              label: "Modification Type",
+              labelPosition: "ADJACENT",
+              value: ri!document.modificationType,
+              saveInto: ri!document.modificationType,
+              refreshAfter: "UNFOCUS",
+              readonly: true,
+              validations: {}
+            ),
+            #"SYSTEM_SYSRULES_textField"(
+              label: "Modification Classification",
+              labelPosition: "ADJACENT",
+              value: ri!document.modificationClassification,
+              saveInto: ri!document.modificationClassification,
+              refreshAfter: "UNFOCUS",
+              readonly: true,
+              validations: {}
+            ),
+            #"SYSTEM_SYSRULES_textField"(
+              label: "Description",
+              labelPosition: "ADJACENT",
+              value: ri!document.modificationDescription,
+              saveInto: ri!document.modificationDescription,
+              refreshAfter: "UNFOCUS",
+              readonly: true,
+              validations: {}
+            )
+          }
+        ),
+        #"SYSTEM_SYSRULES_columnLayout"(
+          contents: {
+            #"SYSTEM_SYSRULES_linkField"(
+              label: "Customer",
+              labelPosition: "ADJACENT",
+              links: =#"SYSTEM_SYSRULES_recordLink"(
+                label: #"_a-0000def3-0227-8000-9ba2-011c48011c48_10896"(#"571fac17-e2ad-41e6-b60a-2c6295469786"(ri!document.contractId).customerId),
+                recordType: #"_a-0000def3-0227-8000-9ba2-011c48011c48_10900",
+                identifier: #"_a-0000def3-0227-8000-9ba2-011c48011c48_10896"(#"571fac17-e2ad-41e6-b60a-2c6295469786"(ri!document.contractId).customerId)
+              )
+            ),
+            #"SYSTEM_SYSRULES_textField"(
+              label: "Updated By",
+              labelPosition: "ADJACENT",
+              value: ri!document.upladedBy,
+              saveInto: ri!document.upladedBy,
+              refreshAfter: "UNFOCUS",
+              readonly: true,
+              validations: {}
+            ),
+            #"SYSTEM_SYSRULES_dateField"(
+              label: "Last Updated",
+              labelPosition: "ADJACENT",
+              value: ri!document.updateDate,
+              saveInto: ri!document.updateDate,
+              readonly: true,
+              validations: {}
+            ),
+            #"SYSTEM_SYSRULES_dateField"(
+              label: "Start Date",
+              labelPosition: "ADJACENT",
+              value: ri!document.startDate,
+              saveInto: ri!document.startDate,
+              readonly: true,
+              validations: {}
+            ),
+            #"SYSTEM_SYSRULES_dateField"(
+              label: "End Date",
+              labelPosition: "ADJACENT",
+              value: ri!document.endDate,
+              saveInto: ri!document.endDate,
+              readonly: true,
+              validations: {}
+            ),
+            #"SYSTEM_SYSRULES_integerField"(
+              label: "Version",
+              labelPosition: "ADJACENT",
+              value: ri!document.documentVersionId,
+              saveInto: ri!document.documentVersionId,
+              refreshAfter: "UNFOCUS",
+              readonly: true,
+              validations: {}
+            )
+          }
+        )
+      }
+    ),
+    #"SYSTEM_SYSRULES_sectionLayout_v1"(
+      label: "Contract Document",
+      contents: {
+        #"SYSTEM_SYSRULES_imageField"(
+          label: "",
+          labelPosition: "ABOVE",
+          images: {
+            #"SYSTEM_SYSRULES_documentImage"(
+              document: ri!document.documentId
+            )
+          },
+          size: "STANDARD"
+        )
+      }
+    )
+  },
+  buttons: #"SYSTEM_SYSRULES_ButtonLayout"(
+    primaryButtons: {
+      #"SYSTEM_SYSRULES_ButtonWidgetSubmit"(
+        label: "Update",
+        style: "PRIMARY",
+        saveInto: {}
+      )
+    },
+    secondaryButtons: {
+      #"SYSTEM_SYSRULES_ButtonWidgetSubmit"(
+        label: "Cancel",
+        style: "NORMAL",
+        value: true,
+        saveInto: ri!cancel,
+        skipValidation: true
+      )
+    }
+  ),
+  validations: {}
+)</definition>
+        <namedTypedValue>
+            <name>cancel</name>
+            <type>
+                <name>boolean</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>document</name>
+            <type>
+                <name>ASC_Contract_Documents</name>
+                <namespace>urn:com:appian:types</namespace>
+            </type>
+        </namedTypedValue>
+        <metadataExpr></metadataExpr>
+        <preferredEditor>interface</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role inherit="true" allowForAll="false" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="administrators">
+            <users>
+                <userUuid>samuel.bruns@perficient.com</userUuid>
+            </users>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <typedValue>
+        <type>
+            <name>RuleTestConfig?list</name>
+            <namespace>http://www.appian.com/ae/types/2009</namespace>
+        </type>
+        <value>
+            <el>
+                <a:name/>
+                <a:ruleInputTestConfigs>
+                    <a:value xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xsd:boolean">false</a:value>
+                    <a:nameRef>cancel</a:nameRef>
+                    <a:id/>
+                </a:ruleInputTestConfigs>
+                <a:ruleInputTestConfigs>
+                    <a:value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="a:Expression">'type!{urn:com:appian:types}ASC_Contract_Documents'(documentId:10392, documentName:"hik")</a:value>
+                    <a:nameRef>document</a:nameRef>
+                    <a:id/>
+                </a:ruleInputTestConfigs>
+                <a:assertions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+            </el>
+        </value>
+    </typedValue>
+    <history>
+        <historyInfo versionUuid="_a-0000df4f-3e48-8000-9ba2-011c48011c48_60734"/>
+    </history>
+</contentHaul>

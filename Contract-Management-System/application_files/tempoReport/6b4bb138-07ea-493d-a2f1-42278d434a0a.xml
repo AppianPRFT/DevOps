@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<tempoReportHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <tempoReport a:uuid="6b4bb138-07ea-493d-a2f1-42278d434a0a" name="Contract Modification SLA Performance">
+        <a:description>Report on the amount on time that tasks are being completed by Spirit employees based on actions types.</a:description>
+        <a:uiExpr>=#"_a-0000df0b-b44d-8000-9ba2-011c48011c48_19305"()</a:uiExpr>
+        <a:urlStub>q_vNRQ</a:urlStub>
+    </tempoReport>
+    <roleMap>
+        <role name="report_administrator">
+            <users/>
+            <groups>
+                <groupUuid>_e-0000def3-0203-8000-9aee-01075c01075c_10</groupUuid>
+            </groups>
+        </role>
+        <role name="report_viewer">
+            <users/>
+            <groups>
+                <groupUuid>_e-0000df4f-3e02-8000-9aee-01075c01075c_63</groupUuid>
+            </groups>
+        </role>
+        <role name="report_editor">
+            <users/>
+            <groups>
+                <groupUuid>_e-0000df0b-b424-8000-9aee-01075c01075c_57</groupUuid>
+            </groups>
+        </role>
+    </roleMap>
+</tempoReportHaul>
