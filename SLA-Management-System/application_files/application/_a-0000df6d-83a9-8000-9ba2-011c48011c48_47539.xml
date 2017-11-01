@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<applicationHaul xmlns:a="http://www.appian.com/ae/types/2009">
+<?xml version="1.0" encoding="UTF-8"?><applicationHaul xmlns:a="http://www.appian.com/ae/types/2009">
     <versionUuid>_a-0000df6d-83a9-8000-9ba2-011c48011c48_51046</versionUuid>
     <application>
         <name>SLA Management System</name>
@@ -239,29 +238,29 @@
     </application>
     <roleMap>
         <contentRoleMap public="true">
-            <role inherit="false" allowForAll="false" name="readers">
+            <role allowForAll="false" inherit="false" name="readers">
                 <users/>
                 <groups/>
             </role>
-            <role inherit="false" allowForAll="false" name="authors">
+            <role allowForAll="false" inherit="false" name="authors">
                 <users/>
                 <groups/>
             </role>
-            <role inherit="false" allowForAll="false" name="administrators">
+            <role allowForAll="false" inherit="false" name="administrators">
                 <users>
                     <userUuid>samuel.bruns@perficient.com</userUuid>
                 </users>
                 <groups/>
             </role>
-            <role inherit="false" allowForAll="false" name="denyReaders">
+            <role allowForAll="false" inherit="false" name="denyReaders">
                 <users/>
                 <groups/>
             </role>
-            <role inherit="false" allowForAll="false" name="denyAuthors">
+            <role allowForAll="false" inherit="false" name="denyAuthors">
                 <users/>
                 <groups/>
             </role>
-            <role inherit="false" allowForAll="false" name="denyAdministrators">
+            <role allowForAll="false" inherit="false" name="denyAdministrators">
                 <users/>
                 <groups/>
             </role>
@@ -270,4 +269,4 @@
     <history>
         <historyInfo versionUuid="_a-0000df6d-83a9-8000-9ba2-011c48011c48_51046"/>
     </history>
-</applicationHaul>
+</applicationHaul><!--updated on 2017-11-01T10:08:16.832-->
