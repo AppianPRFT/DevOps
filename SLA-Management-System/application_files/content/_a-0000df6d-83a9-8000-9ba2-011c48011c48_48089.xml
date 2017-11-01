@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
-    <versionUuid>_a-0000df6d-83a9-8000-9ba2-011c48011c48_51268</versionUuid>
+    <versionUuid>_a-0000df6d-83a9-8000-9ba2-011c48011c48_52295</versionUuid>
     <rule>
         <name>SLA_Report_Graph</name>
         <uuid>_a-0000df6d-83a9-8000-9ba2-011c48011c48_48089</uuid>
@@ -104,6 +104,9 @@
             #"SYSTEM_SYSRULES_queryColumn"(
               field: "slaType"
             ),
+            #"SYSTEM_SYSRULES_queryColumn"(
+              field: "updatedBy"
+            ),
             
           }
         ),
@@ -125,7 +128,6 @@
     ),
     #"SYSTEM_SYSRULES_sectionLayout_v1"(
       contents: {
-        
         #"SYSTEM_SYSRULES_linkField"(
           labelPosition: "COLLAPSED",
           links: #"SYSTEM_SYSRULES_dynamicLink"(
@@ -181,10 +183,29 @@
                                     milestoneId: #"_a-0000df6d-83a9-8000-9ba2-011c48011c48_51041"(
                                       fv!item[2]
                                     ).milestoneId,
-                                    description: #"_a-0000df6d-83a9-8000-9ba2-011c48011c48_51041"(
+                                    description: if(
+                                      #"_a-0000df51-4350-8000-9ba2-011c48011c48_4359"(
+                                        #"_a-0000df6d-83a9-8000-9ba2-011c48011c48_51041"(
+                                          fv!item[2]
+                                        ).description
+                                      ),
+                                      tostring(
+                                        #"_a-0000df6d-83a9-8000-9ba2-011c48011c48_49484"[#"_a-0000df6d-83a9-8000-9ba2-011c48011c48_51041"(
+                                          fv!item[2]
+                                        ).milestoneId] &amp; " took " &amp; #"_a-0000df51-4350-8000-9ba2-011c48011c48_4357"(
+                                          #"_a-0000df6d-83a9-8000-9ba2-011c48011c48_51041"(
+                                            fv!item[2]
+                                          ).updatedBy
+                                        ) &amp; " " &amp; fv!item[1] &amp; " days to complete "
+                                      ),
+                                      #"_a-0000df6d-83a9-8000-9ba2-011c48011c48_51041"(
+                                        fv!item[2]
+                                      ).description
+                                    ),
+                                    slaType: "Above",
+                                    updatedBy: #"_a-0000df6d-83a9-8000-9ba2-011c48011c48_51041"(
                                       fv!item[2]
-                                    ).description,
-                                    slaType: "Above"
+                                    ).updatedBy
                                   }
                                 )
                               )
@@ -200,7 +221,6 @@
                           if(
                             fv!item[1] &gt;= #"_a-0000df6d-83a9-8000-9ba2-011c48011c48_48095"[fv!index],
                             {
-                              
                               a!save(
                                 local!test,
                                 append(
@@ -218,10 +238,29 @@
                                       milestoneId: #"_a-0000df6d-83a9-8000-9ba2-011c48011c48_51041"(
                                         fv!item[2]
                                       ).milestoneId,
-                                      description: #"_a-0000df6d-83a9-8000-9ba2-011c48011c48_51041"(
+                                      description: if(
+                                        #"_a-0000df51-4350-8000-9ba2-011c48011c48_4359"(
+                                          #"_a-0000df6d-83a9-8000-9ba2-011c48011c48_51041"(
+                                            fv!item[2]
+                                          ).description
+                                        ),
+                                        tostring(
+                                          #"_a-0000df6d-83a9-8000-9ba2-011c48011c48_49484"[#"_a-0000df6d-83a9-8000-9ba2-011c48011c48_51041"(
+                                            fv!item[2]
+                                          ).milestoneId] &amp; " took " &amp; #"_a-0000df51-4350-8000-9ba2-011c48011c48_4357"(
+                                            #"_a-0000df6d-83a9-8000-9ba2-011c48011c48_51041"(
+                                              fv!item[2]
+                                            ).updatedBy
+                                          ) &amp; " " &amp; fv!item[1] &amp; " days to complete "
+                                        ),
+                                        #"_a-0000df6d-83a9-8000-9ba2-011c48011c48_51041"(
+                                          fv!item[2]
+                                        ).description
+                                      ),
+                                      slaType: "Exceeds",
+                                      updatedBy: #"_a-0000df6d-83a9-8000-9ba2-011c48011c48_51041"(
                                         fv!item[2]
-                                      ).description,
-                                      slaType: "Exceeds"
+                                      ).updatedBy
                                     }
                                   )
                                 )
@@ -240,32 +279,50 @@
                                 fv!item[1] &lt; #"_a-0000df6d-83a9-8000-9ba2-011c48011c48_48095"[fv!index]
                               ),
                               {
-                                
                                 a!save(
-                                local!test,
-                                append(
                                   local!test,
-                                  cast(
-                                    'type!{urn:com:appian:types}SLA_Entry',
-                                    {
-                                      id: fv!item[2],
-                                      milestoneStartTime: #"_a-0000df6d-83a9-8000-9ba2-011c48011c48_51041"(
-                                        fv!item[2]
-                                      ).milestoneStartTime,
-                                      recordId: #"_a-0000df6d-83a9-8000-9ba2-011c48011c48_51041"(
-                                        fv!item[2]
-                                      ).recordId,
-                                      milestoneId: #"_a-0000df6d-83a9-8000-9ba2-011c48011c48_51041"(
-                                        fv!item[2]
-                                      ).milestoneId,
-                                      description: #"_a-0000df6d-83a9-8000-9ba2-011c48011c48_51041"(
-                                        fv!item[2]
-                                      ).description,
-                                      slaType: "Meets"
-                                    }
+                                  append(
+                                    local!test,
+                                    cast(
+                                      'type!{urn:com:appian:types}SLA_Entry',
+                                      {
+                                        id: fv!item[2],
+                                        milestoneStartTime: #"_a-0000df6d-83a9-8000-9ba2-011c48011c48_51041"(
+                                          fv!item[2]
+                                        ).milestoneStartTime,
+                                        recordId: #"_a-0000df6d-83a9-8000-9ba2-011c48011c48_51041"(
+                                          fv!item[2]
+                                        ).recordId,
+                                        milestoneId: #"_a-0000df6d-83a9-8000-9ba2-011c48011c48_51041"(
+                                          fv!item[2]
+                                        ).milestoneId,
+                                        description: if(
+                                          #"_a-0000df51-4350-8000-9ba2-011c48011c48_4359"(
+                                            #"_a-0000df6d-83a9-8000-9ba2-011c48011c48_51041"(
+                                              fv!item[2]
+                                            ).description
+                                          ),
+                                          tostring(
+                                            #"_a-0000df6d-83a9-8000-9ba2-011c48011c48_49484"[#"_a-0000df6d-83a9-8000-9ba2-011c48011c48_51041"(
+                                              fv!item[2]
+                                            ).milestoneId] &amp; " took " &amp; #"_a-0000df51-4350-8000-9ba2-011c48011c48_4357"(
+                                              #"_a-0000df6d-83a9-8000-9ba2-011c48011c48_51041"(
+                                                fv!item[2]
+                                              ).updatedBy
+                                            ) &amp; " " &amp; fv!item[1] &amp; " days to complete "
+                                          ),
+                                          #"_a-0000df6d-83a9-8000-9ba2-011c48011c48_51041"(
+                                            fv!item[2]
+                                          ).description
+                                        ),
+                                        slaType: "Meets",
+                                        updatedBy: #"_a-0000df6d-83a9-8000-9ba2-011c48011c48_51041"(
+                                          fv!item[2]
+                                        ).updatedBy
+                                      }
+                                    )
                                   )
-                                )
-                              ),
+                                ),
                                 a!save(
                                   local!SLAData[2].data[fv!index],
                                   cast(
@@ -302,31 +359,49 @@
                           fv!item[1] &lt;= #"_a-0000df6d-83a9-8000-9ba2-011c48011c48_48101"[fv!index],
                           {
                             a!save(
+                              local!test,
+                              append(
                                 local!test,
-                                append(
-                                  local!test,
-                                  cast(
-                                    'type!{urn:com:appian:types}SLA_Entry',
-                                    {
-                                      id: fv!item[2],
-                                      milestoneStartTime: #"_a-0000df6d-83a9-8000-9ba2-011c48011c48_51041"(
+                                cast(
+                                  'type!{urn:com:appian:types}SLA_Entry',
+                                  {
+                                    id: fv!item[2],
+                                    milestoneStartTime: #"_a-0000df6d-83a9-8000-9ba2-011c48011c48_51041"(
+                                      fv!item[2]
+                                    ).milestoneStartTime,
+                                    recordId: #"_a-0000df6d-83a9-8000-9ba2-011c48011c48_51041"(
+                                      fv!item[2]
+                                    ).recordId,
+                                    milestoneId: #"_a-0000df6d-83a9-8000-9ba2-011c48011c48_51041"(
+                                      fv!item[2]
+                                    ).milestoneId,
+                                    description: if(
+                                      #"_a-0000df51-4350-8000-9ba2-011c48011c48_4359"(
+                                        #"_a-0000df6d-83a9-8000-9ba2-011c48011c48_51041"(
+                                          fv!item[2]
+                                        ).description
+                                      ),
+                                      tostring(
+                                        #"_a-0000df6d-83a9-8000-9ba2-011c48011c48_49484"[#"_a-0000df6d-83a9-8000-9ba2-011c48011c48_51041"(
+                                          fv!item[2]
+                                        ).milestoneId] &amp; " took " &amp; #"_a-0000df51-4350-8000-9ba2-011c48011c48_4357"(
+                                          #"_a-0000df6d-83a9-8000-9ba2-011c48011c48_51041"(
+                                            fv!item[2]
+                                          ).updatedBy
+                                        ) &amp; " " &amp; fv!item[1] &amp; " days to complete "
+                                      ),
+                                      #"_a-0000df6d-83a9-8000-9ba2-011c48011c48_51041"(
                                         fv!item[2]
-                                      ).milestoneStartTime,
-                                      recordId: #"_a-0000df6d-83a9-8000-9ba2-011c48011c48_51041"(
-                                        fv!item[2]
-                                      ).recordId,
-                                      milestoneId: #"_a-0000df6d-83a9-8000-9ba2-011c48011c48_51041"(
-                                        fv!item[2]
-                                      ).milestoneId,
-                                      description: #"_a-0000df6d-83a9-8000-9ba2-011c48011c48_51041"(
-                                        fv!item[2]
-                                      ).description,
-                                      slaType: "Above"
-                                    }
-                                  )
+                                      ).description
+                                    ),
+                                    slaType: "Above",
+                                    updatedBy: #"_a-0000df6d-83a9-8000-9ba2-011c48011c48_51041"(
+                                      fv!item[2]
+                                    ).updatedBy
+                                  }
                                 )
-                              ),
-                            
+                              )
+                            ),
                             a!save(
                               local!SLAData[1].data[fv!index],
                               cast(
@@ -338,7 +413,6 @@
                           if(
                             fv!item[1] &gt;= #"_a-0000df6d-83a9-8000-9ba2-011c48011c48_48095"[fv!index],
                             {
-                              
                               a!save(
                                 local!test,
                                 append(
@@ -356,10 +430,29 @@
                                       milestoneId: #"_a-0000df6d-83a9-8000-9ba2-011c48011c48_51041"(
                                         fv!item[2]
                                       ).milestoneId,
-                                      description: #"_a-0000df6d-83a9-8000-9ba2-011c48011c48_51041"(
+                                      description: if(
+                                        #"_a-0000df51-4350-8000-9ba2-011c48011c48_4359"(
+                                          #"_a-0000df6d-83a9-8000-9ba2-011c48011c48_51041"(
+                                            fv!item[2]
+                                          ).description
+                                        ),
+                                        tostring(
+                                          #"_a-0000df6d-83a9-8000-9ba2-011c48011c48_49484"[#"_a-0000df6d-83a9-8000-9ba2-011c48011c48_51041"(
+                                            fv!item[2]
+                                          ).milestoneId] &amp; " took " &amp; #"_a-0000df51-4350-8000-9ba2-011c48011c48_4357"(
+                                            #"_a-0000df6d-83a9-8000-9ba2-011c48011c48_51041"(
+                                              fv!item[2]
+                                            ).updatedBy
+                                          ) &amp; " " &amp; fv!item[1] &amp; " days to complete "
+                                        ),
+                                        #"_a-0000df6d-83a9-8000-9ba2-011c48011c48_51041"(
+                                          fv!item[2]
+                                        ).description
+                                      ),
+                                      slaType: "Exceeds",
+                                      updatedBy: #"_a-0000df6d-83a9-8000-9ba2-011c48011c48_51041"(
                                         fv!item[2]
-                                      ).description,
-                                      slaType: "Exceeds"
+                                      ).updatedBy
                                     }
                                   )
                                 )
@@ -378,32 +471,50 @@
                                 fv!item[1] &lt; #"_a-0000df6d-83a9-8000-9ba2-011c48011c48_48095"[fv!index]
                               ),
                               {
-                                
                                 a!save(
-                                local!test,
-                                append(
                                   local!test,
-                                  cast(
-                                    'type!{urn:com:appian:types}SLA_Entry',
-                                    {
-                                      id: fv!item[2],
-                                      milestoneStartTime: #"_a-0000df6d-83a9-8000-9ba2-011c48011c48_51041"(
-                                        fv!item[2]
-                                      ).milestoneStartTime,
-                                      recordId: #"_a-0000df6d-83a9-8000-9ba2-011c48011c48_51041"(
-                                        fv!item[2]
-                                      ).recordId,
-                                      milestoneId: #"_a-0000df6d-83a9-8000-9ba2-011c48011c48_51041"(
-                                        fv!item[2]
-                                      ).milestoneId,
-                                      description: #"_a-0000df6d-83a9-8000-9ba2-011c48011c48_51041"(
-                                        fv!item[2]
-                                      ).description,
-                                      slaType: "Meets"
-                                    }
+                                  append(
+                                    local!test,
+                                    cast(
+                                      'type!{urn:com:appian:types}SLA_Entry',
+                                      {
+                                        id: fv!item[2],
+                                        milestoneStartTime: #"_a-0000df6d-83a9-8000-9ba2-011c48011c48_51041"(
+                                          fv!item[2]
+                                        ).milestoneStartTime,
+                                        recordId: #"_a-0000df6d-83a9-8000-9ba2-011c48011c48_51041"(
+                                          fv!item[2]
+                                        ).recordId,
+                                        milestoneId: #"_a-0000df6d-83a9-8000-9ba2-011c48011c48_51041"(
+                                          fv!item[2]
+                                        ).milestoneId,
+                                        description: if(
+                                          #"_a-0000df51-4350-8000-9ba2-011c48011c48_4359"(
+                                            #"_a-0000df6d-83a9-8000-9ba2-011c48011c48_51041"(
+                                              fv!item[2]
+                                            ).description
+                                          ),
+                                          tostring(
+                                            #"_a-0000df6d-83a9-8000-9ba2-011c48011c48_49484"[#"_a-0000df6d-83a9-8000-9ba2-011c48011c48_51041"(
+                                              fv!item[2]
+                                            ).milestoneId] &amp; " took " &amp; #"_a-0000df51-4350-8000-9ba2-011c48011c48_4357"(
+                                              #"_a-0000df6d-83a9-8000-9ba2-011c48011c48_51041"(
+                                                fv!item[2]
+                                              ).updatedBy
+                                            ) &amp; " " &amp; fv!item[1] &amp; " days to complete "
+                                          ),
+                                          #"_a-0000df6d-83a9-8000-9ba2-011c48011c48_51041"(
+                                            fv!item[2]
+                                          ).description
+                                        ),
+                                        slaType: "Meets",
+                                        updatedBy: #"_a-0000df6d-83a9-8000-9ba2-011c48011c48_51041"(
+                                          fv!item[2]
+                                        ).updatedBy
+                                      }
+                                    )
                                   )
-                                )
-                              ),
+                                ),
                                 a!save(
                                   local!SLAData[2].data[fv!index],
                                   cast(
@@ -585,5 +696,6 @@
     </roleMap>
     <history>
         <historyInfo versionUuid="_a-0000df6d-83a9-8000-9ba2-011c48011c48_51268"/>
+        <historyInfo versionUuid="_a-0000df6d-83a9-8000-9ba2-011c48011c48_52295"/>
     </history>
 </contentHaul>

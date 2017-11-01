@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
-    <versionUuid>_a-0000df6d-83a9-8000-9ba2-011c48011c48_51480</versionUuid>
+    <versionUuid>_a-0000df6d-83a9-8000-9ba2-011c48011c48_56376</versionUuid>
     <rule>
         <name>SLA_Report_Grid</name>
         <uuid>_a-0000df6d-83a9-8000-9ba2-011c48011c48_50446</uuid>
@@ -48,32 +48,61 @@
             #"SYSTEM_SYSRULES_queryColumn"(
               field: "slaType"
             ),
+            #"SYSTEM_SYSRULES_queryColumn"(
+              field: "updatedBy"
+            ),
             
           }
         ),
         logicalExpression: #"SYSTEM_SYSRULES_queryLogicalExpression"(
-          operator:"AND",
-          filters:{#"SYSTEM_SYSRULES_queryFilter"(field:"milestoneId",operator:"&lt;&gt;",value:0),
-            if(#"_a-0000df51-4350-8000-9ba2-011c48011c48_4359"(ri!selectedMilestone),{},#"SYSTEM_SYSRULES_queryFilter"(field:"milestoneId",operator:"=",value:ri!selectedMilestone)),
-            if(#"_a-0000df51-4350-8000-9ba2-011c48011c48_4359"(ri!selectedType),{},#"SYSTEM_SYSRULES_queryFilter"(field:"slaType",operator:"=",value:ri!selectedType)),
-            if(
-            #"_a-0000df51-4350-8000-9ba2-011c48011c48_4359"(
-              ri!selectedType
-            ),
+          operator: "AND",
+          filters: {
             #"SYSTEM_SYSRULES_queryFilter"(
               field: "milestoneId",
               operator: "&lt;&gt;",
               value: 0
-            ),{})
-          }),
+            ),
+            if(
+              #"_a-0000df51-4350-8000-9ba2-011c48011c48_4359"(
+                ri!selectedMilestone
+              ),
+              {},
+              #"SYSTEM_SYSRULES_queryFilter"(
+                field: "milestoneId",
+                operator: "=",
+                value: ri!selectedMilestone
+              )
+            ),
+            if(
+              #"_a-0000df51-4350-8000-9ba2-011c48011c48_4359"(
+                ri!selectedType
+              ),
+              {},
+              #"SYSTEM_SYSRULES_queryFilter"(
+                field: "slaType",
+                operator: "=",
+                value: ri!selectedType
+              )
+            ),
+            if(
+              #"_a-0000df51-4350-8000-9ba2-011c48011c48_4359"(
+                ri!selectedType
+              ),
+              #"SYSTEM_SYSRULES_queryFilter"(
+                field: "milestoneId",
+                operator: "&lt;&gt;",
+                value: 0
+              ),
+              {}
+            )
+          }
+        ),
         pagingInfo: local!pagingInfo
-        
       )
     ),
     #"SYSTEM_SYSRULES_gridField"(
       totalCount: local!datasubset.totalCount,
       columns: {
-        
         /**/
         #"SYSTEM_SYSRULES_gridTextColumn"(
           label: "Record",
@@ -84,35 +113,37 @@
               "recordId",
               null
             ),
-            if(
-              #"_a-0000df51-4350-8000-9ba2-011c48011c48_4359"(
-                #"_a-0000df6d-83a9-8000-9ba2-011c48011c48_36907"(
-                  fv!item
-                ).documentTitle
-              ),
-              fv!item,
-              #"_a-0000df6d-83a9-8000-9ba2-011c48011c48_36907"(
-                fv!item
-              ).documentTitle
-            )
-          ),
-          links: #"SYSTEM_SYSRULES_forEach"(
-            index(
-              local!datasubset.data,
-              "recordId",
-              null
-            ),
-            #"SYSTEM_SYSRULES_recordLink"(
-              label: #"_a-0000df6d-83a9-8000-9ba2-011c48011c48_36907"(
-                fv!item
-              ).documentTitle,
-              recordType: #"_a-0000df6d-83a9-8000-9ba2-011c48011c48_42775",
-              identifier: fv!item
-            )
+            fv!item
+            /*if(*/
+              /*rule!GLOBAL_CheckForNull(*/
+                /*rule!DRF_GetDocumentChangeRequestById(*/
+                  /*fv!item*/
+                /*).documentTitle*/
+              /*),*/
+              /*fv!item,*/
+              /*rule!DRF_GetDocumentChangeRequestById(*/
+                /*fv!item*/
+              /*).documentTitle*/
+            /*)*/
+          )
+          /*,*/
+          /*links: a!forEach(*/
+            /*index(*/
+              /*local!datasubset.data,*/
+              /*"recordId",*/
+              /*null*/
+            /*),*/
+            /*a!recordLink(*/
+              /*label: rule!DRF_GetDocumentChangeRequestById(*/
+                /*fv!item*/
+              /*).documentTitle,*/
+              /*recordType: cons!DRF_DOCUMENT_CHANGE_REQUEST_RECORD,*/
+              /*identifier: fv!item*/
+            /*)*/
             /* ^ */
             /*REQUIRES USER INPUT*/
             /* ^ */
-          )
+          /*)*/
         ),
         #"SYSTEM_SYSRULES_gridTextColumn"(
           label: "Description",
@@ -124,14 +155,44 @@
           )
         ),
         #"SYSTEM_SYSRULES_gridTextColumn"(
-          label: "SLA",
-          field: "slaType",
-          data: index(
-            local!datasubset.data,
-            "slaType",
-            null
+          label: "Completed By",
+          field: "updatedBy",
+          data: #"SYSTEM_SYSRULES_forEach"(
+            index(
+              local!datasubset.data,
+              "updatedBy",
+              null
+            ),
+            #"_a-0000df51-4350-8000-9ba2-011c48011c48_4357"(
+              fv!item
+            )
+          ),
+          links: #"SYSTEM_SYSRULES_forEach"(
+            index(
+              local!datasubset.data,
+              "updatedBy",
+              null
+            ),
+            #"SYSTEM_SYSRULES_userRecordLink"(
+              label: fv!item,
+              user: touser(fv!item)
+            )
+            /* ^ */
+            /*REQUIRES USER INPUT*/
+            /* ^ */
           )
         ),
+        /*AVAILABLE ADDITION SLA TYPE*/
+        /*      */
+        /*a!gridTextColumn(*/
+        /*label: "SLA",*/
+        /*field: "slaType",*/
+        /*data: index(*/
+        /*local!datasubset.data,*/
+        /*"slaType",*/
+        /*null*/
+        /*)*/
+        /*),*/
         #"SYSTEM_SYSRULES_gridTextColumn"(
           label: "Milestone",
           field: "milestoneId",
@@ -145,12 +206,21 @@
           )
         ),
         #"SYSTEM_SYSRULES_gridTextColumn"(
-          label: "milestoneStartTime",
+          label: "Start Time",
           field: "milestoneStartTime",
-          data: index(
-            local!datasubset.data,
-            "milestoneStartTime",
-            null
+          data: #"SYSTEM_SYSRULES_forEach"(
+            index(
+              local!datasubset.data,
+              "milestoneStartTime",
+              null
+            ),
+            tostring(
+              todate(
+                fv!item
+              ) &amp; " : " &amp; totime(
+                fv!item
+              )
+            )
           )
         )
       },
@@ -206,5 +276,7 @@
     </roleMap>
     <history>
         <historyInfo versionUuid="_a-0000df6d-83a9-8000-9ba2-011c48011c48_51480"/>
+        <historyInfo versionUuid="_a-0000df6d-83a9-8000-9ba2-011c48011c48_56156"/>
+        <historyInfo versionUuid="_a-0000df6d-83a9-8000-9ba2-011c48011c48_56376"/>
     </history>
 </contentHaul>

@@ -24,6 +24,11 @@
           <xsd:appinfo source="appian.jpa">@Column(length=255)</xsd:appinfo>
         </xsd:annotation>
       </xsd:element>
+      <xsd:element name="updatedBy" nillable="true" type="xsd:string">
+        <xsd:annotation>
+          <xsd:appinfo source="appian.jpa">@Column(length=255)</xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
     </xsd:sequence>
   </xsd:complexType>
 </xsd:schema>
