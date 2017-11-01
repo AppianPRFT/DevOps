@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<applicationHaul xmlns:a="http://www.appian.com/ae/types/2009">
+<?xml version="1.0" encoding="UTF-8"?><applicationHaul xmlns:a="http://www.appian.com/ae/types/2009">
     <versionUuid>_a-0000df63-1167-8000-9ba2-011c48011c48_113360</versionUuid>
     <application>
         <name>Contract Management</name>
@@ -472,15 +471,15 @@
     </application>
     <roleMap>
         <contentRoleMap public="true">
-            <role inherit="false" allowForAll="true" name="readers">
+            <role allowForAll="true" inherit="false" name="readers">
                 <users/>
                 <groups/>
             </role>
-            <role inherit="false" allowForAll="false" name="authors">
+            <role allowForAll="false" inherit="false" name="authors">
                 <users/>
                 <groups/>
             </role>
-            <role inherit="false" allowForAll="false" name="administrators">
+            <role allowForAll="false" inherit="false" name="administrators">
                 <users>
                     <userUuid>mwandama.mutanuka@perficient.com</userUuid>
                 </users>
@@ -488,15 +487,15 @@
                     <groupUuid>_e-0000def3-0203-8000-9aee-01075c01075c_10</groupUuid>
                 </groups>
             </role>
-            <role inherit="false" allowForAll="false" name="denyReaders">
+            <role allowForAll="false" inherit="false" name="denyReaders">
                 <users/>
                 <groups/>
             </role>
-            <role inherit="false" allowForAll="false" name="denyAuthors">
+            <role allowForAll="false" inherit="false" name="denyAuthors">
                 <users/>
                 <groups/>
             </role>
-            <role inherit="false" allowForAll="false" name="denyAdministrators">
+            <role allowForAll="false" inherit="false" name="denyAdministrators">
                 <users/>
                 <groups/>
             </role>
@@ -514,4 +513,4 @@
         <historyInfo versionUuid="_a-0000df63-1167-8000-9ba2-011c48011c48_107736"/>
         <historyInfo versionUuid="_a-0000df63-1167-8000-9ba2-011c48011c48_113360"/>
     </history>
-</applicationHaul>
+</applicationHaul><!--updated on 2017-11-01T10:37:13.822-->
