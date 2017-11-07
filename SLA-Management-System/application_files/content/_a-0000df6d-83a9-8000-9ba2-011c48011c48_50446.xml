@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
-    <versionUuid>_a-0000df6d-83a9-8000-9ba2-011c48011c48_56376</versionUuid>
+    <versionUuid>_a-0000df6d-83a9-8000-9ba2-011c48011c48_56689</versionUuid>
     <rule>
         <name>SLA_Report_Grid</name>
         <uuid>_a-0000df6d-83a9-8000-9ba2-011c48011c48_50446</uuid>
@@ -63,9 +63,10 @@
               value: 0
             ),
             if(
-              #"_a-0000df51-4350-8000-9ba2-011c48011c48_4359"(
-                ri!selectedMilestone
-              ),
+              /*rule!GLOBAL_CheckForNull(*/
+                /*ri!selectedMilestone*/
+              /*)*/true
+              ,
               {},
               #"SYSTEM_SYSRULES_queryFilter"(
                 field: "milestoneId",
@@ -74,9 +75,10 @@
               )
             ),
             if(
-              #"_a-0000df51-4350-8000-9ba2-011c48011c48_4359"(
-                ri!selectedType
-              ),
+              /*rule!GLOBAL_CheckForNull(*/
+                /*ri!selectedType*/
+              /*)*/true
+              ,
               {},
               #"SYSTEM_SYSRULES_queryFilter"(
                 field: "slaType",
@@ -85,9 +87,10 @@
               )
             ),
             if(
-              #"_a-0000df51-4350-8000-9ba2-011c48011c48_4359"(
-                ri!selectedType
-              ),
+              /*rule!GLOBAL_CheckForNull(*/
+                /*ri!selectedType*/
+              /*)*/true
+              ,
               #"SYSTEM_SYSRULES_queryFilter"(
                 field: "milestoneId",
                 operator: "&lt;&gt;",
@@ -163,9 +166,9 @@
               "updatedBy",
               null
             ),
-            #"_a-0000df51-4350-8000-9ba2-011c48011c48_4357"(
+            /*rule!GLOBAL_UserFirstLastName(*/
               fv!item
-            )
+            /*)*/
           ),
           links: #"SYSTEM_SYSRULES_forEach"(
             index(
@@ -278,5 +281,6 @@
         <historyInfo versionUuid="_a-0000df6d-83a9-8000-9ba2-011c48011c48_51480"/>
         <historyInfo versionUuid="_a-0000df6d-83a9-8000-9ba2-011c48011c48_56156"/>
         <historyInfo versionUuid="_a-0000df6d-83a9-8000-9ba2-011c48011c48_56376"/>
+        <historyInfo versionUuid="_a-0000df6d-83a9-8000-9ba2-011c48011c48_56689"/>
     </history>
 </contentHaul>

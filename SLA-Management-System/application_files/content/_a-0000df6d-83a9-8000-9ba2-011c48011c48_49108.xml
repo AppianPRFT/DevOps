@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
-    <versionUuid>_a-0000df6d-83a9-8000-9ba2-011c48011c48_49118</versionUuid>
+    <versionUuid>_a-0000df6d-83a9-8000-9ba2-011c48011c48_56623</versionUuid>
     <queryRule>
         <name>SLA_GetAllSLAEntries</name>
         <uuid>_a-0000df6d-83a9-8000-9ba2-011c48011c48_49108</uuid>
@@ -9,15 +9,7 @@
         <dataStoreEntityCompositeUuid>931f13d6-58ee-4423-9497-6e1f4b42c5ab@_a-0000df6d-83a9-8000-9ba2-011c48011c48_47590</dataStoreEntityCompositeUuid>
         <params/>
         <filters/>
-        <orderings>
-            <ordering>
-                <ascending>true</ascending>
-                <field>
-                    <name>recordId</name>
-                    <type>{http://www.w3.org/2001/XMLSchema}int</type>
-                </field>
-            </ordering>
-        </orderings>
+        <orderings/>
     </queryRule>
     <roleMap public="false">
         <role inherit="true" allowForAll="false" name="readers">
@@ -47,5 +39,6 @@
     </roleMap>
     <history>
         <historyInfo versionUuid="_a-0000df6d-83a9-8000-9ba2-011c48011c48_49118"/>
+        <historyInfo versionUuid="_a-0000df6d-83a9-8000-9ba2-011c48011c48_56623"/>
     </history>
 </contentHaul>

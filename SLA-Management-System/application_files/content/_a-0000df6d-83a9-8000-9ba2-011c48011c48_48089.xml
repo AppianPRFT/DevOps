@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
-    <versionUuid>_a-0000df6d-83a9-8000-9ba2-011c48011c48_52295</versionUuid>
+    <versionUuid>_a-0000df6d-83a9-8000-9ba2-011c48011c48_56708</versionUuid>
     <rule>
         <name>SLA_Report_Graph</name>
         <uuid>_a-0000df6d-83a9-8000-9ba2-011c48011c48_48089</uuid>
@@ -112,7 +112,7 @@
         ),
         filter: {
           if(
-            #"_a-0000df51-4350-8000-9ba2-011c48011c48_4359"(
+            isnull(/*was GLOBAL check for null*/
               ri!recordId
             ),
             null,
@@ -184,7 +184,7 @@
                                       fv!item[2]
                                     ).milestoneId,
                                     description: if(
-                                      #"_a-0000df51-4350-8000-9ba2-011c48011c48_4359"(
+                                      isnull(/*was GLOBAL check for null*/
                                         #"_a-0000df6d-83a9-8000-9ba2-011c48011c48_51041"(
                                           fv!item[2]
                                         ).description
@@ -192,11 +192,11 @@
                                       tostring(
                                         #"_a-0000df6d-83a9-8000-9ba2-011c48011c48_49484"[#"_a-0000df6d-83a9-8000-9ba2-011c48011c48_51041"(
                                           fv!item[2]
-                                        ).milestoneId] &amp; " took " &amp; #"_a-0000df51-4350-8000-9ba2-011c48011c48_4357"(
+                                        ).milestoneId] &amp; " took " &amp; 
                                           #"_a-0000df6d-83a9-8000-9ba2-011c48011c48_51041"(
                                             fv!item[2]
                                           ).updatedBy
-                                        ) &amp; " " &amp; fv!item[1] &amp; " days to complete "
+                                         &amp; " " &amp; fv!item[1] &amp; " days to complete "
                                       ),
                                       #"_a-0000df6d-83a9-8000-9ba2-011c48011c48_51041"(
                                         fv!item[2]
@@ -239,7 +239,7 @@
                                         fv!item[2]
                                       ).milestoneId,
                                       description: if(
-                                        #"_a-0000df51-4350-8000-9ba2-011c48011c48_4359"(
+                                        isnull( /*was GLOBAL check for null*/
                                           #"_a-0000df6d-83a9-8000-9ba2-011c48011c48_51041"(
                                             fv!item[2]
                                           ).description
@@ -247,11 +247,11 @@
                                         tostring(
                                           #"_a-0000df6d-83a9-8000-9ba2-011c48011c48_49484"[#"_a-0000df6d-83a9-8000-9ba2-011c48011c48_51041"(
                                             fv!item[2]
-                                          ).milestoneId] &amp; " took " &amp; #"_a-0000df51-4350-8000-9ba2-011c48011c48_4357"(
+                                          ).milestoneId] &amp; " took " &amp; /*was GLOBAL userfirst&amp;last*/
                                             #"_a-0000df6d-83a9-8000-9ba2-011c48011c48_51041"(
                                               fv!item[2]
                                             ).updatedBy
-                                          ) &amp; " " &amp; fv!item[1] &amp; " days to complete "
+                                           &amp; " " &amp; fv!item[1] &amp; " days to complete "
                                         ),
                                         #"_a-0000df6d-83a9-8000-9ba2-011c48011c48_51041"(
                                           fv!item[2]
@@ -297,7 +297,7 @@
                                           fv!item[2]
                                         ).milestoneId,
                                         description: if(
-                                          #"_a-0000df51-4350-8000-9ba2-011c48011c48_4359"(
+                                          isnull(
                                             #"_a-0000df6d-83a9-8000-9ba2-011c48011c48_51041"(
                                               fv!item[2]
                                             ).description
@@ -305,11 +305,11 @@
                                           tostring(
                                             #"_a-0000df6d-83a9-8000-9ba2-011c48011c48_49484"[#"_a-0000df6d-83a9-8000-9ba2-011c48011c48_51041"(
                                               fv!item[2]
-                                            ).milestoneId] &amp; " took " &amp; #"_a-0000df51-4350-8000-9ba2-011c48011c48_4357"(
+                                            ).milestoneId] &amp; " took " &amp; /*was GLOBAL check for null*/
                                               #"_a-0000df6d-83a9-8000-9ba2-011c48011c48_51041"(
                                                 fv!item[2]
                                               ).updatedBy
-                                            ) &amp; " " &amp; fv!item[1] &amp; " days to complete "
+                                             &amp; " " &amp; fv!item[1] &amp; " days to complete "
                                           ),
                                           #"_a-0000df6d-83a9-8000-9ba2-011c48011c48_51041"(
                                             fv!item[2]
@@ -376,7 +376,7 @@
                                       fv!item[2]
                                     ).milestoneId,
                                     description: if(
-                                      #"_a-0000df51-4350-8000-9ba2-011c48011c48_4359"(
+                                      isnull( /*was GLOBAL check for null*/
                                         #"_a-0000df6d-83a9-8000-9ba2-011c48011c48_51041"(
                                           fv!item[2]
                                         ).description
@@ -384,11 +384,11 @@
                                       tostring(
                                         #"_a-0000df6d-83a9-8000-9ba2-011c48011c48_49484"[#"_a-0000df6d-83a9-8000-9ba2-011c48011c48_51041"(
                                           fv!item[2]
-                                        ).milestoneId] &amp; " took " &amp; #"_a-0000df51-4350-8000-9ba2-011c48011c48_4357"(
+                                        ).milestoneId] &amp; " took " &amp; 
                                           #"_a-0000df6d-83a9-8000-9ba2-011c48011c48_51041"(
                                             fv!item[2]
                                           ).updatedBy
-                                        ) &amp; " " &amp; fv!item[1] &amp; " days to complete "
+                                         &amp; " " &amp; fv!item[1] &amp; " days to complete "
                                       ),
                                       #"_a-0000df6d-83a9-8000-9ba2-011c48011c48_51041"(
                                         fv!item[2]
@@ -431,7 +431,7 @@
                                         fv!item[2]
                                       ).milestoneId,
                                       description: if(
-                                        #"_a-0000df51-4350-8000-9ba2-011c48011c48_4359"(
+                                        isnull( /*was GLOBAL check for null*/
                                           #"_a-0000df6d-83a9-8000-9ba2-011c48011c48_51041"(
                                             fv!item[2]
                                           ).description
@@ -439,11 +439,11 @@
                                         tostring(
                                           #"_a-0000df6d-83a9-8000-9ba2-011c48011c48_49484"[#"_a-0000df6d-83a9-8000-9ba2-011c48011c48_51041"(
                                             fv!item[2]
-                                          ).milestoneId] &amp; " took " &amp; #"_a-0000df51-4350-8000-9ba2-011c48011c48_4357"(
+                                          ).milestoneId] &amp; " took " &amp; /*was GLOBAL user first last*/
                                             #"_a-0000df6d-83a9-8000-9ba2-011c48011c48_51041"(
                                               fv!item[2]
                                             ).updatedBy
-                                          ) &amp; " " &amp; fv!item[1] &amp; " days to complete "
+                                           &amp; " " &amp; fv!item[1] &amp; " days to complete "
                                         ),
                                         #"_a-0000df6d-83a9-8000-9ba2-011c48011c48_51041"(
                                           fv!item[2]
@@ -489,7 +489,7 @@
                                           fv!item[2]
                                         ).milestoneId,
                                         description: if(
-                                          #"_a-0000df51-4350-8000-9ba2-011c48011c48_4359"(
+                                          isnull( /*was GLOBAL check for null*/
                                             #"_a-0000df6d-83a9-8000-9ba2-011c48011c48_51041"(
                                               fv!item[2]
                                             ).description
@@ -497,11 +497,11 @@
                                           tostring(
                                             #"_a-0000df6d-83a9-8000-9ba2-011c48011c48_49484"[#"_a-0000df6d-83a9-8000-9ba2-011c48011c48_51041"(
                                               fv!item[2]
-                                            ).milestoneId] &amp; " took " &amp; #"_a-0000df51-4350-8000-9ba2-011c48011c48_4357"(
+                                            ).milestoneId] &amp; " took " &amp; 
                                               #"_a-0000df6d-83a9-8000-9ba2-011c48011c48_51041"(
                                                 fv!item[2]
                                               ).updatedBy
-                                            ) &amp; " " &amp; fv!item[1] &amp; " days to complete "
+                                             &amp; " " &amp; fv!item[1] &amp; " days to complete "
                                           ),
                                           #"_a-0000df6d-83a9-8000-9ba2-011c48011c48_51041"(
                                             fv!item[2]
@@ -697,5 +697,7 @@
     <history>
         <historyInfo versionUuid="_a-0000df6d-83a9-8000-9ba2-011c48011c48_51268"/>
         <historyInfo versionUuid="_a-0000df6d-83a9-8000-9ba2-011c48011c48_52295"/>
+        <historyInfo versionUuid="_a-0000df6d-83a9-8000-9ba2-011c48011c48_56693"/>
+        <historyInfo versionUuid="_a-0000df6d-83a9-8000-9ba2-011c48011c48_56708"/>
     </history>
 </contentHaul>

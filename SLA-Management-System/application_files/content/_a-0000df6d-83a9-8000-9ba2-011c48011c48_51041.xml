@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
-    <versionUuid>_a-0000df6d-83a9-8000-9ba2-011c48011c48_51051</versionUuid>
+    <versionUuid>_a-0000df6d-83a9-8000-9ba2-011c48011c48_56608</versionUuid>
     <queryRule>
         <name>SLA_GetSLAEntryById</name>
         <uuid>_a-0000df6d-83a9-8000-9ba2-011c48011c48_51041</uuid>
@@ -25,15 +25,7 @@
                 <valueType>PARAMETER</valueType>
             </filter>
         </filters>
-        <orderings>
-            <ordering>
-                <ascending>true</ascending>
-                <field>
-                    <name>id</name>
-                    <type>{http://www.w3.org/2001/XMLSchema}int</type>
-                </field>
-            </ordering>
-        </orderings>
+        <orderings/>
     </queryRule>
     <roleMap public="false">
         <role inherit="true" allowForAll="false" name="readers">
@@ -63,5 +55,6 @@
     </roleMap>
     <history>
         <historyInfo versionUuid="_a-0000df6d-83a9-8000-9ba2-011c48011c48_51051"/>
+        <historyInfo versionUuid="_a-0000df6d-83a9-8000-9ba2-011c48011c48_56608"/>
     </history>
 </contentHaul>
