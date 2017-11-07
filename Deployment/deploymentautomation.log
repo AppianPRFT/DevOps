@@ -1,0 +1,657 @@
+2017-11-02 12:42:48,123 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Port set to 443
+2017-11-02 12:42:50,119 [main] ERROR com.appiancorp.ps.plugins.automatedimport.remote.DeployApplication - java.lang.IllegalStateException: The deployment post request was not successful. Response is:<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html>
+<head>
+  <meta name="apple-mobile-web-app-status-bar-style"
+        content="black-translucent" />
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0" />
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" href="http://www.spiritaero.com/wp-content/themes/spirittheme/assets/img/spirit_logo_placeholder.png" />
+
+
+
+
+<style>
+  body.appian-body,
+body{background: #e0e0ee;}
+.appian-body
+.message,
+.message{ color: red;}
+.appian-body
+form .field input,
+form .field input{ color: #333; border-color: #ccc;}
+.appian-body
+#copyright,
+#copyright{ color: #ffffff;   background-color: #1c1e1e;}
+.appian-body
+.submitButton,
+.submitButton { background-color: #E8E8E8; border:1px solid #B0B0B0; color:#333333; font-size:11px; font-weight:bold; font-family:OpenSans, Sans-Serif;}
+.appian-body
+.error_box,
+.error_box,
+.appian-body
+.login_box_inner,
+.login_box_inner{border:4px solid #1c1e1e;box-shadow: 0 0 12px #7F7FB8;}
+.appian-body
+.login_background,
+.login_background { background-color: #1c1e1e;}
+.appian-body
+.login_box input[type=text]:focus,
+.login_box input[type=text]:focus {border: 1px solid #1d659c;}
+.appian-body
+.login_box input[type=password]:focus,
+.login_box input[type=password]:focus {border: 1px solid #1d659c;}
+.appian-body
+.button_box_links a,
+.button_box_links a {color:#1d659c;}
+.appian-body
+.button_box_links a:hover,
+.button_box_links a:hover {border-bottom: 1px solid #1d659c; color: #1d659c;}
+.appian-body
+.button_box_links a:focus,
+.button_box_links a:focus {border-bottom: 1px solid #1d659c; color: #1d659c;}
+.appian-body
+.button_box_links a:active,
+.button_box_links a:active {border-color: #1d659c;}
+.appian-body
+.btn,
+.btn {color: #1d659c; border: 1px solid #1d659c;}
+.appian-body
+input.iBlueButton,
+input.iBlueButton {border: 1px solid #1d659c; background-color: #1d659c;}
+.appian-body
+.btn.primary,
+.btn.primary {background-color: #1d659c;}
+.appian-body
+.btn:hover,
+.btn:hover {box-shadow: 0 0px 5px #1d659c;}
+.appian-body
+input.iBlueButton:hover,
+input.iBlueButton:hover {box-shadow: 0 0px 5px #1d659c;}
+.appian-body
+.btn:focus,
+.btn:focus {box-shadow: 0 0px 5px #1d659c;}
+.appian-body
+input.iBlueButton:focus,
+input.iBlueButton:focus {box-shadow: 0 0px 5px #1d659c;}
+.appian-body
+.btn:active,
+.btn:active {box-shadow: 0 0px 5px #1d659c;}
+.appian-body
+input.iBlueButton:active,
+input.iBlueButton:active {box-shadow: 0 0px 5px #1d659c;}
+.appian-body
+.btn:pressed,
+.btn:pressed {box-shadow: 0 0px 5px #1d659c;}
+.appian-body
+input.iBlueButton:pressed,
+input.iBlueButton:pressed {box-shadow: 0 0px 5px #1d659c;}
+.appian-body
+input.iText:focus,
+input.iText:focus {border: 1px solid #1d659c !important;}
+.appian-body
+.logoutForm #returnLink,
+.logoutForm #returnLink {color: #1d659c;}
+.appian-body
+.logoutForm #returnLink:hover,
+.logoutForm #returnLink:hover {border-bottom: 1px solid #1d659c}
+.appian-body
+#back_link,
+#back_link {color: #1d659c;}
+.appian-body
+#back_link:hover,
+#back_link:hover {color: #1d659c; border-bottom: 1px solid #1d659c;}
+.appian-body
+.choice_pair input[type=checkbox]:checked + label:before,
+.choice_pair input[type=checkbox]:checked + label:before {background-color: #1d659c; border-color: #1d659c;}
+</style>
+
+  
+    
+    
+      <link rel="stylesheet" href="/suite/portal/css/error_common.css" type="text/css"/>
+    
+  
+  <title>Error 404 - Page Not Found</title>
+</head>
+<body class="appian-body">
+  <div class="login_background">
+  </div>
+  <div class="error_box">
+    <p>
+      <b>
+        <span class="message_large">Error 404</span>
+        <span class="message_med"> - Page Not Found</span>
+      </b>
+    </p>
+<span class="message_small">
+  Sorry, we can not find what you are looking for.
+  <br/><br/>
+  <div class="button_box_links">
+    <a href="/suite">Return</a><br/>
+  </div>
+</span>
+    </div>
+</body>
+</html>
+
+2017-11-02 12:44:28,044 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Port set to 443
+2017-11-02 12:44:29,738 [main] ERROR com.appiancorp.ps.plugins.automatedimport.remote.DeployApplication - java.lang.IllegalStateException: The deployment post request was not successful. Response is:<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html>
+<head>
+  <meta name="apple-mobile-web-app-status-bar-style"
+        content="black-translucent" />
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0" />
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" href="http://www.spiritaero.com/wp-content/themes/spirittheme/assets/img/spirit_logo_placeholder.png" />
+
+
+
+
+<style>
+  body.appian-body,
+body{background: #e0e0ee;}
+.appian-body
+.message,
+.message{ color: red;}
+.appian-body
+form .field input,
+form .field input{ color: #333; border-color: #ccc;}
+.appian-body
+#copyright,
+#copyright{ color: #ffffff;   background-color: #1c1e1e;}
+.appian-body
+.submitButton,
+.submitButton { background-color: #E8E8E8; border:1px solid #B0B0B0; color:#333333; font-size:11px; font-weight:bold; font-family:OpenSans, Sans-Serif;}
+.appian-body
+.error_box,
+.error_box,
+.appian-body
+.login_box_inner,
+.login_box_inner{border:4px solid #1c1e1e;box-shadow: 0 0 12px #7F7FB8;}
+.appian-body
+.login_background,
+.login_background { background-color: #1c1e1e;}
+.appian-body
+.login_box input[type=text]:focus,
+.login_box input[type=text]:focus {border: 1px solid #1d659c;}
+.appian-body
+.login_box input[type=password]:focus,
+.login_box input[type=password]:focus {border: 1px solid #1d659c;}
+.appian-body
+.button_box_links a,
+.button_box_links a {color:#1d659c;}
+.appian-body
+.button_box_links a:hover,
+.button_box_links a:hover {border-bottom: 1px solid #1d659c; color: #1d659c;}
+.appian-body
+.button_box_links a:focus,
+.button_box_links a:focus {border-bottom: 1px solid #1d659c; color: #1d659c;}
+.appian-body
+.button_box_links a:active,
+.button_box_links a:active {border-color: #1d659c;}
+.appian-body
+.btn,
+.btn {color: #1d659c; border: 1px solid #1d659c;}
+.appian-body
+input.iBlueButton,
+input.iBlueButton {border: 1px solid #1d659c; background-color: #1d659c;}
+.appian-body
+.btn.primary,
+.btn.primary {background-color: #1d659c;}
+.appian-body
+.btn:hover,
+.btn:hover {box-shadow: 0 0px 5px #1d659c;}
+.appian-body
+input.iBlueButton:hover,
+input.iBlueButton:hover {box-shadow: 0 0px 5px #1d659c;}
+.appian-body
+.btn:focus,
+.btn:focus {box-shadow: 0 0px 5px #1d659c;}
+.appian-body
+input.iBlueButton:focus,
+input.iBlueButton:focus {box-shadow: 0 0px 5px #1d659c;}
+.appian-body
+.btn:active,
+.btn:active {box-shadow: 0 0px 5px #1d659c;}
+.appian-body
+input.iBlueButton:active,
+input.iBlueButton:active {box-shadow: 0 0px 5px #1d659c;}
+.appian-body
+.btn:pressed,
+.btn:pressed {box-shadow: 0 0px 5px #1d659c;}
+.appian-body
+input.iBlueButton:pressed,
+input.iBlueButton:pressed {box-shadow: 0 0px 5px #1d659c;}
+.appian-body
+input.iText:focus,
+input.iText:focus {border: 1px solid #1d659c !important;}
+.appian-body
+.logoutForm #returnLink,
+.logoutForm #returnLink {color: #1d659c;}
+.appian-body
+.logoutForm #returnLink:hover,
+.logoutForm #returnLink:hover {border-bottom: 1px solid #1d659c}
+.appian-body
+#back_link,
+#back_link {color: #1d659c;}
+.appian-body
+#back_link:hover,
+#back_link:hover {color: #1d659c; border-bottom: 1px solid #1d659c;}
+.appian-body
+.choice_pair input[type=checkbox]:checked + label:before,
+.choice_pair input[type=checkbox]:checked + label:before {background-color: #1d659c; border-color: #1d659c;}
+</style>
+
+  
+    
+    
+      <link rel="stylesheet" href="/suite/portal/css/error_common.css" type="text/css"/>
+    
+  
+  <title>Error 404 - Page Not Found</title>
+</head>
+<body class="appian-body">
+  <div class="login_background">
+  </div>
+  <div class="error_box">
+    <p>
+      <b>
+        <span class="message_large">Error 404</span>
+        <span class="message_med"> - Page Not Found</span>
+      </b>
+    </p>
+<span class="message_small">
+  Sorry, we can not find what you are looking for.
+  <br/><br/>
+  <div class="button_box_links">
+    <a href="/suite">Return</a><br/>
+  </div>
+</span>
+    </div>
+</body>
+</html>
+
+2017-11-02 12:49:04,147 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Port set to 443
+2017-11-02 12:49:11,000 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 12:49:17,719 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 12:49:23,919 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 12:49:38,485 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 12:49:45,016 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 12:49:50,758 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 12:49:56,485 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 12:50:02,384 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 12:50:08,132 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 12:50:13,850 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 12:50:19,560 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 12:50:25,275 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 12:50:31,338 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 12:50:37,044 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 12:50:44,945 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 12:50:50,706 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 12:50:56,415 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 12:51:03,159 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 12:51:08,850 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 12:51:14,870 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 12:51:21,660 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 12:51:27,473 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 12:51:34,224 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 12:51:39,916 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 12:51:45,618 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 12:51:52,223 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 12:51:58,025 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 12:52:11,568 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 12:52:17,613 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 12:52:23,911 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 12:52:33,055 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 12:52:38,834 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 12:52:44,552 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 12:52:55,281 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 12:54:50,424 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Port set to 443
+2017-11-02 12:54:52,048 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: Failed. Current step: .  Error message: Error starting the deployment. Another deployment is already running..
+2017-11-02 12:56:24,611 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Port set to 443
+2017-11-02 12:56:26,205 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: Failed. Current step: .  Error message: Error starting the deployment. Another deployment is already running..
+2017-11-02 13:00:39,732 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Port set to 443
+2017-11-02 13:00:41,540 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 13:00:47,266 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 13:00:52,996 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 13:00:58,699 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 13:01:04,402 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 13:01:10,223 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 13:01:15,935 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 13:01:21,921 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 13:01:27,624 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 13:01:33,375 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 13:01:39,090 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 13:01:44,778 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 13:01:51,192 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 13:01:57,237 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 13:02:04,333 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 13:02:10,410 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 13:02:16,347 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 13:02:22,444 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 13:02:28,147 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 13:02:33,881 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 13:02:39,586 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 13:02:45,446 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 13:02:51,149 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 13:02:56,869 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 13:03:02,543 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 13:03:08,268 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 13:03:15,181 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 13:03:20,869 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 13:03:26,674 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 13:03:35,495 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 13:03:41,216 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 13:03:46,914 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 13:03:52,594 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 13:03:58,282 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 13:04:04,293 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 13:04:09,986 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 13:04:15,713 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 13:04:21,402 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 13:04:27,105 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 13:04:33,074 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 13:04:41,889 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 13:04:47,589 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 13:04:53,324 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 13:04:59,049 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 13:05:05,534 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 13:05:11,313 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 13:05:17,710 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 13:05:23,393 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 13:05:29,572 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 13:05:38,511 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 13:05:44,285 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 13:05:49,998 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 13:05:56,042 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 13:06:01,776 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 13:06:07,499 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 13:06:14,207 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 13:06:20,020 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 13:06:25,721 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 13:06:31,885 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 13:06:38,720 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 13:06:44,499 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 13:06:53,454 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 13:06:59,160 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 13:07:04,927 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 13:07:10,626 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 13:07:16,408 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 13:07:25,983 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 13:07:33,822 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 13:07:42,376 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 13:07:48,109 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 13:07:54,061 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 13:07:59,775 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 13:08:05,512 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 13:08:11,218 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 13:08:16,907 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 13:08:22,685 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 13:08:28,404 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 13:08:34,069 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 13:08:41,489 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 13:08:47,163 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 13:08:52,835 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 13:08:58,501 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 13:09:04,217 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 13:09:09,898 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 13:09:15,620 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 13:09:21,334 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 13:09:27,351 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 13:09:34,086 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 13:09:39,790 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 13:09:45,493 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 13:09:51,223 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 13:09:56,918 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 13:10:04,028 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 13:10:09,717 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 13:10:15,423 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 13:10:21,107 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 13:10:26,826 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 13:10:32,796 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 13:10:38,493 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 13:10:44,256 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 13:10:49,989 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 13:10:55,687 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 13:11:01,786 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 13:11:07,481 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 13:11:13,207 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 13:11:18,913 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 13:11:24,603 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 13:11:30,506 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 13:11:36,384 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 13:11:43,801 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 13:11:51,158 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 13:11:56,912 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 13:12:02,905 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 13:12:10,051 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 13:12:17,596 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 13:12:23,566 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 13:12:29,654 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 13:12:35,444 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 13:12:44,251 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 13:12:50,010 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 13:12:55,783 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 13:13:02,501 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 13:13:08,232 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 13:13:13,965 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 13:13:19,665 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 13:13:25,354 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 13:13:31,303 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 13:13:37,939 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 13:13:43,683 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 13:13:49,405 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 13:13:55,144 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 13:14:00,883 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 13:14:06,590 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 13:14:12,313 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 13:14:18,005 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 13:14:23,684 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 13:14:29,728 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 13:14:35,416 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 13:14:41,120 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 13:14:46,825 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 13:14:52,487 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 13:14:58,210 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 13:15:05,159 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 13:15:11,117 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 13:15:16,869 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 13:15:22,632 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 13:15:29,745 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 13:15:42,834 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 13:15:48,545 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 13:15:55,290 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 13:16:04,385 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 13:16:11,063 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 13:16:16,760 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 13:16:22,441 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 13:16:28,194 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 13:16:33,878 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 13:16:39,576 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 13:16:45,267 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 13:16:51,282 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 13:16:57,094 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 13:17:02,666 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 13:17:08,313 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 13:17:13,855 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 13:17:19,957 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 13:17:26,558 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 13:17:33,296 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 13:17:38,966 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 13:17:44,631 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 13:17:50,331 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 13:17:55,992 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 13:18:01,769 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: Not Started. Current step: Not Started. 
+2017-11-02 13:18:59,658 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Port set to 443
+2017-11-02 13:19:01,469 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 13:19:07,189 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 13:19:13,939 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 13:19:19,685 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 13:19:26,451 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 13:19:32,541 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 13:19:38,260 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 13:19:44,230 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 13:19:49,933 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 13:19:55,653 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 13:20:01,786 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 13:20:08,363 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 13:20:14,096 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 13:20:19,812 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 13:20:25,500 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 13:20:31,655 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 13:20:37,344 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 13:20:44,068 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 13:20:50,022 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 13:20:55,735 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 13:21:01,423 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 13:21:07,309 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 13:21:13,048 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 13:21:18,800 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 13:21:24,801 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 13:21:30,771 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 13:21:36,475 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 13:21:42,191 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 13:21:47,933 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 13:21:53,621 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 13:21:59,309 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 13:22:05,031 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 13:22:11,235 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 15:15:18,719 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Port set to 443
+2017-11-02 15:15:20,376 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 15:15:25,929 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: Failed. Current step: Executing DDL Scripts. Log file URL: https://jmfamilydev.appiancloud.com/suite/doc/10824.  Error message: javax.naming.NameNotFoundException: jdbc/AppianDS -- service jboss.naming.context.java.jdbc.AppianDS.
+2017-11-02 15:18:14,542 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Port set to 443
+2017-11-02 15:18:16,136 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 15:18:21,746 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: Failed. Current step: Executing DDL Scripts. Log file URL: https://jmfamilydev.appiancloud.com/suite/doc/10828.  Error message: com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: Table 'slaentry' already exists.
+2017-11-02 15:25:21,160 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Port set to 443
+2017-11-02 15:25:23,829 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 15:25:29,361 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: Complete. Current step: Importing Application. Log file URL: https://jmfamilydev.appiancloud.com/suite/doc/10836. 
+2017-11-02 15:36:42,757 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Port set to 443
+2017-11-02 15:36:44,117 [main] ERROR com.appiancorp.ps.plugins.automatedimport.remote.DeployApplication - java.lang.IllegalStateException: The deployment post request was not successful. Response is:{"resource":"\/suite\/plugins\/servlet\/stateless\/remotedeploymentautomation","error":"APNX-1-4187-003","message":"Incorrect user name or password. Please check your credentials and try again.","title":"An Error Has Occurred"}
+
+2017-11-02 15:43:03,098 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Port set to 443
+2017-11-02 15:43:06,099 [main] ERROR com.appiancorp.ps.plugins.automatedimport.remote.DeployApplication - java.lang.IllegalStateException: The deployment post request was not successful. Response is:{"resource":"\/suite\/plugins\/servlet\/stateless\/remotedeploymentautomation","error":"APNX-1-4187-003","message":"Incorrect user name or password. Please check your credentials and try again.","title":"An Error Has Occurred"}
+
+2017-11-02 15:44:47,573 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Port set to 443
+2017-11-02 15:44:49,308 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 15:44:55,043 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. Log file URL: https://perficient-demo.appiancloud.com/suite/doc/44387. 
+2017-11-02 15:45:01,700 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Importing Application. Log file URL: https://perficient-demo.appiancloud.com/suite/doc/44388. 
+2017-11-02 15:45:07,286 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: Failed. Current step: Importing Application. Log file URL: https://perficient-demo.appiancloud.com/suite/doc/44408.  Error message: Error: object null of type 37 failed to import. Error msg: The content [id= uuid=_a-0000df6d-83a9-8000-9ba2-011c48011c48_48089] was not imported because a required precedent is missing: content [uuid=_a-0000df51-4350-8000-9ba2-011c48011c48_4357 location=Interface Definition] cannot be found. (APNX-1-4070-001).
+2017-11-02 15:48:42,896 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Port set to 443
+2017-11-02 15:48:44,459 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 15:48:50,006 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: Failed. Current step: Executing DDL Scripts. Log file URL: https://perficient-demo.appiancloud.com/suite/doc/44412.  Error message: com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: Table 'slaentry' already exists.
+2017-11-02 16:08:39,197 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Port set to 443
+2017-11-02 16:08:44,185 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 16:08:49,935 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: Failed. Current step: Executing DDL Scripts. Log file URL: https://perficient-demo.appiancloud.com/suite/doc/44416.  Error message: com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: Table 'slaentry' already exists.
+2017-11-02 16:12:08,502 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Port set to 443
+2017-11-02 16:12:11,221 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 16:12:17,987 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Importing Application. Log file URL: https://perficient-demo.appiancloud.com/suite/doc/44421. 
+2017-11-02 16:12:23,913 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: Failed. Current step: Importing Application. Log file URL: https://perficient-demo.appiancloud.com/suite/doc/44428.  Error message: Error: object null of type 37 failed to import. Error msg: The content [id= uuid=_a-0000df6d-83a9-8000-9ba2-011c48011c48_48089] was not imported because a required precedent is missing: content [uuid=_a-0000df51-4350-8000-9ba2-011c48011c48_4357 location=Interface Definition] cannot be found. (APNX-1-4070-001).
+2017-11-02 16:28:10,788 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Port set to 443
+2017-11-02 16:28:12,397 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 16:28:17,945 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: Failed. Current step: Executing DDL Scripts. Log file URL: https://perficient-demo.appiancloud.com/suite/doc/44432.  Error message: com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: Table 'slaentry' already exists.
+2017-11-02 16:30:10,448 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Port set to 443
+2017-11-02 16:30:14,511 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 16:30:20,058 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: Failed. Current step: Importing Application. Log file URL: https://perficient-demo.appiancloud.com/suite/doc/44439.  Error message: Error: object null of type 37 failed to import. Error msg: The content [id= uuid=_a-0000df6d-83a9-8000-9ba2-011c48011c48_48089] was not imported because a required precedent is missing: content [uuid=_a-0000df51-4350-8000-9ba2-011c48011c48_4357 location=Interface Definition] cannot be found. (APNX-1-4070-001).
+2017-11-02 16:37:47,014 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Port set to 443
+2017-11-02 16:37:49,053 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 16:37:54,614 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: Failed. Current step: Inspecting Application. Log file URL: https://perficient-demo.appiancloud.com/suite/doc/44443.  Error message: The application did not inspect properly. There are 3 errors. The log file id is 44443.
+2017-11-02 17:00:47,892 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Port set to 443
+2017-11-02 17:00:49,579 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 17:00:55,120 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: Failed. Current step: Inspecting Application. Log file URL: https://perficient-demo.appiancloud.com/suite/doc/44447.  Error message: The application did not inspect properly. There are 2 errors. The log file id is 44447.
+2017-11-02 17:04:38,494 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Port set to 443
+2017-11-02 17:04:41,984 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 17:04:48,046 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: Failed. Current step: Executing DDL Scripts. Log file URL: https://perficient-demo.appiancloud.com/suite/doc/44451.  Error message: com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: Table 'slaentry' already exists.
+2017-11-02 17:05:35,241 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Port set to 443
+2017-11-02 17:05:36,788 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-02 17:05:43,024 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: Complete. Current step: Importing Application. Log file URL: https://perficient-demo.appiancloud.com/suite/doc/44461. 
+2017-11-06 12:26:21,761 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Port set to 443
+2017-11-06 12:26:22,967 [main] INFO  org.apache.http.impl.execchain.RetryExec - I/O exception (java.io.FileNotFoundException) caught when processing request to {s}->https://perficient-demo.appiancloud.com:443: C:\Users\samuel.bruns\Documents\Source-Control\SLA-Management-System(3).zip (The system cannot find the file specified)
+2017-11-06 12:26:22,967 [main] INFO  org.apache.http.impl.execchain.RetryExec - Retrying request to {s}->https://perficient-demo.appiancloud.com:443
+2017-11-06 12:26:23,054 [main] INFO  org.apache.http.impl.execchain.RetryExec - I/O exception (java.io.FileNotFoundException) caught when processing request to {s}->https://perficient-demo.appiancloud.com:443: C:\Users\samuel.bruns\Documents\Source-Control\SLA-Management-System(3).zip (The system cannot find the file specified)
+2017-11-06 12:26:23,055 [main] INFO  org.apache.http.impl.execchain.RetryExec - Retrying request to {s}->https://perficient-demo.appiancloud.com:443
+2017-11-06 12:26:23,157 [main] INFO  org.apache.http.impl.execchain.RetryExec - I/O exception (java.io.FileNotFoundException) caught when processing request to {s}->https://perficient-demo.appiancloud.com:443: C:\Users\samuel.bruns\Documents\Source-Control\SLA-Management-System(3).zip (The system cannot find the file specified)
+2017-11-06 12:26:23,157 [main] INFO  org.apache.http.impl.execchain.RetryExec - Retrying request to {s}->https://perficient-demo.appiancloud.com:443
+2017-11-06 12:26:23,254 [main] ERROR com.appiancorp.ps.plugins.automatedimport.remote.DeployApplication - java.io.FileNotFoundException: C:\Users\samuel.bruns\Documents\Source-Control\SLA-Management-System(3).zip (The system cannot find the file specified)
