@@ -5305,3 +5305,5 @@ java.lang.NullPointerException
 2017-11-08 12:56:37,897 [main] INFO  com.appiancorp.ps.automatedversioning.VersionUtils - Successfully extracted file C:\\Program Files (x86)\\Jenkins\\workspace\\DevOps-Deployment-Pipeline\\Staging\\GLOBAL\application_files\META-INF/MANIFEST.MF
 2017-11-08 12:56:37,902 [main] INFO  com.appiancorp.ps.automatedversioning.VersionUtils - Successfully extracted file C:\\Program Files (x86)\\Jenkins\\workspace\\DevOps-Deployment-Pipeline\\Staging\\GLOBAL\application_files\META-INF/export.log
 2017-11-08 12:56:37,904 [main] INFO  com.appiancorp.ps.automatedversioning.VCSAndBuildController - Checking for DDLs
+2017-11-08 12:56:41,713 [main] INFO  com.appiancorp.ps.automatedversioning.GitObject - Committed all changes to repository at C:\Program Files (x86)\Jenkins\workspace\DevOps-Deployment-Pipeline\.git. Commit hash: 8db31ed601ebb4705d5b789035812184f0621bf8
+2017-11-08 12:56:45,433 [main] INFO  com.appiancorp.ps.automatedversioning.GitObject - Changes pushed successfully.
