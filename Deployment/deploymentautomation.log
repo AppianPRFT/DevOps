@@ -679,3 +679,6 @@ input.iText:focus {border: 1px solid #1d659c !important;}
 2017-11-07 15:51:31,105 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Port set to 443
 2017-11-07 15:51:32,934 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
 2017-11-07 15:51:38,584 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: Complete. Current step: Importing Application. Log file URL: https://perficient-demo.appiancloud.com/suite/doc/44725. 
+2017-11-08 11:10:59,503 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Port set to 443
+2017-11-08 11:11:01,795 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: In Progress. Current step: Inspecting Application. 
+2017-11-08 11:11:07,287 [main] INFO  com.appiancorp.ps.plugins.automatedimport.remote.DeployUtils - Status: Complete. Current step: Importing Application. Log file URL: https://perficient-demo.appiancloud.com/suite/doc/44735. 
