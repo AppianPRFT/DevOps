@@ -1,6 +1,0 @@
--host 10.128.202.73 / is this fixed or assigned dynamically?
--host "ibmsp-zewdie.perficient.com" / _h
--user "philipos.zewdie" / _u
--os win
--host "00329-60430-00558-AA182" / windows specific machine-id (_m) 
--cpu 4 
