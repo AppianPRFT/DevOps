@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <versionUuid>_a-0000df6a-d82f-8000-9ba2-011c48011c48_112488</versionUuid>
+    <rule>
+        <name>CTMS_SiteActivitiesDashboard</name>
+        <uuid>_a-0000dd4f-0404-8000-daab-640000640000_16532</uuid>
+        <description>Site Activities Dashboard with information about the activities for planned clinical studies</description>
+        <parentUuid>_a-0000dcd5-e7b4-8000-daab-640000640000_6355</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>= load(
+  local!selectedActivityId,
+  local!gridSelection: #"SYSTEM_SYSRULES_gridSelection"(
+    pagingInfo: #"SYSTEM_SYSRULES_pagingInfo"(
+      startIndex: 1,
+      batchsize: 10
+    )
+  ),
+  #"SYSTEM_SYSRULES_dashboardLayout"(
+    firstColumnContents: {
+      /*Header Section*/
+      #"_a-0000dd4f-0404-8000-daab-640000640000_16503"(siteId: ri!siteId),
+      #"_a-0000dd4f-0404-8000-daab-640000640000_16530"(
+        siteId: ri!siteId,
+        selectable: false,
+        gridSelection: local!gridSelection,
+        selectedId: local!selectedActivityId
+      ),
+      if(
+        isnull(
+          local!selectedActivityId
+        ),
+        {},
+        with(
+          local!activity: #"_a-0000ddcc-a4d5-8000-daab-640000640000_18487"(
+            id: local!selectedActivityId
+          ),
+          {
+            if(
+              length(
+                local!activity
+              ) &gt; 0,
+              #"_a-0000dd3a-dada-8000-daab-640000640000_13596"(
+                activitiesDetail: local!activity
+              ),
+              {}
+            )
+          }
+        )
+      )
+    },
+    secondColumnContents: {}
+  )
+)</definition>
+        <namedTypedValue>
+            <name>siteId</name>
+            <type>
+                <name>string</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+            <value/>
+        </namedTypedValue>
+        <preferredEditor>interface</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role inherit="true" allowForAll="false" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="administrators">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <history>
+        <historyInfo versionUuid="_a-0000df6a-d82f-8000-9ba2-011c48011c48_112488"/>
+    </history>
+</contentHaul>

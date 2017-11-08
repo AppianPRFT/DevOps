@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <versionUuid>_a-0000df6a-d82f-8000-9ba2-011c48011c48_112507</versionUuid>
+    <rule>
+        <name>CTMS_HasSitePermission</name>
+        <uuid>30601f19-d155-4551-abfe-f83286eae862</uuid>
+        <description>Takes the loggedInUser() and determines if they are a Principle Investigator (PI). If they are, it tests to see if they are the associated PI passed in from the DB. The user is stored in the DB with first and last name and can be converted to a user using touser()</description>
+        <parentUuid>_a-0000dcd5-e7b4-8000-daab-640000640000_6353</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>if(
+  isusermemberofgroup(
+    loggedInUser(),
+    #"_a-0000dd4f-0404-8000-daab-640000640000_16583"
+  ),
+  tostring(loggedInUser()),
+  if(
+    isusermemberofgroup(
+      loggedInUser(),
+      #"_a-0000dd3a-dada-8000-daab-640000640000_11320"
+    ),
+    #"_a-0000dd4f-0404-8000-daab-640000640000_16593",
+    "DENIED"
+  )
+)</definition>
+        <preferredEditor>legacy</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role inherit="true" allowForAll="false" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="administrators">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <history>
+        <historyInfo versionUuid="_a-0000df6a-d82f-8000-9ba2-011c48011c48_112507"/>
+    </history>
+</contentHaul>

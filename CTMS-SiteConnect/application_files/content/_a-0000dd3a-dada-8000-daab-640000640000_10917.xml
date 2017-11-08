@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <versionUuid>_a-0000df6a-d82f-8000-9ba2-011c48011c48_112449</versionUuid>
+    <rule>
+        <name>CTMS_SitePayment_Dashboard</name>
+        <uuid>_a-0000dd3a-dada-8000-daab-640000640000_10917</uuid>
+        <description>Dashboard for Site Payment. Used in the Site Payment Record Summary</description>
+        <parentUuid>_a-0000dcd5-e7b4-8000-daab-640000640000_6355</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>=#"SYSTEM_SYSRULES_dashboardLayout"(
+  firstColumnContents: {
+    with(
+          local!payment: #"_a-0000dd3a-dada-8000-daab-640000640000_10921"(
+            paymentId: ri!paymentId
+          ),
+          /*The query rule only returns one row of data while the a!queryEntity returns all*/
+          /*local!paymentDetails: rule!CTQG_getSitePaymentDetailsByPaymentId(*/
+          /*  paymentId: ri!paymentId*/
+          /*),*/
+          local!paymentDetails: if(
+            isnull(
+              ri!paymentId
+            ),
+            null,
+            #"SYSTEM_SYSRULES_queryEntity"(
+              entity: #"_a-0000dd3a-dada-8000-daab-640000640000_10986",
+              query: #"SYSTEM_SYSRULES_query"(
+                filter: #"SYSTEM_SYSRULES_queryFilter"(
+                  field: "paymentId",
+                  operator: "=",
+                  value: ri!paymentId
+                ),
+                pagingInfo: #"SYSTEM_SYSRULES_pagingInfo"(
+                  startIndex: 1,
+                  batchSize: - 1,
+                  sort: #"SYSTEM_SYSRULES_sortInfo"(
+                    field: "completedDate",
+                    ascending: false
+                  )
+                )
+              )
+            )
+          ),
+          local!claims: if(
+            isnull(
+              ri!paymentId
+            ),
+            null,
+            #"SYSTEM_SYSRULES_queryEntity"(
+              entity: #"_a-0000dd3a-dada-8000-daab-640000640000_11306",
+              query: #"SYSTEM_SYSRULES_query"(
+                filter: #"SYSTEM_SYSRULES_queryFilter"(
+                  field: "paymentIdentifier",
+                  operator: "=",
+                  value: ri!paymentId
+                ),
+                pagingInfo: #"SYSTEM_SYSRULES_pagingInfo"(
+                  startIndex: 1,
+                  batchSize: - 1,
+                  sort: #"SYSTEM_SYSRULES_sortInfo"(
+                    field: "createdDate",
+                    ascending: false
+                  )
+                )
+              )
+            )
+          ),
+          {
+            if(
+              length(
+                local!payment
+              ) &gt; 0,
+              #"_a-0000dd3a-dada-8000-daab-640000640000_10931"(
+                payment: local!payment
+              ),
+              {}
+            ),
+            if(
+              length(
+                local!paymentDetails.data
+              ) &gt; 0,
+              #"_a-0000dd3a-dada-8000-daab-640000640000_10883"(
+                paymentDetails: local!paymentDetails.data
+              ),
+              {}
+            ),
+            if(
+              length(
+                local!claims.data
+              ) &gt; 0,
+              #"_a-0000dd3a-dada-8000-daab-640000640000_11574"(
+                claims: local!claims.data
+              ),
+              {}
+            )
+          }
+        )
+  },
+  secondColumnContents: {
+  }
+)</definition>
+        <namedTypedValue>
+            <name>paymentId</name>
+            <type>
+                <name>string</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+            <value/>
+        </namedTypedValue>
+        <metadataExpr></metadataExpr>
+        <preferredEditor>interface</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role inherit="true" allowForAll="false" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="administrators">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <history>
+        <historyInfo versionUuid="_a-0000df6a-d82f-8000-9ba2-011c48011c48_112449"/>
+    </history>
+</contentHaul>

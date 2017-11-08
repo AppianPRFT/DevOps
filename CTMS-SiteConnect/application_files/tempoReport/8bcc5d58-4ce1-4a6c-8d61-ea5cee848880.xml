@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<tempoReportHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <tempoReport a:uuid="8bcc5d58-4ce1-4a6c-8d61-ea5cee848880" name="CTMS Site Payment Report">
+        <a:description>A report to view Site Payments key metrics including turnaround time, percentage of payment without claim, percentage of payment with claim, breakdown of payment types etc. </a:description>
+        <a:uiExpr>=#"_a-0000dd3a-dada-8000-daab-640000640000_11587"()</a:uiExpr>
+        <a:urlStub>X-znMw</a:urlStub>
+    </tempoReport>
+    <roleMap>
+        <role name="report_administrator">
+            <users/>
+            <groups>
+                <groupUuid>_e-0000dd39-67e0-8000-daa7-640000640000_75</groupUuid>
+            </groups>
+        </role>
+        <role name="report_viewer">
+            <users/>
+            <groups>
+                <groupUuid>_e-0001dccd-fe85-8000-daa7-640000640000_67</groupUuid>
+            </groups>
+        </role>
+    </roleMap>
+</tempoReportHaul>

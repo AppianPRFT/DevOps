@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema targetNamespace="urn:com:appian:types:CTMS"
+  xmlns:tns="urn:com:appian:types:CTMS" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:complexType name="CTMS_InvestigatorLicense">
+    <xsd:annotation>
+      <xsd:appinfo source="appian.jpa">
+        @Table(name="CTMS_INVESTIGATOR_LICENSE")
+      </xsd:appinfo>
+      <xsd:documentation><![CDATA[CTMS_InvestigatorLicense CDT for CTMS_INVESTIGATOR_LICENSE table]]></xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element name="contactIdentifier" type="xsd:string">
+        <xsd:annotation>
+          <xsd:appinfo source="appian.jpa">@Column(name="CONTACT_IDENTIFIER", columnDefinition="VARCHAR(15) NOT NULL")</xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="licenseIdentifier" type="xsd:string">
+        <xsd:annotation>
+          <xsd:appinfo source="appian.jpa">@Column(name="LICENSE_IDENTIFIER", columnDefinition="VARCHAR(30) NOT NULL")</xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="primary" nillable="true" type="xsd:string">
+        <xsd:annotation>
+          <xsd:appinfo source="appian.jpa">@Column(name="PRIMARY", columnDefinition="VARCHAR(1)")</xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="licenseNumber" nillable="true" type="xsd:string">
+        <xsd:annotation>
+          <xsd:appinfo source="appian.jpa">@Column(name="LICENSE_NUMBER", columnDefinition="VARCHAR(30)")</xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="licenseState" type="xsd:string">
+        <xsd:annotation>
+          <xsd:appinfo source="appian.jpa">@Column(name="LICENSE_STATE", columnDefinition="VARCHAR(30) NOT NULL")</xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="licenseStatus" nillable="true" type="xsd:string">
+        <xsd:annotation>
+          <xsd:appinfo source="appian.jpa">@Column(name="LICENSE_STATUS", columnDefinition="VARCHAR(30)")</xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="licenseExpiryDate" nillable="true" type="xsd:date">
+        <xsd:annotation>
+          <xsd:appinfo source="appian.jpa">@Column(name="LICENSE_EXPIRY_DATE", columnDefinition="DATE")</xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+</xsd:schema>

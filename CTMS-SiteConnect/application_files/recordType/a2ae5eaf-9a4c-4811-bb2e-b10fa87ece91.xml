@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<recordTypeHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <versionUuid>39e27c1c-c5c6-46f8-8de1-2ffa26dd5817</versionUuid>
+    <recordType a:uuid="a2ae5eaf-9a4c-4811-bb2e-b10fa87ece91" name="Site Payment">
+        <a:pluralName>Site Payments</a:pluralName>
+        <a:description>CTMS: View Site Payments record and related actions</a:description>
+        <a:urlStub>wBCyjA</a:urlStub>
+        <a:source xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="a:DataStoreEntity" a:uuid="5720eb68-1b44-4c3f-9852-a7ce4edb22af@_a-0000dcd5-e7b4-8000-daab-640000640000_6413"/>
+        <a:listViewTemplateExpr>#"SYSTEM_SYSRULES_recordGridLayoutColumns"(
+  columns: {
+    #"SYSTEM_SYSRULES_gridLayoutColumn"(
+      label: "Payment #",
+      component: #"SYSTEM_SYSRULES_recordGrid_linkField"(
+        links: #"SYSTEM_SYSRULES_recordLink"(
+          label: rf!paymentIdentifier,
+          recordType: rp!type,
+          identifier: rp!id
+        )
+      )
+    ),
+    #"SYSTEM_SYSRULES_gridLayoutColumn"(
+      label: "Payment Type",
+      component: #"SYSTEM_SYSRULES_recordGrid_textField"(
+        displayValue: rf!paymentType
+      )
+    ),
+    #"SYSTEM_SYSRULES_gridLayoutColumn"(
+      label: "Status",
+      component: #"SYSTEM_SYSRULES_recordGrid_textField"(
+        displayValue: rf!paymentStatus
+      )
+    ),
+    #"SYSTEM_SYSRULES_gridLayoutColumn"(
+      label: "Earned Amount",
+      component: #"SYSTEM_SYSRULES_recordGrid_textField"(
+        displayvalue: if(isnull(rf!earnedAmount),"",dollar(rf!earnedAmount,2,1)),
+        align: "RIGHT"
+      )
+    ),
+    #"SYSTEM_SYSRULES_gridLayoutColumn"(
+      label: "Requested Amount",
+      component: #"SYSTEM_SYSRULES_recordGrid_textField"(
+        displayvalue: if(isnull(rf!requestedAmount),"",dollar(rf!requestedAmount,2,1)),
+        align: "RIGHT"
+      )
+    ),
+    #"SYSTEM_SYSRULES_gridLayoutColumn"(
+      label: "Paid Amount",
+      component: #"SYSTEM_SYSRULES_recordGrid_textField"(
+        displayvalue: if(isnull(rf!paymentAmount),"",dollar(rf!paymentAmount,2,1))
+      )
+    ),
+    #"SYSTEM_SYSRULES_gridLayoutColumn"(
+      label: "Paid Date",
+      width: "DISTRIBUTE",
+      component: #"SYSTEM_SYSRULES_recordGrid_dateField"(
+        displayvalue: rf!paidDate
+      )
+    )  
+  },
+  pageSize: 50,
+  defaultSort: #"SYSTEM_SYSRULES_sortInfo"(
+    field: "paidDate",
+    ascending: false
+  )
+)</a:listViewTemplateExpr>
+        <a:detailViewCfg>
+            <a:nameExpr>="Summary"</a:nameExpr>
+            <a:uiExpr>#"_a-0000dd3a-dada-8000-daab-640000640000_10917"(paymentId:rf!paymentIdentifier)</a:uiExpr>
+            <a:visibilityExpr>=true()</a:visibilityExpr>
+            <a:urlStub>summary</a:urlStub>
+            <a:headerExpr></a:headerExpr>
+            <a:relatedActionCfg>92f1db7d-0779-4864-9e4e-019d6d612c6d</a:relatedActionCfg>
+        </a:detailViewCfg>
+        <a:relatedActionCfg>
+            <a:target xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="a:ProcessModel" a:uuid="0002dd43-122b-8000-daab-640000640000"/>
+            <a:contextExpr>{
+  paymentId: rf!paymentIdentifier
+}</a:contextExpr>
+            <a:visibilityExpr>=true()</a:visibilityExpr>
+            <a:iconId>f0e7</a:iconId>
+            <a:refId>92f1db7d-0779-4864-9e4e-019d6d612c6d</a:refId>
+        </a:relatedActionCfg>
+        <a:isSystem>false</a:isSystem>
+        <a:dataSrcExpr></a:dataSrcExpr>
+        <a:facetsListExpr></a:facetsListExpr>
+        <a:titleExpr>"Site Number: " &amp; rf!siteNumber &amp; ", Payment: " &amp; rf!paymentNumber</a:titleExpr>
+        <a:defaultFiltersExpr></a:defaultFiltersExpr>
+        <a:layoutType>GRID</a:layoutType>
+        <a:security>16383</a:security>
+        <a:hideLatestNews>false</a:hideLatestNews>
+    </recordType>
+    <roleMap>
+        <role name="record_type_administrator">
+            <users/>
+            <groups>
+                <groupUuid>_e-0000dd39-67e0-8000-daa7-640000640000_75</groupUuid>
+            </groups>
+        </role>
+        <role name="record_type_viewer">
+            <users/>
+            <groups>
+                <groupUuid>_e-0001dccd-fe85-8000-daa7-640000640000_67</groupUuid>
+            </groups>
+        </role>
+    </roleMap>
+    <history>
+        <historyInfo versionUuid="39e27c1c-c5c6-46f8-8de1-2ffa26dd5817"/>
+    </history>
+</recordTypeHaul>

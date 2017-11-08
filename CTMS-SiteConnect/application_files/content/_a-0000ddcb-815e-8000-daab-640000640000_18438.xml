@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <versionUuid>_a-0000df6a-d82f-8000-9ba2-011c48011c48_112539</versionUuid>
+    <queryRule>
+        <name>CTMS_getLicenseByContactIDAndLicenseID</name>
+        <uuid>_a-0000ddcb-815e-8000-daab-640000640000_18438</uuid>
+        <description>Returns Investogator License</description>
+        <folderUuid>_a-0000dcd5-e7b4-8000-daab-640000640000_6354</folderUuid>
+        <dataStoreEntityCompositeUuid>1eab4f13-dc77-4020-9ffc-32db36b45d07@_a-0000dcd5-e7b4-8000-daab-640000640000_6413</dataStoreEntityCompositeUuid>
+        <params>
+            <param>
+                <description>ContactID</description>
+                <name>ContactID</name>
+                <type>{http://www.w3.org/2001/XMLSchema}string</type>
+            </param>
+            <param>
+                <description>LicenseID</description>
+                <name>LicenseID</name>
+                <type>{http://www.w3.org/2001/XMLSchema}string</type>
+            </param>
+        </params>
+        <filters>
+            <filter>
+                <field>
+                    <name>contactIdentifier</name>
+                    <type>{http://www.w3.org/2001/XMLSchema}string</type>
+                </field>
+                <op>=</op>
+                <value>ContactID</value>
+                <valueType>PARAMETER</valueType>
+            </filter>
+            <filter>
+                <field>
+                    <name>licenseIdentifier</name>
+                    <type>{http://www.w3.org/2001/XMLSchema}string</type>
+                </field>
+                <op>=</op>
+                <value>LicenseID</value>
+                <valueType>PARAMETER</valueType>
+            </filter>
+        </filters>
+        <orderings/>
+    </queryRule>
+    <roleMap public="false">
+        <role inherit="true" allowForAll="false" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="administrators">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <history>
+        <historyInfo versionUuid="_a-0000df6a-d82f-8000-9ba2-011c48011c48_112539"/>
+    </history>
+</contentHaul>

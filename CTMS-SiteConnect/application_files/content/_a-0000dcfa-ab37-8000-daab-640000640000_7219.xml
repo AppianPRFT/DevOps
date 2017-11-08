@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <versionUuid>_a-0000df6a-d82f-8000-9ba2-011c48011c48_112432</versionUuid>
+    <rule>
+        <name>CTMS_License_AddNewLicense</name>
+        <uuid>_a-0000dcfa-ab37-8000-daab-640000640000_7219</uuid>
+        <description>Add New License</description>
+        <parentUuid>_a-0000dcd5-e7b4-8000-daab-640000640000_6355</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>load(
+  #"SYSTEM_SYSRULES_formLayout"(
+
+    firstColumnContents: {
+      #"SYSTEM_SYSRULES_sectionLayout"(
+        label: "Add License ",
+        firstColumnContents: {
+          #"SYSTEM_SYSRULES_textField"(
+            label: "License Number",
+            labelPosition: "ADJACENT",
+            value: ri!license.licenseNumber,
+            saveInto: ri!license.licenseNumber,
+            required:true
+          ),
+          #"SYSTEM_SYSRULES_textField"(
+            label: "License Identifier",
+            labelPosition: "ADJACENT",
+            value: ri!license.licenseIdentifier,
+            saveInto: ri!license.licenseIdentifier,
+            required:true
+          ),
+          if(#"_a-0000dcfa-ab37-8000-daab-640000640000_7168"(ri!license.licenseExpiryDate),{},
+          #"SYSTEM_SYSRULES_textField"(
+            label: "License Status",
+            labelPosition: "ADJACENT",
+            value: if(todate(ri!license.licenseExpiryDate)&gt;=today(),"Active","Expired"),
+            saveInto: ri!license.licenseStatus,
+            readOnly:true
+          ))
+          },
+        secondColumnContents: {
+          #"SYSTEM_SYSRULES_textField"(
+            label: "License State",
+            labelPosition: "ADJACENT",
+            value: ri!license.licenseState,
+            saveInto: ri!license.licenseState
+          ),
+          #"SYSTEM_SYSRULES_dateField"(
+            label: "Expiration Date",
+            labelPosition: "ADJACENT",
+            value: ri!license.licenseExpiryDate,
+            saveInto: ri!license.licenseExpiryDate,
+            required:true
+          )
+        }
+      )
+    },
+    buttons: {
+      #"SYSTEM_SYSRULES_ButtonLayout"(
+        primaryButtons: {
+          #"SYSTEM_SYSRULES_ButtonWidgetSubmit"(
+            label: "Add",
+            style: "PRIMARY",
+            value: "Add",
+            saveInto: {
+              ri!action,
+              a!save(
+                ri!license.licenseStatus,
+                "Active"
+              )
+            }
+          )
+        },
+        secondaryButtons: {
+          #"SYSTEM_SYSRULES_ButtonWidgetSubmit"(
+            label: "Cancel",
+            style: "NORMAL",
+            value: "Cancel",
+            saveInto: ri!action,
+            skipValidation: true
+          )
+        }
+      )
+    }
+  )
+)</definition>
+        <namedTypedValue>
+            <name>license</name>
+            <type>
+                <name>CTMS_InvestigatorLicense</name>
+                <namespace>urn:com:appian:types:CTMS</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>action</name>
+            <type>
+                <name>string</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+            <value/>
+        </namedTypedValue>
+        <metadataExpr></metadataExpr>
+        <preferredEditor>interface</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role inherit="true" allowForAll="false" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="administrators">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <history>
+        <historyInfo versionUuid="_a-0000df6a-d82f-8000-9ba2-011c48011c48_112432"/>
+    </history>
+</contentHaul>

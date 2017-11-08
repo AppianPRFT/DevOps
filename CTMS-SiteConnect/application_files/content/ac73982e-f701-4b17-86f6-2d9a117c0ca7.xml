@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <versionUuid>_a-0000df6a-d82f-8000-9ba2-011c48011c48_112607</versionUuid>
+    <decision>
+        <name>CTMS_demo</name>
+        <uuid>ac73982e-f701-4b17-86f6-2d9a117c0ca7</uuid>
+        <description>Decision for demo purposes</description>
+        <parentUuid>_a-0000def6-d094-8000-9ba2-011c48011c48_37130</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>fn!override_exception_appian_internal(fn!with(local!decisiondefinition: a!decisiondesigner_cache(uuid: "ac73982e-f701-4b17-86f6-2d9a117c0ca7",versionKey: "bf2401f9-1e41-4529-873e-4307c0a17dae",value: #"SYSTEM_SYSRULES_dd_dd"(hitPolicy:#"SYSTEM_SYSRULES_dd_dhp"("UNIQUE"), inputs:{#"SYSTEM_SYSRULES_dd_di"(name:"isBig?", type:'type!{http://www.appian.com/ae/types/2009}Integer', id:1, restrictionType:#"SYSTEM_SYSRULES_dd_dirt"("NONE"))}, outputs:{#"SYSTEM_SYSRULES_dd_do"(id:1, name:"emailSubject", type:'type!{http://www.appian.com/ae/types/2009}Text', restrictionType:#"SYSTEM_SYSRULES_dd_dort"("NONE"), returnListType:false)}, rules:{#"SYSTEM_SYSRULES_dd_dr"(id:1, inputs:{#"SYSTEM_SYSRULES_dd_dri"(id:1, decisionInputId:1, operator:#"SYSTEM_SYSRULES_dd_dop"(operator:#"SYSTEM_SYSRULES_dd_dopt"("GREATER_THAN_EQUALS"), value1:50))}, outputs:{#"SYSTEM_SYSRULES_dd_dro"(id:1, decisionOutputId:1, value:"email subject bigger than 50")}), #"SYSTEM_SYSRULES_dd_dr"(id:2, inputs:{#"SYSTEM_SYSRULES_dd_dri"(id:3, decisionInputId:1, operator:#"SYSTEM_SYSRULES_dd_dop"(operator:#"SYSTEM_SYSRULES_dd_dopt"("LESS_THAN"), value1:50))}, outputs:{#"SYSTEM_SYSRULES_dd_dro"(id:2, decisionOutputId:1, value:"email subject less than 50")})}, isUnique:true)),#"SYSTEM_SYSRULES_dd_exr"(decisionDefinition:local!decisiondefinition,executionInputs:{#"SYSTEM_SYSRULES_dd_dei"(decisionInputId:1,value:'ri!isBig?')})))</definition>
+        <namedTypedValue>
+            <name>isBig?</name>
+            <type>
+                <name>int</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+        </namedTypedValue>
+        <preferredEditor>legacy</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+        <outputMetadataList>
+            <outputMetadata>
+                <outputId>1</outputId>
+                <nameRef>emailSubject</nameRef>
+                <typeName>{http://www.appian.com/ae/types/2009}Text</typeName>
+            </outputMetadata>
+        </outputMetadataList>
+        <hitPolicy>UNIQUE</hitPolicy>
+    </decision>
+    <roleMap public="true">
+        <role inherit="true" allowForAll="false" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="administrators">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <history>
+        <historyInfo versionUuid="_a-0000df6a-d82f-8000-9ba2-011c48011c48_112607"/>
+    </history>
+</contentHaul>

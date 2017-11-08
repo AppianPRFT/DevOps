@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <versionUuid>_a-0000df6a-d82f-8000-9ba2-011c48011c48_112416</versionUuid>
+    <rule>
+        <name>CTMS_Site_MapAddress</name>
+        <uuid>_a-0000dcfa-ab37-8000-daab-640000640000_6758</uuid>
+        <description>CTMS Map Address</description>
+        <parentUuid>_a-0000dcd5-e7b4-8000-daab-640000640000_6355</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>load(
+  local!mapType: "map-geolocation",
+  local!zoom: "12",
+  local!address: #"99df99be-cd03-43fd-ac41-253a6a2d40e8"(
+    input: ri!address.addressLine1 &amp; ri!address.city&amp;", "&amp; ri!address.state &amp;" "&amp;ri!address.postalCode
+  ),
+  {
+    #"SYSTEM_SYSRULES_sectionLayout"(
+      label: "",
+      firstColumnContents: {
+        #"SYSTEM_SYSRULES_imageField"(
+          labelPosition: "ADJACENT",
+          instructions: " Click on the map to navigate -  "&amp;ri!address.addressLine1&amp;", "&amp;ri!address.city&amp;", "&amp;ri!address.state,
+          helpTooltip:"Click on the map to navigate -  "&amp;ri!address.addressLine1&amp;", "&amp;ri!address.city&amp;", "&amp;ri!address.state,
+          images: {
+            #"SYSTEM_SYSRULES_webImage"(
+              source: "http://maps.googleapis.com/maps/api/staticmap?center=" &amp; ri!address.postalCode &amp; "&amp;maptype=" &amp; local!mapType &amp; "&amp;zoom=" &amp; local!zoom &amp; "&amp;size=900x170&amp;sensor=false&amp;markers=size:mid%7C" &amp; ri!address.postalCode,
+              link: #"SYSTEM_SYSRULES_safeLink"(
+                uri: "https://www.google.com/maps/search/" &amp; local!address
+              )
+            )
+          },
+          size: "STANDARD"
+        )
+        /*a!richTextItem(text:{*/
+        /*  "Note",*/
+        /*  "Click on the map will navegate"*/
+        /*  })*/
+      }
+    )
+  }
+)</definition>
+        <namedTypedValue>
+            <name>address</name>
+            <type>
+                <name>CTMS_InvestigatorAddress</name>
+                <namespace>urn:com:appian:types:CTMS</namespace>
+            </type>
+        </namedTypedValue>
+        <preferredEditor>interface</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role inherit="true" allowForAll="false" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="administrators">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <typedValue>
+        <type>
+            <name>RuleTestConfig?list</name>
+            <namespace>http://www.appian.com/ae/types/2009</namespace>
+        </type>
+        <value>
+            <el>
+                <a:name/>
+                <a:ruleInputTestConfigs>
+                    <a:value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="a:Expression">#"_a-0000ddcc-a4d5-8000-daab-640000640000_18494"(ID:"2")</a:value>
+                    <a:nameRef>address</a:nameRef>
+                    <a:id/>
+                </a:ruleInputTestConfigs>
+                <a:assertions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+            </el>
+        </value>
+    </typedValue>
+    <history>
+        <historyInfo versionUuid="_a-0000df6a-d82f-8000-9ba2-011c48011c48_112416"/>
+    </history>
+</contentHaul>

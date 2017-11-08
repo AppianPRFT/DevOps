@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <versionUuid>_a-0000df6a-d82f-8000-9ba2-011c48011c48_112528</versionUuid>
+    <rule>
+        <name>CTMS_CheckForNull</name>
+        <uuid>_a-0000ddcb-815e-8000-daab-640000640000_18403</uuid>
+        <description>Checks for a null input of type Any Type
+Returns True if NULL
+Returns False if NOT NULL</description>
+        <parentUuid>_a-0000dcd5-e7b4-8000-daab-640000640000_6353</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>if(
+  isnull(
+    ri!input
+  ),
+  true,
+  if(
+    length(
+      ri!input
+    ) = 0,
+    true,
+    /*Due to a quirk Appian has when a type ?list is entered,*/
+    /*it would return an value for each in the if statement.*/
+    /*This is why it's wrapped in the contains. If it does not*/
+    /*contain  false (meaning truly empty) then we return true*/
+    not(
+      contains(
+        load(
+          local!inputType: typeof(
+            ri!input
+          ),
+          local!emptyType: cast(
+            local!inputType,
+            {}
+          ),
+          if(
+            ri!input = local!emptyType,
+            true,
+            false
+          )
+        ),
+        false
+      )
+    )
+  )
+)</definition>
+        <namedTypedValue>
+            <name>input</name>
+            <type>
+                <name>Variant</name>
+                <namespace>http://www.appian.com/ae/types/2009</namespace>
+            </type>
+        </namedTypedValue>
+        <preferredEditor>legacy</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role inherit="true" allowForAll="false" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="administrators">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <history>
+        <historyInfo versionUuid="_a-0000df6a-d82f-8000-9ba2-011c48011c48_112528"/>
+    </history>
+</contentHaul>

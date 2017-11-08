@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <versionUuid>_a-0000df6a-d82f-8000-9ba2-011c48011c48_112456</versionUuid>
+    <rule>
+        <name>CTMS_SitePaymentGrid_Section</name>
+        <uuid>_a-0000dd3a-dada-8000-daab-640000640000_10991</uuid>
+        <description>Takes a site identifier and returns a section with a grid listing the payments related to that site.</description>
+        <parentUuid>_a-0000dcd5-e7b4-8000-daab-640000640000_6355</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>= load(
+  local!payments: if(
+    isnull(
+      ri!siteId
+    ),
+    null,
+    #"SYSTEM_SYSRULES_queryEntity"(
+      entity: #"_a-0000dd3a-dada-8000-daab-640000640000_11022",
+      query: #"SYSTEM_SYSRULES_query"(
+        filter: #"SYSTEM_SYSRULES_queryFilter"(
+          field: "siteId",
+          operator: "=",
+          value: ri!siteId
+        ),
+        pagingInfo: #"SYSTEM_SYSRULES_pagingInfo"(
+          startIndex: 1,
+          batchSize: - 1
+        )
+      )
+    )
+  ),
+  /*local!payments: rule!CTMS_getSitePaymentBySiteId(*/
+  /*  siteId: ri!siteId*/
+  /*),*/
+  local!selectedIds,
+  if(
+    or(
+      isnull(
+        ri!siteId
+      ),
+      length(
+        local!payments.data
+      ) &lt; 1
+    ),
+    #"SYSTEM_SYSRULES_textField"(
+      readOnly: true,
+      label: "There are no Payments"
+    ),
+    with(
+      local!datasubset: todatasubset(
+        local!payments.data,
+        ri!gridSelection.pagingInfo
+      ),
+      #"SYSTEM_SYSRULES_sectionLayout"(
+        label: "Payments",
+        firstColumnContents: {
+          #"SYSTEM_SYSRULES_gridField"(
+            label: "",
+            totalCount: local!datasubset.totalCount,
+            columns: {
+              #"SYSTEM_SYSRULES_gridTextColumn"(
+                label: "Payment #",
+                field: "paymentNumber",
+                data: index(
+                  local!datasubset.data,
+                  "paymentNumber",
+                  {}
+                )
+              ),
+              #"SYSTEM_SYSRULES_gridTextColumn"(
+                label: "Payment Type",
+                field: "paymentType",
+                data: index(
+                  local!datasubset.data,
+                  "paymentType",
+                  {}
+                )
+              ),
+              #"SYSTEM_SYSRULES_gridTextColumn"(
+                label: "Status",
+                field: "paymentStatus",
+                data: index(
+                  local!datasubset.data,
+                  "paymentStatus",
+                  {}
+                )
+              ),
+              #"SYSTEM_SYSRULES_gridTextColumn"(
+                label: "Earned Amount",
+                field: "earnedAmount",
+                data: dollar(
+                  index(
+                    local!datasubset.data,
+                    "earnedAmount",
+                    {}
+                  ),
+                  2,
+                  1
+                )
+              ),
+              #"SYSTEM_SYSRULES_gridTextColumn"(
+                label: "Requested Amount",
+                field: "requestedAmount",
+                data: dollar(
+                  index(
+                    local!datasubset.data,
+                    "requestedAmount",
+                    {}
+                  ),
+                  2,
+                  1
+                )
+              ),
+              #"SYSTEM_SYSRULES_gridTextColumn"(
+                label: "Paid Amount",
+                field: "paymentAmount",
+                data: dollar(
+                  index(
+                    local!datasubset.data,
+                    "paymentAmount",
+                    {}
+                  ),
+                  2,
+                  1
+                )
+              ),
+              #"SYSTEM_SYSRULES_gridTextColumn"(
+                label: "Paid Date",
+                field: "paidDate",
+                data: index(
+                  local!datasubset.data,
+                  "paidDate",
+                  {}
+                )
+              ),
+              if(
+                ri!selectable,
+                {},
+                #"SYSTEM_SYSRULES_gridImageColumn"(
+                  label: "",
+                  field: "paymentIdentifier",
+                  data: apply(
+                    #"_a-0000dd3a-dada-8000-daab-640000640000_11015"(
+                      ri!selectedPaymentId,
+                      _
+                    ),
+                    local!datasubset.data.paymentIdentifier
+                  ),
+                  size: "ICON"
+                )
+              )
+            },
+            identifiers: index(
+              local!datasubset.data,
+              "paymentIdentifier",
+              {}
+            ),
+            value: ri!gridSelection,
+            saveInto: {
+              ri!gridSelection,
+              a!save(
+                target: local!selectedIds,
+                value: index(
+                  save!value,
+                  "selected",
+                  null
+                )
+              ),
+              a!save(
+                target: ri!selectedPaymentId,
+                value: if(
+                  length(
+                    index(
+                      save!value,
+                      "selected",
+                      null
+                    )
+                  ) &gt; 1,
+                  null,
+                  index(
+                    save!value,
+                    "selected",
+                    null
+                  )
+                )
+              )
+            },
+            selection: ri!selectable,
+            validations: if(
+              isnull(
+                local!selectedIds
+              ),
+              "",
+              if(
+                length(
+                  local!selectedIds
+                ) &gt; 1,
+                "Limit of one selection",
+                ""
+              )
+            )
+          )
+        },
+        secondColumnContents: {
+          /* Add components here for a two-column section */
+          
+        },
+        validations: {}
+      )
+    )
+  )
+)</definition>
+        <namedTypedValue>
+            <name>siteId</name>
+            <type>
+                <name>string</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+            <value/>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>selectable</name>
+            <type>
+                <name>boolean</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>selectedPaymentId</name>
+            <type>
+                <name>string</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+            <value/>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>gridSelection</name>
+            <type>
+                <name>GridSelection</name>
+                <namespace>http://www.appian.com/ae/types/2009</namespace>
+            </type>
+        </namedTypedValue>
+        <preferredEditor>interface</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role inherit="true" allowForAll="false" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="administrators">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <history>
+        <historyInfo versionUuid="_a-0000df6a-d82f-8000-9ba2-011c48011c48_112456"/>
+    </history>
+</contentHaul>

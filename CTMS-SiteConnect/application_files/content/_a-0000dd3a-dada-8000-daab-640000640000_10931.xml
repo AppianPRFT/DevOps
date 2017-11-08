@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <versionUuid>_a-0000df6a-d82f-8000-9ba2-011c48011c48_112452</versionUuid>
+    <rule>
+        <name>CTMS_SitePayment_Section</name>
+        <uuid>_a-0000dd3a-dada-8000-daab-640000640000_10931</uuid>
+        <description>Takes a CTMS_SITE_PAYMENT cdt and returns a section with the full Site Payment data</description>
+        <parentUuid>_a-0000dcd5-e7b4-8000-daab-640000640000_6355</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>=#"SYSTEM_SYSRULES_sectionLayout"(
+  label: "Payment",
+  firstColumnContents: {
+    #"SYSTEM_SYSRULES_textField"(
+      label: "Payment #",
+      labelPosition: "ADJACENT",
+      value: ri!payment.paymentNumber,
+      readOnly: true
+    ),
+    #"SYSTEM_SYSRULES_textField"(
+      label: "Protocol #",
+      labelPosition: "ADJACENT",
+      value: ri!payment.protocolsNumber,
+      readOnly: true
+    ),
+    #"SYSTEM_SYSRULES_textField"(
+      label: "Region",
+      labelPosition: "ADJACENT",
+      value: ri!payment.region,
+      readOnly: true
+    ),
+    #"SYSTEM_SYSRULES_textField"(
+      label: "Site #",
+      labelPosition: "ADJACENT",
+      value: ri!payment.siteId,
+      readOnly: true
+    ),
+    #"SYSTEM_SYSRULES_textField"(
+      label: "Account",
+      labelPosition: "ADJACENT",
+      value: ri!payment.siteNumber,
+      readOnly: true
+    ),
+    /*a!textField(*/
+    /*  label: "Contract #",*/
+    /*  labelPosition: "ADJACENT",*/
+    /*  value: "N/A",*/
+    /*  readOnly: true*/
+    /*),*/
+    #"SYSTEM_SYSRULES_textField"(
+      label: "PI Last Name",
+      labelPosition: "ADJACENT",
+      value: ri!payment.piLastName,
+      readOnly: true
+    ),
+    #"SYSTEM_SYSRULES_textField"(
+      label: "PI First Name",
+      labelPosition: "ADJACENT",
+      value: ri!payment.piFirstName,
+      readOnly: true
+    ),
+    /*a!textField(*/
+    /*  label: "Payee Last Name",*/
+    /*  labelPosition: "ADJACENT",*/
+    /*  value: "No data given",*/
+    /*  readOnly: true*/
+    /*),*/
+    /*a!textField(*/
+    /*  label: "Payee First Name",*/
+    /*  labelPosition: "ADJACENT",*/
+    /*  value: "No data given",*/
+    /*  readOnly: true*/
+    /*),*/
+    #"SYSTEM_SYSRULES_textField"(
+      label: "Payee Account Name",
+      labelPosition: "ADJACENT",
+      value: ri!payment.accountName,
+      readOnly: true
+    )
+  },
+  secondColumnContents: {
+    #"SYSTEM_SYSRULES_textField"(
+      label: "Earned Amount",
+      labelPosition: "ADJACENT",
+      value: ri!payment.earnedAmount,
+      readOnly: true
+    ),
+    #"SYSTEM_SYSRULES_textField"(
+      label: "Requested Amount",
+      labelPosition: "ADJACENT",
+      value: ri!payment.requestedAmount,
+      readOnly: true
+    ),
+    #"SYSTEM_SYSRULES_textField"(
+      label: "Paid Amount",
+      labelPosition: "ADJACENT",
+      value: ri!payment.paymentAmount,
+      readOnly: true
+    ),
+    #"SYSTEM_SYSRULES_textField"(
+      label: "Paid Date",
+      labelPosition: "ADJACENT",
+      value: ri!payment.paidDate,
+      readOnly: true
+    ),
+    /*a!textField(*/
+    /*  label: "Payment Turnaround",*/
+    /*  labelPosition: "ADJACENT",*/
+    /*  value: "No data given",*/
+    /*  readOnly: true*/
+    /*),*/
+    /*a!textField(*/
+    /*  label: "Created Date",*/
+    /*  labelPosition: "ADJACENT",*/
+    /*  value: "No data given",*/
+    /*  readOnly: true*/
+    /*),*/
+    #"SYSTEM_SYSRULES_textField"(
+      label: "Status",
+      labelPosition: "ADJACENT",
+      value: ri!payment.paymentStatus,
+      readOnly: true
+    ),
+    #"SYSTEM_SYSRULES_textField"(
+      label: "Payment Type",
+      labelPosition: "ADJACENT",
+      value: ri!payment.paymentType,
+      readOnly: true
+    ),
+    #"SYSTEM_SYSRULES_textField"(
+      label: "Transaction #",
+      labelPosition: "ADJACENT",
+      value: ri!payment.transactionNumber,
+      readOnly: true
+    ),
+    #"SYSTEM_SYSRULES_textField"(
+      label: "Transaction Type",
+      labelPosition: "ADJACENT",
+      value: ri!payment.transactionType,
+      readOnly: true
+    )
+  },
+  isCollapsible: true
+)</definition>
+        <namedTypedValue>
+            <name>payment</name>
+            <type>
+                <name>CTMS_SitePayment</name>
+                <namespace>urn:com:appian:types:CTMS</namespace>
+            </type>
+        </namedTypedValue>
+        <preferredEditor>interface</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role inherit="true" allowForAll="false" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="administrators">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <history>
+        <historyInfo versionUuid="_a-0000df6a-d82f-8000-9ba2-011c48011c48_112452"/>
+    </history>
+</contentHaul>

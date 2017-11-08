@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema targetNamespace="urn:com:appian:types:CTMS"
+  xmlns:tns="urn:com:appian:types:CTMS" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:complexType name="CTMS_PaymentReportView">
+    <xsd:annotation>
+      <xsd:appinfo source="appian.jpa">
+        @Table(name="SITE_PAYMENT_REPORT_VIEW")
+      </xsd:appinfo>
+      <xsd:documentation><![CDATA[CTMS_PaymentReportView for table SITE_PAYMENT_REPORT_VIEW]]></xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element name="paymentId" nillable="true" type="xsd:string">
+        <xsd:annotation>
+          <xsd:appinfo source="appian.jpa">@Column(name="PAYMENT_IDENTIFIER") @Id</xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="siteId" nillable="true" type="xsd:string">
+        <xsd:annotation>
+          <xsd:appinfo source="appian.jpa">@Column(name="SITE_IDENTIFIER")</xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="activityCount" nillable="true" type="xsd:int">
+        <xsd:annotation>
+          <xsd:appinfo source="appian.jpa">@Column(name="ACTIVITY_COUNT", columnDefinition="number")</xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="paidDate" nillable="true" type="xsd:date">
+        <xsd:annotation>
+          <xsd:appinfo source="appian.jpa">@Column(name="PAID_DATE")</xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="maxCompletedDate" nillable="true" type="xsd:date">
+        <xsd:annotation>
+          <xsd:appinfo source="appian.jpa">@Column(name="MAX_COMPLETED_DATE")</xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="maxTurnaround" nillable="true" type="xsd:int">
+        <xsd:annotation>
+          <xsd:appinfo source="appian.jpa">@Column(name="MAX_TURNAROUND")</xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="minCompletedDate" nillable="true" type="xsd:date">
+        <xsd:annotation>
+          <xsd:appinfo source="appian.jpa">@Column(name="MIN_COMPLETED_DATE")</xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="minTurnaround" nillable="true" type="xsd:int">
+        <xsd:annotation>
+          <xsd:appinfo source="appian.jpa">@Column(name="MIN_TURNAROUND")</xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="paymentStatus" nillable="true" type="xsd:string">
+        <xsd:annotation>
+          <xsd:appinfo source="appian.jpa">@Column(name="PAYMENT_STATUS")</xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="hasClaim" nillable="true" type="xsd:int">
+        <xsd:annotation>
+          <xsd:appinfo source="appian.jpa">@Column(name="HAS_CLAIM")</xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="paymentType" nillable="true" type="xsd:string">
+        <xsd:annotation>
+          <xsd:appinfo source="appian.jpa">@Column(name="PAYMENT_TYPE")</xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="hasAccess" nillable="true" type="xsd:string">
+        <xsd:annotation>
+          <xsd:appinfo source="appian.jpa">@Column(name="HASACCESS")</xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+</xsd:schema>

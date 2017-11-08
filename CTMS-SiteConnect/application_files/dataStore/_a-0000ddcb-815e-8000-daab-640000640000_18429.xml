@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<dataStoreHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <dataStore>
+        <uuid>_a-0000ddcb-815e-8000-daab-640000640000_18429</uuid>
+        <name>CTMS_View_Datastore</name>
+        <description>Stores the views for CTMS</description>
+        <dataSourceKey>jdbc/biopharm</dataSourceKey>
+        <adaptingExplicitSqlNames>false</adaptingExplicitSqlNames>
+        <autoUpdateSchema>false</autoUpdateSchema>
+        <entities>
+            <entity>
+                <uuid>fcbe4791-4213-49bc-9fa0-ad0c38cc7696</uuid>
+                <name>CTMS_PaymentReportView</name>
+                <type>{urn:com:appian:types:CTMS}CTMS_PaymentReportView</type>
+            </entity>
+            <entity>
+                <uuid>8635dba0-75ab-45db-9c37-ea80e385bd90</uuid>
+                <name>CTMS_SiteBudgetSplitView</name>
+                <type>{urn:com:appian:types:CTMS}CTMS_SiteBudgetSplitView</type>
+            </entity>
+            <entity>
+                <uuid>92445198-6c0b-4703-bbdc-7cfeb4ff5bb8</uuid>
+                <name>CTMS_SiteBudgetView</name>
+                <type>{urn:com:appian:types:CTMS}CTMS_SiteBudgetView</type>
+            </entity>
+            <entity>
+                <uuid>70a10e31-798d-4f02-88fa-bddc21275820</uuid>
+                <name>CTMS_SitePaymentDetailsView</name>
+                <type>{urn:com:appian:types:CTMS}CTMS_SitePaymentDetailsView</type>
+            </entity>
+            <entity>
+                <uuid>56795115-d1c5-412d-995f-1d4d9ec7d01e</uuid>
+                <name>CTMS_SitePaymentAndDetailsView</name>
+                <type>{urn:com:appian:types:CTMS}CTMS_SitePaymentAndDetailsView</type>
+            </entity>
+            <entity>
+                <uuid>f1aaf68c-7424-4953-bc21-11961c9d54bb</uuid>
+                <name>CTMS_SitePaymentActivitiesView</name>
+                <type>{urn:com:appian:types:CTMS}CTMS_SitePaymentActivitiesView</type>
+            </entity>
+            <entity>
+                <uuid>230b7c19-b4f1-4385-96a3-2c358774ed45</uuid>
+                <name>CTMS_SiteAccessView</name>
+                <type>{urn:com:appian:types:CTMS}CTMS_SiteAccessView</type>
+            </entity>
+            <entity>
+                <uuid>1dc4cf2a-3fec-4597-b46b-49a3040c5e20</uuid>
+                <name>CTMS_InvestigatorAddressesView</name>
+                <type>{urn:com:appian:types:CTMS}CTMS_InvestigatorAddressesView</type>
+            </entity>
+            <entity>
+                <uuid>5a04a3d5-daff-4ec5-a6ae-e056f3108c6f</uuid>
+                <name>CTMS_SiteDocument</name>
+                <type>{urn:com:appian:types:CTMS}CTMS_SiteDocument</type>
+            </entity>
+        </entities>
+    </dataStore>
+    <isPublished>true</isPublished>
+    <roleMap>
+        <role inherit="false" allowForAll="false" name="administrators">
+            <users/>
+            <groups>
+                <groupUuid>_e-0000dd39-67e0-8000-daa7-640000640000_75</groupUuid>
+            </groups>
+        </role>
+        <role inherit="false" allowForAll="false" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="readers">
+            <users/>
+            <groups>
+                <groupUuid>_e-0001dccd-fe85-8000-daa7-640000640000_67</groupUuid>
+            </groups>
+        </role>
+    </roleMap>
+</dataStoreHaul>

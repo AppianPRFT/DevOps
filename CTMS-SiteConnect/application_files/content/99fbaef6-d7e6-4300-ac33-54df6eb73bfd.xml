@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <versionUuid>_a-0000df6a-d82f-8000-9ba2-011c48011c48_112422</versionUuid>
+    <rule>
+        <name>CTMS_License_getIconIndicatorByDate</name>
+        <uuid>99fbaef6-d7e6-4300-ac33-54df6eb73bfd</uuid>
+        <description>Returns Icond Indicator By date</description>
+        <parentUuid>_a-0000dcd5-e7b4-8000-daab-640000640000_6353</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>if(
+  #"_a-0000dcfa-ab37-8000-daab-640000640000_7168"(
+    ri!input
+  ),
+  #"SYSTEM_SYSRULES_documentImage"(
+    document: #"SYSTEM_SYSRULES_iconIndicator"(
+      "STATUS_ERROR"
+    )
+  ),
+  if(
+    ri!input &gt; todate(
+      today() + 30
+    ),
+    #"SYSTEM_SYSRULES_documentImage"(
+      document: #"SYSTEM_SYSRULES_iconIndicator"(
+        "STATUS_OK"
+      )
+    ),
+    if(
+      and(
+        ri!input &gt; today(),
+        ri!input &lt; todate(
+          today() + 30
+        )
+      ),
+      #"SYSTEM_SYSRULES_documentImage"(
+        document: #"SYSTEM_SYSRULES_iconIndicator"(
+          "STATUS_WARN"
+        )
+      ),
+      if(
+        ri!input &lt; today(),
+        #"SYSTEM_SYSRULES_documentImage"(
+          document: #"SYSTEM_SYSRULES_iconIndicator"(
+            "STATUS_NOTDONE"
+          )
+        ),
+        {}
+      )
+    )
+  )
+)</definition>
+        <namedTypedValue>
+            <name>input</name>
+            <type>
+                <name>date</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+        </namedTypedValue>
+        <preferredEditor>legacy</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role inherit="true" allowForAll="false" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="administrators">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <history>
+        <historyInfo versionUuid="_a-0000df6a-d82f-8000-9ba2-011c48011c48_112422"/>
+    </history>
+</contentHaul>

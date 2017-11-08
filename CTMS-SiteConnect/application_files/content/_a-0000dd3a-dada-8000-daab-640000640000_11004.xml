@@ -1,0 +1,321 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <versionUuid>_a-0000df6a-d82f-8000-9ba2-011c48011c48_112458</versionUuid>
+    <rule>
+        <name>CTMS_SiteBudgetGrid_Section</name>
+        <uuid>_a-0000dd3a-dada-8000-daab-640000640000_11004</uuid>
+        <description>Grid to returns a grid section for the Site Budget summary information related to a specific site.</description>
+        <parentUuid>_a-0000dcd5-e7b4-8000-daab-640000640000_6355</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>= load(
+  local!siteBudgets: if(
+    isnull(
+      ri!siteIdentifier
+    ),
+    null,
+    #"SYSTEM_SYSRULES_queryEntity"(
+      entity: #"_a-0000dd3a-dada-8000-daab-640000640000_11014",
+      query: #"SYSTEM_SYSRULES_query"(
+        filter: #"SYSTEM_SYSRULES_queryFilter"(
+          field: "id",
+          operator: "=",
+          value: ri!siteIdentifier
+        ),
+        pagingInfo: #"SYSTEM_SYSRULES_pagingInfo"(
+          startIndex: 1,
+          batchSize: - 1,
+          sort: #"SYSTEM_SYSRULES_sortInfo"(
+            field: "siteBudgetId",
+            ascending: false
+          )
+        )
+      )
+    )
+  ),
+  local!selectedId,
+  if(
+    or(
+      isnull(
+        ri!siteIdentifier
+      ),
+      length(
+        local!siteBudgets.data
+      ) &lt; 1
+    ),
+    #"SYSTEM_SYSRULES_textField"(
+      readOnly: true,
+      label: "There are no budgets"
+    ),
+    with(
+      local!datasubset: todatasubset(
+        local!siteBudgets.data,
+        ri!gridSelection.pagingInfo
+      ),
+      #"SYSTEM_SYSRULES_sectionLayout"(
+        label: "Site Budget",
+        firstColumnContents: {
+          #"SYSTEM_SYSRULES_gridField"(
+            label: "",
+            totalCount: local!datasubset.totalCount,
+            columns: {
+              #"SYSTEM_SYSRULES_gridTextColumn"(
+                label: "Budget Identifier",
+                field: "siteBudgetId",
+                data: index(
+                  local!datasubset.data,
+                  "siteBudgetId",
+                  {}
+                )
+              ),
+              #"SYSTEM_SYSRULES_gridTextColumn"(
+                label: "Split Indicator",
+                field: "splitIndicator",
+                data: index(
+                  local!datasubset.data,
+                  "splitIndicator",
+                  {}
+                )
+              ),
+              #"SYSTEM_SYSRULES_gridTextColumn"(
+                label: "Visit Name",
+                field: "visitName",
+                data: index(
+                  local!datasubset.data,
+                  "visitName",
+                  {}
+                )
+              ),
+              #"SYSTEM_SYSRULES_gridTextColumn"(
+                label: "Visit Type",
+                field: "visitType",
+                data: index(
+                  local!datasubset.data,
+                  "visitType",
+                  {}
+                )
+              ),
+              #"SYSTEM_SYSRULES_gridTextColumn"(
+                label: "Version",
+                field: "version",
+                data: index(
+                  local!datasubset.data,
+                  "version",
+                  {}
+                )
+              ),
+              #"SYSTEM_SYSRULES_gridTextColumn"(
+                label: "Original Amount",
+                field: "originalAmount",
+                data: dollar(
+                  index(
+                    local!datasubset.data,
+                    "originalAmount",
+                    {}
+                  ),
+                  2,
+                  1
+                )
+              ),
+              #"SYSTEM_SYSRULES_gridTextColumn"(
+                label: "Exception Amount",
+                field: "exceptionAmount",
+                data: dollar(
+                  index(
+                    local!datasubset.data,
+                    "exceptionAmount",
+                    {}
+                  ),
+                  2,
+                  1
+                )
+              ),
+              #"SYSTEM_SYSRULES_gridTextColumn"(
+                label: "Description",
+                field: "description",
+                data: index(
+                  local!datasubset.data,
+                  "description",
+                  {}
+                )
+              ),
+              if(
+                ri!selectable,
+                {},
+                #"SYSTEM_SYSRULES_gridImageColumn"(
+                  label: "",
+                  field: "siteBudgetId",
+                  data: apply(
+                    #"_a-0000dd3a-dada-8000-daab-640000640000_11015"(
+                      ri!selectedBudgetId,
+                      _
+                    ),
+                    local!datasubset.data.siteBudgetId
+                  ),
+                  size: "ICON"
+                )
+              )
+            },
+            identifiers: index(
+              local!datasubset.data,
+              "siteBudgetId",
+              {}
+            ),
+            value: ri!gridSelection,
+            saveInto: {
+              ri!gridSelection,
+              a!save(
+                local!selectedId,
+                index(
+                  save!value,
+                  "selected",
+                  null
+                )
+              ),
+              a!save(
+                target: ri!selectedBudgetId,
+                value: if(
+                  length(
+                    index(
+                      save!value,
+                      "selected",
+                      null
+                    )
+                  ) &gt; 1,
+                  null,
+                  index(
+                    save!value,
+                    "selected",
+                    null
+                  )
+                )
+              )
+            },
+            selection: ri!selectable,
+            validations: if(
+              isnull(
+                local!selectedId
+              ),
+              "",
+              if(
+                length(
+                  local!selectedId
+                ) &gt; 1,
+                "Limit of one selection",
+                ""
+              )
+            )
+          )
+        },
+        secondColumnContents: {
+          /* Add components here for a two-column section */
+          
+        },
+        validations: {},
+        isCollapsible: true
+      )
+    )
+  )
+)</definition>
+        <namedTypedValue>
+            <name>siteIdentifier</name>
+            <type>
+                <name>string</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+            <value/>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>selectable</name>
+            <type>
+                <name>boolean</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>gridSelection</name>
+            <type>
+                <name>GridSelection</name>
+                <namespace>http://www.appian.com/ae/types/2009</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>selectedBudgetId</name>
+            <type>
+                <name>string</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+            <value/>
+        </namedTypedValue>
+        <preferredEditor>interface</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role inherit="true" allowForAll="false" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="administrators">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <typedValue>
+        <type>
+            <name>RuleTestConfig?list</name>
+            <namespace>http://www.appian.com/ae/types/2009</namespace>
+        </type>
+        <value>
+            <el>
+                <a:name/>
+                <a:ruleInputTestConfigs>
+                    <a:value xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xsd:string">1</a:value>
+                    <a:nameRef>siteIdentifier</a:nameRef>
+                    <a:id/>
+                </a:ruleInputTestConfigs>
+                <a:ruleInputTestConfigs>
+                    <a:value xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true" xsi:type="xsd:boolean"/>
+                    <a:nameRef>selectable</a:nameRef>
+                    <a:id/>
+                </a:ruleInputTestConfigs>
+                <a:ruleInputTestConfigs>
+                    <a:value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true" xsi:type="a:GridSelection"/>
+                    <a:nameRef>gridSelection</a:nameRef>
+                    <a:id/>
+                </a:ruleInputTestConfigs>
+                <a:ruleInputTestConfigs>
+                    <a:value xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xsd:string"/>
+                    <a:nameRef>selectedBudgetId</a:nameRef>
+                    <a:id/>
+                </a:ruleInputTestConfigs>
+                <a:assertions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+            </el>
+        </value>
+    </typedValue>
+    <history>
+        <historyInfo versionUuid="_a-0000df6a-d82f-8000-9ba2-011c48011c48_112458"/>
+    </history>
+</contentHaul>

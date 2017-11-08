@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<recordTypeHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <versionUuid>6ca51f78-de09-4d4d-aec0-38df8368d4c6</versionUuid>
+    <recordType a:uuid="aef32ad6-a6e0-4fd1-8d45-2b5a348372c8" name="Investigator Address">
+        <a:pluralName>Investigator Address</a:pluralName>
+        <a:description>CTMS: Investigator Address records</a:description>
+        <a:urlStub>XZXxWA</a:urlStub>
+        <a:source xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="a:DataStoreEntity" a:uuid="1dc4cf2a-3fec-4597-b46b-49a3040c5e20@_a-0000ddcb-815e-8000-daab-640000640000_18429"/>
+        <a:listViewTemplateExpr>#"_a-0000ddf1-7abf-8000-daab-640000640000_21221"()</a:listViewTemplateExpr>
+        <a:detailViewCfg>
+            <a:nameExpr>="Summary"</a:nameExpr>
+            <a:uiExpr>#"_a-0000dd25-17fe-8000-daab-640000640000_10004"(siteAddress:#"_a-0000ddf1-7abf-8000-daab-640000640000_21366"(ID:rf!identifier), btnAction:"EditAdress",type:rf!addressType)</a:uiExpr>
+            <a:visibilityExpr>=true()</a:visibilityExpr>
+            <a:urlStub>summary</a:urlStub>
+            <a:headerExpr></a:headerExpr>
+            <a:relatedActionCfg>673b308a-69ba-4058-a65e-f5772d605eb5</a:relatedActionCfg>
+        </a:detailViewCfg>
+        <a:defaultSortInfo>
+            <field>identifier</field>
+            <ascending>true</ascending>
+        </a:defaultSortInfo>
+        <a:relatedActionCfg>
+            <a:target xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="a:ProcessModel" a:uuid="0006df48-065d-8000-f92f-7f0000014e7a"/>
+            <a:contextExpr>{
+address:#"_a-0000ddf1-7abf-8000-daab-640000640000_21366"(ID:rf!identifier),
+type:rf!addressType
+}</a:contextExpr>
+            <a:visibilityExpr>=true()</a:visibilityExpr>
+            <a:iconId>f0e7</a:iconId>
+            <a:refId>673b308a-69ba-4058-a65e-f5772d605eb5</a:refId>
+        </a:relatedActionCfg>
+        <a:isSystem>false</a:isSystem>
+        <a:dataSrcExpr></a:dataSrcExpr>
+        <a:facetsListExpr></a:facetsListExpr>
+        <a:titleExpr></a:titleExpr>
+        <a:defaultFiltersExpr></a:defaultFiltersExpr>
+        <a:layoutType>FEED</a:layoutType>
+        <a:security>16383</a:security>
+        <a:hideLatestNews>false</a:hideLatestNews>
+    </recordType>
+    <roleMap>
+        <role name="record_type_administrator">
+            <users/>
+            <groups>
+                <groupUuid>_e-0000dd39-67e0-8000-daa7-640000640000_75</groupUuid>
+            </groups>
+        </role>
+        <role name="record_type_viewer">
+            <users/>
+            <groups>
+                <groupUuid>_e-0001dccd-fe85-8000-daa7-640000640000_67</groupUuid>
+            </groups>
+        </role>
+    </roleMap>
+    <history>
+        <historyInfo versionUuid="6ca51f78-de09-4d4d-aec0-38df8368d4c6"/>
+    </history>
+</recordTypeHaul>

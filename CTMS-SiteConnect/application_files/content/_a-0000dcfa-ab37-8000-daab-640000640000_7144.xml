@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <versionUuid>_a-0000df6a-d82f-8000-9ba2-011c48011c48_112427</versionUuid>
+    <rule>
+        <name>CTMS_returnDocumentDatasubset</name>
+        <uuid>_a-0000dcfa-ab37-8000-daab-640000640000_7144</uuid>
+        <description>Takes Input as siteIdentifier &amp; Selected Documents and returns the respective documents </description>
+        <parentUuid>_a-0000dcd5-e7b4-8000-daab-640000640000_6351</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>   if(&#xD;
+        exact(ri!SelectedDocumentStatus , "RED"),&#xD;
+        #"_a-0000ddcb-815e-8000-daab-640000640000_18450"(&#xD;
+    SiteIdentifier:ri!SiteIdentifier, &#xD;
+    ExpireDate:todate(today())&#xD;
+  ),&#xD;
+     if(&#xD;
+       exact(ri!SelectedDocumentStatus , "YELLOW"),&#xD;
+       #"_a-0000ddcb-815e-8000-daab-640000640000_18459"(&#xD;
+    SiteIdentifier:ri!SiteIdentifier, &#xD;
+    StartDate:todate(today()),&#xD;
+    EndDate:todate(today()+30)&#xD;
+  ),&#xD;
+   if(&#xD;
+       exact(ri!SelectedDocumentStatus , "GREEN"),&#xD;
+       #"_a-0000ddcb-815e-8000-daab-640000640000_18464"(&#xD;
+  SiteIdentifier:ri!SiteIdentifier, &#xD;
+  ExpireDate:todate(today()+30)&#xD;
+  ),&#xD;
+  {}&#xD;
+     )  &#xD;
+        )&#xD;
+         )&#xD;
+  </definition>
+        <namedTypedValue>
+            <name>SiteIdentifier</name>
+            <type>
+                <name>string</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+            <value/>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>SelectedDocumentStatus</name>
+            <type>
+                <name>string</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+            <value/>
+        </namedTypedValue>
+        <preferredEditor>legacy</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role inherit="true" allowForAll="false" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="administrators">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <history>
+        <historyInfo versionUuid="_a-0000df6a-d82f-8000-9ba2-011c48011c48_112427"/>
+    </history>
+</contentHaul>

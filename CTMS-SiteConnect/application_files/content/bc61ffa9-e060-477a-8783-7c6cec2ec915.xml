@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <versionUuid>_a-0000df6a-d82f-8000-9ba2-011c48011c48_112604</versionUuid>
+    <decision>
+        <name>CTMS_determineDocumentEmailNotification</name>
+        <uuid>bc61ffa9-e060-477a-8783-7c6cec2ec915</uuid>
+        <description>Determines which email to be sent based on parameters</description>
+        <parentUuid>_a-0000def6-d094-8000-9ba2-011c48011c48_37130</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>fn!override_exception_appian_internal(fn!with(local!decisiondefinition: a!decisiondesigner_cache(uuid: "bc61ffa9-e060-477a-8783-7c6cec2ec915",versionKey: "2855fa41-8caf-41e2-be5f-e911dfcd8900",value: #"SYSTEM_SYSRULES_dd_dd"(hitPolicy:#"SYSTEM_SYSRULES_dd_dhp"("RULE_ORDER"), inputs:{#"SYSTEM_SYSRULES_dd_di"(name:"Initialize", type:'type!{http://www.appian.com/ae/types/2009}Boolean', id:4, restrictionType:#"SYSTEM_SYSRULES_dd_dirt"("NONE"))}, outputs:{#"SYSTEM_SYSRULES_dd_do"(id:2, name:"fromDays", type:'type!{http://www.appian.com/ae/types/2009}Integer', restrictionType:#"SYSTEM_SYSRULES_dd_dort"("NONE"), returnListType:false), #"SYSTEM_SYSRULES_dd_do"(id:3, name:"toDays", type:'type!{http://www.appian.com/ae/types/2009}Integer', restrictionType:#"SYSTEM_SYSRULES_dd_dort"("NONE"), returnListType:false), #"SYSTEM_SYSRULES_dd_do"(id:4, name:"emailSubject", type:'type!{http://www.appian.com/ae/types/2009}Text', restrictionType:#"SYSTEM_SYSRULES_dd_dort"("NONE"), returnListType:false), #"SYSTEM_SYSRULES_dd_do"(id:5, name:"emailBody", type:'type!{http://www.appian.com/ae/types/2009}Text', restrictionType:#"SYSTEM_SYSRULES_dd_dort"("NONE"), returnListType:false), #"SYSTEM_SYSRULES_dd_do"(id:6, name:"salutation", type:'type!{http://www.appian.com/ae/types/2009}Text', restrictionType:#"SYSTEM_SYSRULES_dd_dort"("NONE"), returnListType:false)}, rules:{#"SYSTEM_SYSRULES_dd_dr"(id:4, inputs:{#"SYSTEM_SYSRULES_dd_dri"(id:13, decisionInputId:4, operator:#"SYSTEM_SYSRULES_dd_dop"(operator:#"SYSTEM_SYSRULES_dd_dopt"("EQUALS"), value1:true))}, outputs:{#"SYSTEM_SYSRULES_dd_dro"(id:22, decisionOutputId:2, value:14), #"SYSTEM_SYSRULES_dd_dro"(id:23, decisionOutputId:3, value:33), #"SYSTEM_SYSRULES_dd_dro"(id:24, decisionOutputId:4, value:"PharmaCorp Study {####} - Site {####} Documents Expiring Soon"), #"SYSTEM_SYSRULES_dd_dro"(id:25, decisionOutputId:5, value:"{Salutation} {Last Name}," &amp; fn!char(10) &amp; "     One or more of your documents for PharmaCorp Study {####} - Site {####} are expiring within 30 days. Please log into SiteConnect and upload current/updated versions." &amp; fn!char(10) &amp; "     Sincerely," &amp; fn!char(10) &amp; "     PharmaCorp Document Compliance Team"), #"SYSTEM_SYSRULES_dd_dro"(id:34, decisionOutputId:6, value:"Greetings")}), #"SYSTEM_SYSRULES_dd_dr"(id:5, inputs:{#"SYSTEM_SYSRULES_dd_dri"(id:14, decisionInputId:4, operator:#"SYSTEM_SYSRULES_dd_dop"(operator:#"SYSTEM_SYSRULES_dd_dopt"("EQUALS"), value1:true))}, outputs:{#"SYSTEM_SYSRULES_dd_dro"(id:26, decisionOutputId:2, value:0), #"SYSTEM_SYSRULES_dd_dro"(id:27, decisionOutputId:3, value:14), #"SYSTEM_SYSRULES_dd_dro"(id:28, decisionOutputId:4, value:"Second Notice: PharmaCorp Study {####} - Site {####} Documents Expiring Soon"), #"SYSTEM_SYSRULES_dd_dro"(id:29, decisionOutputId:5, value:"{Salutation} {Last Name}," &amp; fn!char(10) &amp; "     One or more of your documents for PharmaCorp Study {####} - Site {####} are expiring within the next 14 days. Please log into SiteConnect and upload current/updated versions. A copy of this notification was also sent to the PharmaCorp Study Manager for Study {####}. " &amp; fn!char(10) &amp; "     Thank you for your prompt attention to this matter." &amp; fn!char(10) &amp; "     Sincerely," &amp; fn!char(10) &amp; "     PharmaCorp Document Compliance Team"), #"SYSTEM_SYSRULES_dd_dro"(id:35, decisionOutputId:6, value:"Hello")}), #"SYSTEM_SYSRULES_dd_dr"(id:6, inputs:{#"SYSTEM_SYSRULES_dd_dri"(id:15, decisionInputId:4, operator:#"SYSTEM_SYSRULES_dd_dop"(operator:#"SYSTEM_SYSRULES_dd_dopt"("EQUALS"), value1:true))}, outputs:{#"SYSTEM_SYSRULES_dd_dro"(id:30, decisionOutputId:2, value:-60), #"SYSTEM_SYSRULES_dd_dro"(id:31, decisionOutputId:3, value:0), #"SYSTEM_SYSRULES_dd_dro"(id:32, decisionOutputId:4, value:"Expired: PharmaCorp Study {####} - Site {####} Documents"), #"SYSTEM_SYSRULES_dd_dro"(id:33, decisionOutputId:5, value:" {Salutation} {Last Name}," &amp; fn!char(10) &amp; "     One or more of your documents for PharmaCorp Study {####} - Site {####} has expired. Please log into SiteConnect and upload current/updated versions. A copy of this notification was also sent to the PharmaCorp Study Manager for Study {####}. " &amp; fn!char(10) &amp; "     Thank you for your prompt attention to this matter." &amp; fn!char(10) &amp; "     Sincerely," &amp; fn!char(10) &amp; "     PharmaCorp Document Compliance Team"), #"SYSTEM_SYSRULES_dd_dro"(id:36, decisionOutputId:6, value:"Dear")})})),#"SYSTEM_SYSRULES_dd_exr"(decisionDefinition:local!decisiondefinition,executionInputs:{#"SYSTEM_SYSRULES_dd_dei"(decisionInputId:4,value:'ri!Initialize')})))</definition>
+        <namedTypedValue>
+            <name>Initialize</name>
+            <type>
+                <name>boolean</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+        </namedTypedValue>
+        <preferredEditor>legacy</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+        <outputMetadataList>
+            <outputMetadata>
+                <outputId>2</outputId>
+                <nameRef>fromDays</nameRef>
+                <typeName>{http://www.appian.com/ae/types/2009}Integer</typeName>
+            </outputMetadata>
+            <outputMetadata>
+                <outputId>3</outputId>
+                <nameRef>toDays</nameRef>
+                <typeName>{http://www.appian.com/ae/types/2009}Integer</typeName>
+            </outputMetadata>
+            <outputMetadata>
+                <outputId>4</outputId>
+                <nameRef>emailSubject</nameRef>
+                <typeName>{http://www.appian.com/ae/types/2009}Text</typeName>
+            </outputMetadata>
+            <outputMetadata>
+                <outputId>5</outputId>
+                <nameRef>emailBody</nameRef>
+                <typeName>{http://www.appian.com/ae/types/2009}Text</typeName>
+            </outputMetadata>
+            <outputMetadata>
+                <outputId>6</outputId>
+                <nameRef>salutation</nameRef>
+                <typeName>{http://www.appian.com/ae/types/2009}Text</typeName>
+            </outputMetadata>
+        </outputMetadataList>
+        <hitPolicy>RULE_ORDER</hitPolicy>
+    </decision>
+    <roleMap public="true">
+        <role inherit="true" allowForAll="false" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="administrators">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <history>
+        <historyInfo versionUuid="_a-0000df6a-d82f-8000-9ba2-011c48011c48_112604"/>
+    </history>
+</contentHaul>

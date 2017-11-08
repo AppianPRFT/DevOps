@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<taskReportHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <taskReport a:uuid="5968e208-067e-4564-8bd6-4db1c97a6bda" name="CTMS Site Payment Task Report">
+        <a:description></a:description>
+        <a:uiExpr>=#"_a-0000dd3a-dada-8000-daab-640000640000_11587"()</a:uiExpr>
+        <a:urlStub>ILfrQg</a:urlStub>
+    </taskReport>
+    <roleMap>
+        <role name="report_administrator">
+            <users/>
+            <groups>
+                <groupUuid>_e-0000dd39-67e0-8000-daa7-640000640000_75</groupUuid>
+            </groups>
+        </role>
+        <role name="report_viewer">
+            <users/>
+            <groups>
+                <groupUuid>_e-0001dd4e-0437-8000-daa7-640000640000_86</groupUuid>
+            </groups>
+        </role>
+    </roleMap>
+</taskReportHaul>

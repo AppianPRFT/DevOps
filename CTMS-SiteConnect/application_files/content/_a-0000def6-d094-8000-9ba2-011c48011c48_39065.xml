@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <versionUuid>_a-0000df6a-d82f-8000-9ba2-011c48011c48_112611</versionUuid>
+    <queryRule>
+        <name>CTMS_Dummy</name>
+        <uuid>_a-0000def6-d094-8000-9ba2-011c48011c48_39065</uuid>
+        <description></description>
+        <folderUuid>_a-0000dcd5-e7b4-8000-daab-640000640000_6354</folderUuid>
+        <dataStoreEntityCompositeUuid>e4218b9f-fe7a-4187-80b1-1f720d42467f@_a-0000dcd5-e7b4-8000-daab-640000640000_6413</dataStoreEntityCompositeUuid>
+        <params/>
+        <filters/>
+        <orderings/>
+    </queryRule>
+    <roleMap public="false">
+        <role inherit="true" allowForAll="false" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="administrators">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <history>
+        <historyInfo versionUuid="_a-0000df6a-d82f-8000-9ba2-011c48011c48_112611"/>
+    </history>
+</contentHaul>

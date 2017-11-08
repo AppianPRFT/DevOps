@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<recordTypeHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <versionUuid>de42575d-3bfb-4949-babf-2eb16042c038</versionUuid>
+    <recordType a:uuid="89e0bf31-feee-4217-b91e-7cd322753b05" name="User">
+        <a:pluralName>Users</a:pluralName>
+        <a:description>Directory of Users</a:description>
+        <a:urlStub>PAURnA</a:urlStub>
+        <a:source xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="a:DataStoreEntity" a:uuid="5da7b82f-4a82-4ffe-ba83-e6db24d83b49@_a-0000dcd5-e7b4-8000-daab-640000640000_6413"/>
+        <a:listViewTemplateExpr>#"SYSTEM_SYSRULES_listViewItem"(image: todocument(36822)
+)</a:listViewTemplateExpr>
+        <a:detailViewCfg>
+            <a:nameExpr>="Summary"</a:nameExpr>
+            <a:uiExpr>{}</a:uiExpr>
+            <a:visibilityExpr>=true()</a:visibilityExpr>
+            <a:urlStub>summary</a:urlStub>
+            <a:headerExpr></a:headerExpr>
+        </a:detailViewCfg>
+        <a:defaultFilter>
+            <a:field>userName</a:field>
+            <a:operator>in</a:operator>
+            <a:valueExpression>load(
+    local!sites: #"_a-0000ddf1-7abf-8000-daab-640000640000_21230"(tostring(fn!loggedInUser())).siteIdentifier,
+    if(length(local!sites) &gt; 0,
+    #"_a-0000ddf1-7abf-8000-daab-640000640000_21704"(local!sites[1]).username,
+    {""})
+  )</a:valueExpression>
+        </a:defaultFilter>
+        <a:isSystem>false</a:isSystem>
+        <a:dataSrcExpr></a:dataSrcExpr>
+        <a:facetsListExpr></a:facetsListExpr>
+        <a:titleExpr></a:titleExpr>
+        <a:defaultFiltersExpr></a:defaultFiltersExpr>
+        <a:layoutType>FEED</a:layoutType>
+        <a:security>16383</a:security>
+        <a:hideLatestNews>false</a:hideLatestNews>
+    </recordType>
+    <roleMap/>
+    <history>
+        <historyInfo versionUuid="de42575d-3bfb-4949-babf-2eb16042c038"/>
+    </history>
+</recordTypeHaul>

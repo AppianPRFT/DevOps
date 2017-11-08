@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema targetNamespace="urn:com:appian:types:CTMS"
+  xmlns:tns="urn:com:appian:types:CTMS" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:complexType name="CTMS_complianceEmail">
+    <xsd:annotation>
+      <xsd:documentation><![CDATA[Contains the interval values (fromDays & toDays), email subject, and email body]]></xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element name="fromDays" nillable="true" type="xsd:int"/>
+      <xsd:element name="toDays" nillable="true" type="xsd:int"/>
+      <xsd:element name="emailSubject" nillable="true" type="xsd:string">
+        <xsd:annotation>
+          <xsd:appinfo source="appian.jpa">@Column(length=255)</xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="emailBody" nillable="true" type="xsd:string">
+        <xsd:annotation>
+          <xsd:appinfo source="appian.jpa">@Column(length=255)</xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="salutation" nillable="true" type="xsd:string">
+        <xsd:annotation>
+          <xsd:appinfo source="appian.jpa">@Column(length=255)</xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+</xsd:schema>

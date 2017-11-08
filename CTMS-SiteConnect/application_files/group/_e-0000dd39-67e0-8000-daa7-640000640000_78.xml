@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<groupHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <group>
+        <name>CTMS Clinical Financiers</name>
+        <securityMap>SECURITYMAP_TEAM</securityMap>
+        <uuid>_e-0000dd39-67e0-8000-daa7-640000640000_78</uuid>
+        <groupTypeUuid>SYSTEM_GROUP_TYPE_CUSTOM</groupTypeUuid>
+        <parentUuid>_e-0001dccd-fe85-8000-daa7-640000640000_67</parentUuid>
+        <description>CTMS Clinical Financiers who handle the approval or rejection of claims raised by CTMS Primary Investigators</description>
+        <delegatedCreation>false</delegatedCreation>
+        <memberPolicy>MEMBERPOLICY_CLOSED</memberPolicy>
+        <viewingPolicy>VIEWINGPOLICY_LOW</viewingPolicy>
+        <attributes/>
+    </group>
+    <members>
+        <users/>
+        <groups/>
+    </members>
+    <admins>
+        <users/>
+        <groups>
+            <groupUuid>_e-0000dd39-67e0-8000-daa7-640000640000_75</groupUuid>
+        </groups>
+    </admins>
+    <ruleSet/>
+</groupHaul>

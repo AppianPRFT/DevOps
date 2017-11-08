@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <versionUuid>_a-0000df6a-d82f-8000-9ba2-011c48011c48_112538</versionUuid>
+    <queryRule>
+        <name>CTMS_getMissingDocuments</name>
+        <uuid>_a-0000ddcb-815e-8000-daab-640000640000_18435</uuid>
+        <description>Returns CTMS-SiteDocument in ascending order of siteIdentifier</description>
+        <folderUuid>_a-0000dcd5-e7b4-8000-daab-640000640000_6354</folderUuid>
+        <dataStoreEntityCompositeUuid>3c8bc5c1-e40f-4321-9ae9-e24b13594700@_a-0000dcd5-e7b4-8000-daab-640000640000_6413</dataStoreEntityCompositeUuid>
+        <params>
+            <param>
+                <description></description>
+                <name>SiteIdentifier</name>
+                <type>{http://www.w3.org/2001/XMLSchema}string</type>
+            </param>
+            <param>
+                <description></description>
+                <name>CheckDate</name>
+                <type>{http://www.w3.org/2001/XMLSchema}date</type>
+            </param>
+        </params>
+        <filters>
+            <filter>
+                <field>
+                    <name>siteIdentifier</name>
+                    <type>{http://www.w3.org/2001/XMLSchema}string</type>
+                </field>
+                <op>=</op>
+                <value>SiteIdentifier</value>
+                <valueType>PARAMETER</valueType>
+            </filter>
+            <filter>
+                <field>
+                    <name>expirationDate</name>
+                    <type>{http://www.w3.org/2001/XMLSchema}date</type>
+                </field>
+                <op>=</op>
+                <value>CheckDate</value>
+                <valueType>PARAMETER</valueType>
+            </filter>
+        </filters>
+        <orderings>
+            <ordering>
+                <ascending>true</ascending>
+                <field>
+                    <name>siteIdentifier</name>
+                    <type>{http://www.w3.org/2001/XMLSchema}string</type>
+                </field>
+            </ordering>
+        </orderings>
+    </queryRule>
+    <roleMap public="false">
+        <role inherit="true" allowForAll="false" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="administrators">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <history>
+        <historyInfo versionUuid="_a-0000df6a-d82f-8000-9ba2-011c48011c48_112538"/>
+    </history>
+</contentHaul>

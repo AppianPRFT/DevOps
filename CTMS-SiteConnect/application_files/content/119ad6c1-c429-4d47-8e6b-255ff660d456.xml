@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <versionUuid>_a-0000df6a-d82f-8000-9ba2-011c48011c48_112417</versionUuid>
+    <rule>
+        <name>CTMS_Site_Address</name>
+        <uuid>119ad6c1-c429-4d47-8e6b-255ff660d456</uuid>
+        <description>Site Address Section</description>
+        <parentUuid>_a-0000dcd5-e7b4-8000-daab-640000640000_6355</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>load(
+  {
+    #"SYSTEM_SYSRULES_sectionLayout"(
+      label: ri!label,
+      firstColumnContents: {
+        
+        #"SYSTEM_SYSRULES_textField"(
+          label: "Address Line 1",
+          labelPosition: "ADJACENT",
+          value: ri!address.addressLine1,
+          saveInto: ri!address.addressLine1,
+          readOnly: ri!isReadOnly
+        ),
+        #"SYSTEM_SYSRULES_textField"(
+          label: "Address Line 2",
+          labelPosition: "ADJACENT",
+          value: ri!address.addressLine2,
+          saveInto: ri!address.addressLine2,
+          readOnly: ri!isReadOnly
+        ),
+        #"SYSTEM_SYSRULES_textField"(
+          label: "Address Line 3",
+          labelPosition: "ADJACENT",
+          value: ri!address.addressLine3,
+          saveInto: ri!address.addressLine2,
+          readOnly: ri!isReadOnly
+        ),
+        #"SYSTEM_SYSRULES_textField"(
+          label: "City",
+          labelPosition: "ADJACENT",
+          value: ri!address.city,
+          saveInto: ri!address.addressLine2,
+          readOnly: ri!isReadOnly
+        )
+      },
+      secondColumnContents: {
+        #"SYSTEM_SYSRULES_textField"(
+          label: "State/Province",
+          labelPosition: "ADJACENT",
+          value: ri!address.state,
+          saveInto: ri!address.addressLine2,
+          readOnly: ri!isReadOnly
+        ),
+        #"SYSTEM_SYSRULES_textField"(
+          label: "Postal Code",
+          labelPosition: "ADJACENT",
+          value: ri!address.postalCode,
+          saveInto: ri!address.addressLine2,
+          readOnly: ri!isReadOnly
+        ),
+        #"SYSTEM_SYSRULES_textField"(
+          label: "Country",
+          labelPosition: "ADJACENT",
+          value: ri!address.country,
+          saveInto: ri!address.addressLine2,
+          readOnly: ri!isReadOnly
+        )
+        /*a!checkboxField(*/
+        /*  labelPosition: "ADJACENT",*/
+        /*  choiceLabels: "Is Primary",*/
+        /*  choiceValues: {*/
+        /*    "Y"*/
+        /*  },*/
+        /*  value: ri!address.primary,*/
+        /*  disabled: ri!isReadOnly,*/
+        /*  saveInto: {*/
+        /*    ri!address.primary*/
+        /*  },*/
+        /*  refreshAfter: "UNFOCUS",*/
+        /*  validations: {}*/
+        /*)*/
+      }
+    )
+  }
+)</definition>
+        <namedTypedValue>
+            <name>address</name>
+            <type>
+                <name>CTMS_InvestigatorAddress</name>
+                <namespace>urn:com:appian:types:CTMS</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>label</name>
+            <type>
+                <name>string</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+            <value/>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>isReadOnly</name>
+            <type>
+                <name>boolean</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+        </namedTypedValue>
+        <preferredEditor>interface</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role inherit="true" allowForAll="false" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="administrators">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <history>
+        <historyInfo versionUuid="_a-0000df6a-d82f-8000-9ba2-011c48011c48_112417"/>
+    </history>
+</contentHaul>

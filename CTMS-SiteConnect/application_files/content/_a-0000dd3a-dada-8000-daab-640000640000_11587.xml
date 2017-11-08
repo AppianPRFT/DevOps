@@ -1,0 +1,290 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <versionUuid>_a-0000df6a-d82f-8000-9ba2-011c48011c48_104497</versionUuid>
+    <rule>
+        <name>CTMS_SitePaymentReport_Interface</name>
+        <uuid>_a-0000dd3a-dada-8000-daab-640000640000_11587</uuid>
+        <description>Site payment key metrics including turnaround time, percentage of payment without claim, percentage of payment with claim, breakdown of payment types etc.</description>
+        <parentUuid>_a-0000dcd5-e7b4-8000-daab-640000640000_6355</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>= load(
+  local!claims: #"SYSTEM_SYSRULES_queryEntity"(
+    entity: #"_a-0000dd4f-0404-8000-daab-640000640000_16805",
+    query: #"SYSTEM_SYSRULES_query"(
+      filter: {
+        #"SYSTEM_SYSRULES_queryFilter"(
+          field: "hasAccess",
+          operator: "includes",
+          value: #"30601f19-d155-4551-abfe-f83286eae862"()
+        )
+      },
+      pagingInfo: #"SYSTEM_SYSRULES_pagingInfo"(
+        startIndex: 1,
+        batchSize: - 1,
+        sort: #"SYSTEM_SYSRULES_sortInfo"(
+          field: "maxTurnaround",
+          ascending: false
+        )
+      )
+    )
+  ),
+  if(
+    #"_a-0000ddcb-815e-8000-daab-640000640000_18403"(local!claims.data),
+    #"SYSTEM_SYSRULES_dashboardLayout"(
+      firstColumnContents: {
+        #"SYSTEM_SYSRULES_sectionLayout"(
+          label: "There are no payments to report on."
+        )
+      }
+    ),
+    #"SYSTEM_SYSRULES_dashboardLayout"(
+      firstColumnContents: {
+        #"SYSTEM_SYSRULES_sectionLayout"(
+          label: "Payment Report",
+          firstColumnContents: {
+            #"SYSTEM_SYSRULES_columnChartField"(
+              instructions: "The length (in days) between the Activity being completed
+            and the Payment being paid.",
+              label: "Activity Payment Turnaround",
+              categories: {
+                local!claims.data.paymentId
+              },
+              series: {
+                #"SYSTEM_SYSRULES_chartSeries"(
+                  label: "Maximum Turnaround (Days)",
+                  data: local!claims.data.maxTurnaround
+                ),
+                #"SYSTEM_SYSRULES_chartSeries"(
+                  label: "Minimum Turnaround (Days)",
+                  data: local!claims.data.minTurnaround
+                )
+              }
+            )
+          },
+          secondColumnContents: {
+            #"SYSTEM_SYSRULES_pieChartField"(
+              label: "Turnaround (Days)",
+              showDataLabels: true,
+              series: {
+                #"SYSTEM_SYSRULES_applyComponents"(
+                  #"SYSTEM_SYSRULES_chartSeries"(
+                    label: _,
+                    data: _
+                  ),
+                  _
+                )(
+                  merge(
+                    /*local!claims.data.paymentId*/
+{"1-L8CX","1-ILOT","1-3M3MC","1-L8CX"}                    
+                    ,
+                    /*local!claims.data.maxTurnaround*/
+{5,9,8,2}
+                  )
+                )
+              }
+            )
+          }
+        ),
+        #"SYSTEM_SYSRULES_sectionLayout"(
+          firstColumnContents: {
+            #"SYSTEM_SYSRULES_columnChartField"(
+              label: "Paid without Claim vs Paid with Claim",
+              categories: {
+                "Paid without Claim",
+                "Paid with Claim"
+              },
+              series: {
+                #"SYSTEM_SYSRULES_chartSeries"(
+                  label: "Percentage of Payments",
+                  data: {
+                    count(
+                      wherecontains(
+                        0,
+                        tointeger(
+                          local!claims.data.hasClaim
+                        )
+                      )
+                    ) / length(
+                      local!claims.data.hasClaim
+                    )%,
+                    count(
+                      wherecontains(
+                        1,
+                        tointeger(
+                          local!claims.data.hasClaim
+                        )
+                      )
+                    ) / length(
+                      local!claims.data.hasClaim
+                    )%
+                  }
+                )
+              },
+              showTooltips: false
+            )
+          },
+          secondColumnContents: {
+            #"SYSTEM_SYSRULES_pieChartField"(
+              label: "Paid without Claim vs Paid with Claim",
+              showDataLabels: true,
+              showAsPercentage: true,
+              series: {
+                #"SYSTEM_SYSRULES_applyComponents"(
+                  #"SYSTEM_SYSRULES_chartSeries"(
+                    label: _,
+                    data: _
+                  ),
+                  _
+                )(
+                  merge(
+                    {
+                      "Paid without Claim",
+                      "Paid with Claim"
+                    },
+                    {
+                      count(
+                        wherecontains(
+                          0,
+                          tointeger(
+                            local!claims.data.hasClaim
+                          )
+                        )
+                      ),
+                      count(
+                        wherecontains(
+                          1,
+                          tointeger(
+                            local!claims.data.hasClaim
+                          )
+                        )
+                      )
+                    }
+                  )
+                )
+              }
+            )
+          }
+        ),
+        #"SYSTEM_SYSRULES_sectionLayout"(
+          firstColumnContents: {
+            #"SYSTEM_SYSRULES_columnChartField"(
+              label: "Payment Types Breakdown %",
+              categories: {
+                union(
+                  local!claims.data.paymentType,
+                  local!claims.data.paymentType
+                )
+              },
+              series: {
+                #"SYSTEM_SYSRULES_chartSeries"(
+                  label: "Payment Types",
+                  data: {
+                    apply(
+                      #"_a-0000ddf1-7abf-8000-daab-640000640000_21225"(
+                        value: _,
+                        list: touniformstring(
+                          local!claims.data.paymentType
+                        )
+                      ),
+                      _
+                    )(
+                      union(
+                        local!claims.data.paymentType,
+                        local!claims.data.paymentType
+                      )
+                    )
+                  }
+                )
+              },
+              showTooltips: false
+            )
+          },
+          secondColumnContents: {
+            #"SYSTEM_SYSRULES_pieChartField"(
+              label: "Payment Types Breakdown %",
+              showDataLabels: true,
+              showAsPercentage: true,
+              series: {
+                #"SYSTEM_SYSRULES_applyComponents"(
+                  #"SYSTEM_SYSRULES_chartSeries"(
+                    label: _,
+                    data: _
+                  ),
+                  _
+                )(
+                  merge(
+                    {
+                      union(
+                        local!claims.data.paymentType,
+                        local!claims.data.paymentType
+                      )
+                    },
+                    {
+                      apply(
+                        #"_a-0000ddf1-7abf-8000-daab-640000640000_21225"(
+                          value: _,
+                          list: touniformstring(
+                            local!claims.data.paymentType
+                          )
+                        ),
+                        _
+                      )(
+                        union(
+                          local!claims.data.paymentType,
+                          local!claims.data.paymentType
+                        )
+                      )
+                    }
+                  )
+                )
+              }
+            )
+          }
+        )
+      },
+      secondColumnContents: {}
+    )
+  )
+)</definition>
+        <metadataExpr></metadataExpr>
+        <preferredEditor>interface</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role inherit="true" allowForAll="false" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="administrators">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <history>
+        <historyInfo versionUuid="_a-0000df6a-d82f-8000-9ba2-011c48011c48_104497"/>
+    </history>
+</contentHaul>

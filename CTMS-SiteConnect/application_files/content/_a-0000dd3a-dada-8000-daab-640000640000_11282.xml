@@ -1,0 +1,474 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <versionUuid>_a-0000df6a-d82f-8000-9ba2-011c48011c48_112467</versionUuid>
+    <rule>
+        <name>CTMS_CreateClaim_Form</name>
+        <uuid>_a-0000dd3a-dada-8000-daab-640000640000_11282</uuid>
+        <description>Form to allow Investigator to create a claim. 
+Step 1  -  search for the payment to create a claim against
+Step 2 - enter the claim details then submit</description>
+        <parentUuid>_a-0000dcd5-e7b4-8000-daab-640000640000_6355</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>= load(
+  local!gridSelection: #"SYSTEM_SYSRULES_gridSelection"(
+    pagingInfo: #"SYSTEM_SYSRULES_pagingInfo"(
+      startIndex: 1,
+      batchsize: 10
+    ),
+    selected: if(
+      #"_a-0000ddcb-815e-8000-daab-640000640000_18403"(
+        ri!claim
+      ),
+      null,
+      ri!claim.paymentIdentifier
+    )
+  ),
+  #"SYSTEM_SYSRULES_formLayout"(
+    label: ri!formAction &amp; " Payment Claim",
+    firstColumnContents: {
+      /*Header Section*/
+      #"_a-0000dd4f-0404-8000-daab-640000640000_16503"(
+        siteId: ri!siteId
+      ),
+      if(
+        isnull(
+          ri!claim.paymentIdentifier
+        ),
+        #"_a-0000dd3a-dada-8000-daab-640000640000_10991"(
+          siteId: ri!siteId,
+          selectable: true,
+          selectedPaymentId: ri!claim.paymentIdentifier,
+          gridSelection: local!gridSelection
+        ),
+        {}
+      ),
+      if(
+        isnull(
+          ri!claim.paymentIdentifier
+        ),
+        {},
+        with(
+          local!payment: #"_a-0000dd3a-dada-8000-daab-640000640000_10921"(
+            paymentId: ri!claim.paymentIdentifier
+          ),
+          local!paymentDetails: if(
+            isnull(
+              ri!claim.paymentIdentifier
+            ),
+            null,
+            #"SYSTEM_SYSRULES_queryEntity"(
+              entity: #"_a-0000dd3a-dada-8000-daab-640000640000_10986",
+              query: #"SYSTEM_SYSRULES_query"(
+                filter: #"SYSTEM_SYSRULES_queryFilter"(
+                  field: "paymentId",
+                  operator: "=",
+                  value: ri!claim.paymentIdentifier
+                ),
+                pagingInfo: #"SYSTEM_SYSRULES_pagingInfo"(
+                  startIndex: 1,
+                  batchSize: - 1,
+                  sort: #"SYSTEM_SYSRULES_sortInfo"(
+                    field: "completedDate",
+                    ascending: false
+                  )
+                )
+              )
+            )
+          ),
+          local!claims: if(
+            isnull(
+              ri!claim.paymentIdentifier
+            ),
+            null,
+            #"SYSTEM_SYSRULES_queryEntity"(
+              entity: #"_a-0000dd3a-dada-8000-daab-640000640000_11306",
+              query: #"SYSTEM_SYSRULES_query"(
+                filter: #"SYSTEM_SYSRULES_queryFilter"(
+                  field: "paymentIdentifier",
+                  operator: "=",
+                  value: ri!claim.paymentIdentifier
+                ),
+                pagingInfo: #"SYSTEM_SYSRULES_pagingInfo"(
+                  startIndex: 1,
+                  batchSize: - 1,
+                  sort: #"SYSTEM_SYSRULES_sortInfo"(
+                    field: "createdDate",
+                    ascending: false
+                  )
+                )
+              )
+            )
+          ),
+          {
+            if(
+              length(
+                local!payment
+              ) &gt; 0,
+              #"_a-0000dd3a-dada-8000-daab-640000640000_10931"(
+                payment: local!payment
+              ),
+              {}
+            ),
+            if(
+              length(
+                local!paymentDetails.data
+              ) &gt; 0,
+              #"_a-0000dd3a-dada-8000-daab-640000640000_10883"(
+                paymentDetails: local!paymentDetails.data
+              ),
+              {}
+            ),
+            if(
+              length(
+                local!claims.data
+              ) &gt; 0,
+              #"_a-0000dd3a-dada-8000-daab-640000640000_11574"(
+                claims: local!claims.data
+              ),
+              {}
+            ),
+            if(
+              ri!formAction = #"_a-0000ddcb-815e-8000-daab-640000640000_18385",
+              #"SYSTEM_SYSRULES_ButtonLayout"(
+                primaryButtons: {
+                  #"SYSTEM_SYSRULES_ButtonWidget"(
+                    style: "NORMAL",
+                    label: #"_a-0000ddcb-815e-8000-daab-640000640000_18383",
+                    value: null,
+                    saveInto: {
+                      ri!claim.paymentIdentifier,
+                      a!save(
+                        target: local!gridSelection,
+                        value: #"SYSTEM_SYSRULES_gridSelection"(
+                          pagingInfo: #"SYSTEM_SYSRULES_pagingInfo"(
+                            startIndex: 1,
+                            batchsize: 10
+                          )
+                        )
+                      )
+                    }
+                  )
+                }
+              ),
+              {}
+            ),
+            #"_a-0000dd3a-dada-8000-daab-640000640000_11107"(
+              description: ri!claim.description,
+              type: ri!claim.type,
+              formAction: ri!formAction,
+              createdBy: #"_a-0000ddcb-815e-8000-daab-640000640000_18404"(
+                ri!claim.createdUsername
+              ),
+              createdDate: ri!claim.createdDate
+            ),
+            if(
+              or(
+                ri!formAction = #"_a-0000ddcb-815e-8000-daab-640000640000_18373",
+                ri!formAction = #"_a-0000ddcb-815e-8000-daab-640000640000_18377",
+                ri!formAction = #"_a-0000ddcb-815e-8000-daab-640000640000_18358"
+              ),
+              {
+                /* Show site budget information to approver */
+                if(
+                  ri!formAction = #"_a-0000ddcb-815e-8000-daab-640000640000_18373",
+                  load(
+                    local!selectedBudgetId,
+                    {
+                      #"_a-0000dd3a-dada-8000-daab-640000640000_11004"(
+                        siteIdentifier: ri!siteId,
+                        selectable: false,
+                        gridSelection: local!gridSelection,
+                        selectedBudgetId: local!selectedBudgetId
+                      ),
+                      if(
+                        isnull(
+                          local!selectedBudgetId
+                        ),
+                        {},
+                        with(
+                          local!budget: #"_a-0000dd3a-dada-8000-daab-640000640000_11414"(
+                            budgetId: local!selectedBudgetId
+                          ),
+                          local!budgetSplit: if(
+                            isnull(
+                              local!selectedBudgetId
+                            ),
+                            null,
+                            #"SYSTEM_SYSRULES_queryEntity"(
+                              entity: #"_a-0000dd3a-dada-8000-daab-640000640000_11417",
+                              query: #"SYSTEM_SYSRULES_query"(
+                                filter: #"SYSTEM_SYSRULES_queryFilter"(
+                                  field: "siteBudgetId",
+                                  operator: "=",
+                                  value: local!selectedBudgetId
+                                ),
+                                pagingInfo: #"SYSTEM_SYSRULES_pagingInfo"(
+                                  startIndex: 1,
+                                  batchSize: - 1
+                                )
+                              )
+                            )
+                          ),
+                          {
+                            if(
+                              length(
+                                local!budget
+                              ) &gt; 0,
+                              #"_a-0000dd3a-dada-8000-daab-640000640000_11421"(
+                                budget: local!budget
+                              ),
+                              {}
+                            ),
+                            if(
+                              length(
+                                local!budgetSplit.data
+                              ) &gt; 0,
+                              #"_a-0000dd3a-dada-8000-daab-640000640000_11447"(
+                                budgetSplit: local!budgetSplit.data
+                              ),
+                              {}
+                            )
+                          }
+                        )
+                      )
+                    }
+                  ),
+                  {}
+                ),
+                /* Show site activity information to approver */
+                if(
+                  ri!formAction = #"_a-0000ddcb-815e-8000-daab-640000640000_18373",
+                  load(
+                    local!selectedActivityId,
+                    local!gridSelection: #"SYSTEM_SYSRULES_gridSelection"(
+                      pagingInfo: #"SYSTEM_SYSRULES_pagingInfo"(
+                        startIndex: 1,
+                        batchsize: 10
+                      )
+                    ),
+                    {
+                      #"_a-0000dd4f-0404-8000-daab-640000640000_16530"(
+                        siteId: ri!siteId,
+                        selectable: false,
+                        gridSelection: local!gridSelection,
+                        selectedId: local!selectedActivityId
+                      ),
+                      if(
+                        isnull(
+                          local!selectedActivityId
+                        ),
+                        {},
+                        with(
+                          local!activity: #"_a-0000ddcc-a4d5-8000-daab-640000640000_18487"(
+                            id: local!selectedActivityId
+                          ),
+                          {
+                            if(
+                              length(
+                                local!activity
+                              ) &gt; 0,
+                              #"_a-0000dd3a-dada-8000-daab-640000640000_13596"(
+                                activitiesDetail: local!activity
+                              ),
+                              {}
+                            )
+                          }
+                        )
+                      )
+                    }
+                  ),
+                  {}
+                ),
+                #"_a-0000dd3a-dada-8000-daab-640000640000_11299"(
+                  approvalComment: ri!claim.responseComment,
+                  approvalResponse: ri!claim.responseType,
+                  formAction: ri!formAction,
+                  responseBy: #"_a-0000ddcb-815e-8000-daab-640000640000_18404"(
+                    ri!claim.responseUsername
+                  ),
+                  responseDate: ri!claim.responseDate
+                )
+              },
+              {}
+            )
+          }
+        )
+      )
+    },
+    secondColumnContents: {},
+    buttons: #"SYSTEM_SYSRULES_ButtonLayout"(
+      primaryButtons: {
+        if(
+          isnull(
+            ri!claim.paymentIdentifier
+          ),
+          {},
+          if(
+            ri!formAction = #"_a-0000ddcb-815e-8000-daab-640000640000_18377",
+            {},
+            #"SYSTEM_SYSRULES_ButtonWidgetSubmit"(
+              style: "PRIMARY",
+              label: #"_a-0000ddcb-815e-8000-daab-640000640000_18394",
+              value: #"_a-0000ddcb-815e-8000-daab-640000640000_18394",
+              saveInto: {
+                ri!userAction,
+                if(
+                  ri!formAction = #"_a-0000ddcb-815e-8000-daab-640000640000_18385",
+                  {
+                    a!save(
+                      target: ri!claim.createdUsername,
+                      value: loggedInUser()
+                    ),
+                    a!save(
+                      target: ri!claim.createdDate,
+                      value: today()
+                    )
+                  },
+                  {}
+                ),
+                if(
+                  ri!formAction = #"_a-0000ddcb-815e-8000-daab-640000640000_18373",
+                  {
+                    a!save(
+                      target: ri!claim.responseUsername,
+                      value: loggedInUser()
+                    ),
+                    a!save(
+                      target: ri!claim.responseDate,
+                      value: today()
+                    )
+                  },
+                  {}
+                )
+              }
+            )
+          )
+        )
+      },
+      secondaryButtons: {
+        if(
+          or(
+            ri!formAction = #"_a-0000ddcb-815e-8000-daab-640000640000_18377",
+            ri!formAction = #"_a-0000ddcb-815e-8000-daab-640000640000_18373"
+          ),
+          #"SYSTEM_SYSRULES_ButtonWidgetSubmit"(
+            style: "NORMAL",
+            label: #"_a-0000ddcb-815e-8000-daab-640000640000_18356",
+            value: #"_a-0000ddcb-815e-8000-daab-640000640000_18356",
+            saveInto: ri!userAction
+          ),
+          #"SYSTEM_SYSRULES_ButtonWidgetSubmit"(
+            style: "NORMAL",
+            label: #"_a-0000ddcb-815e-8000-daab-640000640000_18391",
+            value: #"_a-0000ddcb-815e-8000-daab-640000640000_18391",
+            saveInto: ri!userAction
+          )
+        )
+      }
+    )
+  )
+)</definition>
+        <namedTypedValue>
+            <name>siteId</name>
+            <type>
+                <name>string</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+            <value/>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>userAction</name>
+            <type>
+                <name>string</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+            <value/>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>claim</name>
+            <type>
+                <name>CTMS_PaymentClaim</name>
+                <namespace>urn:com:appian:types:CTMS</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>formAction</name>
+            <type>
+                <name>string</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+            <value/>
+        </namedTypedValue>
+        <preferredEditor>interface</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role inherit="true" allowForAll="false" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="administrators">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <typedValue>
+        <type>
+            <name>RuleTestConfig?list</name>
+            <namespace>http://www.appian.com/ae/types/2009</namespace>
+        </type>
+        <value>
+            <el>
+                <a:name/>
+                <a:ruleInputTestConfigs>
+                    <a:value xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xsd:string">1</a:value>
+                    <a:nameRef>siteId</a:nameRef>
+                    <a:id/>
+                </a:ruleInputTestConfigs>
+                <a:ruleInputTestConfigs>
+                    <a:value xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xsd:string"/>
+                    <a:nameRef>userAction</a:nameRef>
+                    <a:id/>
+                </a:ruleInputTestConfigs>
+                <a:ruleInputTestConfigs>
+                    <a:value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="a:Expression">{}</a:value>
+                    <a:nameRef>claim</a:nameRef>
+                    <a:id/>
+                </a:ruleInputTestConfigs>
+                <a:ruleInputTestConfigs>
+                    <a:value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="a:Expression">#"_a-0000ddcb-815e-8000-daab-640000640000_18345"</a:value>
+                    <a:nameRef>formAction</a:nameRef>
+                    <a:id/>
+                </a:ruleInputTestConfigs>
+                <a:assertions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+            </el>
+        </value>
+    </typedValue>
+    <history>
+        <historyInfo versionUuid="_a-0000df6a-d82f-8000-9ba2-011c48011c48_112467"/>
+    </history>
+</contentHaul>

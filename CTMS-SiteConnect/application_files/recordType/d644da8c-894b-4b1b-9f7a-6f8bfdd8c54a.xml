@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<recordTypeHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <versionUuid>e78dd52f-78eb-499c-8719-ae27b131298e</versionUuid>
+    <recordType a:uuid="d644da8c-894b-4b1b-9f7a-6f8bfdd8c54a" name="Site Document">
+        <a:pluralName>Site Documents</a:pluralName>
+        <a:description>CTMS: Site Document Records</a:description>
+        <a:urlStub>k4gJtA</a:urlStub>
+        <a:source xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="a:DataStoreEntity" a:uuid="3c8bc5c1-e40f-4321-9ae9-e24b13594700@_a-0000dcd5-e7b4-8000-daab-640000640000_6413"/>
+        <a:listViewTemplateExpr>#"SYSTEM_SYSRULES_recordGridLayoutColumns"(
+  pageSize: 50,
+  defaultSort: #"SYSTEM_SYSRULES_sortInfo"(
+    field: "siteIdentifier",
+    ascending: fn!true()
+  ),
+  columns: {
+    #"SYSTEM_SYSRULES_gridLayoutColumn"(
+      label: "Site Identifier",
+      field: "siteIdentifier",
+      component: #"SYSTEM_SYSRULES_recordGrid_linkField"(
+        links: #"SYSTEM_SYSRULES_recordLink"(
+          label: rf!siteIdentifier,
+          recordType: rp!type,
+          identifier: rp!id
+        )
+      )
+    ),
+    #"SYSTEM_SYSRULES_gridLayoutColumn"(
+      label: "Site Number",
+      field: "siteNumber",
+      component: #"SYSTEM_SYSRULES_recordGrid_textField"(
+        displayValue: rf!siteNumber,
+        align: null
+      )
+    ),
+    #"SYSTEM_SYSRULES_gridLayoutColumn"(
+      label: "Protocols Number",
+      field: "protocolsNumber",
+      component: #"SYSTEM_SYSRULES_recordGrid_textField"(
+        displayValue: rf!protocolsNumber,
+        align: null
+      )
+    )
+  }
+)</a:listViewTemplateExpr>
+        <a:detailViewCfg>
+            <a:nameExpr>="Summary"</a:nameExpr>
+            <a:uiExpr>#"_a-0000dd26-de8a-8000-daab-640000640000_10086"(documentIdentifier:rf!documentIdentifier,btnAction:{}, isReadOnly:true, UploadedDocument:{})</a:uiExpr>
+            <a:visibilityExpr>=true()</a:visibilityExpr>
+            <a:urlStub>summary</a:urlStub>
+            <a:headerExpr></a:headerExpr>
+            <a:relatedActionCfg>ac2d8851-1466-466f-a3ec-01579862f0ef</a:relatedActionCfg>
+        </a:detailViewCfg>
+        <a:detailViewCfg>
+            <a:nameExpr>"Return to Document"</a:nameExpr>
+            <a:uiExpr>#"_a-0000dcfa-ab37-8000-daab-640000640000_6970"(site:#"38c0b0ce-9c91-480f-9ee6-eda722584131"(ID:rf!siteIdentifier))</a:uiExpr>
+            <a:visibilityExpr>=true()</a:visibilityExpr>
+            <a:urlStub>_2UKJaw</a:urlStub>
+            <a:headerExpr></a:headerExpr>
+            <a:relatedActionCfg>ac2d8851-1466-466f-a3ec-01579862f0ef</a:relatedActionCfg>
+        </a:detailViewCfg>
+        <a:relatedActionCfg>
+            <a:target xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="a:ProcessModel" a:uuid="0005dd28-b287-8000-daab-640000640000"/>
+            <a:contextExpr>{
+  documentIdentifier:rf!documentIdentifier
+}</a:contextExpr>
+            <a:visibilityExpr>rf!documentDescription&lt;&gt;"InProgress"</a:visibilityExpr>
+            <a:iconId>f0e7</a:iconId>
+            <a:refId>ac2d8851-1466-466f-a3ec-01579862f0ef</a:refId>
+        </a:relatedActionCfg>
+        <a:isSystem>false</a:isSystem>
+        <a:dataSrcExpr></a:dataSrcExpr>
+        <a:facetsListExpr></a:facetsListExpr>
+        <a:titleExpr></a:titleExpr>
+        <a:defaultFiltersExpr></a:defaultFiltersExpr>
+        <a:layoutType>GRID</a:layoutType>
+        <a:security>16383</a:security>
+        <a:hideLatestNews>false</a:hideLatestNews>
+    </recordType>
+    <roleMap>
+        <role name="record_type_administrator">
+            <users/>
+            <groups>
+                <groupUuid>_e-0000dd39-67e0-8000-daa7-640000640000_75</groupUuid>
+            </groups>
+        </role>
+        <role name="record_type_viewer">
+            <users/>
+            <groups>
+                <groupUuid>_e-0001dccd-fe85-8000-daa7-640000640000_67</groupUuid>
+            </groups>
+        </role>
+    </roleMap>
+    <history>
+        <historyInfo versionUuid="e78dd52f-78eb-499c-8719-ae27b131298e"/>
+    </history>
+</recordTypeHaul>

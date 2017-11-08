@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <versionUuid>_a-0000df6a-d82f-8000-9ba2-011c48011c48_112430</versionUuid>
+    <rule>
+        <name>CTMS_User_UserNotExistInfo</name>
+        <uuid>_a-0000dcfa-ab37-8000-daab-640000640000_7210</uuid>
+        <description>Page to register first befor update</description>
+        <parentUuid>_a-0000dcd5-e7b4-8000-daab-640000640000_6355</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>load(
+  #"SYSTEM_SYSRULES_formLayout"(
+    label: "",
+    firstColumnContents: {
+      #"SYSTEM_SYSRULES_sectionLayout"(
+        label: "",
+        firstColumnContents: {
+          #"SYSTEM_SYSRULES_richTextDisplayField"(
+            label: "",
+            labelPosition: "ADJACENT",
+            align: "CENTER",
+            value: {
+              #"SYSTEM_SYSRULES_richTextItem"(
+                text: "Record Not Found.",
+                style: "HEADER_SMALL"
+              )
+            }
+          ),
+          #"SYSTEM_SYSRULES_richTextDisplayField"(
+            label: "",
+            labelPosition: "ADJACENT",
+            align: "CENTER",
+            value: {
+              #"SYSTEM_SYSRULES_richTextItem"(
+                text: "Your Record is not found in database. Please Register first before Update.",
+                style: "EMPHASIS"
+              )
+            }
+          )
+        },
+        secondColumnContents: {
+          /* Add components here for a two-column section */
+          
+        },
+        validations: {}
+      )
+    },
+    buttons: #"SYSTEM_SYSRULES_ButtonLayout"(
+      primaryButtons: {
+        #"SYSTEM_SYSRULES_ButtonWidgetSubmit"(
+          label: "Close",
+          style: "PRIMARY",
+          value: "Close",
+          saveInto: {
+            ri!action
+          }
+        )
+      }
+    )
+  )
+)</definition>
+        <namedTypedValue>
+            <name>action</name>
+            <type>
+                <name>string</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+            <value/>
+        </namedTypedValue>
+        <preferredEditor>interface</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role inherit="true" allowForAll="false" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="administrators">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <history>
+        <historyInfo versionUuid="_a-0000df6a-d82f-8000-9ba2-011c48011c48_112430"/>
+    </history>
+</contentHaul>
