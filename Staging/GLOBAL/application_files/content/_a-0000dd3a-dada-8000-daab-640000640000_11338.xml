@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <versionUuid>_a-0000df6a-d82f-8000-9ba2-011c48011c48_112315</versionUuid>
+    <rule>
+        <name>GLOBAL_TaskLinkFromProcessId</name>
+        <uuid>_a-0000dd3a-dada-8000-daab-640000640000_11338</uuid>
+        <description>Takes the process id and returns a link to the task for that process. Returns empty string if there is no task available to link to for that process id</description>
+        <parentUuid>_a-0000dd3a-dada-8000-daab-640000640000_11112</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>if(
+  #"_a-0000dd3a-dada-8000-daab-640000640000_11122"(
+    ri!processId
+  ),
+  "",
+  load(
+    local!taskId: #"_a-0000dd3a-dada-8000-daab-640000640000_11336"(
+      processId: ri!processId
+    ),
+    if(
+      #"_a-0000dd3a-dada-8000-daab-640000640000_11122"(
+        local!taskId
+      ),
+      "",
+      "http://" &amp; #"_a-0000dd3a-dada-8000-daab-640000640000_11340" &amp; "/suite/tempo/tasks/task/" &amp; local!taskId
+    )
+  )
+)</definition>
+        <namedTypedValue>
+            <name>processId</name>
+            <type>
+                <name>int</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+        </namedTypedValue>
+        <preferredEditor>legacy</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role inherit="true" allowForAll="false" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="administrators">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <history>
+        <historyInfo versionUuid="_a-0000df6a-d82f-8000-9ba2-011c48011c48_112315"/>
+    </history>
+</contentHaul>

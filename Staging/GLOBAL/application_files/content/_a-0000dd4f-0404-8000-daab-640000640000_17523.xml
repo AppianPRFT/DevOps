@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <versionUuid>_a-0000df6a-d82f-8000-9ba2-011c48011c48_112347</versionUuid>
+    <rule>
+        <name>GLOBAL_GetStatusLabelsFromValues</name>
+        <uuid>_a-0000dd4f-0404-8000-daab-640000640000_17523</uuid>
+        <description>Standard method to return the GLOBAL Status labels for a certain value</description>
+        <parentUuid>_a-0000dd3a-dada-8000-daab-640000640000_11112</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>displayvalue(ri!statusValue,
+{
+  #"_a-0000dd4f-0404-8000-daab-640000640000_17496",
+  #"_a-0000dd4f-0404-8000-daab-640000640000_17497",
+  #"_a-0000dd4f-0404-8000-daab-640000640000_17500",
+  #"_a-0000dd4f-0404-8000-daab-640000640000_17498",
+  #"_a-0000dd4f-0404-8000-daab-640000640000_17503",
+  #"_a-0000dd4f-0404-8000-daab-640000640000_17505",
+  #"_a-0000dd4f-0404-8000-daab-640000640000_17507",
+  #"_a-0000dd4f-0404-8000-daab-640000640000_17918"
+},
+{
+  #"_a-0000dd4f-0404-8000-daab-640000640000_17509",
+  #"_a-0000dd4f-0404-8000-daab-640000640000_17511",
+  #"_a-0000dd4f-0404-8000-daab-640000640000_17512",
+  #"_a-0000dd4f-0404-8000-daab-640000640000_17513",
+  #"_a-0000dd4f-0404-8000-daab-640000640000_17514",
+  #"_a-0000dd4f-0404-8000-daab-640000640000_17515",
+  #"_a-0000dd4f-0404-8000-daab-640000640000_17516",
+  #"_a-0000dd4f-0404-8000-daab-640000640000_17917"
+},
+""
+)</definition>
+        <namedTypedValue>
+            <name>statusValue</name>
+            <type>
+                <name>int</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+        </namedTypedValue>
+        <preferredEditor>legacy</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role inherit="true" allowForAll="false" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="administrators">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <history>
+        <historyInfo versionUuid="_a-0000df6a-d82f-8000-9ba2-011c48011c48_112347"/>
+    </history>
+</contentHaul>
