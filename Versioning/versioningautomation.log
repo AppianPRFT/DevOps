@@ -5665,3 +5665,49 @@ java.lang.NullPointerException
 2017-11-08 13:48:23,913 [main] INFO  com.appiancorp.ps.automatedversioning.VCSAndBuildController - Checking for DDLs
 2017-11-08 13:48:27,460 [main] INFO  com.appiancorp.ps.automatedversioning.GitObject - Committed all changes to repository at C:\Program Files (x86)\Jenkins\workspace\DevOps-Deployment-Pipeline\.git. Commit hash: 66b2a2e9ab7ee48679a16323c835b6370abb4dfd
 2017-11-08 13:48:32,544 [main] INFO  com.appiancorp.ps.automatedversioning.GitObject - Changes pushed successfully.
+2017-11-09 11:23:42,061 [main] INFO  com.appiancorp.ps.automatedversioning.AutomatedVersioningManager - VersionManagerProperties:
+[vcUsername:samBruns],
+[vcPassword:***],
+[commitMessage:value not provided],
+[action:addContents],
+[applicationPath:C:\\Program Files (x86)\\Jenkins\\workspace\\DevOps-Deployment-Pipeline\\Staging\\SLA-Management-System(0).zip],
+[adminConsolePath:value not provided],
+[ddlPath:value not provided],
+[ddlDs:value not provided],
+[uuid:value not provided],
+[applicationName:value not provided],
+[startHash:value not provided],
+[endHash:value not provided],
+[packagePath:C:\\Program Files (x86)\\Jenkins\\workspace\\DevOps-Deployment-Pipeline\\Staging\\SLA-Management-System(0).zip],
+[versionControlType:GIT],
+[repoUrl:https://github.com/AppianPRFT/DevOps.git],
+[localRepoPath:C:\\Program Files (x86)\\Jenkins\\workspace\\DevOps-Deployment-Pipeline\\SLA-Management-System],
+[branchName:master],
+[appianObjectsRepoPath:value not provided],
+[noUpdate:value not provided],
+
+2017-11-09 11:23:44,271 [main] INFO  com.appiancorp.ps.automatedversioning.GitObject - Local repo updated successfully
+2017-11-09 11:23:44,592 [main] INFO  com.appiancorp.ps.automatedversioning.VCSAndBuildController - Unzipping application to repository
+2017-11-09 11:23:44,663 [main] INFO  com.appiancorp.ps.automatedversioning.VersionUtils - Successfully extracted file C:\\Program Files (x86)\\Jenkins\\workspace\\DevOps-Deployment-Pipeline\\SLA-Management-System\application_files\datatype/%7Burn%3Acom%3Aappian%3Atypes%7DSLA_Entry.xsd
+2017-11-09 11:23:44,665 [main] INFO  com.appiancorp.ps.automatedversioning.VersionUtils - Successfully extracted file C:\\Program Files (x86)\\Jenkins\\workspace\\DevOps-Deployment-Pipeline\\SLA-Management-System\application_files\dataStore/_a-0000df6d-83a9-8000-9ba2-011c48011c48_47590.xml
+2017-11-09 11:23:44,665 [main] INFO  com.appiancorp.ps.automatedversioning.VersionUtils - Successfully extracted file C:\\Program Files (x86)\\Jenkins\\workspace\\DevOps-Deployment-Pipeline\\SLA-Management-System\application_files\content/_a-0000df6d-83a9-8000-9ba2-011c48011c48_47543.xml
+2017-11-09 11:23:44,666 [main] INFO  com.appiancorp.ps.automatedversioning.VersionUtils - Successfully extracted file C:\\Program Files (x86)\\Jenkins\\workspace\\DevOps-Deployment-Pipeline\\SLA-Management-System\application_files\content/_a-0000df6d-83a9-8000-9ba2-011c48011c48_47561.xml
+2017-11-09 11:23:44,667 [main] INFO  com.appiancorp.ps.automatedversioning.VersionUtils - Successfully extracted file C:\\Program Files (x86)\\Jenkins\\workspace\\DevOps-Deployment-Pipeline\\SLA-Management-System\application_files\content/_a-0000df6d-83a9-8000-9ba2-011c48011c48_47567.xml
+2017-11-09 11:23:44,669 [main] INFO  com.appiancorp.ps.automatedversioning.VersionUtils - Successfully extracted file C:\\Program Files (x86)\\Jenkins\\workspace\\DevOps-Deployment-Pipeline\\SLA-Management-System\application_files\content/_a-0000df6d-83a9-8000-9ba2-011c48011c48_48058.xml
+2017-11-09 11:23:44,671 [main] INFO  com.appiancorp.ps.automatedversioning.VersionUtils - Successfully extracted file C:\\Program Files (x86)\\Jenkins\\workspace\\DevOps-Deployment-Pipeline\\SLA-Management-System\application_files\content/_a-0000df6d-83a9-8000-9ba2-011c48011c48_48083.xml
+2017-11-09 11:23:44,672 [main] INFO  com.appiancorp.ps.automatedversioning.VersionUtils - Successfully extracted file C:\\Program Files (x86)\\Jenkins\\workspace\\DevOps-Deployment-Pipeline\\SLA-Management-System\application_files\content/_a-0000df6d-83a9-8000-9ba2-011c48011c48_48089.xml
+2017-11-09 11:23:44,673 [main] INFO  com.appiancorp.ps.automatedversioning.VersionUtils - Successfully extracted file C:\\Program Files (x86)\\Jenkins\\workspace\\DevOps-Deployment-Pipeline\\SLA-Management-System\application_files\content/_a-0000df6d-83a9-8000-9ba2-011c48011c48_48095.xml
+2017-11-09 11:23:44,675 [main] INFO  com.appiancorp.ps.automatedversioning.VersionUtils - Successfully extracted file C:\\Program Files (x86)\\Jenkins\\workspace\\DevOps-Deployment-Pipeline\\SLA-Management-System\application_files\content/_a-0000df6d-83a9-8000-9ba2-011c48011c48_48101.xml
+2017-11-09 11:23:44,676 [main] INFO  com.appiancorp.ps.automatedversioning.VersionUtils - Successfully extracted file C:\\Program Files (x86)\\Jenkins\\workspace\\DevOps-Deployment-Pipeline\\SLA-Management-System\application_files\content/_a-0000df6d-83a9-8000-9ba2-011c48011c48_49096.xml
+2017-11-09 11:23:44,677 [main] INFO  com.appiancorp.ps.automatedversioning.VersionUtils - Successfully extracted file C:\\Program Files (x86)\\Jenkins\\workspace\\DevOps-Deployment-Pipeline\\SLA-Management-System\application_files\content/_a-0000df6d-83a9-8000-9ba2-011c48011c48_49108.xml
+2017-11-09 11:23:44,679 [main] INFO  com.appiancorp.ps.automatedversioning.VersionUtils - Successfully extracted file C:\\Program Files (x86)\\Jenkins\\workspace\\DevOps-Deployment-Pipeline\\SLA-Management-System\application_files\content/_a-0000df6d-83a9-8000-9ba2-011c48011c48_49187.xml
+2017-11-09 11:23:44,680 [main] INFO  com.appiancorp.ps.automatedversioning.VersionUtils - Successfully extracted file C:\\Program Files (x86)\\Jenkins\\workspace\\DevOps-Deployment-Pipeline\\SLA-Management-System\application_files\content/_a-0000df6d-83a9-8000-9ba2-011c48011c48_49207.xml
+2017-11-09 11:23:44,681 [main] INFO  com.appiancorp.ps.automatedversioning.VersionUtils - Successfully extracted file C:\\Program Files (x86)\\Jenkins\\workspace\\DevOps-Deployment-Pipeline\\SLA-Management-System\application_files\content/_a-0000df6d-83a9-8000-9ba2-011c48011c48_49484.xml
+2017-11-09 11:23:44,681 [main] INFO  com.appiancorp.ps.automatedversioning.VersionUtils - Successfully extracted file C:\\Program Files (x86)\\Jenkins\\workspace\\DevOps-Deployment-Pipeline\\SLA-Management-System\application_files\content/_a-0000df6d-83a9-8000-9ba2-011c48011c48_50446.xml
+2017-11-09 11:23:44,682 [main] INFO  com.appiancorp.ps.automatedversioning.VersionUtils - Successfully extracted file C:\\Program Files (x86)\\Jenkins\\workspace\\DevOps-Deployment-Pipeline\\SLA-Management-System\application_files\content/_a-0000df6d-83a9-8000-9ba2-011c48011c48_50484.xml
+2017-11-09 11:23:44,683 [main] INFO  com.appiancorp.ps.automatedversioning.VersionUtils - Successfully extracted file C:\\Program Files (x86)\\Jenkins\\workspace\\DevOps-Deployment-Pipeline\\SLA-Management-System\application_files\content/_a-0000df6d-83a9-8000-9ba2-011c48011c48_50684.xml
+2017-11-09 11:23:44,684 [main] INFO  com.appiancorp.ps.automatedversioning.VersionUtils - Successfully extracted file C:\\Program Files (x86)\\Jenkins\\workspace\\DevOps-Deployment-Pipeline\\SLA-Management-System\application_files\content/_a-0000df6d-83a9-8000-9ba2-011c48011c48_51041.xml
+2017-11-09 11:23:44,890 [main] INFO  com.appiancorp.ps.automatedversioning.VersionUtils - Successfully extracted and updated XML/XSD file C:\\Program Files (x86)\\Jenkins\\workspace\\DevOps-Deployment-Pipeline\\SLA-Management-System\application_files\application/_a-0000df6d-83a9-8000-9ba2-011c48011c48_47539.xml
+2017-11-09 11:23:44,913 [main] INFO  com.appiancorp.ps.automatedversioning.VersionUtils - Successfully extracted file C:\\Program Files (x86)\\Jenkins\\workspace\\DevOps-Deployment-Pipeline\\SLA-Management-System\application_files\META-INF/MANIFEST.MF
+2017-11-09 11:23:44,915 [main] INFO  com.appiancorp.ps.automatedversioning.VersionUtils - Successfully extracted file C:\\Program Files (x86)\\Jenkins\\workspace\\DevOps-Deployment-Pipeline\\SLA-Management-System\application_files\META-INF/export.log
+2017-11-09 11:23:44,915 [main] INFO  com.appiancorp.ps.automatedversioning.VCSAndBuildController - Checking for DDLs
