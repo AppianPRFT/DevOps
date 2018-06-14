@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <versionUuid>_a-0000e067-d58d-8000-9ba2-011c48011c48_300582</versionUuid>
+    <rule>
+        <name>VIM_CreateUpdateDealership</name>
+        <uuid>_a-0000dfd8-6941-8000-9ba2-011c48011c48_186581</uuid>
+        <description>Form interface for creating new Dealerships as an action or updating Dealerships as a related action [Records]</description>
+        <parentUuid>d1151d0a-2a3e-4e80-b3b0-105a99496272</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>load(
+  local!creating: isnull(
+    ri!record
+  ),
+  local!oldRecord: ri!record,
+  local!oldDocuments: if(
+    isnull(
+      ri!documents
+    ),
+    {},
+    ri!documents
+  ),
+  #"SYSTEM_SYSRULES_formLayout_v1"(
+    label: if(
+      local!creating,
+      "Add New Dealership",
+      "Update Dealership"
+    ),
+    contents: {
+      #"_a-0000dfd8-6941-8000-9ba2-011c48011c48_186574"(
+        record: ri!record,
+        documents: ri!documents,
+        deletedDocuments: ri!deletedDocs,
+        creating: local!creating,
+        readOnly: false
+      )
+    },
+    buttons: #"SYSTEM_SYSRULES_ButtonLayout"(
+      primaryButtons: {
+        if(
+          local!creating,
+          #"SYSTEM_SYSRULES_ButtonWidgetSubmit"(
+            label: "Submit Dealership",
+            style: "PRIMARY",
+            saveInto: {
+              a!save(
+                ri!record.createdOn,
+                now()
+              ),
+              a!save(
+                ri!record.createdBy,
+                loggedInUser()
+              ),
+              a!save(
+                ri!record.updatedOn,
+                now()
+              ),
+              a!save(
+                ri!record.updatedBy,
+                loggedInUser()
+              ),
+              a!save(
+                ri!documents,
+                reject(
+                  fn!isnull,
+                  ri!documents
+                )
+              )
+            }
+          ),
+          #"SYSTEM_SYSRULES_ButtonWidgetSubmit"(
+            label: "Update Dealership",
+            style: "PRIMARY",
+            saveInto: {
+              a!save(
+                ri!record.updatedOn,
+                now()
+              ),
+              a!save(
+                ri!record.updatedBy,
+                loggedInUser()
+              ),
+              a!save(
+                ri!oldRecord,
+                local!oldRecord
+              ),
+              a!save(
+                ri!documents,
+                reject(
+                  fn!isnull,
+                  ri!documents
+                )
+              ),
+              a!save(
+                ri!addedDocs,
+                reject(
+                  fn!isnull,
+                  difference(
+                    ri!documents,
+                    local!oldDocuments
+                  )
+                )
+              ),
+              a!save(
+                ri!oldDocs,
+                local!oldDocuments
+              )
+            }
+          )
+        )
+      },
+      secondaryButtons: {
+        if(
+          local!creating,
+          {},
+          #"SYSTEM_SYSRULES_ButtonWidgetSubmit"(
+            label: "Cancel",
+            style: "NORMAL",
+            value: true,
+            saveInto: {
+              ri!cancel,
+              a!save(
+                ri!addedDocs,
+                reject(
+                  fn!isnull,
+                  difference(
+                    ri!documents,
+                    local!oldDocuments
+                  )
+                )
+              ),
+              a!save(
+                ri!deletedDocs,
+                append(
+                  difference(
+                    ri!deletedDocs,
+                    local!oldDocuments
+                  ),
+                  ri!addedDocs
+                )
+              )
+            },
+            skipValidation: true
+          )
+        )
+      }
+    )
+  )
+)</definition>
+        <namedTypedValue>
+            <name>record</name>
+            <type>
+                <name>VIM_Dealership</name>
+                <namespace>urn:com:appian:types:VIM</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>oldRecord</name>
+            <type>
+                <name>VIM_Dealership</name>
+                <namespace>urn:com:appian:types:VIM</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>documents</name>
+            <type>
+                <name>CollaborationDocument?list</name>
+                <namespace>http://www.appian.com/ae/types/2009</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>addedDocs</name>
+            <type>
+                <name>CollaborationDocument?list</name>
+                <namespace>http://www.appian.com/ae/types/2009</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>deletedDocs</name>
+            <type>
+                <name>CollaborationDocument?list</name>
+                <namespace>http://www.appian.com/ae/types/2009</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>oldDocs</name>
+            <type>
+                <name>CollaborationDocument?list</name>
+                <namespace>http://www.appian.com/ae/types/2009</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>cancel</name>
+            <type>
+                <name>boolean</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+        </namedTypedValue>
+        <metadataExpr></metadataExpr>
+        <preferredEditor>interface</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role inherit="true" allowForAll="false" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="administrators">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <history>
+        <historyInfo versionUuid="_a-0000dfd8-6941-8000-9ba2-011c48011c48_186618"/>
+        <historyInfo versionUuid="_a-0000e067-d58d-8000-9ba2-011c48011c48_300582"/>
+    </history>
+</contentHaul>

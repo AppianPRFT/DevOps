@@ -1,0 +1,338 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <versionUuid>_a-0000e067-d58d-8000-9ba2-011c48011c48_299481</versionUuid>
+    <rule>
+        <name>VIM_VehicleDetails</name>
+        <uuid>_a-0000e067-d58d-8000-9ba2-011c48011c48_296957</uuid>
+        <description>Section interface showing the base Vehicle interface module. Contains all the basic fields of the record. Used by the summary record view, create and update forms, as well as task forms. [Base] [Records]</description>
+        <parentUuid>7343dde8-7a1b-4f6d-a429-d8614057f62a</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>load(
+  /* The local variables store the options for the Pick Single / Multiple from List fields    *
+   * We only show the active options, plus any inactive options already stored on this record */
+  {
+    #"SYSTEM_SYSRULES_sectionLayout_v1"(
+      label: "Details",
+      contents: #"SYSTEM_SYSRULES_columnsLayout"(
+        columns: {
+          #"SYSTEM_SYSRULES_columnLayout"(
+            contents: {
+              #"SYSTEM_SYSRULES_textField"(
+                label: "VIN",
+                labelPosition: if(
+                  ri!readOnly,
+                  "ADJACENT",
+                  "ABOVE"
+                ),
+                instructions: if(
+                  ri!readOnly,
+                  "",
+                  ""
+                ),
+                helpTooltip: if(
+                  ri!readOnly,
+                  "",
+                  ""
+                ),
+                placeholder: if(
+                  ri!readOnly,
+                  "",
+                  ""
+                ),
+                value: ri!record.vin,
+                saveInto: ri!record.vin,
+                required: not(
+                  ri!readOnly
+                ),
+                readOnly: ri!readOnly,
+                validations: if(
+                  len(
+                    ri!record.vin
+                  ) &lt;= 24,
+                  "",
+                  "Value may not be longer than 24 characters. You have entered " &amp; len(
+                    ri!record.vin
+                  ) &amp; " characters."
+                )
+              ),
+              #"SYSTEM_SYSRULES_textField"(
+                label: "Body Class",
+                labelPosition: if(
+                  ri!readOnly,
+                  "ADJACENT",
+                  "ABOVE"
+                ),
+                instructions: if(
+                  ri!readOnly,
+                  "",
+                  ""
+                ),
+                helpTooltip: if(
+                  ri!readOnly,
+                  "",
+                  ""
+                ),
+                placeholder: if(
+                  ri!readOnly,
+                  "",
+                  ""
+                ),
+                value: "51346134",
+                saveInto: ri!record.commissionNumber,
+                required: not(
+                  ri!readOnly
+                ),
+                readOnly: ri!readOnly,
+                validations: if(
+                  len(
+                    ri!record.commissionNumber
+                  ) &lt;= 5,
+                  "",
+                  "Value may not be longer than 5 characters. You have entered " &amp; len(
+                    ri!record.vin
+                  ) &amp; " characters."
+                )
+              ),
+              #"SYSTEM_SYSRULES_textField"(
+                label: "Suggested MSRP",
+                labelPosition: if(
+                  ri!readOnly,
+                  "ADJACENT",
+                  "ABOVE"
+                ),
+                instructions: if(
+                  ri!readOnly,
+                  "",
+                  ""
+                ),
+                helpTooltip: if(
+                  ri!readOnly,
+                  "",
+                  ""
+                ),
+                placeholder: if(
+                  ri!readOnly,
+                  "",
+                  ""
+                ),
+                value: dollar(
+                  ri!record.suggestedMsrp
+                ),
+                saveInto: ri!record.suggestedMsrp,
+                required: not(
+                  ri!readOnly
+                ),
+                readOnly: ri!readOnly
+              )
+            }
+          ),
+          #"SYSTEM_SYSRULES_columnLayout"(
+            contents: {
+              #"SYSTEM_SYSRULES_textField"(
+                label: "Model",
+                labelPosition: if(
+                  ri!readOnly,
+                  "ADJACENT",
+                  "ABOVE"
+                ),
+                instructions: if(
+                  ri!readOnly,
+                  "",
+                  ""
+                ),
+                helpTooltip: if(
+                  ri!readOnly,
+                  "",
+                  ""
+                ),
+                placeholder: if(
+                  ri!readOnly,
+                  "",
+                  ""
+                ),
+                value: ri!record.year &amp; " " &amp; ri!record.make &amp; " " &amp; ri!record.model,
+                saveInto: ri!record.model,
+                required: not(
+                  ri!readOnly
+                ),
+                readOnly: ri!readOnly,
+                validations: if(
+                  len(
+                    ri!record.model
+                  ) &lt;= 200,
+                  "",
+                  "Value may not be longer than 200 characters. You have entered " &amp; len(
+                    ri!record.model
+                  ) &amp; " characters."
+                )
+              ),
+              #"SYSTEM_SYSRULES_textField"(
+                label: "Trim",
+                labelPosition: if(
+                  ri!readOnly,
+                  "ADJACENT",
+                  "ABOVE"
+                ),
+                instructions: if(
+                  ri!readOnly,
+                  "",
+                  ""
+                ),
+                helpTooltip: if(
+                  ri!readOnly,
+                  "",
+                  ""
+                ),
+                placeholder: if(
+                  ri!readOnly,
+                  "",
+                  ""
+                ),
+                value: ri!record.trim,
+                saveInto: ri!record.trim,
+                required: not(
+                  ri!readOnly
+                ),
+                readOnly: ri!readOnly,
+                validations: if(
+                  len(
+                    ri!record.trim
+                  ) &lt;= 200,
+                  "",
+                  "Value may not be longer than 200 characters. You have entered " &amp; len(
+                    ri!record.trim
+                  ) &amp; " characters."
+                )
+              ),
+              #"SYSTEM_SYSRULES_pickerFieldRecords"(
+                label: "Location",
+                labelPosition: if(
+                  ri!readOnly,
+                  "ADJACENT",
+                  "ABOVE"
+                ),
+                instructions: if(
+                  ri!readOnly,
+                  "",
+                  ""
+                ),
+                helpTooltip: if(
+                  ri!readOnly,
+                  "",
+                  ""
+                ),
+                placeholder: if(
+                  ri!readOnly,
+                  "",
+                  ""
+                ),
+                maxSelections: 10,
+                recordType: #"_a-0000e067-d58d-8000-9ba2-011c48011c48_297737",
+                value: 1,
+                saveInto: ri!record.dealerships,
+                required: not(
+                  ri!readOnly
+                ),
+                readOnly: ri!readOnly
+              )
+            }
+          )
+        }
+      ),
+      isCollapsible: true
+    ),
+    #"SYSTEM_SYSRULES_milestoneField"(
+      steps: {
+        "",
+        ""
+      }
+    )
+  }
+)</definition>
+        <namedTypedValue>
+            <name>record</name>
+            <type>
+                <name>V_Vehicle</name>
+                <namespace>urn:com:appian:types:V</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>creating</name>
+            <type>
+                <name>boolean</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>readOnly</name>
+            <type>
+                <name>boolean</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>documents</name>
+            <type>
+                <name>CollaborationDocument?list</name>
+                <namespace>http://www.appian.com/ae/types/2009</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>label</name>
+            <type>
+                <name>string</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+            <value/>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>deletedDocuments</name>
+            <type>
+                <name>CollaborationDocument?list</name>
+                <namespace>http://www.appian.com/ae/types/2009</namespace>
+            </type>
+        </namedTypedValue>
+        <metadataExpr></metadataExpr>
+        <preferredEditor>interface</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role inherit="true" allowForAll="false" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="administrators">
+            <users>
+                <userUuid>mwandama.mutanuka@perficient.com</userUuid>
+            </users>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <history>
+        <historyInfo versionUuid="_a-0000e067-d58d-8000-9ba2-011c48011c48_299481"/>
+    </history>
+</contentHaul>

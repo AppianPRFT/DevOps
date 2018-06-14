@@ -1,0 +1,1145 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <versionUuid>_a-0000e067-d58d-8000-9ba2-011c48011c48_308785</versionUuid>
+    <rule>
+        <name>VIM_VehicleIncentivesFeedDashboard</name>
+        <uuid>_a-0000dfd8-6941-8000-9ba2-011c48011c48_205463</uuid>
+        <description>Contains billboard icons for vehicles linking to incentives</description>
+        <parentUuid>d1151d0a-2a3e-4e80-b3b0-105a99496272</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>load(
+  local!toyotaUser: isusermemberofgroup(
+    loggedInUser(),
+    #"_a-0000e067-d58d-8000-9ba2-011c48011c48_282564"
+  ),
+  local!hasAccess: #"_a-0000e067-d58d-8000-9ba2-011c48011c48_288381"(),
+  local!map: false,
+  local!data: {
+    {
+      id: 1,
+      dealer: if(
+        local!hasAccess = "Toyota",
+        "2018 Toyota Avalon",
+        if(
+          local!hasAccess = "Volkswagen",
+          "2018 Audi A8",
+          if(
+            local!hasAccess = "Ford",
+            "2018 Ford Edge",
+            "2018 Audi A8"
+          )
+        )
+      ),
+      recordId:if(
+        local!hasAccess = "Toyota",
+        64,
+        if(
+          local!hasAccess = "Volkswagen",
+          0,
+          if(
+            local!hasAccess = "Ford",
+            143,
+            "2018 Audi A8"
+          )
+        )
+      ),
+      icon: if(
+        local!hasAccess = "Toyota",
+        document(
+          #"_a-0000e067-d58d-8000-9ba2-011c48011c48_297526",
+          "id"
+        ),
+        if(
+          local!hasAccess = "Volkswagen",
+          document(
+            #"_a-0000dfd8-6941-8000-9ba2-011c48011c48_189883",
+            "id"
+          ),
+          if(
+            local!hasAccess = "Ford",
+            todocument(
+              document(
+                #"_a-0000e067-d58d-8000-9ba2-011c48011c48_302131",
+                "id"
+              )
+            ),
+            document(
+              #"_a-0000dfd8-6941-8000-9ba2-011c48011c48_189883",
+              "id"
+            )
+          )
+        )
+      )
+    },
+    {
+      id: 2,
+      dealer: if(
+        local!hasAccess = "Toyota",
+        "2018 Toyota CHR",
+        if(
+          local!hasAccess = "Volkswagen",
+          "2018 Audi A4",
+          if(
+            local!hasAccess = "Ford",
+            "2018 Ford Fiesta",
+            "2018 Audi A8"
+          )
+        )
+      ),recordId:if(
+        local!hasAccess = "Toyota",
+        86,
+        if(
+          local!hasAccess = "Volkswagen",
+          0,
+          if(
+            local!hasAccess = "Ford",
+            146,
+            "2018 Audi A8"
+          )
+        )
+      ),
+      icon: if(
+        local!hasAccess = "Toyota",
+        document(
+          #"_a-0000e067-d58d-8000-9ba2-011c48011c48_297520",
+          "id"
+        ),
+        if(
+          local!hasAccess = "Volkswagen",
+          document(
+            #"_a-0000dfd8-6941-8000-9ba2-011c48011c48_206539",
+            "id"
+          ),
+          if(
+            local!hasAccess = "Ford",
+            document(
+              #"_a-0000e067-d58d-8000-9ba2-011c48011c48_302137",
+              "id"
+            ),
+            document(
+              #"_a-0000dfd8-6941-8000-9ba2-011c48011c48_206539",
+              "id"
+            )
+          )
+        )
+      )
+    },
+    {
+      id: 3,
+      dealer: if(
+        local!hasAccess = "Toyota",
+        "2018 Toyota Corolla",
+        if(
+          local!hasAccess = "Volkswagen",
+          "2018 Audi TT",
+          if(
+            local!hasAccess = "Ford",
+            "2018 Ford Fusion Hybrid",
+            "2018 Audi TT"
+          )
+        )
+      ),
+      recordId:if(
+        local!hasAccess = "Toyota",
+        100,
+        if(
+          local!hasAccess = "Volkswagen",
+          0,
+          if(
+            local!hasAccess = "Ford",
+            148,
+            "2018 Audi A8"
+          )
+        )
+      ),
+      icon: if(
+        local!hasAccess = "Toyota",
+        document(
+          #"_a-0000e067-d58d-8000-9ba2-011c48011c48_286296",
+          "id"
+        ),
+        if(
+          local!hasAccess = "Volkswagen",
+          document(
+            #"_a-0000dfd8-6941-8000-9ba2-011c48011c48_206557",
+            "id"
+          ),
+          if(
+            local!hasAccess = "Ford",
+            document(
+              #"_a-0000e067-d58d-8000-9ba2-011c48011c48_302149",
+              "id"
+            ),
+            document(
+              #"_a-0000dfd8-6941-8000-9ba2-011c48011c48_206557",
+              "id"
+            )
+          )
+        )
+      )
+    },
+    {
+      id: 4,
+      dealer: if(
+        local!hasAccess = "Toyota",
+        "2018 Toyota Prius",
+        if(
+          local!hasAccess = "Volkswagen",
+          "2018 Audi A3",
+          if(
+            local!hasAccess = "Ford",
+            "2018 Ford Focus SE",
+            "2018 Audi A3"
+          )
+        )
+      ),
+      recordId:if(
+        local!hasAccess = "Toyota",
+        89,
+        if(
+          local!hasAccess = "Volkswagen",
+          0,
+          if(
+            local!hasAccess = "Ford",
+            147,
+            "2018 Audi A8"
+          )
+        )
+      ),
+      icon: if(
+        local!hasAccess = "Toyota",
+        document(
+          #"_a-0000e067-d58d-8000-9ba2-011c48011c48_286302",
+          "id"
+        ),
+        if(
+          local!hasAccess = "Volkswagen",
+          document(
+            #"_a-0000dfd8-6941-8000-9ba2-011c48011c48_206545",
+            "id"
+          ),
+          if(
+            local!hasAccess = "Ford",
+            document(
+              #"_a-0000e067-d58d-8000-9ba2-011c48011c48_302143",
+              "id"
+            ),
+            document(
+              #"_a-0000dfd8-6941-8000-9ba2-011c48011c48_206545",
+              "id"
+            )
+          )
+        )
+      )
+    },
+    {
+      id: 5,
+      dealer: if(
+        local!hasAccess = "Toyota",
+        "2018 Toyota Sequoia",
+        if(
+          local!hasAccess = "Volkswagen",
+          "2018 VW Beetle",
+          if(
+            local!hasAccess = "Ford",
+            "2018 Ford Mustang",
+            "2018 VW Beetle"
+          )
+        )
+      ),
+      recordId:if(
+        local!hasAccess = "Toyota",
+        117,
+        if(
+          local!hasAccess = "Volkswagen",
+          0,
+          if(
+            local!hasAccess = "Ford",
+            149,
+            "2018 Audi A8"
+          )
+        )
+      ),
+      icon: if(
+        local!hasAccess = "Toyota",
+        document(
+          #"_a-0000e067-d58d-8000-9ba2-011c48011c48_297544",
+          "id"
+        ),
+        if(
+          local!hasAccess = "Volkswagen",
+          document(
+            #"_a-0000dfd8-6941-8000-9ba2-011c48011c48_206563",
+            "id"
+          ),
+          if(
+            local!hasAccess = "Ford",
+            todocument(
+              document(
+                #"_a-0000e067-d58d-8000-9ba2-011c48011c48_302261",
+                "id"
+              )
+            ),
+            document(
+              #"_a-0000dfd8-6941-8000-9ba2-011c48011c48_189883",
+              "id"
+            )
+          )
+        )
+      )
+    },
+    {
+      id: 6,
+      dealer: if(
+        local!hasAccess = "Toyota",
+        "2018 Toyota Sienna",
+        if(
+          local!hasAccess = "Volkswagen",
+          "2018 VW CC",
+          if(
+            local!hasAccess = "Ford",
+            "2018 Ford F-150",
+            "2018 VW CC"
+          )
+        )
+      ),
+      recordId:if(
+        local!hasAccess = "Toyota",
+        67,
+        if(
+          local!hasAccess = "Volkswagen",
+          0,
+          if(
+            local!hasAccess = "Ford",
+            152,
+            "2018 Audi A8"
+          )
+        )
+      ),
+      icon: if(
+        local!hasAccess = "Toyota",
+        document(
+          #"_a-0000e067-d58d-8000-9ba2-011c48011c48_297550",
+          "id"
+        ),
+        if(
+          local!hasAccess = "Volkswagen",
+          document(
+            #"_a-0000dfd8-6941-8000-9ba2-011c48011c48_206569",
+            "id"
+          ),
+          if(
+            local!hasAccess = "Ford",
+            todocument(
+              document(
+                #"_a-0000e067-d58d-8000-9ba2-011c48011c48_302243",
+                "id"
+              )
+            ),
+            document(
+              #"_a-0000dfd8-6941-8000-9ba2-011c48011c48_189883",
+              "id"
+            )
+          )
+        )
+      )
+    },
+    {
+      id: 7,
+      dealer: if(
+        local!hasAccess = "Toyota",
+        "2018 Toyota Tacoma",
+        if(
+          local!hasAccess = "Volkswagen",
+          "2018 VW Passat",
+          if(
+            local!hasAccess = "Ford",
+            "2018 Ford Expedition",
+            "2018 VW Passat"
+          )
+        )
+      ),
+      recordId:if(
+        local!hasAccess = "Toyota",
+        97,
+        if(
+          local!hasAccess = "Volkswagen",
+          0,
+          if(
+            local!hasAccess = "Ford",
+            152,
+            "2018 Audi A8"
+          )
+        )
+      ),
+      icon: if(
+        local!hasAccess = "Toyota",
+        document(
+          #"_a-0000e067-d58d-8000-9ba2-011c48011c48_297538",
+          "id"
+        ),
+        if(
+          local!hasAccess = "Volkswagen",
+          document(
+            #"_a-0000dfd8-6941-8000-9ba2-011c48011c48_206569",
+            "id"
+          ),
+          if(
+            local!hasAccess = "Ford",
+            todocument(
+              document(
+                #"_a-0000e067-d58d-8000-9ba2-011c48011c48_302395",
+                "id"
+              )
+            ),
+            document(
+              #"_a-0000dfd8-6941-8000-9ba2-011c48011c48_189883",
+              "id"
+            )
+          )
+        )
+      )
+    },
+    {
+      id: 8,
+      dealer: if(
+        local!hasAccess = "Toyota",
+        "2018 Toyota Yaris",
+        if(
+          local!hasAccess = "Volkswagen",
+          "2018 VW Touareg",
+          if(
+            local!hasAccess = "Ford",
+            "2018 Ford Super Duty",
+            "2018 VW Touareg"
+          )
+        )
+      ),
+      recordId:if(
+        local!hasAccess = "Toyota",
+        110,
+        if(
+          local!hasAccess = "Volkswagen",
+          0,
+          if(
+            local!hasAccess = "Ford",
+            "2018 Ford Edge",
+            "2018 Audi A8"
+          )
+        )
+      ),
+      icon: if(
+        local!hasAccess = "Toyota",
+        document(
+          #"_a-0000e067-d58d-8000-9ba2-011c48011c48_297532",
+          "id"
+        ),
+        if(
+          local!hasAccess = "Volkswagen",
+          document(
+            #"_a-0000e067-d58d-8000-9ba2-011c48011c48_297564",
+            "id"
+          ),
+          if(
+            local!hasAccess = "Ford",
+            todocument(
+              document(
+                #"_a-0000e067-d58d-8000-9ba2-011c48011c48_302389",
+                "id"
+              )
+            ),
+            document(
+              #"_a-0000dfd8-6941-8000-9ba2-011c48011c48_189883",
+              "id"
+            )
+          )
+        )
+      )
+    },
+    {
+      id: 9,
+      dealer: "2018 Lexus ES"
+    },
+    {
+      id: 10,
+      dealer: "2018 Lexus GS"
+    },
+    {
+      id: 11,
+      dealer: "2018 Lexus GX"
+    },
+    {
+      id: 12,
+      dealer: "2018 Lexus IS"
+    }
+  },
+  local!trim,
+  local!brand,
+  local!model,
+  local!make,
+  local!page: 1,
+  local!recordId: 2,
+  with(
+    if(
+      local!page = 1,
+      #"SYSTEM_SYSRULES_formLayout_v1"(
+        contents: {
+          #"SYSTEM_SYSRULES_boxLayout"(
+            label: "Vehicle Finder",
+            contents: {
+              #"SYSTEM_SYSRULES_columnsLayout"(
+                columns: {
+                  #"SYSTEM_SYSRULES_columnLayout"(
+                    contents: {
+                      #"SYSTEM_SYSRULES_dropdownField"(
+                        label: "Brand",
+                        readOnly: false,
+                        choiceLabels: if(
+                          local!hasAccess = "Toyota",
+                          {
+                            "Toyota",
+                            "Lexus"
+                          },
+                          if(
+                            local!hasAccess = "Volkswagen",
+                            {
+                              "Volkswagen",
+                              "Volkswagen"
+                            },
+                            if(
+                              local!hasAccess = "Ford",
+                              {
+                                "Ford"
+                              },
+                              {
+                                "You are not a member of a dealership"
+                              }
+                            )
+                          )
+                        ),
+                        choiceValues: if(
+                          local!hasAccess = "Toyota",
+                          {
+                            3,
+                            4
+                          },
+                          if(
+                            local!hasAccess = "Volkswagen",
+                            {
+                              1,
+                              2
+                            },
+                            if(
+                              local!hasAccess = "Ford",
+                              {
+                                5
+                              },
+                              {
+                                0
+                              }
+                            )
+                          )
+                        ),
+                        placeholderLabel: "Brand",
+                        value: local!brand,
+                        saveInto: local!brand
+                      )
+                    }
+                  ),
+                  #"SYSTEM_SYSRULES_columnLayout"(
+                    contents: {
+                      #"_a-0000dd0d-462c-8000-9ba2-011c48011c48_3690"(
+                        label: "Model",
+                        readOnly: false,
+                        value: local!model,
+                        saveInto: local!model
+                      ),
+                      
+                    }
+                  ),
+                  
+                }
+              )
+            },
+            style: "STANDARD"
+          ),
+          #"SYSTEM_SYSRULES_paragraphField"(
+            value: {},
+            readOnly: true
+          ),
+          {
+            if(
+              isnull(
+                local!brand
+              ),
+              #"SYSTEM_SYSRULES_columnsLayout"(
+                columns: {
+                  #"SYSTEM_SYSRULES_columnLayout"(
+                    contents: {
+                      #"_a-0000dfd8-6941-8000-9ba2-011c48011c48_206413"(
+                        image: todocument(
+                          local!data.icon[1]
+                        ),
+                        title: local!data.dealer[1],
+                        recordId: local!data.recordId[1],
+                        page: local!page,
+                        saveInto: local!recordId
+                      )
+                    }
+                  ),
+                  #"SYSTEM_SYSRULES_columnLayout"(
+                    contents: {
+                      #"_a-0000dfd8-6941-8000-9ba2-011c48011c48_206413"(
+                        image: todocument(
+                          local!data.icon[2]
+                        ),
+                        title: local!data.dealer[2],
+                        recordId: local!data.recordId[2],
+                        page: local!page,
+                        saveInto: local!recordId
+                      )
+                    }
+                  ),
+                  #"SYSTEM_SYSRULES_columnLayout"(
+                    contents: {
+                      #"_a-0000dfd8-6941-8000-9ba2-011c48011c48_206413"(
+                        image: todocument(
+                          local!data.icon[3]
+                        ),
+                        title: local!data.dealer[3],
+                        recordId: local!data.recordId[3],
+                        page: local!page,
+                        saveInto: local!recordId
+                      )
+                    }
+                  ),
+                  #"SYSTEM_SYSRULES_columnLayout"(
+                    contents: {
+                      #"_a-0000dfd8-6941-8000-9ba2-011c48011c48_206413"(
+                        image: todocument(
+                          local!data.icon[4]
+                        ),
+                        title: local!data.dealer[4],
+                        recordId: local!data.recordId[4],
+                        page: local!page,
+                        saveInto: local!recordId
+                      )
+                    }
+                  )
+                }
+              ),
+              if(
+                local!brand = 1,
+                #"SYSTEM_SYSRULES_columnsLayout"(
+                  columns: {
+                    #"SYSTEM_SYSRULES_columnLayout"(
+                      contents: {
+                        #"_a-0000dfd8-6941-8000-9ba2-011c48011c48_206413"(
+                          image: #"_a-0000dfd8-6941-8000-9ba2-011c48011c48_189883",
+                          title: local!data.dealer[1],
+                          recordId: 78,
+                          page: local!page,
+                          saveInto: local!recordId
+                        )
+                      }
+                    ),
+                    #"SYSTEM_SYSRULES_columnLayout"(
+                      contents: {
+                        #"_a-0000dfd8-6941-8000-9ba2-011c48011c48_206413"(
+                          image: #"_a-0000dfd8-6941-8000-9ba2-011c48011c48_206539",
+                          title: local!data.dealer[2],
+                          recordId: 7,
+                          page: local!page,
+                          saveInto: local!recordId
+                        )
+                      }
+                    ),
+                    #"SYSTEM_SYSRULES_columnLayout"(
+                      contents: {
+                        #"_a-0000dfd8-6941-8000-9ba2-011c48011c48_206413"(
+                          image: #"_a-0000dfd8-6941-8000-9ba2-011c48011c48_206545",
+                          title: local!data.dealer[3],
+                          recordId: 9,
+                          page: local!page,
+                          saveInto: local!recordId
+                        )
+                      }
+                    ),
+                    #"SYSTEM_SYSRULES_columnLayout"(
+                      contents: {
+                        #"_a-0000dfd8-6941-8000-9ba2-011c48011c48_206413"(
+                          image: #"_a-0000dfd8-6941-8000-9ba2-011c48011c48_206557",
+                          title: local!data.dealer[4],
+                          recordId: 8,
+                          page: local!page,
+                          saveInto: local!recordId
+                        )
+                      }
+                    )
+                  }
+                ),
+                if(
+                  local!brand = 3,
+                  {
+                    #"SYSTEM_SYSRULES_columnsLayout"(
+                      columns: {
+                        #"SYSTEM_SYSRULES_columnLayout"(
+                          contents: {
+                            #"_a-0000dfd8-6941-8000-9ba2-011c48011c48_206413"(
+                              image: if(
+                                local!toyotaUser,
+                                #"_a-0000e067-d58d-8000-9ba2-011c48011c48_297544",
+                                #"_a-0000dfd8-6941-8000-9ba2-011c48011c48_206563"
+                              ),
+                              title: local!data.dealer[5],
+                              recordId: if(
+                                local!toyotaUser,
+                                39,
+                                5
+                              ),
+                              page: local!page,
+                              saveInto: local!recordId
+                            )
+                          }
+                        ),
+                        #"SYSTEM_SYSRULES_columnLayout"(
+                          contents: {
+                            #"_a-0000dfd8-6941-8000-9ba2-011c48011c48_206413"(
+                              image: if(
+                                local!toyotaUser,
+                                #"_a-0000e067-d58d-8000-9ba2-011c48011c48_297550",
+                                #"_a-0000dfd8-6941-8000-9ba2-011c48011c48_206569"
+                              ),
+                              title: local!data.dealer[6],
+                              recordId: if(
+                                local!toyotaUser,
+                                38,
+                                3
+                              ),
+                              page: local!page,
+                              saveInto: local!recordId
+                            )
+                          }
+                        ),
+                        #"SYSTEM_SYSRULES_columnLayout"(
+                          contents: {
+                            #"_a-0000dfd8-6941-8000-9ba2-011c48011c48_206413"(
+                              image: if(
+                                local!toyotaUser,
+                                #"_a-0000e067-d58d-8000-9ba2-011c48011c48_297538",
+                                #"_a-0000dfd8-6941-8000-9ba2-011c48011c48_206569"
+                              ),
+                              title: local!data.dealer[7],
+                              recordId: if(
+                                local!toyotaUser,
+                                40,
+                                5
+                              ),
+                              page: local!page,
+                              saveInto: local!recordId
+                            )
+                          }
+                        ),
+                        #"SYSTEM_SYSRULES_columnLayout"(
+                          contents: {
+                            #"_a-0000dfd8-6941-8000-9ba2-011c48011c48_206413"(
+                              image: if(
+                                local!toyotaUser,
+                                #"_a-0000e067-d58d-8000-9ba2-011c48011c48_297532",
+                                #"_a-0000e067-d58d-8000-9ba2-011c48011c48_297564"
+                              ),
+                              title: local!data.dealer[8],
+                              recordId: if(
+                                local!toyotaUser,
+                                41,
+                                16
+                              ),
+                              page: local!page,
+                              saveInto: local!recordId
+                            )
+                          }
+                        )
+                      }
+                    ),
+                    #"SYSTEM_SYSRULES_columnsLayout"(
+                      columns: {
+                        #"SYSTEM_SYSRULES_columnLayout"(
+                          contents: {
+                            #"_a-0000dfd8-6941-8000-9ba2-011c48011c48_206413"(
+                              image: if(
+                                local!toyotaUser,
+                                #"_a-0000e067-d58d-8000-9ba2-011c48011c48_297526",
+                                #"_a-0000dfd8-6941-8000-9ba2-011c48011c48_189883"
+                              ),
+                              title: local!data.dealer[1],
+                              recordId: if(
+                                local!toyotaUser,
+                                35,
+                                1
+                              ),
+                              page: local!page,
+                              saveInto: local!recordId
+                            )
+                          }
+                        ),
+                        #"SYSTEM_SYSRULES_columnLayout"(
+                          contents: {
+                            #"_a-0000dfd8-6941-8000-9ba2-011c48011c48_206413"(
+                              image: if(
+                                local!toyotaUser,
+                                #"_a-0000e067-d58d-8000-9ba2-011c48011c48_297520",
+                                #"_a-0000dfd8-6941-8000-9ba2-011c48011c48_206539"
+                              ),
+                              title: local!data.dealer[2],
+                              recordId: if(
+                                local!toyotaUser,
+                                36,
+                                7
+                              ),
+                              page: local!page,
+                              saveInto: local!recordId
+                            )
+                          }
+                        ),
+                        #"SYSTEM_SYSRULES_columnLayout"(
+                          contents: {
+                            #"_a-0000dfd8-6941-8000-9ba2-011c48011c48_206413"(
+                              image: if(
+                                local!toyotaUser,
+                                #"_a-0000e067-d58d-8000-9ba2-011c48011c48_297514",
+                                #"_a-0000dfd8-6941-8000-9ba2-011c48011c48_206545"
+                              ),
+                              title: local!data.dealer[3],
+                              recordId: if(
+                                local!toyotaUser,
+                                32,
+                                9
+                              ),
+                              page: local!page,
+                              saveInto: local!recordId
+                            )
+                          }
+                        ),
+                        #"SYSTEM_SYSRULES_columnLayout"(
+                          contents: {
+                            #"_a-0000dfd8-6941-8000-9ba2-011c48011c48_206413"(
+                              image: if(
+                                local!toyotaUser,
+                                #"_a-0000e067-d58d-8000-9ba2-011c48011c48_297508",
+                                #"_a-0000dfd8-6941-8000-9ba2-011c48011c48_206557"
+                              ),
+                              title: local!data.dealer[4],
+                              recordId: if(
+                                local!toyotaUser,
+                                37,
+                                8
+                              ),
+                              page: local!page,
+                              saveInto: local!recordId
+                            )
+                          }
+                        )
+                      }
+                    )
+                  },
+                  {}
+                )
+              )
+            ),
+            /*This is it    */
+            /*            */
+            /*            */
+            /*            */
+            if(
+              isnull(
+                local!brand
+              ),
+              #"SYSTEM_SYSRULES_columnsLayout"(
+                columns: {
+                  #"SYSTEM_SYSRULES_columnLayout"(
+                    contents: {
+                      #"_a-0000dfd8-6941-8000-9ba2-011c48011c48_206413"(
+                        image: todocument(
+                          local!data.icon[5]
+                        ),
+                        title: local!data.dealer[5],
+                        recordId: local!data.recordId[5],
+                        page: local!page,
+                        saveInto: local!recordId
+                      )
+                    }
+                  ),
+                  #"SYSTEM_SYSRULES_columnLayout"(
+                    contents: {
+                      #"_a-0000dfd8-6941-8000-9ba2-011c48011c48_206413"(
+                        image: todocument(
+                          local!data.icon[6]
+                        ),
+                        title: local!data.dealer[6],
+                        recordId: local!data.recordId[6],
+                        page: local!page,
+                        saveInto: local!recordId
+                      )
+                    }
+                  ),
+                  #"SYSTEM_SYSRULES_columnLayout"(
+                    contents: {
+                      #"_a-0000dfd8-6941-8000-9ba2-011c48011c48_206413"(
+                        image: todocument(
+                          local!data.icon[7]
+                        ),
+                        title: local!data.dealer[7],
+                        recordId: local!data.recordId[7],
+                        page: local!page,
+                        saveInto: local!recordId
+                      )
+                    }
+                  ),
+                  #"SYSTEM_SYSRULES_columnLayout"(
+                    contents: {
+                      #"_a-0000dfd8-6941-8000-9ba2-011c48011c48_206413"(
+                        image: todocument(
+                          local!data.icon[8]
+                        ),
+                        title: local!data.dealer[8],
+                        recordId: local!data.recordId[8],
+                        page: local!page,
+                        saveInto: local!recordId
+                      )
+                    }
+                  )
+                }
+              ),
+              if(
+                local!brand = 2,
+                #"SYSTEM_SYSRULES_columnsLayout"(
+                  columns: {
+                    #"SYSTEM_SYSRULES_columnLayout"(
+                      contents: {
+                        #"_a-0000dfd8-6941-8000-9ba2-011c48011c48_206413"(
+                          image: #"_a-0000dfd8-6941-8000-9ba2-011c48011c48_206563",
+                          title: local!data.dealer[5],
+                          recordId: 5,
+                          page: local!page,
+                          saveInto: local!recordId
+                        )
+                      }
+                    ),
+                    #"SYSTEM_SYSRULES_columnLayout"(
+                      contents: {
+                        #"_a-0000dfd8-6941-8000-9ba2-011c48011c48_206413"(
+                          image: #"_a-0000dfd8-6941-8000-9ba2-011c48011c48_206569",
+                          title: local!data.dealer[6],
+                          recordId: 3,
+                          page: local!page,
+                          saveInto: local!recordId
+                        )
+                      }
+                    ),
+                    #"SYSTEM_SYSRULES_columnLayout"(
+                      contents: {
+                        #"_a-0000dfd8-6941-8000-9ba2-011c48011c48_206413"(
+                          image: #"_a-0000dfd8-6941-8000-9ba2-011c48011c48_206551",
+                          title: local!data.dealer[7],
+                          recordId: 5,
+                          page: local!page,
+                          saveInto: local!recordId
+                        )
+                      }
+                    ),
+                    #"SYSTEM_SYSRULES_columnLayout"(
+                      contents: {
+                        #"_a-0000dfd8-6941-8000-9ba2-011c48011c48_206413"(
+                          image: #"_a-0000e067-d58d-8000-9ba2-011c48011c48_297564",
+                          title: local!data.dealer[8],
+                          recordId: 16,
+                          page: local!page,
+                          saveInto: local!recordId
+                        )
+                      }
+                    )
+                  }
+                ),
+                  {}
+                  ),
+                if(
+                  local!brand = 4,
+                  #"SYSTEM_SYSRULES_columnsLayout"(
+                    columns: {
+                      #"SYSTEM_SYSRULES_columnLayout"(
+                        contents: {
+                          #"_a-0000dfd8-6941-8000-9ba2-011c48011c48_206413"(
+                            image: #"_a-0000e067-d58d-8000-9ba2-011c48011c48_297496",
+                            title: "2018 Lexus ES",
+                            recordId: 16,
+                            page: local!page,
+                            saveInto: local!recordId
+                          )
+                        }
+                      ),
+                      #"SYSTEM_SYSRULES_columnLayout"(
+                        contents: {
+                          #"_a-0000dfd8-6941-8000-9ba2-011c48011c48_206413"(
+                            image: #"_a-0000e067-d58d-8000-9ba2-011c48011c48_297490",
+                            title: "2018 Lexus GS",
+                            recordId: 17,
+                            page: local!page,
+                            saveInto: local!recordId
+                          )
+                        }
+                      ),
+                      #"SYSTEM_SYSRULES_columnLayout"(
+                        contents: {
+                          #"_a-0000dfd8-6941-8000-9ba2-011c48011c48_206413"(
+                            image: #"_a-0000e067-d58d-8000-9ba2-011c48011c48_297490",
+                            title: "2018 Lexus GX",
+                            recordId: 18,
+                            page: local!page,
+                            saveInto: local!recordId
+                          )
+                        }
+                      ),
+                      #"SYSTEM_SYSRULES_columnLayout"(
+                        contents: {
+                          #"_a-0000dfd8-6941-8000-9ba2-011c48011c48_206413"(
+                            image: #"_a-0000e067-d58d-8000-9ba2-011c48011c48_297478",
+                            title: "2018 Lexus IS",
+                            recordId: 19,
+                            page: local!page,
+                            saveInto: local!recordId
+                          )
+                        }
+                      )
+                    }
+                  ),
+                  {}
+                ),
+                if(
+                  local!brand = 5,
+                  #"SYSTEM_SYSRULES_columnsLayout"(
+                    columns: {
+                      #"SYSTEM_SYSRULES_columnLayout"(
+                        contents: {
+                          #"_a-0000dfd8-6941-8000-9ba2-011c48011c48_206413"(
+                            image: #"_a-0000e067-d58d-8000-9ba2-011c48011c48_297496",
+                            title: "2018 Lexus ES",
+                            recordId: 16,
+                            page: local!page,
+                            saveInto: local!recordId
+                          )
+                        }
+                      ),
+                      #"SYSTEM_SYSRULES_columnLayout"(
+                        contents: {
+                          #"_a-0000dfd8-6941-8000-9ba2-011c48011c48_206413"(
+                            image: #"_a-0000e067-d58d-8000-9ba2-011c48011c48_297490",
+                            title: "2018 Lexus GS",
+                            recordId: 17,
+                            page: local!page,
+                            saveInto: local!recordId
+                          )
+                        }
+                      ),
+                      #"SYSTEM_SYSRULES_columnLayout"(
+                        contents: {
+                          #"_a-0000dfd8-6941-8000-9ba2-011c48011c48_206413"(
+                            image: #"_a-0000e067-d58d-8000-9ba2-011c48011c48_297490",
+                            title: "2018 Lexus GX",
+                            recordId: 18,
+                            page: local!page,
+                            saveInto: local!recordId
+                          )
+                        }
+                      ),
+                      #"SYSTEM_SYSRULES_columnLayout"(
+                        contents: {
+                          #"_a-0000dfd8-6941-8000-9ba2-011c48011c48_206413"(
+                            image: #"_a-0000e067-d58d-8000-9ba2-011c48011c48_297478",
+                            title: "2018 Lexus IS",
+                            recordId: 19,
+                            page: local!page,
+                            saveInto: local!recordId
+                          )
+                        }
+                      )
+                    }
+                  ),
+                  {}
+                )
+              
+            )/*,*/
+            /*a!richTextDisplayField(*/
+            /*align: "RIGHT",*/
+            /*labelPosition: "COLLAPSED",*/
+            /*value: a!richTextItem(*/
+            /*text: "Next 8 --&gt;",*/
+            /*style: "SMALL",*/
+            /*link: a!dynamicLink(*/
+            /*label: "Claims History",*/
+            /*value: true,*/
+            /*saveInto: local!map*/
+            /*)*/
+            /*)*/
+            /*)*/
+            
+          }
+        }
+      ),
+      #"_a-0000dfd8-6941-8000-9ba2-011c48011c48_190539"(
+        local!recordId,
+        local!page
+      )
+    )
+  )
+)</definition>
+        <metadataExpr></metadataExpr>
+        <preferredEditor>interface</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role inherit="true" allowForAll="false" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="administrators">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <history>
+        <historyInfo versionUuid="_a-0000dfd8-6941-8000-9ba2-011c48011c48_207296"/>
+        <historyInfo versionUuid="_a-0000e067-d58d-8000-9ba2-011c48011c48_285169"/>
+        <historyInfo versionUuid="_a-0000e067-d58d-8000-9ba2-011c48011c48_286375"/>
+        <historyInfo versionUuid="_a-0000e044-c81a-8000-9ba2-011c48011c48_127967"/>
+        <historyInfo versionUuid="_a-0000e044-c81a-8000-9ba2-011c48011c48_128576"/>
+        <historyInfo versionUuid="_a-0000e067-d58d-8000-9ba2-011c48011c48_288015"/>
+        <historyInfo versionUuid="_a-0000e067-d58d-8000-9ba2-011c48011c48_288027"/>
+        <historyInfo versionUuid="_a-0000e067-d58d-8000-9ba2-011c48011c48_289261"/>
+        <historyInfo versionUuid="_a-0000e067-d58d-8000-9ba2-011c48011c48_302554"/>
+        <historyInfo versionUuid="_a-0000e067-d58d-8000-9ba2-011c48011c48_308785"/>
+    </history>
+</contentHaul>

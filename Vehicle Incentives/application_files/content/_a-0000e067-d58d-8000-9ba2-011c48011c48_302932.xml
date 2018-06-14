@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <versionUuid>_a-0000e067-d58d-8000-9ba2-011c48011c48_302953</versionUuid>
+    <rule>
+        <name>VIM_SLA_Report_Form</name>
+        <uuid>_a-0000e067-d58d-8000-9ba2-011c48011c48_302932</uuid>
+        <description>Form containing the report information</description>
+        <parentUuid>d1151d0a-2a3e-4e80-b3b0-105a99496272</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>load(
+  local!recordId,
+  local!selectedType,
+  local!selectedMilestone,
+  local!totalCount:0,
+  with(
+    #"SYSTEM_SYSRULES_dashboardLayout_v1"(
+      contents: {
+        #"SYSTEM_SYSRULES_billboardLayout"(
+          backgroundColor: "#619ed6",
+          overlayPositionBar: "BOTTOM",
+          overlayStyle: "DARK",
+          overlayContents: {
+            #"SYSTEM_SYSRULES_columnsLayout"(
+              columns: {
+                #"SYSTEM_SYSRULES_columnLayout"(
+                  contents: {
+                    #"SYSTEM_SYSRULES_richTextDisplayField"(
+                      labelPosition: "COLLAPSED",
+                      value: {
+                        #"SYSTEM_SYSRULES_richTextItem"(
+                          text: "Service Level Agreement Summary",
+                          style: "LARGE"
+                        )
+                      }
+                    )
+                  }
+                ),
+                #"SYSTEM_SYSRULES_columnLayout"(
+                  contents: {
+                    #"SYSTEM_SYSRULES_columnsLayout"(
+                      columns: {
+                        #"SYSTEM_SYSRULES_columnLayout"(
+                          contents: {
+                            #"SYSTEM_SYSRULES_richTextDisplayField"(
+                              label: "Total SLA's",
+                              value: #"SYSTEM_SYSRULES_richTextItem"(
+                                text: local!totalCount/*count(*/
+                                /*rule!DRF_GetAllDocumentChangeRequests()*/
+                                /*)*/
+                                ,
+                                style: "MEDIUM"
+                              )
+                            )
+                          }
+                        ),
+                        
+                      },
+                      alignVertical: "TOP"
+                    )
+                  }
+                )
+              },
+              alignVertical: "MIDDLE"
+            )
+          },
+          height: "SHORT"
+        ),
+        #"SYSTEM_SYSRULES_columnsLayout"(
+          columns: {
+            #"SYSTEM_SYSRULES_columnLayout"(
+              contents: {
+                #"SYSTEM_SYSRULES_textField"(
+                  readOnly: true
+                ),
+                #"_a-0000e067-d58d-8000-9ba2-011c48011c48_302938"(
+                  local!recordId,
+                  local!selectedType,
+                  local!selectedMilestone,
+                  local!totalCount
+                )
+              }
+            )
+          }
+        ),
+        #"_a-0000e067-d58d-8000-9ba2-011c48011c48_302944"(
+          local!selectedMilestone,
+          local!selectedType
+        )
+      }
+    )
+  )
+)</definition>
+        <metadataExpr></metadataExpr>
+        <preferredEditor>interface</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role inherit="true" allowForAll="false" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="administrators">
+            <users>
+                <userUuid>samuel.bruns@perficient.com</userUuid>
+            </users>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <history>
+        <historyInfo versionUuid="_a-0000e067-d58d-8000-9ba2-011c48011c48_302953"/>
+    </history>
+</contentHaul>

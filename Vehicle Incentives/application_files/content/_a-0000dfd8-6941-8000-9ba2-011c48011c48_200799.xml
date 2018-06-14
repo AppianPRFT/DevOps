@@ -1,0 +1,706 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <versionUuid>_a-0000e067-d58d-8000-9ba2-011c48011c48_298959</versionUuid>
+    <rule>
+        <name>VIM_DealershipLocations</name>
+        <uuid>_a-0000dfd8-6941-8000-9ba2-011c48011c48_200799</uuid>
+        <description>Locations Page for Dealership</description>
+        <parentUuid>d1151d0a-2a3e-4e80-b3b0-105a99496272</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>load(
+  local!map: false,
+  local!data: {
+    {
+      id: 1,
+      dealer: "Ourismon Volkswagen of Rockville",
+      address: "801 Rockville Pike, Rockville, MD 20852",
+      zip: 20852
+    },
+    {
+      id: 2,
+      dealer: "Ourismon Volkswagen of Chantilly",
+      address: "4135 Auto Park Cir, Chantilly, VA 20151",
+      zip: 20151
+    },
+    {
+      id: 3,
+      dealer: "Ourismon Volkswagen of Bowie",
+      address: "3371 Laurel Fort Meade Road, Volkswagen, Laurel, MD 20724",
+      zip: 20724
+    },
+    {
+      id: 4,
+      dealer: "Ourismon Volkswagen of Bethesda",
+      address: "7001 Arlington Rd, Bethesda, MD 20814",
+      zip: 20814
+    }
+  },
+  local!zip,
+  local!distance,
+  local!address,
+  local!state,
+  #"SYSTEM_SYSRULES_formLayout_v1"(
+    label: "Ourismon Volkswagen Dealership Locations",
+    contents: {
+      #"SYSTEM_SYSRULES_boxLayout"(
+        label: "Location Finder",
+        contents: {
+          #"SYSTEM_SYSRULES_columnsLayout"(
+            columns: {
+              #"SYSTEM_SYSRULES_columnLayout"(
+                contents: {
+                  #"SYSTEM_SYSRULES_dropdownField"(
+                    label: "Distance (Miles)",
+                    readOnly: false,
+                    choiceLabels: {
+                      "5",
+                      "10",
+                      "15",
+                      "20",
+                      "50+"
+                    },
+                    choiceValues: {
+                      5,
+                      10,
+                      15,
+                      20,
+                      50
+                    },
+                    placeholderLabel: "Select Distance",
+                    value: local!distance,
+                    saveInto: local!distance
+                  )
+                }
+              ),
+              #"SYSTEM_SYSRULES_columnLayout"(
+                contents: {
+                  #"_a-0000dd0d-462c-8000-9ba2-011c48011c48_3690"(
+                    label: "Address",
+                    readOnly: false,
+                    value: local!address,
+                    saveInto: local!address
+                  ),
+                  
+                }
+              ),
+              #"SYSTEM_SYSRULES_columnLayout"(
+                contents: {
+                  #"_a-0000dd0d-462c-8000-9ba2-011c48011c48_3690"(
+                    label: "State",
+                    readOnly: false,
+                    value: local!state,
+                    saveInto: local!state
+                  ),
+                  
+                }
+              ),
+              #"SYSTEM_SYSRULES_columnLayout"(
+                contents: {
+                  #"_a-0000dd0d-462c-8000-9ba2-011c48011c48_3690"(
+                    label: "Zip Code",
+                    readOnly: false,
+                    value: local!zip,
+                    saveInto: local!zip
+                  ),
+                  #"SYSTEM_SYSRULES_richTextDisplayField"(
+                    align: "RIGHT",
+                    labelPosition: "COLLAPSED",
+                    value: #"SYSTEM_SYSRULES_richTextItem"(
+                      text: "Search",
+                      style: "STRONG",
+                      link: #"SYSTEM_SYSRULES_dynamicLink"(
+                        label: "Claims History",
+                        value: true,
+                        saveInto: local!map
+                      )
+                    )
+                  )
+                }
+              )
+            }
+          )
+        },
+        style: "STANDARD"
+      ),
+      #"SYSTEM_SYSRULES_paragraphField"(
+        value: {},
+        readOnly: true
+      ),
+      if(
+        local!map = false,
+        {},
+        {
+          #"SYSTEM_SYSRULES_columnsLayout"(
+            columns: {
+              #"SYSTEM_SYSRULES_columnLayout"(
+                contents: {
+                  #"SYSTEM_SYSRULES_billboardLayout"(
+                    overlayPositionBar: "BOTTOM",
+                    overlayContents: {
+                      #"SYSTEM_SYSRULES_columnsLayout"(
+                        columns: {
+                          #"SYSTEM_SYSRULES_columnLayout"(
+                            contents: {
+                              #"SYSTEM_SYSRULES_richTextDisplayField"(
+                                labelPosition: "ABOVE",
+                                value: #"SYSTEM_SYSRULES_richTextItem"(
+                                  text: local!data.dealer[1],
+                                  style: "HEADER_MEDIUM"
+                                )
+                              ),
+                              #"SYSTEM_SYSRULES_richTextDisplayField"(
+                                label: "Label",
+                                labelPosition: "COLLAPSED",
+                                value: {
+                                  #"SYSTEM_SYSRULES_richTextItem"(
+                                    text: "#1 Ranked Car Providers in the World",
+                                    style: "EMPHASIS"
+                                  )
+                                }
+                              )
+                            }
+                          ),
+                          #"SYSTEM_SYSRULES_columnLayout"(
+                            contents: {
+                              #"SYSTEM_SYSRULES_richTextDisplayField"(
+                                label: "Contact Information",
+                                value: {
+                                  #"SYSTEM_SYSRULES_richTextImage"(
+                                    image: #"SYSTEM_SYSRULES_documentImage"(
+                                      document: #"_a-0000e067-d58d-8000-9ba2-011c48011c48_284386"
+                                    )
+                                  ),
+                                  #"SYSTEM_SYSRULES_richTextItem"(
+                                    text: #"SYSTEM_SYSRULES_richTextItem"(
+                                      text: proper(
+                                        local!data.address[1]
+                                      ) &amp; proper(
+                                        char(
+                                          10
+                                        )
+                                      ),
+                                      style: "STRONG"
+                                    ),
+                                    style: "EMPHASIS"
+                                  ),
+                                  #"SYSTEM_SYSRULES_richTextImage"(
+                                    image: #"SYSTEM_SYSRULES_documentImage"(
+                                      document: #"_a-0000e067-d58d-8000-9ba2-011c48011c48_284401"
+                                    )
+                                  ),
+                                  #"SYSTEM_SYSRULES_richTextItem"(
+                                    text: #"SYSTEM_SYSRULES_richTextItem"(
+                                      text: "(" &amp; left(
+                                        1234567890,
+                                        3
+                                      ) &amp; ")" &amp; " " &amp; mid(
+                                        1234567890,
+                                        4,
+                                        3
+                                      ) &amp; "-" &amp; right(
+                                        1234567890,
+                                        4
+                                      ) &amp; char(
+                                        10
+                                      ),
+                                      style: "STRONG"
+                                    ),
+                                    style: "EMPHASIS"
+                                  ),
+                                  #"SYSTEM_SYSRULES_richTextImage"(
+                                    image: #"SYSTEM_SYSRULES_documentImage"(
+                                      document: #"_a-0000e067-d58d-8000-9ba2-011c48011c48_284380"
+                                    )
+                                  ),
+                                  #"SYSTEM_SYSRULES_richTextItem"(
+                                    text: #"SYSTEM_SYSRULES_richTextItem"(
+                                      text: stripwith(
+                                        "Jeremychen",
+                                        " "
+                                      ) &amp; "@gmail.com",
+                                      style: "STRONG"
+                                    ),
+                                    style: "EMPHASIS"
+                                  )
+                                }
+                              )
+                            }
+                          ),
+                          #"SYSTEM_SYSRULES_columnLayout"(
+                            contents: {
+                              #"SYSTEM_SYSRULES_richTextDisplayField"(
+                                label: "Dealership Number",
+                                value: #"SYSTEM_SYSRULES_richTextItem"(
+                                  text: #"SYSTEM_SYSRULES_richTextItem"(
+                                    text: "1234567890",
+                                    style: "STRONG"
+                                  ),
+                                  style: "POSITIVE"
+                                )
+                              ),
+                              #"SYSTEM_SYSRULES_richTextDisplayField"(
+                                label: "Provider Since",
+                                value: 1846
+                              )
+                            }
+                          ),
+                          
+                        },
+                        alignVertical: "MIDDLE"
+                      )
+                    }
+                  )
+                }
+              ),
+              #"SYSTEM_SYSRULES_columnLayout"(
+                contents: {
+                  #"_a-0000dfd8-6941-8000-9ba2-011c48011c48_200861"(
+                    local!data.address[1],
+                    local!data.zip[1]
+                  )
+                }
+              )
+            }
+          ),
+          #"SYSTEM_SYSRULES_columnsLayout"(
+            columns: {
+              #"SYSTEM_SYSRULES_columnLayout"(
+                contents: {
+                  #"SYSTEM_SYSRULES_billboardLayout"(
+                    overlayPositionBar: "BOTTOM",
+                    overlayContents: {
+                      #"SYSTEM_SYSRULES_columnsLayout"(
+                        columns: {
+                          #"SYSTEM_SYSRULES_columnLayout"(
+                            contents: {
+                              #"SYSTEM_SYSRULES_richTextDisplayField"(
+                                labelPosition: "ABOVE",
+                                value: #"SYSTEM_SYSRULES_richTextItem"(
+                                  text: "Ourismon Volkswagen of Chantilly",
+                                  style: "HEADER_MEDIUM"
+                                )
+                              ),
+                              #"SYSTEM_SYSRULES_richTextDisplayField"(
+                                label: "Label",
+                                labelPosition: "COLLAPSED",
+                                value: {
+                                  #"SYSTEM_SYSRULES_richTextItem"(
+                                    text: "#1 Ranked Car Providers in the World",
+                                    style: "EMPHASIS"
+                                  )
+                                }
+                              )
+                            }
+                          ),
+                          #"SYSTEM_SYSRULES_columnLayout"(
+                            contents: {
+                              #"SYSTEM_SYSRULES_richTextDisplayField"(
+                                label: "Contact Information",
+                                value: {
+                                  #"SYSTEM_SYSRULES_richTextImage"(
+                                    image: #"SYSTEM_SYSRULES_documentImage"(
+                                      document: #"_a-0000e067-d58d-8000-9ba2-011c48011c48_284386"
+                                    )
+                                  ),
+                                  #"SYSTEM_SYSRULES_richTextItem"(
+                                    text: #"SYSTEM_SYSRULES_richTextItem"(
+                                      text: proper(
+                                        "4135 Auto Park Cir, Chantilly, VA 20151"
+                                      ) &amp; proper(
+                                        char(
+                                          10
+                                        )
+                                      ),
+                                      style: "STRONG"
+                                    ),
+                                    style: "EMPHASIS"
+                                  ),
+                                  #"SYSTEM_SYSRULES_richTextImage"(
+                                    image: #"SYSTEM_SYSRULES_documentImage"(
+                                      document: #"_a-0000e067-d58d-8000-9ba2-011c48011c48_284401"
+                                    )
+                                  ),
+                                  #"SYSTEM_SYSRULES_richTextItem"(
+                                    text: #"SYSTEM_SYSRULES_richTextItem"(
+                                      text: "(" &amp; left(
+                                        1234567890,
+                                        3
+                                      ) &amp; ")" &amp; " " &amp; mid(
+                                        1234567890,
+                                        4,
+                                        3
+                                      ) &amp; "-" &amp; right(
+                                        1234567890,
+                                        4
+                                      ) &amp; char(
+                                        10
+                                      ),
+                                      style: "STRONG"
+                                    ),
+                                    style: "EMPHASIS"
+                                  ),
+                                  #"SYSTEM_SYSRULES_richTextImage"(
+                                    image: #"SYSTEM_SYSRULES_documentImage"(
+                                      document: #"_a-0000e067-d58d-8000-9ba2-011c48011c48_284380"
+                                    )
+                                  ),
+                                  #"SYSTEM_SYSRULES_richTextItem"(
+                                    text: #"SYSTEM_SYSRULES_richTextItem"(
+                                      text: stripwith(
+                                        "Jeremychen",
+                                        " "
+                                      ) &amp; "@gmail.com",
+                                      style: "STRONG"
+                                    ),
+                                    style: "EMPHASIS"
+                                  )
+                                }
+                              )
+                            }
+                          ),
+                          #"SYSTEM_SYSRULES_columnLayout"(
+                            contents: {
+                              #"SYSTEM_SYSRULES_richTextDisplayField"(
+                                label: "Dealership Number",
+                                value: #"SYSTEM_SYSRULES_richTextItem"(
+                                  text: #"SYSTEM_SYSRULES_richTextItem"(
+                                    text: "1234567890",
+                                    style: "STRONG"
+                                  ),
+                                  style: "POSITIVE"
+                                )
+                              ),
+                              #"SYSTEM_SYSRULES_richTextDisplayField"(
+                                label: "Provider Since",
+                                value: 1846
+                              )
+                            }
+                          )
+                        },
+                        alignVertical: "MIDDLE"
+                      )
+                    }
+                  )
+                }
+              ),
+              #"SYSTEM_SYSRULES_columnLayout"(
+                contents: {
+                  #"_a-0000dfd8-6941-8000-9ba2-011c48011c48_200861"(
+                    local!data.address[2],
+                    local!data.zip[2]
+                  )
+                }
+              )
+            }
+          ),
+          #"SYSTEM_SYSRULES_columnsLayout"(
+            columns: {
+              #"SYSTEM_SYSRULES_columnLayout"(
+                contents: {
+                  #"SYSTEM_SYSRULES_billboardLayout"(
+                    overlayPositionBar: "BOTTOM",
+                    overlayContents: {
+                      #"SYSTEM_SYSRULES_columnsLayout"(
+                        columns: {
+                          #"SYSTEM_SYSRULES_columnLayout"(
+                            contents: {
+                              #"SYSTEM_SYSRULES_richTextDisplayField"(
+                                labelPosition: "ABOVE",
+                                value: #"SYSTEM_SYSRULES_richTextItem"(
+                                  text: "Ourismon Volkswagen of Bowie",
+                                  style: "HEADER_MEDIUM"
+                                )
+                              ),
+                              #"SYSTEM_SYSRULES_richTextDisplayField"(
+                                label: "Label",
+                                labelPosition: "COLLAPSED",
+                                value: {
+                                  #"SYSTEM_SYSRULES_richTextItem"(
+                                    text: "#1 Ranked Car Providers in the World",
+                                    style: "EMPHASIS"
+                                  )
+                                }
+                              )
+                            }
+                          ),
+                          #"SYSTEM_SYSRULES_columnLayout"(
+                            contents: {
+                              #"SYSTEM_SYSRULES_richTextDisplayField"(
+                                label: "Contact Information",
+                                value: {
+                                  #"SYSTEM_SYSRULES_richTextImage"(
+                                    image: #"SYSTEM_SYSRULES_documentImage"(
+                                      document: #"_a-0000e067-d58d-8000-9ba2-011c48011c48_284386"
+                                    )
+                                  ),
+                                  #"SYSTEM_SYSRULES_richTextItem"(
+                                    text: #"SYSTEM_SYSRULES_richTextItem"(
+                                      text: proper(
+                                        "3371 Laurel Fort Meade Road, Volkswagen, Laurel, MD 20724"
+                                      ) &amp; proper(
+                                        char(
+                                          10
+                                        )
+                                      ),
+                                      style: "STRONG"
+                                    ),
+                                    style: "EMPHASIS"
+                                  ),
+                                  #"SYSTEM_SYSRULES_richTextImage"(
+                                    image: #"SYSTEM_SYSRULES_documentImage"(
+                                      document: #"_a-0000e067-d58d-8000-9ba2-011c48011c48_284401"
+                                    )
+                                  ),
+                                  #"SYSTEM_SYSRULES_richTextItem"(
+                                    text: #"SYSTEM_SYSRULES_richTextItem"(
+                                      text: "(" &amp; left(
+                                        1234567890,
+                                        3
+                                      ) &amp; ")" &amp; " " &amp; mid(
+                                        1234567890,
+                                        4,
+                                        3
+                                      ) &amp; "-" &amp; right(
+                                        1234567890,
+                                        4
+                                      ) &amp; char(
+                                        10
+                                      ),
+                                      style: "STRONG"
+                                    ),
+                                    style: "EMPHASIS"
+                                  ),
+                                  #"SYSTEM_SYSRULES_richTextImage"(
+                                    image: #"SYSTEM_SYSRULES_documentImage"(
+                                      document: #"_a-0000e067-d58d-8000-9ba2-011c48011c48_284380"
+                                    )
+                                  ),
+                                  #"SYSTEM_SYSRULES_richTextItem"(
+                                    text: #"SYSTEM_SYSRULES_richTextItem"(
+                                      text: stripwith(
+                                        "Jeremychen",
+                                        " "
+                                      ) &amp; "@gmail.com",
+                                      style: "STRONG"
+                                    ),
+                                    style: "EMPHASIS"
+                                  )
+                                }
+                              )
+                            }
+                          ),
+                          #"SYSTEM_SYSRULES_columnLayout"(
+                            contents: {
+                              #"SYSTEM_SYSRULES_richTextDisplayField"(
+                                label: "Dealership Number",
+                                value: #"SYSTEM_SYSRULES_richTextItem"(
+                                  text: #"SYSTEM_SYSRULES_richTextItem"(
+                                    text: "1234567890",
+                                    style: "STRONG"
+                                  ),
+                                  style: "POSITIVE"
+                                )
+                              ),
+                              #"SYSTEM_SYSRULES_richTextDisplayField"(
+                                label: "Provider Since",
+                                value: 1846
+                              )
+                            }
+                          )
+                        },
+                        alignVertical: "MIDDLE"
+                      )
+                    }
+                  )
+                }
+              ),
+              #"SYSTEM_SYSRULES_columnLayout"(
+                contents: {
+                  #"_a-0000dfd8-6941-8000-9ba2-011c48011c48_200861"(
+                    local!data.address[3],
+                    local!data.zip[3]
+                  )
+                }
+              )
+            }
+          ),
+          #"SYSTEM_SYSRULES_columnsLayout"(
+            columns: {
+              #"SYSTEM_SYSRULES_columnLayout"(
+                contents: {
+                  #"SYSTEM_SYSRULES_billboardLayout"(
+                    overlayPositionBar: "BOTTOM",
+                    overlayContents: {
+                      #"SYSTEM_SYSRULES_columnsLayout"(
+                        columns: {
+                          #"SYSTEM_SYSRULES_columnLayout"(
+                            contents: {
+                              #"SYSTEM_SYSRULES_richTextDisplayField"(
+                                labelPosition: "ABOVE",
+                                value: #"SYSTEM_SYSRULES_richTextItem"(
+                                  text: "Ourismon Volkswagen of Bethesda",
+                                  style: "HEADER_MEDIUM"
+                                )
+                              ),
+                              #"SYSTEM_SYSRULES_richTextDisplayField"(
+                                label: "Label",
+                                labelPosition: "COLLAPSED",
+                                value: {
+                                  #"SYSTEM_SYSRULES_richTextItem"(
+                                    text: "#1 Ranked Car Providers in the World",
+                                    style: "EMPHASIS"
+                                  )
+                                }
+                              )
+                            }
+                          ),
+                          #"SYSTEM_SYSRULES_columnLayout"(
+                            contents: {
+                              #"SYSTEM_SYSRULES_richTextDisplayField"(
+                                label: "Contact Information",
+                                value: {
+                                  #"SYSTEM_SYSRULES_richTextImage"(
+                                    image: #"SYSTEM_SYSRULES_documentImage"(
+                                      document: #"_a-0000e067-d58d-8000-9ba2-011c48011c48_284386"
+                                    )
+                                  ),
+                                  #"SYSTEM_SYSRULES_richTextItem"(
+                                    text: #"SYSTEM_SYSRULES_richTextItem"(
+                                      text: proper(
+                                        "7001 Arlington Rd, Bethesda, MD 20814"
+                                      ) &amp; proper(
+                                        char(
+                                          10
+                                        )
+                                      ),
+                                      style: "STRONG"
+                                    ),
+                                    style: "EMPHASIS"
+                                  ),
+                                  #"SYSTEM_SYSRULES_richTextImage"(
+                                    image: #"SYSTEM_SYSRULES_documentImage"(
+                                      document: #"_a-0000e067-d58d-8000-9ba2-011c48011c48_284401"
+                                    )
+                                  ),
+                                  #"SYSTEM_SYSRULES_richTextItem"(
+                                    text: #"SYSTEM_SYSRULES_richTextItem"(
+                                      text: "(" &amp; left(
+                                        1234567890,
+                                        3
+                                      ) &amp; ")" &amp; " " &amp; mid(
+                                        1234567890,
+                                        4,
+                                        3
+                                      ) &amp; "-" &amp; right(
+                                        1234567890,
+                                        4
+                                      ) &amp; char(
+                                        10
+                                      ),
+                                      style: "STRONG"
+                                    ),
+                                    style: "EMPHASIS"
+                                  ),
+                                  #"SYSTEM_SYSRULES_richTextImage"(
+                                    image: #"SYSTEM_SYSRULES_documentImage"(
+                                      document: #"_a-0000e067-d58d-8000-9ba2-011c48011c48_284380"
+                                    )
+                                  ),
+                                  #"SYSTEM_SYSRULES_richTextItem"(
+                                    text: #"SYSTEM_SYSRULES_richTextItem"(
+                                      text: stripwith(
+                                        "Jeremychen",
+                                        " "
+                                      ) &amp; "@gmail.com",
+                                      style: "STRONG"
+                                    ),
+                                    style: "EMPHASIS"
+                                  )
+                                }
+                              )
+                            }
+                          ),
+                          #"SYSTEM_SYSRULES_columnLayout"(
+                            contents: {
+                              #"SYSTEM_SYSRULES_richTextDisplayField"(
+                                label: "Dealership Number",
+                                value: #"SYSTEM_SYSRULES_richTextItem"(
+                                  text: #"SYSTEM_SYSRULES_richTextItem"(
+                                    text: "1234567890",
+                                    style: "STRONG"
+                                  ),
+                                  style: "POSITIVE"
+                                )
+                              ),
+                              #"SYSTEM_SYSRULES_richTextDisplayField"(
+                                label: "Provider Since",
+                                value: 1846
+                              )
+                            }
+                          )
+                        },
+                        alignVertical: "MIDDLE"
+                      )
+                    }
+                  )
+                }
+              ),
+              #"SYSTEM_SYSRULES_columnLayout"(
+                contents: {
+                  #"_a-0000dfd8-6941-8000-9ba2-011c48011c48_200861"(
+                    local!data.address[4],
+                    local!data.zip[4]
+                  )
+                }
+              )
+            }
+          )
+        }
+      )
+    }
+  )
+)</definition>
+        <metadataExpr></metadataExpr>
+        <preferredEditor>interface</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role inherit="true" allowForAll="false" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="administrators">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <history>
+        <historyInfo versionUuid="_a-0000dfd8-6941-8000-9ba2-011c48011c48_201635"/>
+        <historyInfo versionUuid="_a-0000e067-d58d-8000-9ba2-011c48011c48_284431"/>
+        <historyInfo versionUuid="_a-0000e067-d58d-8000-9ba2-011c48011c48_298959"/>
+    </history>
+</contentHaul>

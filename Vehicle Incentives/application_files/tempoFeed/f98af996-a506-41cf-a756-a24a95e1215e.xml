@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<tempoFeedHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <versionUuid>00584d9d-aa7c-4a61-b6fe-59dd4e13a942</versionUuid>
+    <tempoFeed>
+        <uuid>f98af996-a506-41cf-a756-a24a95e1215e</uuid>
+        <name>Vehicle Incentives Management</name>
+        <description>Feed for updates about Incentives</description>
+        <showInCatalog>true</showInCatalog>
+        <systemFeed>false</systemFeed>
+    </tempoFeed>
+    <roleMap>
+        <role name="administrator">
+            <users/>
+            <groups>
+                <groupUuid>_e-0000e067-d54a-8000-9aee-01075c01075c_285</groupUuid>
+            </groups>
+        </role>
+    </roleMap>
+    <history>
+        <historyInfo versionUuid="5097f917-ab7b-4208-96e5-ea511ef2308d"/>
+        <historyInfo versionUuid="00584d9d-aa7c-4a61-b6fe-59dd4e13a942"/>
+    </history>
+</tempoFeedHaul>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<tempoReportHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <versionUuid>ce172622-b5a0-4aba-8891-65c51c8ab663</versionUuid>
+    <tempoReport a:uuid="c03d686f-5c9a-4cbf-b149-2e9da36a0724" name="Dealership Sales Breakdown">
+        <a:description>Breakdown of Sales by Region, Area, and Dealership</a:description>
+        <a:uiExpr>=#"_a-0000dfd8-6941-8000-9ba2-011c48011c48_204718"()</a:uiExpr>
+        <a:urlStub>-QfVSw</a:urlStub>
+    </tempoReport>
+    <roleMap>
+        <role name="report_administrator">
+            <users/>
+            <groups>
+                <groupUuid>_e-0000e067-d54a-8000-9aee-01075c01075c_285</groupUuid>
+            </groups>
+        </role>
+        <role name="report_viewer">
+            <users/>
+            <groups>
+                <groupUuid>_e-0000e067-d54a-8000-9aee-01075c01075c_289</groupUuid>
+            </groups>
+        </role>
+    </roleMap>
+    <history>
+        <historyInfo versionUuid="00ba7333-9d21-49ad-8e61-d3d7201782e9"/>
+        <historyInfo versionUuid="ce172622-b5a0-4aba-8891-65c51c8ab663"/>
+    </history>
+</tempoReportHaul>

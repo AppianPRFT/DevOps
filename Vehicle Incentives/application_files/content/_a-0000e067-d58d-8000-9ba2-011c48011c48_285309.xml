@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <versionUuid>_a-0000e067-d58d-8000-9ba2-011c48011c48_308827</versionUuid>
+    <rule>
+        <name>VIM_AuditSLAReport</name>
+        <uuid>_a-0000e067-d58d-8000-9ba2-011c48011c48_285309</uuid>
+        <description>Contains static sla of audit tasks for the incentives administration site</description>
+        <parentUuid>d1151d0a-2a3e-4e80-b3b0-105a99496272</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>#"SYSTEM_SYSRULES_sectionLayout_v1"(
+  label: "My Daily Performance",
+  contents: #"SYSTEM_SYSRULES_barChartField"(
+    categories: {
+      "Audit Review",
+      "Exceptions Review"
+    },
+    series: {
+      #"SYSTEM_SYSRULES_chartSeries"(
+        label: "Above Average",
+        data: {
+          19,
+          8
+        },
+        color: "GREEN"
+      ),
+      #"SYSTEM_SYSRULES_chartSeries"(
+        label: "Met SLA",
+        data: {
+          11,
+          16
+        },
+        color: "BLUEGRAY"
+      ),
+      #"SYSTEM_SYSRULES_chartSeries"(
+        label: "Below SLA",
+        data: {
+          14,
+          12
+        },
+        color: "RED"
+      )
+    },
+    yAxisTitle: "Completed Audit Tasks",
+    stacking: "NORMAL",
+    showLegend: true
+  )
+)</definition>
+        <metadataExpr></metadataExpr>
+        <preferredEditor>interface</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role inherit="true" allowForAll="false" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="administrators">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <history>
+        <historyInfo versionUuid="_a-0000e067-d58d-8000-9ba2-011c48011c48_285318"/>
+        <historyInfo versionUuid="_a-0000e067-d58d-8000-9ba2-011c48011c48_298499"/>
+        <historyInfo versionUuid="_a-0000e067-d58d-8000-9ba2-011c48011c48_308827"/>
+    </history>
+</contentHaul>

@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<recordTypeHaul xmlns:a="http://www.appian.com/ae/types/2009" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <versionUuid>bce794db-481b-4d58-bd28-e630b4288997</versionUuid>
+  <recordType a:uuid="24d6df3c-1ec5-4562-b645-9afc9650b9b1" name="Sale">
+    <a:pluralName>Sales</a:pluralName>
+    <a:description>Vehicle Sales Data From Dealerships</a:description>
+    <a:urlStub>_p75Ng</a:urlStub>
+    <a:source
+      a:uuid="aa3d699f-3866-4d22-85f0-cdd02d7ffc3b@_a-0000dfd8-6941-8000-9ba2-011c48011c48_185078" xsi:type="a:DataStoreEntity"/>
+    <a:listViewTemplateExpr>#"SYSTEM_SYSRULES_recordGridLayoutColumns"(
+  columns: {
+    #"SYSTEM_SYSRULES_gridLayoutColumn"(
+      label: "Id",
+      width: "NARROW",
+      weight: null,
+      field: "id",
+      component: #"SYSTEM_SYSRULES_recordGrid_integerField"(
+        displayvalue: rf!id
+      )
+    ),
+    #"SYSTEM_SYSRULES_gridLayoutColumn"(
+      label: "Sale",
+      field: "title",
+      component: #"SYSTEM_SYSRULES_recordGrid_linkField"(
+        links: #"SYSTEM_SYSRULES_recordLink"(
+          label: rf!title,
+          recordType: rp!type,
+          identifier: rp!id
+        )
+      )
+    ),
+    #"SYSTEM_SYSRULES_gridLayoutColumn"(
+      label: "Brand",
+      field: "brand",
+      component: #"SYSTEM_SYSRULES_recordGrid_textField"(
+        displayValue: rf!brand,
+        align: null
+      )
+    ),
+    #"SYSTEM_SYSRULES_gridLayoutColumn"(
+      label: "Dealership",
+      width: "DISTRIBUTE",
+      component: #"SYSTEM_SYSRULES_recordGrid_textField"(
+        displayvalue: #"_a-0000dfd8-6941-8000-9ba2-011c48011c48_186635"(rf!dealershipId).dealership
+      )
+    ),
+    #"SYSTEM_SYSRULES_gridLayoutColumn"(
+      label: "Country",
+      field: "country",
+      component: #"SYSTEM_SYSRULES_recordGrid_textField"(
+        displayValue: rf!country,
+        align: null
+      )
+    ),
+    #"SYSTEM_SYSRULES_gridLayoutColumn"(
+      label: "Sold Date",
+      width: "DISTRIBUTE",
+      component: #"SYSTEM_SYSRULES_recordGrid_dateTimeField"(
+        displayvalue: rf!soldOn
+      )
+    )
+  },
+  pageSize: 50,
+  defaultSort: #"SYSTEM_SYSRULES_sortInfo"(
+    field: "title",
+    ascending: fn!true()
+  )
+)</a:listViewTemplateExpr>
+    <a:detailViewCfg>
+      <a:nameExpr>="Summary"</a:nameExpr>
+      <a:uiExpr>#"_a-0000dfd8-6941-8000-9ba2-011c48011c48_189520"(rf!id)</a:uiExpr>
+      <a:visibilityExpr>=true()</a:visibilityExpr>
+      <a:urlStub>summary</a:urlStub>
+      <a:headerExpr/>
+    </a:detailViewCfg>
+    <a:detailViewCfg>
+      <a:nameExpr>"Incentive Payment"</a:nameExpr>
+      <a:uiExpr>#"_a-0000dfd8-6941-8000-9ba2-011c48011c48_191263"()</a:uiExpr>
+      <a:visibilityExpr>if(rf!bonusPaid=null,true,false)</a:visibilityExpr>
+      <a:urlStub>_C5qDtw</a:urlStub>
+      <a:headerExpr/>
+    </a:detailViewCfg>
+    <a:detailViewCfg>
+      <a:nameExpr>"Attachments"</a:nameExpr>
+      <a:uiExpr>#"_a-0000dfd8-6941-8000-9ba2-011c48011c48_199978"()</a:uiExpr>
+      <a:visibilityExpr>=true()</a:visibilityExpr>
+      <a:urlStub>_oR0Kdw</a:urlStub>
+      <a:headerExpr/>
+    </a:detailViewCfg>
+    <a:defaultFilter>
+      <a:field>hasAccess</a:field>
+      <a:operator>=</a:operator>
+      <a:valueExpression>#"_a-0000e067-d58d-8000-9ba2-011c48011c48_288381"()</a:valueExpression>
+    </a:defaultFilter>
+    <a:isSystem>false</a:isSystem>
+    <a:dataSrcExpr/>
+    <a:facetsListExpr/>
+    <a:titleExpr>rf!title</a:titleExpr>
+    <a:defaultFiltersExpr/>
+    <a:layoutType>GRID</a:layoutType>
+    <a:security>16383</a:security>
+    <a:hideLatestNews>false</a:hideLatestNews>
+    <a:isExportable>true</a:isExportable>
+  </recordType>
+  <roleMap>
+    <role name="record_type_administrator">
+      <users/>
+      <groups>
+        <groupUuid>_e-0000e067-d54a-8000-9aee-01075c01075c_285</groupUuid>
+      </groups>
+    </role>
+    <role name="record_type_viewer">
+      <users/>
+      <groups>
+        <groupUuid>_e-0000e067-d54a-8000-9aee-01075c01075c_289</groupUuid>
+        <groupUuid>_e-0000e067-d54a-8000-9aee-01075c01075c_233</groupUuid>
+        <groupUuid>_e-0000e067-d54a-8000-9aee-01075c01075c_231</groupUuid>
+      </groups>
+    </role>
+  </roleMap>
+  <history>
+    <historyInfo versionUuid="02ceb40d-19a9-4d8d-b26b-7d55c07fc79d"/>
+    <historyInfo versionUuid="184f657c-6f38-45dc-962f-1e22494c4307"/>
+    <historyInfo versionUuid="c5d1651a-605f-4d66-9b3f-70ea6afa5a59"/>
+    <historyInfo versionUuid="bce794db-481b-4d58-bd28-e630b4288997"/>
+  </history>
+</recordTypeHaul>

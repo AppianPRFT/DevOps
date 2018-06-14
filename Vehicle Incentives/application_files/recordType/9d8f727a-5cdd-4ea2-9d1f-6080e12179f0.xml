@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<recordTypeHaul xmlns:a="http://www.appian.com/ae/types/2009" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <versionUuid>0fb39754-8e89-4eff-b91d-99762a9dcbe7</versionUuid>
+  <recordType a:uuid="9d8f727a-5cdd-4ea2-9d1f-6080e12179f0" name="Parent Dealership">
+    <a:pluralName>Parent Dealerships</a:pluralName>
+    <a:description>Parent Company of Subsidiary Dealerships</a:description>
+    <a:urlStub>efKZxA</a:urlStub>
+    <a:source
+      a:uuid="50b5617c-f2cb-423b-9b1f-d81b0e2fc7d9@_a-0000dfd8-6941-8000-9ba2-011c48011c48_185078" xsi:type="a:DataStoreEntity"/>
+    <a:listViewTemplateExpr>#"SYSTEM_SYSRULES_recordGridLayoutColumns"(
+  columns: {
+    #"SYSTEM_SYSRULES_gridLayoutColumn"(
+      label: "Id",
+      width: "NARROW",
+      field: "id",
+      component: #"SYSTEM_SYSRULES_recordGrid_integerField"(
+        displayValue: rf!id,
+        align: "LEFT"
+      )
+    ),
+    #"SYSTEM_SYSRULES_gridLayoutColumn"(
+      label: "Dealership",
+      field: "dealership",
+      component: #"SYSTEM_SYSRULES_recordGrid_linkField"(
+        links: #"SYSTEM_SYSRULES_recordLink"(
+          label: rf!dealership,
+          recordType: rp!type,
+          identifier: rp!id
+        )
+      )
+    )
+  },
+  pageSize: 50,
+  defaultSort: #"SYSTEM_SYSRULES_sortInfo"(
+    field: "id",
+    ascending: true
+  )
+)</a:listViewTemplateExpr>
+    <a:detailViewCfg>
+      <a:nameExpr>="Summary"</a:nameExpr>
+      <a:uiExpr>#"_a-0000dfd8-6941-8000-9ba2-011c48011c48_200409"()</a:uiExpr>
+      <a:visibilityExpr>=true()</a:visibilityExpr>
+      <a:urlStub>summary</a:urlStub>
+      <a:headerExpr/>
+    </a:detailViewCfg>
+    <a:detailViewCfg>
+      <a:nameExpr>"Dealerships"</a:nameExpr>
+      <a:uiExpr>#"_a-0000dfd8-6941-8000-9ba2-011c48011c48_201552"(rf!id)</a:uiExpr>
+      <a:visibilityExpr>=true()</a:visibilityExpr>
+      <a:urlStub>_YcDQbQ</a:urlStub>
+      <a:headerExpr/>
+    </a:detailViewCfg>
+    <a:detailViewCfg>
+      <a:nameExpr>"Vehicles"</a:nameExpr>
+      <a:uiExpr>#"_a-0000e067-d58d-8000-9ba2-011c48011c48_298226"()</a:uiExpr>
+      <a:visibilityExpr>=true()</a:visibilityExpr>
+      <a:urlStub>_sIs6lQ</a:urlStub>
+      <a:headerExpr/>
+    </a:detailViewCfg>
+    <a:detailViewCfg>
+      <a:nameExpr>"Locations"</a:nameExpr>
+      <a:uiExpr>#"_a-0000dfd8-6941-8000-9ba2-011c48011c48_200799"()</a:uiExpr>
+      <a:visibilityExpr>=true()</a:visibilityExpr>
+      <a:urlStub>_PiR4OQ</a:urlStub>
+      <a:headerExpr/>
+    </a:detailViewCfg>
+    <a:defaultFilter>
+      <a:field>hasAccess</a:field>
+      <a:operator>=</a:operator>
+      <a:valueExpression>#"_a-0000e067-d58d-8000-9ba2-011c48011c48_288381"()</a:valueExpression>
+    </a:defaultFilter>
+    <a:isSystem>false</a:isSystem>
+    <a:dataSrcExpr/>
+    <a:facetsListExpr/>
+    <a:titleExpr/>
+    <a:defaultFiltersExpr/>
+    <a:layoutType>GRID</a:layoutType>
+    <a:security>16383</a:security>
+    <a:hideLatestNews>false</a:hideLatestNews>
+    <a:isExportable>true</a:isExportable>
+  </recordType>
+  <roleMap>
+    <role name="record_type_administrator">
+      <users/>
+      <groups>
+        <groupUuid>_e-0000e067-d54a-8000-9aee-01075c01075c_285</groupUuid>
+      </groups>
+    </role>
+    <role name="record_type_viewer">
+      <users/>
+      <groups>
+        <groupUuid>_e-0000e067-d54a-8000-9aee-01075c01075c_289</groupUuid>
+        <groupUuid>_e-0000e067-d54a-8000-9aee-01075c01075c_233</groupUuid>
+        <groupUuid>_e-0000e067-d54a-8000-9aee-01075c01075c_231</groupUuid>
+      </groups>
+    </role>
+  </roleMap>
+  <history>
+    <historyInfo versionUuid="2d7f1f1c-844c-41e2-929f-8d2c31e7a858"/>
+    <historyInfo versionUuid="ac2895ec-ea99-4623-88b7-d0d368e234dd"/>
+    <historyInfo versionUuid="0fb39754-8e89-4eff-b91d-99762a9dcbe7"/>
+  </history>
+</recordTypeHaul>

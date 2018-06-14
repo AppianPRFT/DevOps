@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<taskReportHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <versionUuid>9dda8cac-5c87-4889-b5a8-250eb4a0ca11</versionUuid>
+    <taskReport a:uuid="6efcbaf3-4a54-489b-a3bf-4156eae82608" name="Vehicle Incentives Management">
+        <a:description>Task report showing open tasks in the Vehicle Incentives Management application [Tasking]</a:description>
+        <a:uiExpr>=#"_a-0000dfd8-6941-8000-9ba2-011c48011c48_185054"()</a:uiExpr>
+        <a:urlStub>uuJ1ow</a:urlStub>
+    </taskReport>
+    <roleMap>
+        <role name="report_administrator">
+            <users/>
+            <groups>
+                <groupUuid>_e-0000e067-d54a-8000-9aee-01075c01075c_285</groupUuid>
+            </groups>
+        </role>
+        <role name="report_viewer">
+            <users/>
+            <groups>
+                <groupUuid>_e-0000e067-d54a-8000-9aee-01075c01075c_289</groupUuid>
+            </groups>
+        </role>
+    </roleMap>
+    <history>
+        <historyInfo versionUuid="fc780a71-f7f4-4795-adb0-8896bc3780ae"/>
+        <historyInfo versionUuid="9dda8cac-5c87-4889-b5a8-250eb4a0ca11"/>
+    </history>
+</taskReportHaul>

@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <versionUuid>_a-0000e067-d58d-8000-9ba2-011c48011c48_303017</versionUuid>
+    <rule>
+        <name>VIM_VehiclePricingSection</name>
+        <uuid>_a-0000dfd8-6941-8000-9ba2-011c48011c48_205365</uuid>
+        <description>Vehicle Pricing Section</description>
+        <parentUuid>d1151d0a-2a3e-4e80-b3b0-105a99496272</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>load(
+  /*local!k: rule!VIM_GetVehicleById(*/
+    /*rule!APN_replaceNull(*/
+      /*ri!vehicleModel,*/
+      /*0*/
+    /*)*/
+  /*),*/
+  /*local!kk: rule!VIM_GetIncentivesForVehicleCarline(*/
+    /*local!k.make,*/
+    /*local!k.model*/
+  /*),*/
+  
+  #"SYSTEM_SYSRULES_boxLayout"(
+    contents: {
+      #"SYSTEM_SYSRULES_sectionLayout_v1"(
+        label: "Offers",
+        contents: {
+          #"SYSTEM_SYSRULES_richTextDisplayField"(
+            value: #"SYSTEM_SYSRULES_richTextItem"(
+              text: "Customer $ Offer",
+              style: "LARGE"
+            )
+          ),
+          #"SYSTEM_SYSRULES_paragraphField"(
+            label: "Requirements and Restrictions",
+            /*add feild on create incentive to be able to populate that data*/
+            value: "Qualified Military Personal get an extra $1000 Rebate toward purchase of a new Toyota.",
+            readOnly: true
+          ),
+          #"_a-0000e067-d58d-8000-9ba2-011c48011c48_285085"(
+            ri!vehicleModel
+          )
+        },
+        isCollapsible: true,
+        isInitiallyCollapsed: false
+      ),
+      #"SYSTEM_SYSRULES_sectionLayout_v1"(
+        label: "Financing",
+        contents: {
+          #"SYSTEM_SYSRULES_richTextDisplayField"(
+            value: #"SYSTEM_SYSRULES_richTextItem"(
+              text: "Customer $ Finance",
+              style: "LARGE"
+            )
+          ),
+          #"SYSTEM_SYSRULES_paragraphField"(
+            label: "Requirements and Restrictions",
+            value: "Special Military and First responders Program to customers who meet one of the following criteria: Military: i) Active Duty U.S. Military (Army, Navy, Air Force, Marines, National Guard, Coast Guard and Active Reserve) ii) U.S. Military Veterans iii) U.S. Military Retirees First Responders: Police Officer, Sheriff/Sheriffx2019s Deputy, Correctional Officer, State Trooper, Federal Law Enforcement Officer, Firefighter, EMT, Paramedics",
+            readOnly: true
+          ),
+          #"SYSTEM_SYSRULES_gridLayout"(
+            label: "",
+            labelPosition: "ABOVE",
+            headerCells: {
+              #"SYSTEM_SYSRULES_gridLayoutHeaderCell"(
+                label: "Customer $ Finance"
+              ),
+              #"SYSTEM_SYSRULES_gridLayoutHeaderCell"(
+                label: "Start"
+              ),
+              #"SYSTEM_SYSRULES_gridLayoutHeaderCell"(
+                label: "End"
+              )
+            },
+            columnConfigs: {
+              #"SYSTEM_SYSRULES_gridLayoutColumnConfig"(
+                weight: 5
+              ),
+              #"SYSTEM_SYSRULES_gridLayoutColumnConfig"(
+                weight: 2
+              ),
+              #"SYSTEM_SYSRULES_gridLayoutColumnConfig"(
+                weight: 2
+              )
+            },
+            rows: #"SYSTEM_SYSRULES_gridRowLayout"(
+              contents: {
+                #"SYSTEM_SYSRULES_textField"(
+                  value: dollar(
+                    "500"
+                  ),
+                  readOnly: true
+                ),
+                #"SYSTEM_SYSRULES_textField"(
+                  value: "1/30/15",
+                  readOnly: true
+                ),
+                #"SYSTEM_SYSRULES_textField"(
+                  value: "1/30/15",
+                  readOnly: true
+                )
+              }
+            ),
+            selectionSaveInto: {},
+            validations: {},
+            shadeAlternateRows: true
+          ),
+          #"SYSTEM_SYSRULES_richTextDisplayField"(
+            value: #"SYSTEM_SYSRULES_richTextItem"(
+              text: "Subprime APR $ Finance",
+              style: "LARGE"
+            )
+          ),
+          #"SYSTEM_SYSRULES_paragraphField"(
+            label: "Requirements and Restrictions",
+            value: "Special College Grad Program to customers within 6 months of graduation, or have graduated no more than 24 months prior to the date of credit application from one of the following: - a two or four year accredited college - an accredited Associate's, Bachelor's, Master's or Doctorate program - an accredited Registered Nursing or Licensed Practical Nursing School.",
+            readOnly: true
+          ),
+          #"SYSTEM_SYSRULES_gridLayout"(
+            label: "",
+            labelPosition: "ABOVE",
+            headerCells: {
+              #"SYSTEM_SYSRULES_gridLayoutHeaderCell"(
+                label: "Subprime APR $ Finance"
+              ),
+              #"SYSTEM_SYSRULES_gridLayoutHeaderCell"(
+                label: "Start"
+              ),
+              #"SYSTEM_SYSRULES_gridLayoutHeaderCell"(
+                label: "End"
+              )
+            },
+            columnConfigs: {
+              #"SYSTEM_SYSRULES_gridLayoutColumnConfig"(
+                weight: 5
+              ),
+              #"SYSTEM_SYSRULES_gridLayoutColumnConfig"(
+                weight: 2
+              ),
+              #"SYSTEM_SYSRULES_gridLayoutColumnConfig"(
+                weight: 2
+              )
+            },
+            rows: #"SYSTEM_SYSRULES_gridRowLayout"(
+              contents: {
+                #"SYSTEM_SYSRULES_textField"(
+                  value: dollar(
+                    "1000"
+                  ),
+                  readOnly: true
+                ),
+                #"SYSTEM_SYSRULES_textField"(
+                  value: "1/30/15",
+                  readOnly: true
+                ),
+                #"SYSTEM_SYSRULES_textField"(
+                  value: "1/30/15",
+                  readOnly: true
+                )
+              }
+            ),
+            selectionSaveInto: {},
+            validations: {},
+            shadeAlternateRows: true
+          )
+        },
+        isCollapsible: true,
+        isInitiallyCollapsed: false
+      ),
+      #"SYSTEM_SYSRULES_sectionLayout_v1"(
+        label: "Leasing",
+        contents: {
+          #"SYSTEM_SYSRULES_richTextDisplayField"(
+            value: #"SYSTEM_SYSRULES_richTextItem"(
+              text: "Not Available at this time",
+              style: "STRONG"
+            ),
+            align: "CENTER"
+          )
+        },
+        isCollapsible: true,
+        isInitiallyCollapsed: true
+      ),
+      #"SYSTEM_SYSRULES_sectionLayout_v1"(
+        label: "Other",
+        contents: {
+          #"SYSTEM_SYSRULES_richTextDisplayField"(
+            value: #"SYSTEM_SYSRULES_richTextItem"(
+              text: "Not Available at this time",
+              style: "STRONG"
+            ),
+            align: "CENTER"
+          )
+        },
+        isCollapsible: true,
+        isInitiallyCollapsed: true
+      )
+    }
+  )
+)</definition>
+        <namedTypedValue>
+            <name>vehicleModel</name>
+            <type>
+                <name>VIM_IncentiveVehicles</name>
+                <namespace>urn:com:appian:types</namespace>
+            </type>
+        </namedTypedValue>
+        <metadataExpr></metadataExpr>
+        <preferredEditor>interface</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role inherit="true" allowForAll="false" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="administrators">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <history>
+        <historyInfo versionUuid="_a-0000e067-d58d-8000-9ba2-011c48011c48_282588"/>
+        <historyInfo versionUuid="_a-0000e067-d58d-8000-9ba2-011c48011c48_285629"/>
+        <historyInfo versionUuid="_a-0000e044-c81a-8000-9ba2-011c48011c48_128155"/>
+        <historyInfo versionUuid="_a-0000e067-d58d-8000-9ba2-011c48011c48_289479"/>
+        <historyInfo versionUuid="_a-0000e067-d58d-8000-9ba2-011c48011c48_303017"/>
+    </history>
+</contentHaul>

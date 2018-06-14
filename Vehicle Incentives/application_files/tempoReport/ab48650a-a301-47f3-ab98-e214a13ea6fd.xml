@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<tempoReportHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <versionUuid>59656df4-b558-49e9-a3b0-36d375131a13</versionUuid>
+    <tempoReport a:uuid="ab48650a-a301-47f3-ab98-e214a13ea6fd" name="Dealership Vehicles">
+        <a:description>Contains Grid displaying Vehicles Sold and Available at Specific Dealership</a:description>
+        <a:uiExpr>=#"_a-0000e067-d58d-8000-9ba2-011c48011c48_298226"()</a:uiExpr>
+        <a:urlStub>EHSl0g</a:urlStub>
+    </tempoReport>
+    <roleMap>
+        <role name="report_administrator">
+            <users/>
+            <groups>
+                <groupUuid>_e-0000e067-d54a-8000-9aee-01075c01075c_285</groupUuid>
+            </groups>
+        </role>
+        <role name="report_viewer">
+            <users/>
+            <groups>
+                <groupUuid>_e-0000e067-d54a-8000-9aee-01075c01075c_289</groupUuid>
+            </groups>
+        </role>
+    </roleMap>
+    <history>
+        <historyInfo versionUuid="849fe451-a1a5-4547-852f-5aa8931796a7"/>
+        <historyInfo versionUuid="59656df4-b558-49e9-a3b0-36d375131a13"/>
+    </history>
+</tempoReportHaul>

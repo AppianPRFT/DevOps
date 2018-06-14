@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <versionUuid>_a-0000dfd8-6941-8000-9ba2-011c48011c48_186646</versionUuid>
+    <rule>
+        <name>VIM_GetDealershipById</name>
+        <uuid>_a-0000dfd8-6941-8000-9ba2-011c48011c48_186635</uuid>
+        <description>Query that returns a single Dealership matching the passed in ID [Data]</description>
+        <parentUuid>c7eca2b1-08cd-4132-90e3-4f0b4c26a307</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>cast(
+  'type!{urn:com:appian:types:VIM}VIM_Dealership',
+  #"SYSTEM_SYSRULES_queryEntity"(
+    entity: #"_a-0000dfd8-6941-8000-9ba2-011c48011c48_186609",
+    query: #"SYSTEM_SYSRULES_query"(
+      filter: #"SYSTEM_SYSRULES_queryFilter"(
+        field: "id",
+        operator: "=",
+        value: ri!id
+      ),
+      pagingInfo: #"SYSTEM_SYSRULES_pagingInfo"(1, 1)
+    )
+  ).data
+)</definition>
+        <namedTypedValue>
+            <name>id</name>
+            <type>
+                <name>int</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+        </namedTypedValue>
+        <preferredEditor>legacy</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role inherit="true" allowForAll="false" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="administrators">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <history>
+        <historyInfo versionUuid="_a-0000dfd8-6941-8000-9ba2-011c48011c48_186646"/>
+    </history>
+</contentHaul>

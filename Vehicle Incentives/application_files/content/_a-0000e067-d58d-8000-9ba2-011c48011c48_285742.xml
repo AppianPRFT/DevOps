@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <versionUuid>_a-0000e067-d58d-8000-9ba2-011c48011c48_288267</versionUuid>
+    <rule>
+        <name>VIM_GetAwardRange</name>
+        <uuid>_a-0000e067-d58d-8000-9ba2-011c48011c48_285742</uuid>
+        <description>Grabs Award Range</description>
+        <parentUuid>d1151d0a-2a3e-4e80-b3b0-105a99496272</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>load(
+  local!awards: #"4028f35e-5814-4e3e-ab7f-f077d3d17e12_GETONERECORD"(
+    ri!id
+  ).incentiveVehicles.award,
+  if(
+    #"4028f35e-5814-4e3e-ab7f-f077d3d17e12_GETONERECORD"(
+    ri!id
+  ).awardType = "Tradein",
+    if(min(
+      tointeger(
+        local!awards
+      )
+    ) =  max(
+      tointeger(
+        local!awards
+      )
+    ),
+    max(
+      tointeger(
+        local!awards
+      )
+    )&amp;"%",
+    min(
+      tointeger(
+        local!awards
+      )
+    ) &amp;"%"&amp; " - " &amp;  max(
+      tointeger(
+        local!awards
+      )
+    )&amp;"%"),
+    "$" &amp; min(
+      tointeger(
+        local!awards
+      )
+    ) &amp; " - " &amp; "$" &amp; max(
+      tointeger(
+        local!awards
+      )
+    )
+  )
+  /*local!awards*/
+)</definition>
+        <namedTypedValue>
+            <name>id</name>
+            <type>
+                <name>int</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+        </namedTypedValue>
+        <preferredEditor>legacy</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role inherit="true" allowForAll="false" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="administrators">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <history>
+        <historyInfo versionUuid="_a-0000e067-d58d-8000-9ba2-011c48011c48_285787"/>
+        <historyInfo versionUuid="_a-0000e044-c81a-8000-9ba2-011c48011c48_128209"/>
+        <historyInfo versionUuid="_a-0000e067-d58d-8000-9ba2-011c48011c48_288267"/>
+    </history>
+</contentHaul>

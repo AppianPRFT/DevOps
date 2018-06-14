@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <versionUuid>_a-0000e067-d58d-8000-9ba2-011c48011c48_299374</versionUuid>
+    <rule>
+        <name>VIM_EmbeddedVehicleDashboard</name>
+        <uuid>_a-0000dfd8-6941-8000-9ba2-011c48011c48_207241</uuid>
+        <description>Dashboard interface for the summary view of the Vehicles record type [Records]</description>
+        <parentUuid>7343dde8-7a1b-4f6d-a429-d8614057f62a</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>with(
+  local!record: #"62ae16a7-bf3d-43ed-9669-754facca174e_GETONERECORD"(
+    ri!id
+  ),
+  #"SYSTEM_SYSRULES_dashboardLayout_v1"(
+    contents: {
+      #"SYSTEM_SYSRULES_billboardLayout"(
+        backgroundMedia: #"SYSTEM_SYSRULES_documentImage"(
+          document: if(
+            local!record.model = "A8",
+            #"_a-0000dfd8-6941-8000-9ba2-011c48011c48_189883",
+            if(
+              local!record.model = "A4",
+              #"_a-0000dfd8-6941-8000-9ba2-011c48011c48_206539",
+              if(
+                local!record.model = "TT",
+                #"_a-0000dfd8-6941-8000-9ba2-011c48011c48_206545",
+                if(
+                  local!record.model = "A3",
+                  #"_a-0000dfd8-6941-8000-9ba2-011c48011c48_206557",
+                  if(
+                    local!record.model = "Beetle",
+                    #"_a-0000dfd8-6941-8000-9ba2-011c48011c48_206563",
+                    if(
+                      local!record.model = "CC",
+                      #"_a-0000dfd8-6941-8000-9ba2-011c48011c48_206569",
+                      if(
+                        local!record.model = "Passat",
+                        #"_a-0000dfd8-6941-8000-9ba2-011c48011c48_206569",
+                        if(
+                          local!record.model = "Touareg",
+                          #"_a-0000e067-d58d-8000-9ba2-011c48011c48_297564",
+                          #"_a-0000e067-d58d-8000-9ba2-011c48011c48_297564"
+                        )
+                      )
+                    )
+                  )
+                )
+              )
+            )
+          )
+        ),
+        overlayPositionBar: "TOP",
+        height: "TALL"
+      ),
+      #"SYSTEM_SYSRULES_imageField_v1"(
+        images: {
+          #"SYSTEM_SYSRULES_documentImage"(
+            document: #"_a-0000dfd8-6941-8000-9ba2-011c48011c48_191015"
+          ),
+          #"SYSTEM_SYSRULES_documentImage"(
+            document: #"_a-0000dfd8-6941-8000-9ba2-011c48011c48_191021"
+          ),
+          #"SYSTEM_SYSRULES_documentImage"(
+            document: #"_a-0000dfd8-6941-8000-9ba2-011c48011c48_191027"
+          ),
+          #"SYSTEM_SYSRULES_documentImage"(
+            document: #"_a-0000dfd8-6941-8000-9ba2-011c48011c48_191033"
+          )
+        },
+        size: "MEDIUM"
+      ),
+      #"_a-0000e067-d58d-8000-9ba2-011c48011c48_296957"(
+        record: local!record,
+        creating: false,
+        readOnly: true,
+        documents: if(
+          isnull(
+            local!record.folderId
+          ),
+          {},
+          folder(
+            local!record.folderId,
+            "documentChildren"
+          )
+        )
+      ),
+      #"_a-0000dfd8-6941-8000-9ba2-011c48011c48_205365"(),
+      #"SYSTEM_SYSRULES_ButtonLayout"(
+        primaryButtons: #"SYSTEM_SYSRULES_ButtonWidget"(
+          label: "Back",
+          value: 1,
+          saveInto: {
+            ri!page,
+            a!save(
+              ri!id,
+              0
+            )
+          }
+        )
+      )
+    }
+  )
+)</definition>
+        <namedTypedValue>
+            <name>id</name>
+            <type>
+                <name>int</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>page</name>
+            <type>
+                <name>int</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+        </namedTypedValue>
+        <metadataExpr></metadataExpr>
+        <preferredEditor>interface</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role inherit="true" allowForAll="false" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="administrators">
+            <users>
+                <userUuid>samuel.bruns@perficient.com</userUuid>
+            </users>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <history>
+        <historyInfo versionUuid="_a-0000dfd8-6941-8000-9ba2-011c48011c48_207300"/>
+        <historyInfo versionUuid="_a-0000e067-d58d-8000-9ba2-011c48011c48_284473"/>
+        <historyInfo versionUuid="_a-0000e067-d58d-8000-9ba2-011c48011c48_299374"/>
+    </history>
+</contentHaul>

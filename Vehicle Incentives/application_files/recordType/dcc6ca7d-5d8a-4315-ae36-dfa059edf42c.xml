@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<recordTypeHaul xmlns:a="http://www.appian.com/ae/types/2009" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <versionUuid>286b4c92-faa7-4ad5-8fa6-fbb319ac3b35</versionUuid>
+  <recordType a:uuid="dcc6ca7d-5d8a-4315-ae36-dfa059edf42c" name="Incentives">
+    <a:pluralName>Site Incentives</a:pluralName>
+    <a:description>Incentives Record for Site</a:description>
+    <a:urlStub>PNPHGg</a:urlStub>
+    <a:source
+      a:uuid="03a9c0f8-9513-4f96-974f-9dab500b6cf2@_a-0000dfd8-6941-8000-9ba2-011c48011c48_185078" xsi:type="a:DataStoreEntity"/>
+    <a:listViewTemplateExpr>#"SYSTEM_SYSRULES_recordGridLayoutColumns"(
+  emptygridmessage: "No Incentives Available",
+  columns: {
+    #"SYSTEM_SYSRULES_gridLayoutColumn"(
+      label: "Program Name",
+      weight: 7,
+      field: "title",
+      component: #"SYSTEM_SYSRULES_recordGrid_linkField"(
+        links: #"SYSTEM_SYSRULES_recordLink"(
+          label: rf!title,
+          recordType: rp!type,
+          identifier: rp!id
+        )
+      )
+    ),
+    #"SYSTEM_SYSRULES_gridLayoutColumn"(
+      label: "Brand",
+      width: "DISTRIBUTE",
+      component: #"SYSTEM_SYSRULES_recordGrid_textField"(
+        displayvalue: proper(rf!brand)
+      )
+    ),
+    #"SYSTEM_SYSRULES_gridLayoutColumn"(
+      label: "Status",
+      component: #"SYSTEM_SYSRULES_recordGrid_textField"(
+        displayValue: rf!status.value,
+        align: null
+      )
+    ),
+    #"SYSTEM_SYSRULES_gridLayoutColumn"(
+      label: "Type",
+      width: "DISTRIBUTE",
+      weight: null,
+      component: #"SYSTEM_SYSRULES_recordGrid_textField"(
+        displayValue: if(rf!awardType = "New","New Purchase",rf!awardType),
+        align: null
+      )
+    ),
+    #"SYSTEM_SYSRULES_gridLayoutColumn"(
+      label: "Award Range",
+      width: "DISTRIBUTE",
+      weight: 3,
+      component: #"SYSTEM_SYSRULES_recordGrid_textField"(
+        displayvalue: load(
+          local!vehicles: rf!incentiveVehicles,
+          local!awards: local!vehicles.award,
+          "$" &amp; min(
+      tointeger(
+        local!awards
+      )
+    ) &amp; " - " &amp; "$" &amp; max(
+      tointeger(
+        local!awards
+      )
+    )
+        ))
+    ),
+    #"SYSTEM_SYSRULES_gridLayoutColumn"(
+      label: "Start Date",
+      width: "DISTRIBUTE",
+      weight: 3,
+      component: #"SYSTEM_SYSRULES_recordGrid_dateField"(
+        displayvalue: rf!offerStartDate2
+      )
+    ),
+    #"SYSTEM_SYSRULES_gridLayoutColumn"(
+      label: "End Date",
+      width: "DISTRIBUTE",
+      weight: 3,
+      component: #"SYSTEM_SYSRULES_recordGrid_dateField"(
+        displayvalue: rf!offerEndDate2
+      )
+    ),
+    #"SYSTEM_SYSRULES_gridLayoutColumn"(
+      label: "Close Date",
+      width: "DISTRIBUTE",
+      weight: 3,
+      component: #"SYSTEM_SYSRULES_recordGrid_dateField"(
+        displayvalue: rf!offerCloseDate2
+      )
+    )
+  },
+  pageSize: 50,
+  defaultSort: #"SYSTEM_SYSRULES_sortInfo"(
+    field: "updatedOn",
+    ascending: false
+  ),
+  shadeAlternateRows: true
+)</a:listViewTemplateExpr>
+    <a:fieldCfg name="Status">
+      <a:isSortable>false</a:isSortable>
+      <a:isSearchable>false</a:isSearchable>
+      <a:isFacet>true</a:isFacet>
+      <a:facetType>EXPRESSION</a:facetType>
+      <a:isExclusiveFacet>true</a:isExclusiveFacet>
+      <a:facetExpr>with(
+  local!options: #"_a-0000dfd8-6941-8000-9ba2-011c48011c48_185139"(),
+  local!statusCounts: #"SYSTEM_SYSRULES_queryEntity"(
+    entity: #"e7237020-544a-4d98-8261-2408aa55562c_MAINDSECONSTANT",
+    query: #"SYSTEM_SYSRULES_query"(
+      aggregation: #"SYSTEM_SYSRULES_queryAggregation"(
+        aggregationColumns: {
+          #"SYSTEM_SYSRULES_queryAggregationColumn"(field: "status.value", isGrouping: true),
+          #"SYSTEM_SYSRULES_queryAggregationColumn"(field: "id", aggregationFunction: "COUNT")
+        }
+      ),
+      pagingInfo: #"SYSTEM_SYSRULES_pagingInfo"(1, -1, #"SYSTEM_SYSRULES_sortInfo"("status.value", true))
+    )
+  ),
+  local!statusCountsOrdered: if(
+    local!statusCounts.totalCount = 0,
+    {},
+    #"SYSTEM_SYSRULES_forEach"(
+      items: local!options.value,
+      expression: #"_a-0000dfd8-6941-8000-9ba2-011c48011c48_184982"(
+        local!statusCounts.data.id,
+        local!statusCounts.data.status.value,
+        fv!item
+      )
+    )
+  ),
+  #"SYSTEM_SYSRULES_facet_v1"(
+    name: "Status",
+    options: #"SYSTEM_SYSRULES_forEach"(
+      items: local!options,
+      expression: #"_a-0000dfd8-6941-8000-9ba2-011c48011c48_184978"(fv!item, "status", index(local!statusCountsOrdered, fv!index, null))
+    )
+  )
+)</a:facetExpr>
+      <a:sortOrderIndex>0</a:sortOrderIndex>
+      <a:facetOrderIndex>0</a:facetOrderIndex>
+      <a:visibilityExpr/>
+      <a:defaultOptionExpr/>
+      <a:allowMultipleSelections>true</a:allowMultipleSelections>
+    </a:fieldCfg>
+    <a:detailViewCfg>
+      <a:nameExpr>="Summary"</a:nameExpr>
+      <a:uiExpr>#"_a-0000dfd8-6941-8000-9ba2-011c48011c48_185022"(rp!id)</a:uiExpr>
+      <a:visibilityExpr>=true()</a:visibilityExpr>
+      <a:urlStub>summary</a:urlStub>
+      <a:headerExpr/>
+      <a:relatedActionCfg>4a483ca9-4641-4080-b52c-8224307c9b6b</a:relatedActionCfg>
+    </a:detailViewCfg>
+    <a:detailViewCfg>
+      <a:nameExpr>"Vehicles"</a:nameExpr>
+      <a:uiExpr>#"_a-0000dfd8-6941-8000-9ba2-011c48011c48_201963"(rf!id)</a:uiExpr>
+      <a:visibilityExpr>=true()</a:visibilityExpr>
+      <a:urlStub>_pgSRtA</a:urlStub>
+      <a:headerExpr/>
+    </a:detailViewCfg>
+    <a:detailViewCfg>
+      <a:nameExpr>"Documents"</a:nameExpr>
+      <a:uiExpr>#"_a-0000dfd8-6941-8000-9ba2-011c48011c48_202590"(rf!folderId)</a:uiExpr>
+      <a:visibilityExpr>=true()</a:visibilityExpr>
+      <a:urlStub>_e-GrYw</a:urlStub>
+      <a:headerExpr/>
+    </a:detailViewCfg>
+    <a:defaultFilter>
+      <a:field>status.value</a:field>
+      <a:operator>&lt;&gt;</a:operator>
+      <a:valueExpression>"Pending Approval"</a:valueExpression>
+    </a:defaultFilter>
+    <a:defaultFilter>
+      <a:field>status.value</a:field>
+      <a:operator>&lt;&gt;</a:operator>
+      <a:valueExpression>"Draft"</a:valueExpression>
+    </a:defaultFilter>
+    <a:defaultFilter>
+      <a:field>status.value</a:field>
+      <a:operator>&lt;&gt;</a:operator>
+      <a:valueExpression>"Rejected"</a:valueExpression>
+    </a:defaultFilter>
+    <a:defaultFilter>
+      <a:field>hasAccess</a:field>
+      <a:operator>=</a:operator>
+      <a:valueExpression>#"_a-0000e067-d58d-8000-9ba2-011c48011c48_288381"()</a:valueExpression>
+    </a:defaultFilter>
+    <a:relatedActionCfg>
+      <a:target a:uuid="0009e013-3e86-8000-f92f-7f0000014e7a" xsi:type="a:ProcessModel"/>
+      <a:contextExpr>with(
+  local!record: #"4028f35e-5814-4e3e-ab7f-f077d3d17e12_GETONERECORD"(rp!id),
+  {
+    record: local!record,
+    documents: folder(local!record.folderId, "documentChildren"),
+  }
+)</a:contextExpr>
+      <a:visibilityExpr> if(isusermemberofgroup(loggedInUser(),#"_a-0000dfd8-6941-8000-9ba2-011c48011c48_205426"), true, false)</a:visibilityExpr>
+      <a:iconId>f044</a:iconId>
+      <a:refId>4a483ca9-4641-4080-b52c-8224307c9b6b</a:refId>
+      <a:title/>
+      <a:titleSource>DERIVED</a:titleSource>
+      <a:description/>
+      <a:descriptionSource>DERIVED</a:descriptionSource>
+    </a:relatedActionCfg>
+    <a:relatedActionCfg>
+      <a:target a:uuid="24313b70-a05d-484f-8c08-3d05c78b4cd6" xsi:type="a:ProcessModel"/>
+      <a:contextExpr>{
+  recordId: rp!id
+}</a:contextExpr>
+      <a:visibilityExpr>=true()</a:visibilityExpr>
+      <a:iconId>f044</a:iconId>
+      <a:refId>01abf9a1-0eff-4ea5-a881-3465b2cf9311</a:refId>
+      <a:title/>
+      <a:titleSource>DERIVED</a:titleSource>
+      <a:description/>
+      <a:descriptionSource>DERIVED</a:descriptionSource>
+    </a:relatedActionCfg>
+    <a:relatedActionCfg>
+      <a:target a:uuid="f066d460-051b-426b-a9ca-362fd8596778" xsi:type="a:ProcessModel"/>
+      <a:contextExpr>{
+  record: #"4028f35e-5814-4e3e-ab7f-f077d3d17e12_GETONERECORD"(rp!id)
+}</a:contextExpr>
+      <a:visibilityExpr>=true()</a:visibilityExpr>
+      <a:iconId>f0e7</a:iconId>
+      <a:refId>fd2ed356-07c5-4e75-9351-33b68a8d8249</a:refId>
+      <a:title/>
+      <a:titleSource>DERIVED</a:titleSource>
+      <a:description/>
+      <a:descriptionSource>DERIVED</a:descriptionSource>
+    </a:relatedActionCfg>
+    <a:isSystem>false</a:isSystem>
+    <a:dataSrcExpr/>
+    <a:facetsListExpr/>
+    <a:titleExpr>rf!title</a:titleExpr>
+    <a:defaultFiltersExpr/>
+    <a:layoutType>GRID</a:layoutType>
+    <a:security>16383</a:security>
+    <a:hideLatestNews>false</a:hideLatestNews>
+    <a:isExportable>true</a:isExportable>
+  </recordType>
+  <roleMap>
+    <role name="record_type_administrator">
+      <users/>
+      <groups>
+        <groupUuid>_e-0000e067-d54a-8000-9aee-01075c01075c_285</groupUuid>
+      </groups>
+    </role>
+    <role name="record_type_viewer">
+      <users/>
+      <groups>
+        <groupUuid>_e-0000e067-d54a-8000-9aee-01075c01075c_289</groupUuid>
+        <groupUuid>_e-0000e067-d54a-8000-9aee-01075c01075c_233</groupUuid>
+        <groupUuid>_e-0000e067-d54a-8000-9aee-01075c01075c_231</groupUuid>
+      </groups>
+    </role>
+  </roleMap>
+  <history>
+    <historyInfo versionUuid="259c09b7-8b29-4496-a369-84f43c5478b7"/>
+    <historyInfo versionUuid="e0845377-9534-4b3b-8880-0cee5a3f7965"/>
+    <historyInfo versionUuid="5f6c084f-87d7-4c78-990e-3cf87f5ddd42"/>
+    <historyInfo versionUuid="23bd385e-19c2-49a8-b417-0135bfa922e8"/>
+    <historyInfo versionUuid="7b432f7a-0ddb-4521-a81b-8b1f8c4c4bfc"/>
+    <historyInfo versionUuid="286b4c92-faa7-4ad5-8fa6-fbb319ac3b35"/>
+  </history>
+</recordTypeHaul>

@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <versionUuid>_a-0000e067-d58d-8000-9ba2-011c48011c48_302987</versionUuid>
+    <rule>
+        <name>VIM_SLA_Report_Grid</name>
+        <uuid>_a-0000e067-d58d-8000-9ba2-011c48011c48_302944</uuid>
+        <description>Contains the section with the report grid</description>
+        <parentUuid>d1151d0a-2a3e-4e80-b3b0-105a99496272</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>load(
+  local!pagingInfo: #"SYSTEM_SYSRULES_pagingInfo"(
+    startIndex: 1,
+    batchSize: 20,
+    sort: #"SYSTEM_SYSRULES_sortInfo"(
+      field: "recordId",
+      ascending: true
+    )
+  ),
+  with(
+    local!datasubset: #"SYSTEM_SYSRULES_queryEntity"(
+      entity: #"_a-0000e067-d58d-8000-9ba2-011c48011c48_302954",
+      query: #"SYSTEM_SYSRULES_query"(
+        selection: #"SYSTEM_SYSRULES_querySelection"(
+          columns: {
+            #"SYSTEM_SYSRULES_queryColumn"(
+              field: "description"
+            ),
+            #"SYSTEM_SYSRULES_queryColumn"(
+              field: "milestoneId"
+            ),
+            #"SYSTEM_SYSRULES_queryColumn"(
+              field: "recordId"
+            ),
+            #"SYSTEM_SYSRULES_queryColumn"(
+              field: "id"
+            ),
+            #"SYSTEM_SYSRULES_queryColumn"(
+              field: "milestoneStartTime"
+            ),
+            #"SYSTEM_SYSRULES_queryColumn"(
+              field: "slaType"
+            ),
+            #"SYSTEM_SYSRULES_queryColumn"(
+              field: "updatedBy"
+            ),
+            
+          }
+        ),
+        logicalExpression: #"SYSTEM_SYSRULES_queryLogicalExpression"(
+          operator: "AND",
+          filters: {
+            if(#"_a-0000dd3a-dada-8000-daab-640000640000_11122"(
+                ri!selectedMilestone
+              ),#"SYSTEM_SYSRULES_queryFilter"(
+              field: "milestoneId",
+              operator: "&lt;&gt;",
+              value: 0
+            ),#"SYSTEM_SYSRULES_queryFilter"(
+                field: "milestoneId",
+                operator: "=",
+                value: ri!selectedMilestone
+              )),
+              if(#"_a-0000dd3a-dada-8000-daab-640000640000_11122"(
+                ri!selectedType
+              ),#"SYSTEM_SYSRULES_queryFilter"(
+              field: "milestoneId",
+              operator: "&lt;&gt;",
+              value: 0
+            ),
+              #"SYSTEM_SYSRULES_queryFilter"(
+                field: "slaType",
+                operator: "=",
+                value: ri!selectedType
+              ))
+          }
+          /*{*/
+            
+            /*if(*/
+              /*rule!GLOBAL_CheckForNull(*/
+                /*ri!selectedMilestone*/
+              /*)*/
+              /*,*/
+              /*{},*/
+              /*a!queryFilter(*/
+                /*field: "milestoneId",*/
+                /*operator: "=",*/
+                /*value: ri!selectedMilestone*/
+              /*)*/
+            /*),*/
+            /*if(*/
+              /*rule!GLOBAL_CheckForNull(*/
+                /*ri!selectedType*/
+              /*)*/
+              /*,*/
+              /*{},*/
+              /*a!queryFilter(*/
+                /*field: "slaType",*/
+                /*operator: "=",*/
+                /*value: ri!selectedType*/
+              /*)*/
+            /*),*/
+            /*if(*/
+              /*rule!GLOBAL_CheckForNull(*/
+                /*ri!selectedType*/
+              /*)*/
+              /*,*/
+              /*a!queryFilter(*/
+                /*field: "milestoneId",*/
+                /*operator: "&lt;&gt;",*/
+                /*value: 0*/
+              /*),*/
+              /*{}*/
+            /*)*/
+          /*}*/
+        ),
+        pagingInfo: local!pagingInfo
+      )
+    ),
+    #"SYSTEM_SYSRULES_gridField"(
+      totalCount: local!datasubset.totalCount,
+      columns: {
+        /**/
+        #"SYSTEM_SYSRULES_gridTextColumn"(
+          label: "Record",
+          field: "recordId",
+          data: #"SYSTEM_SYSRULES_forEach"(
+            index(
+              local!datasubset.data,
+              "recordId",
+              null
+            ),
+            fv!item
+            /*if(*/
+              /*rule!GLOBAL_CheckForNull(*/
+                /*rule!DRF_GetDocumentChangeRequestById(*/
+                  /*fv!item*/
+                /*).documentTitle*/
+              /*),*/
+              /*fv!item,*/
+              /*rule!DRF_GetDocumentChangeRequestById(*/
+                /*fv!item*/
+              /*).documentTitle*/
+            /*)*/
+          )
+          /*,*/
+          /*links: a!forEach(*/
+            /*index(*/
+              /*local!datasubset.data,*/
+              /*"recordId",*/
+              /*null*/
+            /*),*/
+            /*a!recordLink(*/
+              /*label: rule!DRF_GetDocumentChangeRequestById(*/
+                /*fv!item*/
+              /*).documentTitle,*/
+              /*recordType: cons!DRF_DOCUMENT_CHANGE_REQUEST_RECORD,*/
+              /*identifier: fv!item*/
+            /*)*/
+            /* ^ */
+            /*REQUIRES USER INPUT*/
+            /* ^ */
+          /*)*/
+        ),
+        #"SYSTEM_SYSRULES_gridTextColumn"(
+          label: "Description",
+          field: "description",
+          data: index(
+            local!datasubset.data,
+            "description",
+            null
+          )
+        ),
+        #"SYSTEM_SYSRULES_gridTextColumn"(
+          label: "Completed By",
+          field: "updatedBy",
+          data: #"SYSTEM_SYSRULES_forEach"(
+            index(
+              local!datasubset.data,
+              "updatedBy",
+              null
+            ),
+            /*rule!GLOBAL_UserFirstLastName(*/
+              #"SYSTEM_SYSRULES_forEach"(fv!item,#"_a-0000dd3a-dada-8000-daab-640000640000_11313"(fv!item))
+            /*)*/
+          ),
+          links: #"SYSTEM_SYSRULES_forEach"(
+            index(
+              local!datasubset.data,
+              "updatedBy",
+              null
+            ),
+            #"SYSTEM_SYSRULES_userRecordLink"(
+              label: fv!item,
+              user: touser(fv!item)
+            )
+            /* ^ */
+            /*REQUIRES USER INPUT*/
+            /* ^ */
+          )
+        ),
+        /*AVAILABLE ADDITION SLA TYPE*/
+        /*      */
+        /*a!gridTextColumn(*/
+        /*label: "SLA",*/
+        /*field: "slaType",*/
+        /*data: index(*/
+        /*local!datasubset.data,*/
+        /*"slaType",*/
+        /*null*/
+        /*)*/
+        /*),*/
+        #"SYSTEM_SYSRULES_gridTextColumn"(
+          label: "Milestone",
+          field: "milestoneId",
+          data: #"SYSTEM_SYSRULES_forEach"(
+            index(
+              local!datasubset.data,
+              "milestoneId",
+              null
+            ),
+            #"_a-0000df6d-83a9-8000-9ba2-011c48011c48_49484"[fv!item]
+          )
+        ),
+        #"SYSTEM_SYSRULES_gridTextColumn"(
+          label: "Start Time",
+          field: "milestoneStartTime",
+          data: #"SYSTEM_SYSRULES_forEach"(
+            index(
+              local!datasubset.data,
+              "milestoneStartTime",
+              null
+            ),
+            tostring(
+              todate(
+                fv!item
+              ) &amp; " : " &amp; totime(
+                fv!item
+              )
+            )
+          )
+        )
+      },
+      value: local!pagingInfo,
+      saveInto: local!pagingInfo
+    )
+  )
+)/*Mas*/</definition>
+        <namedTypedValue>
+            <name>selectedMilestone</name>
+            <type>
+                <name>int</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>selectedType</name>
+            <type>
+                <name>string</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+            <value/>
+        </namedTypedValue>
+        <metadataExpr></metadataExpr>
+        <preferredEditor>interface</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role inherit="true" allowForAll="false" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="administrators">
+            <users>
+                <userUuid>samuel.bruns@perficient.com</userUuid>
+            </users>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <history>
+        <historyInfo versionUuid="_a-0000e067-d58d-8000-9ba2-011c48011c48_302987"/>
+    </history>
+</contentHaul>

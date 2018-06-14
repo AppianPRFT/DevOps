@@ -1,0 +1,702 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <versionUuid>_a-0000e067-d58d-8000-9ba2-011c48011c48_302542</versionUuid>
+    <rule>
+        <name>VIM_IncentiveDetails</name>
+        <uuid>_a-0000dfd8-6941-8000-9ba2-011c48011c48_185010</uuid>
+        <description>Section interface showing the base Incentive interface module. Contains all the basic fields of the record. Used by the summary record view, create and update forms, as well as task forms. [Base] [Records]</description>
+        <parentUuid>d1151d0a-2a3e-4e80-b3b0-105a99496272</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>load(
+  local!success: if(
+    or(
+      month(
+        ri!record.offerStartDate2
+      ) = 5,
+      month(
+        ri!record.offerEndDate2
+      ) = 5,
+      month(
+        ri!record.offerStartDate2
+      ) = 6,
+      month(
+        ri!record.offerEndDate2
+      ) = 6,
+      month(
+        ri!record.offerStartDate2
+      ) = 7,
+      month(
+        ri!record.offerEndDate2
+      ) = 7,
+      month(
+        ri!record.offerStartDate2
+      ) = 9,
+      month(
+        ri!record.offerEndDate2
+      ) = 9,
+      month(
+        ri!record.offerStartDate2
+      ) = 12,
+      month(
+        ri!record.offerEndDate2
+      ) = 12,
+      month(
+        ri!record.offerStartDate2
+      ) = 11,
+      month(
+        ri!record.offerEndDate2
+      ) = 11
+    ),
+    82,
+    57
+  ),
+  local!country,
+  local!region,
+  local!make,
+  local!selectedRegion,
+  local!area,
+  local!areaIdentifiers,
+  local!selectedArea,
+  local!areaLabels,
+  local!regionLabels,
+  local!scope,
+  local!dealerLabels,
+  local!dealerIdentifiers,
+  local!selectedDealer,
+  local!regionAbbreviations,
+  {
+    #"SYSTEM_SYSRULES_paragraphField"(
+      value: {},
+      readOnly: true
+    ),
+    #"SYSTEM_SYSRULES_sectionLayout_v1"(
+      label: "Program Summary",
+      contents: {
+        #"SYSTEM_SYSRULES_columnsLayout"(
+          columns: {
+            #"SYSTEM_SYSRULES_columnLayout"(
+              contents: {
+                #"SYSTEM_SYSRULES_textField"(
+                  label: "Title",
+                  labelPosition: if(
+                    ri!readOnly,
+                    "ADJACENT",
+                    "ABOVE"
+                  ),
+                  instructions: if(
+                    ri!readOnly,
+                    "",
+                    ""
+                  ),
+                  helpTooltip: if(
+                    ri!readOnly,
+                    "",
+                    ""
+                  ),
+                  placeholder: if(
+                    ri!readOnly,
+                    "",
+                    ""
+                  ),
+                  required: not(
+                    ri!readOnly
+                  ),
+                  value: ri!record.title,
+                  saveInto: ri!record.title,
+                  readOnly: ri!readOnly,
+                  validations: if(
+                    len(
+                      ri!record.title
+                    ) &lt;= 200,
+                    "",
+                    "Value may not be longer than 200 characters. You have entered " &amp; len(
+                      ri!record.title
+                    ) &amp; " characters."
+                  )
+                ),
+                #"SYSTEM_SYSRULES_textField"(
+                  label: "Program Code",
+                  value: ri!record.programCode,
+                  labelPosition: "ADJACENT",
+                  readOnly: true
+                ),
+                if(
+                  OR(
+                    and(
+                      isnull(
+                        local!area
+                      ),
+                      isnull(
+                        local!region
+                      )
+                    ),
+                    local!area = "All"
+                  ),
+                  {},
+                  if(
+                    ri!readOnly,
+                    #"SYSTEM_SYSRULES_textField"(
+                      label: "Dealer",
+                      labelPosition: "ADJACENT",
+                      value: ri!record.state,
+                      readOnly: true
+                    ),
+                    {}
+                  )
+                ),
+                /*a!radioButtonField(*/
+                /*label: "Make",*/
+                /*choiceLabels: {*/
+                /*"Toyota",*/
+                /*"Lexus"*/
+                /*},*/
+                /*choiceValues: {*/
+                /*"Toyota",*/
+                /*"Lexus"*/
+                /*},*/
+                /*labelPosition: if(*/
+                /*ri!readOnly,*/
+                /*"ADJACENT",*/
+                /*"ABOVE"*/
+                /*),*/
+                /*choiceLayout: "COMPACT",*/
+                /*required: if(*/
+                /*ri!readOnly,*/
+                /*false,*/
+                /*true*/
+                /*),*/
+                /*disabled: ri!readOnly,*/
+                /*saveInto: {*/
+                /*local!make,*/
+                /*ri!record.brand*/
+                /*},*/
+                /*value: if(*/
+                /*ri!record.brand = "toyota",*/
+                /*"Toyota",*/
+                /*if(*/
+                /*ri!record.brand = "audi",*/
+                /*"Audi",*/
+                /*if(*/
+                /*ri!record.brand = "volkswagen",*/
+                /*"Volkswagen",*/
+                /*ri!record.brand*/
+                /*)*/
+                /*)*/
+                /*)*/
+                /*)*/
+                /*                */
+                if(
+                  isusermemberofgroup(
+                    loggedInUser(),
+                    #"_a-0000e067-d58d-8000-9ba2-011c48011c48_282564"
+                  ),
+                  #"SYSTEM_SYSRULES_radioButtonField"(
+                    label: "Make",
+                    labelPosition: "ADJACENT",
+                    choiceLabels: {
+                      "Toyota",
+                      "Lexus"
+                    },
+                    choiceValues: {
+                      "toyota",
+                      "lexus"
+                    },
+                    value: ri!record.brand,
+                    saveInto: {
+                      ri!record.brand
+                    },
+                    required: true,
+                    choiceLayout: "COMPACT",
+                    disabled: ri!readOnly
+                  ),
+                  if(
+                    isusermemberofgroup(
+                      loggedInUser(),
+                      #"_a-0000e067-d58d-8000-9ba2-011c48011c48_297417"
+                    ),
+                    #"SYSTEM_SYSRULES_radioButtonField"(
+                      label: "Make",
+                      labelPosition: "ADJACENT",
+                      choiceLabels: {
+                        "Audi",
+                        "Volkswagen",
+                        "Porsche"
+                      },
+                      choiceValues: {
+                        "Audi",
+                        "Volkswagen",
+                        "Porsche"
+                      },
+                      value: ri!record.brand,
+                      saveInto: {
+                        ri!record.brand
+                      },
+                      required: true,
+                      choiceLayout: "COMPACT",
+                      disabled: ri!readOnly
+                    ),
+                    #"SYSTEM_SYSRULES_radioButtonField"(
+                      label: "Make",
+                      labelPosition: "ADJACENT",
+                      choiceLabels: {
+                        "Ford",
+                        "Lincoln"
+                      },
+                      choiceValues: {
+                        "Ford",
+                        "Lincoln"
+                      },
+                      value: ri!record.brand,
+                      saveInto: {
+                        ri!record.brand
+                      },
+                      required: true,
+                      choiceLayout: "COMPACT",
+                      disabled: ri!readOnly
+                    )
+                  )
+                )
+              }
+            ),
+            #"SYSTEM_SYSRULES_columnLayout"(
+              width: "WIDE",
+              contents: #"SYSTEM_SYSRULES_progressBarField"(
+                label: "Success Prediction",
+                labelPosition: "ADJACENT",
+                instructions: "Percentage based upon past related Incentive Sales",
+                percentage: local!success
+              )
+            ),
+            
+          }
+        )
+      }
+    ),
+    #"SYSTEM_SYSRULES_sectionLayout_v1"(
+      label: "Details",
+      isCollapsible: true,
+      contents: #"SYSTEM_SYSRULES_columnsLayout"(
+        columns: {
+          #"SYSTEM_SYSRULES_columnLayout"(
+            contents: {
+              if(
+                ri!readOnly,
+                #"SYSTEM_SYSRULES_textField"(
+                  label: "Status",
+                  labelPosition: "ADJACENT",
+                  value: ri!record.status.value,
+                  readOnly: true
+                ),
+                {}
+              ),
+              #"SYSTEM_SYSRULES_textField"(
+                label: "Country",
+                labelPosition: if(
+                  ri!readOnly,
+                  "ADJACENT",
+                  "ABOVE"
+                ),
+                instructions: if(
+                  ri!readOnly,
+                  "",
+                  ""
+                ),
+                helpTooltip: if(
+                  ri!readOnly,
+                  "",
+                  ""
+                ),
+                placeholder: if(
+                  ri!readOnly,
+                  "",
+                  ""
+                ),
+                required: false,
+                value: ri!record.country,
+                saveInto: ri!record.country,
+                readOnly: ri!readOnly,
+                validations: if(
+                  len(
+                    ri!record.country
+                  ) &lt;= 200,
+                  "",
+                  "Value may not be longer than 200 characters. You have entered " &amp; len(
+                    ri!record.country
+                  ) &amp; " characters."
+                )
+              ),
+              #"SYSTEM_SYSRULES_textField"(
+                label: "Award Type",
+                value: if(
+                  ri!record.awardType = "New",
+                  "New Purchase",
+                  if(
+                    ri!record.awardType = "Used",
+                    "Used Purchase",
+                    if(
+                      ri!record.awardType = "Loyalty",
+                      "Loyalty Program",
+                      if(
+                        ri!record.awardType = "Trade",
+                        "Trade In",
+                        ri!record.awardType
+                      )
+                    )
+                  )
+                ),
+                readOnly: ri!readOnly,
+                labelPosition: "ADJACENT"
+              ),
+              #"SYSTEM_SYSRULES_paragraphField"(
+                label: "Requirements and Restrictions",
+                labelPosition: if(
+                  ri!readOnly,
+                  "ADJACENT",
+                  "ABOVE"
+                ),
+                instructions: if(
+                  ri!readOnly,
+                  "",
+                  ""
+                ),
+                helpTooltip: if(
+                  ri!readOnly,
+                  "",
+                  ""
+                ),
+                placeholder: if(
+                  ri!readOnly,
+                  "",
+                  ""
+                ),
+                required: false,
+                value: ri!record.offerDescription.value,
+                saveInto: ri!record.offerDescription.value,
+                readOnly: ri!readOnly,
+                height: "SHORT",
+                validations: if(
+                  len(
+                    ri!record.offerDescription.value
+                  ) &lt;= 4000,
+                  "",
+                  "Value may not be longer than 4000 characters. You have entered " &amp; len(
+                    ri!record.offerDescription.value
+                  ) &amp; " characters."
+                )
+              ),
+              
+            }
+          ),
+          #"SYSTEM_SYSRULES_columnLayout"(
+            contents: {
+              #"SYSTEM_SYSRULES_dateTimeField"(
+                label: "Offer Start Date",
+                labelPosition: if(
+                  ri!readOnly,
+                  "ADJACENT",
+                  "ABOVE"
+                ),
+                instructions: if(
+                  ri!readOnly,
+                  "",
+                  ""
+                ),
+                helpTooltip: if(
+                  ri!readOnly,
+                  "",
+                  ""
+                ),
+                required: if(
+                  ri!readOnly,
+                  false,
+                  true
+                ),
+                value: ri!record.offerStartDate2,
+                saveInto: ri!record.offerStartDate2,
+                readOnly: ri!readOnly
+              ),
+              #"SYSTEM_SYSRULES_dateTimeField"(
+                label: "Offer End Date",
+                labelPosition: if(
+                  ri!readOnly,
+                  "ADJACENT",
+                  "ABOVE"
+                ),
+                instructions: if(
+                  ri!readOnly,
+                  "",
+                  ""
+                ),
+                helpTooltip: if(
+                  ri!readOnly,
+                  "",
+                  ""
+                ),
+                required: if(
+                  ri!readOnly,
+                  false,
+                  true
+                ),
+                value: ri!record.offerEndDate2,
+                saveInto: ri!record.offerEndDate2,
+                readOnly: ri!readOnly
+              ),
+              if(
+                ri!creating,
+                {},
+                {
+                  #"SYSTEM_SYSRULES_linkField"(
+                    label: "Updated By",
+                    labelPosition: if(
+                      ri!readOnly,
+                      "ADJACENT",
+                      "ABOVE"
+                    ),
+                    links: #"SYSTEM_SYSRULES_userRecordLink"(
+                      label: #"65026287-745f-41e2-90ed-50dbbd4b9ccf_FORMATNAME"(
+                        ri!record.updatedBy
+                      ),
+                      user: ri!record.updatedBy
+                    )
+                  ),
+                  #"SYSTEM_SYSRULES_textField"(
+                    label: "Updated On",
+                    labelPosition: if(
+                      ri!readOnly,
+                      "ADJACENT",
+                      "ABOVE"
+                    ),
+                    value: #"_a-0000dfd8-6941-8000-9ba2-011c48011c48_184950"(
+                      ri!record.updatedOn
+                    ),
+                    readOnly: true
+                  )
+                }
+              ),
+              if(
+                ri!creating,
+                {},
+                {
+                  #"SYSTEM_SYSRULES_linkField"(
+                    label: "Created By",
+                    labelPosition: if(
+                      ri!readOnly,
+                      "ADJACENT",
+                      "ABOVE"
+                    ),
+                    links: #"SYSTEM_SYSRULES_userRecordLink"(
+                      label: #"65026287-745f-41e2-90ed-50dbbd4b9ccf_FORMATNAME"(
+                        ri!record.createdBy
+                      ),
+                      user: ri!record.createdBy
+                    )
+                  ),
+                  #"SYSTEM_SYSRULES_textField"(
+                    label: "Created On",
+                    labelPosition: if(
+                      ri!readOnly,
+                      "ADJACENT",
+                      "ABOVE"
+                    ),
+                    value: ri!record.createdOn,
+                    readOnly: true
+                  )
+                }
+              )
+            }
+          )
+        }
+      )
+    ),
+    #"SYSTEM_SYSRULES_paragraphField"(
+      value: {},
+      readOnly: true
+    ),
+    #"SYSTEM_SYSRULES_milestoneField"(
+      steps: {
+        "",
+        ""
+      }
+    ),
+    #"SYSTEM_SYSRULES_sectionLayout_v1"(
+      label: "Vehicles",
+      isCollapsible: true,
+      contents: {
+        #"_a-0000e067-d58d-8000-9ba2-011c48011c48_284719"(
+          ri!record.incentiveVehicles
+        )
+      }
+    ),
+    #"SYSTEM_SYSRULES_milestoneField"(
+      steps: {
+        "",
+        ""
+      }
+    ),
+    #"_a-0000dfd8-6941-8000-9ba2-011c48011c48_184994"(
+      documents: ri!documents,
+      deletedDocuments: ri!deletedDocuments,
+      readOnly: ri!readOnly,
+      target: if(
+        ri!creating,
+        #"_a-0000dfd8-6941-8000-9ba2-011c48011c48_184922",
+        ri!record.folderId
+      )
+    )
+  }
+)</definition>
+        <namedTypedValue>
+            <name>record</name>
+            <type>
+                <name>VIM_Incentive</name>
+                <namespace>urn:com:appian:types:VIM</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>creating</name>
+            <type>
+                <name>boolean</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>readOnly</name>
+            <type>
+                <name>boolean</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>documents</name>
+            <type>
+                <name>CollaborationDocument?list</name>
+                <namespace>http://www.appian.com/ae/types/2009</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>label</name>
+            <type>
+                <name>string</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+            <value/>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>deletedDocuments</name>
+            <type>
+                <name>CollaborationDocument?list</name>
+                <namespace>http://www.appian.com/ae/types/2009</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>vehicle</name>
+            <type>
+                <name>V_Vehicle?list</name>
+                <namespace>urn:com:appian:types:V</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>selectedVehicles</name>
+            <type>
+                <name>VIM_IncentiveVehicles?list</name>
+                <namespace>urn:com:appian:types</namespace>
+            </type>
+        </namedTypedValue>
+        <metadataExpr></metadataExpr>
+        <preferredEditor>interface</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role inherit="true" allowForAll="false" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="administrators">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <typedValue>
+        <type>
+            <name>RuleTestConfig?list</name>
+            <namespace>http://www.appian.com/ae/types/2009</namespace>
+        </type>
+        <value>
+            <el>
+                <a:name/>
+                <a:ruleInputTestConfigs>
+                    <a:value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="a:Expression">#"4028f35e-5814-4e3e-ab7f-f077d3d17e12_GETONERECORD"(15)</a:value>
+                    <a:nameRef>record</a:nameRef>
+                    <a:id/>
+                </a:ruleInputTestConfigs>
+                <a:ruleInputTestConfigs>
+                    <a:value xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true" xsi:type="xsd:boolean"/>
+                    <a:nameRef>creating</a:nameRef>
+                    <a:id/>
+                </a:ruleInputTestConfigs>
+                <a:ruleInputTestConfigs>
+                    <a:value xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xsd:boolean">true</a:value>
+                    <a:nameRef>readOnly</a:nameRef>
+                    <a:id/>
+                </a:ruleInputTestConfigs>
+                <a:ruleInputTestConfigs>
+                    <a:nameRef>documents</a:nameRef>
+                    <a:id/>
+                </a:ruleInputTestConfigs>
+                <a:ruleInputTestConfigs>
+                    <a:value xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xsd:string"/>
+                    <a:nameRef>label</a:nameRef>
+                    <a:id/>
+                </a:ruleInputTestConfigs>
+                <a:ruleInputTestConfigs>
+                    <a:nameRef>deletedDocuments</a:nameRef>
+                    <a:id/>
+                </a:ruleInputTestConfigs>
+                <a:ruleInputTestConfigs>
+                    <a:nameRef>vehicle</a:nameRef>
+                    <a:id/>
+                </a:ruleInputTestConfigs>
+                <a:ruleInputTestConfigs>
+                    <a:nameRef>selectedVehicles</a:nameRef>
+                    <a:id/>
+                </a:ruleInputTestConfigs>
+                <a:assertions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+            </el>
+        </value>
+    </typedValue>
+    <history>
+        <historyInfo versionUuid="_a-0000dfd8-6941-8000-9ba2-011c48011c48_191114"/>
+        <historyInfo versionUuid="_a-0000dfd8-6941-8000-9ba2-011c48011c48_201872"/>
+        <historyInfo versionUuid="_a-0000e067-d58d-8000-9ba2-011c48011c48_285694"/>
+        <historyInfo versionUuid="_a-0000e044-c81a-8000-9ba2-011c48011c48_127468"/>
+        <historyInfo versionUuid="_a-0000e067-d58d-8000-9ba2-011c48011c48_286419"/>
+        <historyInfo versionUuid="_a-0000e044-c81a-8000-9ba2-011c48011c48_128520"/>
+        <historyInfo versionUuid="_a-0000e067-d58d-8000-9ba2-011c48011c48_288117"/>
+        <historyInfo versionUuid="_a-0000e067-d58d-8000-9ba2-011c48011c48_290212"/>
+        <historyInfo versionUuid="_a-0000e067-d58d-8000-9ba2-011c48011c48_302542"/>
+    </history>
+</contentHaul>

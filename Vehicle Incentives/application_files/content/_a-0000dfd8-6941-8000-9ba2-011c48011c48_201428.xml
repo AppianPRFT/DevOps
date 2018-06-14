@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <versionUuid>_a-0000e067-d58d-8000-9ba2-011c48011c48_298479</versionUuid>
+    <rule>
+        <name>VIM_SalesExcelUploadAction</name>
+        <uuid>_a-0000dfd8-6941-8000-9ba2-011c48011c48_201428</uuid>
+        <description>Action for sales excel sheet upload</description>
+        <parentUuid>d1151d0a-2a3e-4e80-b3b0-105a99496272</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>#"SYSTEM_SYSRULES_formLayout_v1"(
+  label: "Sales Data Excel File Upload",
+  contents: {
+    #"SYSTEM_SYSRULES_columnsLayout"(
+      columns: {
+        #"SYSTEM_SYSRULES_columnLayout"(
+          contents: {
+            #"SYSTEM_SYSRULES_fileUploadField_v1"(
+              label: "Below upload your Sales Excel Sheet",
+              instructions: "Browse for your excel file and select it to begin process",
+              target: #"_a-0000dfd8-6941-8000-9ba2-011c48011c48_201462",
+              value: ri!document,
+              saveInto: ri!document,
+              maxSelections: 1,
+              required: true
+            )
+          }
+        ),
+        #"SYSTEM_SYSRULES_columnLayout"(
+          contents: {
+            #"SYSTEM_SYSRULES_textField"(
+              label: "Name",
+              value: ri!name,
+              saveInto: ri!name,
+              align: "LEFT",
+              placeholder: "Name this upload"
+            )
+          }
+        )
+      }
+    ),
+    #"SYSTEM_SYSRULES_paragraphField"(
+      value: {},
+      readOnly: true
+    ),
+    #"SYSTEM_SYSRULES_boxLayout"(
+      label: "Sales Excel Upload Instructions",
+      contents: {
+        #"SYSTEM_SYSRULES_paragraphField"(
+          value: "Below is a downloadable excel file, which is formatted to the exact layout required, including the specific columns needed and representing the specific value types each column is.",
+          readOnly: true
+        ),
+        #"SYSTEM_SYSRULES_richTextDisplayField"(
+          value: #"SYSTEM_SYSRULES_richTextItem"(
+            text: "Download Sample Sales Excel Sheet",
+            link: #"SYSTEM_SYSRULES_documentDownloadLink"(
+              document: #"_a-0000dfd8-6941-8000-9ba2-011c48011c48_201446"
+            )
+          )
+        ),
+        #"SYSTEM_SYSRULES_paragraphField"(
+          value: "When uploading your Sales Excel sheet for upload please ensure that the below instructions are followed: 
+
+1) Ensure the file is a .XLS and not a .CSV and contains no special formatting. 
+
+2) The first row should be header titles. (See Sample Excel Sheet) The system ignores the first row of the excel sheet before parsing the data provided. 
+
+3) Ensure you have no more than 38 columns of data, not all columns must have a value, but ensure the column headers are there so the system knows what value in the database each excel sheet value corresponds to. 
+
+4) The first column must be an ID column, but ensure the subsequent rows do not have any values. Uploading a file with values for the ID column can result in data being overwritten in the database. 
+
+5) Fields should correspond to the correct value type of the column such as Text, Integer, Boolean. (See Sample Excel Sheet)
+
+NOTICE: Please ensure you are qualified and trained to upload Sales Data. For questions regarding excel upload please contact your Manager.",
+          readOnly: true
+        )
+      },
+      style: "WARN"
+    ),
+    #"SYSTEM_SYSRULES_paragraphField"(
+      value: {},
+      readOnly: true
+    ),
+    #"SYSTEM_SYSRULES_ButtonLayout"(
+      primaryButtons: {
+        #"SYSTEM_SYSRULES_ButtonWidgetSubmit"(
+          label: "Submit",
+          style: "PRIMARY",
+          saveInto: {}
+        )
+      },
+      secondaryButtons: {
+        #"SYSTEM_SYSRULES_ButtonWidgetSubmit"(
+          label: "Cancel",
+          style: "NORMAL",
+          value: true,
+          saveInto: {},
+          skipValidation: true
+        )
+      }
+    )
+  }
+)</definition>
+        <namedTypedValue>
+            <name>document</name>
+            <type>
+                <name>CollaborationDocument</name>
+                <namespace>http://www.appian.com/ae/types/2009</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>name</name>
+            <type>
+                <name>string</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+            <value/>
+        </namedTypedValue>
+        <metadataExpr></metadataExpr>
+        <preferredEditor>interface</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role inherit="true" allowForAll="false" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="administrators">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <history>
+        <historyInfo versionUuid="_a-0000e067-d58d-8000-9ba2-011c48011c48_282753"/>
+        <historyInfo versionUuid="_a-0000e067-d58d-8000-9ba2-011c48011c48_298479"/>
+    </history>
+</contentHaul>

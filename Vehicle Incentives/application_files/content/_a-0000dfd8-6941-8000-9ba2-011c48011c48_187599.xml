@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <versionUuid>_a-0000dfd8-6941-8000-9ba2-011c48011c48_187614</versionUuid>
+    <queryRule>
+        <name>VIM_GetAllVehicles</name>
+        <uuid>_a-0000dfd8-6941-8000-9ba2-011c48011c48_187599</uuid>
+        <description>Grabs all Vehicles</description>
+        <folderUuid>c7eca2b1-08cd-4132-90e3-4f0b4c26a307</folderUuid>
+        <dataStoreEntityCompositeUuid>ca182164-d707-450d-9eef-26a41617b7de@_a-0000dfd8-6941-8000-9ba2-011c48011c48_186999</dataStoreEntityCompositeUuid>
+        <params/>
+        <filters/>
+        <orderings/>
+    </queryRule>
+    <roleMap public="false">
+        <role inherit="true" allowForAll="false" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="administrators">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <history>
+        <historyInfo versionUuid="_a-0000dfd8-6941-8000-9ba2-011c48011c48_187614"/>
+    </history>
+</contentHaul>

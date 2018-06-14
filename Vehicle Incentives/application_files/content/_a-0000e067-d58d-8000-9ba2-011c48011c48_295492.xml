@@ -1,0 +1,497 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <versionUuid>_a-0000e067-d58d-8000-9ba2-011c48011c48_308089</versionUuid>
+    <rule>
+        <name>VIM_DealershipSales_Sumary</name>
+        <uuid>_a-0000e067-d58d-8000-9ba2-011c48011c48_295492</uuid>
+        <description>interface containing the dealership sales summary for the dealer portal sales tab</description>
+        <parentUuid>d1151d0a-2a3e-4e80-b3b0-105a99496272</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>load(
+  local!pagingInfo: #"SYSTEM_SYSRULES_pagingInfo"(
+    startIndex: 1,
+    batchSize: 15,
+    sort: #"SYSTEM_SYSRULES_sortInfo"(
+      field: "id",
+      ascending: false
+    )
+  ),
+  local!seller,
+  local!page: 1,
+  local!selectedSale: 'type!{urn:com:appian:types:VIM}VIM_SalesData'(),
+  local!selectedSaleHistory: {},
+  local!sale,
+  local!data: 1,
+  local!paymentDetails,
+  local!location,
+  local!items: {
+    {
+      item: "Item 1",
+      qty: 1,
+      unitPrice: 10
+    },
+    {
+      item: "Item 2",
+      qty: 2,
+      unitPrice: 20
+    }
+  },
+  with(
+    local!saleData: #"SYSTEM_SYSRULES_queryEntity"(
+      entity: #"_a-0000dfd8-6941-8000-9ba2-011c48011c48_191192",
+      query: #"SYSTEM_SYSRULES_query"(
+        logicalExpression: #"SYSTEM_SYSRULES_queryLogicalExpression"(
+          operator: "AND",
+          filters: {
+            #"SYSTEM_SYSRULES_queryFilter"(
+              field: "hasAccess",
+              operator: "=",
+              value: #"_a-0000e067-d58d-8000-9ba2-011c48011c48_288381"()
+            ),
+            #"SYSTEM_SYSRULES_queryFilter"(
+              field: "bonusPaid",
+              operator: "not null"
+            ),
+            if(
+              local!data = 2,
+              #"SYSTEM_SYSRULES_queryFilter"(
+                field: "bonusPaid",
+                operator: "is null"
+              ),
+              {}
+            ),
+            if(
+              local!data = 3,
+              #"SYSTEM_SYSRULES_queryFilter"(
+                field: "bonusPaid",
+                operator: "=",
+                value: "Yes"
+              ),
+              {}
+            ),
+            if(
+              local!data = 4,
+              #"SYSTEM_SYSRULES_queryFilter"(
+                field: "bonusPaid",
+                operator: "=",
+                value: "No"
+              ),
+              {}
+            ),
+            if(
+              #"_a-0000dd3a-dada-8000-daab-640000640000_11122"(
+                local!sale
+              ),
+              {},
+              #"SYSTEM_SYSRULES_queryFilter"(
+                field: "title",
+                operator: "includes",
+                value: local!sale
+              )
+            ),
+            if(
+              #"_a-0000dd3a-dada-8000-daab-640000640000_11122"(
+                local!location
+              ),
+              {},
+              #"SYSTEM_SYSRULES_queryFilter"(
+                field: "dealershipId",
+                operator: "includes",
+                value: local!location
+              )
+            ),
+            if(
+              #"_a-0000dd3a-dada-8000-daab-640000640000_11122"(
+                local!seller
+              ),
+              {},
+              #"SYSTEM_SYSRULES_queryFilter"(
+                field: "soldBy",
+                operator: "includes",
+                value: local!seller
+              )
+            )
+          }
+        ),
+        pagingInfo: local!pagingInfo
+      )
+    ),
+    if(
+      local!page = 1,
+      #"SYSTEM_SYSRULES_sectionLayout_v1"(
+        label: "Incentive Sales",
+        contents: {
+          #"SYSTEM_SYSRULES_columnsLayout"(
+            columns: {
+              #"SYSTEM_SYSRULES_columnLayout"(
+                contents: {
+                  #"SYSTEM_SYSRULES_radioButtonField"(
+                    choiceLabels: {
+                      "All",
+                      "Exception",
+                      "Paid",
+                      "Rejected"
+                    },
+                    choiceValues: {
+                      1,
+                      4,
+                      2,
+                      3
+                    },
+                    value: local!data,
+                    saveInto: local!data,
+                    choiceLayout: "COMPACT"
+                  )
+                }
+              ),
+              #"SYSTEM_SYSRULES_columnLayout"(
+                contents: #"SYSTEM_SYSRULES_textField"(
+                  value: local!sale,
+                  saveInto: local!sale,
+                  labelPosition: "COLLAPSED",
+                  placeholder: "Sale"
+                )
+              ),
+              #"SYSTEM_SYSRULES_columnLayout"(
+                contents: {
+                  #"SYSTEM_SYSRULES_textField"(
+                    value: local!seller,
+                    saveInto: local!seller,
+                    labelPosition: "COLLAPSED",
+                    placeholder: "Sold By"
+                  )
+                }
+              ),
+              #"SYSTEM_SYSRULES_columnLayout"(
+                contents: {
+                  #"SYSTEM_SYSRULES_textField"(
+                    value: local!location,
+                    saveInto: local!location,
+                    labelPosition: "COLLAPSED",
+                    placeholder: "Dealership"
+                  )
+                }
+              )/*a!columnLayout(contents:{a!dropDownField(choiceLabels: {"Last 7 Days", "Last 30 Days","Last 60 Days","Last 90 Days"},choiceValues:{1,2,3,4},value:local!date,placeholderLabel: "Choose Date",saveInto:local!date,labelPosition: "COLLAPSED")})*/
+              
+            }
+          ),
+          #"SYSTEM_SYSRULES_gridLayout"(
+            label: "",
+            instructions: "",
+            headerCells: {
+              #"SYSTEM_SYSRULES_gridLayoutHeaderCell"(
+                label: "Year"
+              ),
+              #"SYSTEM_SYSRULES_gridLayoutHeaderCell"(
+                label: "Make",
+                align: "CENTER"
+              ),
+              #"SYSTEM_SYSRULES_gridLayoutHeaderCell"(
+                label: "Model",
+                align: "CENTER"
+              ),
+              #"SYSTEM_SYSRULES_gridLayoutHeaderCell"(
+                label: "VIN",
+                align: "CENTER"
+              ),
+              #"SYSTEM_SYSRULES_gridLayoutHeaderCell"(
+                label: "Sold By",
+                align: "CENTER"
+              ),
+              #"SYSTEM_SYSRULES_gridLayoutHeaderCell"(
+                label: "Dealership",
+                align: "CENTER"
+              ),
+              #"SYSTEM_SYSRULES_gridLayoutHeaderCell"(
+                label: "Sold Date",
+                align: "CENTER"
+              ),
+              #"SYSTEM_SYSRULES_gridLayoutHeaderCell"(
+                label: "Status",
+                align: "CENTER"
+              )
+            },
+            rows: {
+              #"SYSTEM_SYSRULES_forEach"(
+                local!saleData.data,
+                #"SYSTEM_SYSRULES_gridRowLayout"(
+                  contents: {
+                    #"SYSTEM_SYSRULES_textField"(
+                      value: if(
+                        isnull(
+                          fv!item.vehicleId
+                        ),
+                        fv!item.year,
+                        #"_a-0000dfd8-6941-8000-9ba2-011c48011c48_201605"(
+                          fv!item.vehicleId
+                        ).year
+                      ),
+                      readOnly: true
+                    ),
+                    #"SYSTEM_SYSRULES_textField"(
+                      value: if(
+                        isnull(
+                          fv!item.vehicleId
+                        ),
+                        fv!item.brand,
+                        #"_a-0000dfd8-6941-8000-9ba2-011c48011c48_201605"(
+                          fv!item.vehicleId
+                        ).make
+                      ),
+                      readOnly: true,
+                      align: "CENTER"
+                    ),
+                    #"SYSTEM_SYSRULES_textField"(
+                      value: if(
+                        isnull(
+                          fv!item.vehicleId
+                        ),
+                        fv!item.model,
+                        #"_a-0000dfd8-6941-8000-9ba2-011c48011c48_201605"(
+                          fv!item.vehicleId
+                        ).model
+                      ),
+                      readOnly: true,
+                      align: "CENTER"
+                    ),
+                    #"SYSTEM_SYSRULES_linkField"(
+                      links: #"SYSTEM_SYSRULES_submitLink"(
+                        label: if(
+                          isnull(
+                            fv!item.vehicleId
+                          ),
+                          fv!item.vin,
+                          if(
+                            fv!item.bonusPaid = "Yes",
+                            #"_a-0000dfd8-6941-8000-9ba2-011c48011c48_201605"(
+                              fv!item.vehicleId
+                            ).vin,
+                            if(
+                              fv!item.bonusPaid = "No",
+                              #"_a-0000dfd8-6941-8000-9ba2-011c48011c48_201605"(
+                                fv!item.vehicleId
+                              ).vin,
+                              #"_a-0000dfd8-6941-8000-9ba2-011c48011c48_201605"(
+                                fv!item.vehicleId
+                              ).vin
+                            )
+                          )
+                        ),
+                        value: fv!item,
+                        saveInto: {
+                          local!selectedSale,
+                          a!save(
+                            local!selectedSaleHistory,
+                            append(
+                              local!selectedSaleHistory,
+                              save!value
+                            )
+                          ),
+                          if(
+                            fv!item.bonusPaid = "Yes",
+                            a!save(
+                              local!page,
+                              3
+                            ),
+                            if(
+                              fv!item.bonusPaid = "No",
+                              a!save(
+                                local!page,
+                                2
+                              ),
+                              a!save(
+                                local!page,
+                                2
+                              )
+                            )
+                          )
+                        }
+                      ),
+                      readOnly: true,
+                      align: "CENTER"
+                    ),
+                    #"SYSTEM_SYSRULES_textField"(
+                      value: fv!item.soldBy,
+                      readOnly: true,
+                      align: "CENTER"
+                    ),
+                    #"SYSTEM_SYSRULES_textField"(
+                      value: #"_a-0000dfd8-6941-8000-9ba2-011c48011c48_186635"(
+                        fv!item.dealershipId
+                      ).dealership,
+                      readOnly: true,
+                      align: "CENTER"
+                    ),
+                    #"SYSTEM_SYSRULES_textField"(
+                      value: #"SYSTEM_SYSRULES_forEach"(
+                        fv!item.soldOn,
+                        tostring(
+                          todate(
+                            fv!item
+                          ) &amp; " at " &amp; totime(
+                            fv!item
+                          )
+                        )
+                      ),
+                      readOnly: true,
+                      align: "CENTER"
+                    ),
+                    #"SYSTEM_SYSRULES_imageField_v1"(
+                      label: "Status",
+                      images: #"SYSTEM_SYSRULES_forEach"(
+                        fv!item.bonusPaid,
+                        if(
+                          fv!item = "Yes",
+                          #"SYSTEM_SYSRULES_documentImage"(
+                            document: #"SYSTEM_SYSRULES_iconIndicator"(
+                              "STATUS_NOTDONE"
+                            ),
+                            caption: "Rejected"
+                          ),
+                          if(
+                            fv!item = "No",
+                            #"SYSTEM_SYSRULES_documentImage"(
+                              document: #"SYSTEM_SYSRULES_iconIndicator"(
+                                "STATUS_WARN"
+                              ),
+                              caption: "Exception"
+                            ),
+                            #"SYSTEM_SYSRULES_documentImage"(
+                              document: #"SYSTEM_SYSRULES_iconIndicator"(
+                                "STATUS_OK"
+                              ),
+                              caption: "Paid"
+                            )
+                          )
+                        )
+                      )
+                    )
+                  }
+                )
+              )
+            }
+          )
+        }
+      ),
+      if(
+        local!page = 3,
+        {
+          #"_a-0000dfd8-6941-8000-9ba2-011c48011c48_191091"(
+            local!selectedSale,
+            #"4028f35e-5814-4e3e-ab7f-f077d3d17e12_GETONERECORD"(
+              local!selectedSale.incentiveId
+            ),
+            local!paymentDetails,
+            false
+          ),
+          #"SYSTEM_SYSRULES_ButtonLayout"(
+            primaryButtons: {
+              #"SYSTEM_SYSRULES_ButtonWidgetSubmit"(
+                label: "Submit Dispute",
+                style: "PRIMARY",
+                saveInto: {
+                  a!save(
+                    local!page,
+                    1
+                  ),
+                  if(
+                    isnull(
+                      local!selectedSale.rejectCount
+                    ),
+                    a!save(
+                      local!selectedSale.rejectCount,
+                      1
+                    ),
+                    a!save(
+                      local!selectedSale.rejectCount,
+                      local!selectedSale.rejectCount + 1
+                    )
+                  ),
+                  #"SYSTEM_SYSRULES_startProcess"(
+                    processModel: #"_a-0000e044-c81a-8000-9ba2-011c48011c48_128615",
+                    processParameters: {
+                      salesData: local!selectedSale
+                    }
+                  )
+                }
+              )
+            },
+            secondaryButtons: {
+              #"SYSTEM_SYSRULES_ButtonWidget"(
+                label: "Back",
+                value: 1,
+                saveInto: local!page
+              )
+            }
+          )/*,*/
+          /*a!textField(value:local!selectedSale)*/
+          
+        },
+        {
+          #"_a-0000dfd8-6941-8000-9ba2-011c48011c48_189520"(
+            id: local!selectedSale.id
+          ),
+          #"SYSTEM_SYSRULES_textField"(readOnly: true),
+          #"SYSTEM_SYSRULES_ButtonLayout"(
+            primaryButtons: {},
+            secondaryButtons: {
+              #"SYSTEM_SYSRULES_ButtonWidget"(
+                label: "Back",
+                saveInto: {
+                  local!page,
+                  a!save(
+                    local!selectedSale,
+                    null
+                  )
+                },
+                value: 1
+              )
+            }
+          )
+        }
+      )
+    )
+  )
+)</definition>
+        <metadataExpr></metadataExpr>
+        <preferredEditor>interface</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role inherit="true" allowForAll="false" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="administrators">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <history>
+        <historyInfo versionUuid="_a-0000e067-d58d-8000-9ba2-011c48011c48_308089"/>
+    </history>
+</contentHaul>

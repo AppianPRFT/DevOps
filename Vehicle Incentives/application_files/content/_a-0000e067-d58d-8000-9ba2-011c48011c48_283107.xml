@@ -1,0 +1,1295 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <versionUuid>_a-0000e067-d58d-8000-9ba2-011c48011c48_298955</versionUuid>
+    <rule>
+        <name>VIM_IncentiveDetailsReview</name>
+        <uuid>_a-0000e067-d58d-8000-9ba2-011c48011c48_283107</uuid>
+        <description>Section interface showing the base Incentive interface module. Contains all the basic fields of the record. Used by the summary record view, create and update forms, as well as task forms. [Base] [Records]</description>
+        <parentUuid>d1151d0a-2a3e-4e80-b3b0-105a99496272</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>load(
+  local!statusOptions: if(
+    ri!record.status.active,
+    #"_a-0000dfd8-6941-8000-9ba2-011c48011c48_184966"(
+      #"_a-0000dfd8-6941-8000-9ba2-011c48011c48_185139"(),
+      null
+    ),
+    #"_a-0000dfd8-6941-8000-9ba2-011c48011c48_184966"(
+      #"_a-0000dfd8-6941-8000-9ba2-011c48011c48_185139"(),
+      ri!record.status.id
+    )
+  ),
+  local!priorityOptions: if(
+    ri!record.priority.active,
+    #"_a-0000dfd8-6941-8000-9ba2-011c48011c48_184966"(
+      #"_a-0000dfd8-6941-8000-9ba2-011c48011c48_185143"(),
+      null
+    ),
+    #"_a-0000dfd8-6941-8000-9ba2-011c48011c48_184966"(
+      #"_a-0000dfd8-6941-8000-9ba2-011c48011c48_185143"(),
+      ri!record.priority.id
+    )
+  ),
+  local!typeOfOfferOptions: if(
+    ri!record.typeOfOffer.active,
+    #"_a-0000dfd8-6941-8000-9ba2-011c48011c48_184966"(
+      #"_a-0000dfd8-6941-8000-9ba2-011c48011c48_185147"(),
+      null
+    ),
+    #"_a-0000dfd8-6941-8000-9ba2-011c48011c48_184966"(
+      #"_a-0000dfd8-6941-8000-9ba2-011c48011c48_185147"(),
+      ri!record.typeOfOffer.id
+    )
+  ),
+  local!vehicleOptions: #"_a-0000dfd8-6941-8000-9ba2-011c48011c48_185151"(),
+  local!loyaltyOfferCurrentOwnerOptions: if(
+    ri!record.loyaltyOfferCurrentOwner.active,
+    #"_a-0000dfd8-6941-8000-9ba2-011c48011c48_184966"(
+      #"_a-0000dfd8-6941-8000-9ba2-011c48011c48_185155"(),
+      null
+    ),
+    #"_a-0000dfd8-6941-8000-9ba2-011c48011c48_184966"(
+      #"_a-0000dfd8-6941-8000-9ba2-011c48011c48_185155"(),
+      ri!record.loyaltyOfferCurrentOwner.id
+    )
+  ),
+  local!certifiedPreownedOfferOptions: if(
+    ri!record.certifiedPreownedOffer.active,
+    #"_a-0000dfd8-6941-8000-9ba2-011c48011c48_184966"(
+      #"_a-0000dfd8-6941-8000-9ba2-011c48011c48_185159"(),
+      null
+    ),
+    #"_a-0000dfd8-6941-8000-9ba2-011c48011c48_184966"(
+      #"_a-0000dfd8-6941-8000-9ba2-011c48011c48_185159"(),
+      ri!record.certifiedPreownedOffer.id
+    )
+  ),
+  local!couponAvailableOptions: if(
+    ri!record.couponAvailable.active,
+    #"_a-0000dfd8-6941-8000-9ba2-011c48011c48_184966"(
+      #"_a-0000dfd8-6941-8000-9ba2-011c48011c48_185163"(),
+      null
+    ),
+    #"_a-0000dfd8-6941-8000-9ba2-011c48011c48_184966"(
+      #"_a-0000dfd8-6941-8000-9ba2-011c48011c48_185163"(),
+      ri!record.couponAvailable.id
+    )
+  ),
+  local!publishLocationOptions: if(
+    or(
+      isnull(
+        ri!record.publishLocation
+      ),
+      and(
+        ri!record.publishLocation.active
+      )
+    ),
+    #"_a-0000dfd8-6941-8000-9ba2-011c48011c48_184966"(
+      #"_a-0000dfd8-6941-8000-9ba2-011c48011c48_185167"(),
+      null
+    ),
+    #"_a-0000dfd8-6941-8000-9ba2-011c48011c48_184966"(
+      #"_a-0000dfd8-6941-8000-9ba2-011c48011c48_185167"(),
+      ri!record.publishLocation.id
+    )
+  ),
+  local!modelOptions: if(
+    or(
+      isnull(
+        ri!record.model
+      ),
+      and(
+        ri!record.model.active
+      )
+    ),
+    #"_a-0000dfd8-6941-8000-9ba2-011c48011c48_184966"(
+      #"_a-0000dfd8-6941-8000-9ba2-011c48011c48_185171"(),
+      null
+    ),
+    #"_a-0000dfd8-6941-8000-9ba2-011c48011c48_184966"(
+      #"_a-0000dfd8-6941-8000-9ba2-011c48011c48_185171"(),
+      ri!record.model.id
+    )
+  ),
+  local!exclusionListOptions: if(
+    or(
+      isnull(
+        ri!record.exclusionList
+      ),
+      and(
+        ri!record.exclusionList.active
+      )
+    ),
+    #"_a-0000dfd8-6941-8000-9ba2-011c48011c48_184966"(
+      #"_a-0000dfd8-6941-8000-9ba2-011c48011c48_185175"(),
+      null
+    ),
+    #"_a-0000dfd8-6941-8000-9ba2-011c48011c48_184966"(
+      #"_a-0000dfd8-6941-8000-9ba2-011c48011c48_185175"(),
+      ri!record.exclusionList.id
+    )
+  ),
+  local!vehicleLabel: #"_a-0000dfd8-6941-8000-9ba2-011c48011c48_187599"().title,
+  local!vehicle: #"_a-0000dfd8-6941-8000-9ba2-011c48011c48_187599"(),
+  local!vehicles2,
+  with(
+    local!vehicles: if(
+      #"_a-0000dd3a-dada-8000-daab-640000640000_11122"(
+        ri!record.vehicle
+      ),
+      {},
+      #"_a-0000dfd8-6941-8000-9ba2-011c48011c48_188831"(
+        ri!record.vehicle
+      )
+    ),
+    {
+      #"SYSTEM_SYSRULES_paragraphField"(
+        value: {},
+        readOnly: true
+      ),
+      if(
+        isusermemberofgroup(
+          loggedInUser(),
+          #"_a-0000dfd8-6941-8000-9ba2-011c48011c48_205426"
+        ),
+        #"SYSTEM_SYSRULES_columnsLayout"(
+          columns: {}
+        ),
+        {}
+      ),
+      #"SYSTEM_SYSRULES_columnsLayout"(
+        columns: {
+          #"SYSTEM_SYSRULES_columnLayout"(
+            #"SYSTEM_SYSRULES_boxLayout"(
+              style: "INFO",
+              contents: #"SYSTEM_SYSRULES_sectionLayout_v1"(
+                label: "Details",
+                contents: #"SYSTEM_SYSRULES_columnsLayout"(
+                  columns: {
+                    #"SYSTEM_SYSRULES_columnLayout"(
+                      contents: {
+                        #"SYSTEM_SYSRULES_textField"(
+                          label: "Status",
+                          labelPosition: if(
+                            ri!readOnly,
+                            "ADJACENT",
+                            "ABOVE"
+                          ),
+                          instructions: if(
+                            ri!readOnly,
+                            "",
+                            ""
+                          ),
+                          helpTooltip: if(
+                            ri!readOnly,
+                            "",
+                            ""
+                          ),
+                          placeholder: if(
+                            ri!readOnly,
+                            "",
+                            ""
+                          ),
+                          required: not(
+                            ri!readOnly
+                          ),
+                          value: ri!record.overallStatus,
+                          saveInto: ri!record.programCode,
+                          readOnly: ri!readOnly
+                        ),
+                        #"SYSTEM_SYSRULES_textField"(
+                          label: "Program Code",
+                          labelPosition: if(
+                            ri!readOnly,
+                            "ADJACENT",
+                            "ABOVE"
+                          ),
+                          instructions: if(
+                            ri!readOnly,
+                            "",
+                            ""
+                          ),
+                          helpTooltip: if(
+                            ri!readOnly,
+                            "",
+                            ""
+                          ),
+                          placeholder: if(
+                            ri!readOnly,
+                            "",
+                            ""
+                          ),
+                          required: not(
+                            ri!readOnly
+                          ),
+                          value: "153250",
+                          saveInto: ri!record.programCode,
+                          readOnly: ri!readOnly
+                        ),
+                        #"SYSTEM_SYSRULES_textField"(
+                          label: "Program Name",
+                          labelPosition: if(
+                            ri!readOnly,
+                            "ADJACENT",
+                            "ABOVE"
+                          ),
+                          instructions: if(
+                            ri!readOnly,
+                            "",
+                            ""
+                          ),
+                          helpTooltip: if(
+                            ri!readOnly,
+                            "",
+                            ""
+                          ),
+                          placeholder: if(
+                            ri!readOnly,
+                            "",
+                            ""
+                          ),
+                          required: not(
+                            ri!readOnly
+                          ),
+                          value: ri!record.title,
+                          saveInto: ri!record.programName,
+                          readOnly: ri!readOnly
+                        ),
+                        #"SYSTEM_SYSRULES_dateTimeField"(
+                          label: "Offer Start Date",
+                          labelPosition: if(
+                            ri!readOnly,
+                            "ADJACENT",
+                            "ABOVE"
+                          ),
+                          instructions: if(
+                            ri!readOnly,
+                            "",
+                            ""
+                          ),
+                          helpTooltip: if(
+                            ri!readOnly,
+                            "",
+                            ""
+                          ),
+                          required: if(
+                            ri!readOnly,
+                            false,
+                            true
+                          ),
+                          value: ri!record.offerStartDate2,
+                          saveInto: ri!record.offerStartDate2,
+                          readOnly: ri!readOnly
+                        ),
+                        #"SYSTEM_SYSRULES_dateTimeField"(
+                          label: "Offer End Date",
+                          labelPosition: if(
+                            ri!readOnly,
+                            "ADJACENT",
+                            "ABOVE"
+                          ),
+                          instructions: if(
+                            ri!readOnly,
+                            "",
+                            ""
+                          ),
+                          helpTooltip: if(
+                            ri!readOnly,
+                            "",
+                            ""
+                          ),
+                          required: if(
+                            ri!readOnly,
+                            false,
+                            true
+                          ),
+                          value: ri!record.offerEndDate2,
+                          saveInto: ri!record.offerEndDate2,
+                          readOnly: ri!readOnly
+                        ),
+                        #"SYSTEM_SYSRULES_textField"(
+                          label: "Scope",
+                          labelPosition: if(
+                            ri!readOnly,
+                            "ADJACENT",
+                            "ABOVE"
+                          ),
+                          instructions: if(
+                            ri!readOnly,
+                            "",
+                            ""
+                          ),
+                          helpTooltip: if(
+                            ri!readOnly,
+                            "",
+                            ""
+                          ),
+                          placeholder: if(
+                            ri!readOnly,
+                            "",
+                            ""
+                          ),
+                          required: not(
+                            ri!readOnly
+                          ),
+                          value: "Regional",
+                          saveInto: ri!record.scope,
+                          readOnly: ri!readOnly
+                        ),
+                        #"SYSTEM_SYSRULES_textField"(
+                          label: "Applicable Vehicle(s)",
+                          labelPosition: if(
+                            ri!readOnly,
+                            "ADJACENT",
+                            "ABOVE"
+                          ),
+                          instructions: if(
+                            ri!readOnly,
+                            "",
+                            ""
+                          ),
+                          helpTooltip: if(
+                            ri!readOnly,
+                            "",
+                            ""
+                          ),
+                          placeholder: if(
+                            ri!readOnly,
+                            "",
+                            ""
+                          ),
+                          required: not(
+                            ri!readOnly
+                          ),
+                          value: "Audi, Volkswagen",
+                          saveInto: ri!record.applicableVehicles,
+                          readOnly: ri!readOnly
+                        ),
+                        #"SYSTEM_SYSRULES_textField"(
+                          label: "Applicable Customer Vehicle",
+                          labelPosition: if(
+                            ri!readOnly,
+                            "ADJACENT",
+                            "ABOVE"
+                          ),
+                          instructions: if(
+                            ri!readOnly,
+                            "",
+                            ""
+                          ),
+                          helpTooltip: if(
+                            ri!readOnly,
+                            "",
+                            ""
+                          ),
+                          placeholder: if(
+                            ri!readOnly,
+                            "",
+                            ""
+                          ),
+                          required: not(
+                            ri!readOnly
+                          ),
+                          value: "Audi",
+                          saveInto: ri!record.applicableCustomerVehicle,
+                          readOnly: ri!readOnly
+                        )
+                      }
+                    ),
+                    #"SYSTEM_SYSRULES_columnLayout"(
+                      contents: {
+                        #"SYSTEM_SYSRULES_textField"(
+                          label: "Required Documentation",
+                          labelPosition: if(
+                            ri!readOnly,
+                            "ADJACENT",
+                            "ABOVE"
+                          ),
+                          instructions: if(
+                            ri!readOnly,
+                            "",
+                            ""
+                          ),
+                          helpTooltip: if(
+                            ri!readOnly,
+                            "",
+                            ""
+                          ),
+                          placeholder: if(
+                            ri!readOnly,
+                            "",
+                            ""
+                          ),
+                          required: not(
+                            ri!readOnly
+                          ),
+                          value: "On File",
+                          saveInto: ri!record.requiredDocumentation,
+                          readOnly: ri!readOnly
+                        ),
+                        #"SYSTEM_SYSRULES_textField"(
+                          label: "Required Information",
+                          labelPosition: if(
+                            ri!readOnly,
+                            "ADJACENT",
+                            "ABOVE"
+                          ),
+                          instructions: if(
+                            ri!readOnly,
+                            "",
+                            ""
+                          ),
+                          helpTooltip: if(
+                            ri!readOnly,
+                            "",
+                            ""
+                          ),
+                          placeholder: if(
+                            ri!readOnly,
+                            "",
+                            ""
+                          ),
+                          required: not(
+                            ri!readOnly
+                          ),
+                          value: "On File",
+                          saveInto: ri!record.requiredInformation,
+                          readOnly: ri!readOnly
+                        ),
+                        #"SYSTEM_SYSRULES_textField"(
+                          label: "Type of Sale",
+                          labelPosition: if(
+                            ri!readOnly,
+                            "ADJACENT",
+                            "ABOVE"
+                          ),
+                          instructions: if(
+                            ri!readOnly,
+                            "",
+                            ""
+                          ),
+                          helpTooltip: if(
+                            ri!readOnly,
+                            "",
+                            ""
+                          ),
+                          placeholder: if(
+                            ri!readOnly,
+                            "",
+                            ""
+                          ),
+                          required: not(
+                            ri!readOnly
+                          ),
+                          value: "Seasonal",
+                          saveInto: ri!record.typeOfSale,
+                          readOnly: ri!readOnly
+                        ),
+                        #"SYSTEM_SYSRULES_textField"(
+                          label: "Award Amount",
+                          labelPosition: if(
+                            ri!readOnly,
+                            "ADJACENT",
+                            "ABOVE"
+                          ),
+                          instructions: if(
+                            ri!readOnly,
+                            "",
+                            ""
+                          ),
+                          helpTooltip: if(
+                            ri!readOnly,
+                            "",
+                            ""
+                          ),
+                          placeholder: if(
+                            ri!readOnly,
+                            "",
+                            ""
+                          ),
+                          required: not(
+                            ri!readOnly
+                          ),
+                          value: "1400",
+                          saveInto: ri!record.awardAmount,
+                          readOnly: ri!readOnly
+                        ),
+                        #"SYSTEM_SYSRULES_textField"(
+                          label: "Program Bulletin URL",
+                          labelPosition: if(
+                            ri!readOnly,
+                            "ADJACENT",
+                            "ABOVE"
+                          ),
+                          instructions: if(
+                            ri!readOnly,
+                            "",
+                            ""
+                          ),
+                          helpTooltip: if(
+                            ri!readOnly,
+                            "",
+                            ""
+                          ),
+                          placeholder: if(
+                            ri!readOnly,
+                            "",
+                            ""
+                          ),
+                          required: not(
+                            ri!readOnly
+                          ),
+                          value: "https://audi.com/program-bulletin/summary",
+                          saveInto: ri!record.programBulletinUrl,
+                          readOnly: ri!readOnly
+                        ),
+                        #"SYSTEM_SYSRULES_textField"(
+                          label: "Submission Deadline",
+                          labelPosition: if(
+                            ri!readOnly,
+                            "ADJACENT",
+                            "ABOVE"
+                          ),
+                          instructions: if(
+                            ri!readOnly,
+                            "",
+                            ""
+                          ),
+                          helpTooltip: if(
+                            ri!readOnly,
+                            "",
+                            ""
+                          ),
+                          placeholder: if(
+                            ri!readOnly,
+                            "",
+                            ""
+                          ),
+                          required: not(
+                            ri!readOnly
+                          ),
+                          value: ri!record.offerEndDate,
+                          saveInto: ri!record.submissionDeadline,
+                          readOnly: ri!readOnly
+                        ),
+                        #"SYSTEM_SYSRULES_textField"(
+                          label: "Compatibility",
+                          labelPosition: if(
+                            ri!readOnly,
+                            "ADJACENT",
+                            "ABOVE"
+                          ),
+                          instructions: if(
+                            ri!readOnly,
+                            "",
+                            ""
+                          ),
+                          helpTooltip: if(
+                            ri!readOnly,
+                            "",
+                            ""
+                          ),
+                          placeholder: if(
+                            ri!readOnly,
+                            "",
+                            ""
+                          ),
+                          required: not(
+                            ri!readOnly
+                          ),
+                          value: "No Conflicts",
+                          saveInto: ri!record.compatibility,
+                          readOnly: ri!readOnly
+                        ),
+                        #"SYSTEM_SYSRULES_textField"(
+                          label: "Eligibility Criteria",
+                          labelPosition: if(
+                            ri!readOnly,
+                            "ADJACENT",
+                            "ABOVE"
+                          ),
+                          instructions: if(
+                            ri!readOnly,
+                            "",
+                            ""
+                          ),
+                          helpTooltip: if(
+                            ri!readOnly,
+                            "",
+                            ""
+                          ),
+                          placeholder: if(
+                            ri!readOnly,
+                            "",
+                            ""
+                          ),
+                          required: not(
+                            ri!readOnly
+                          ),
+                          value: "Customer Fulfilled",
+                          saveInto: ri!record.eligibilityCriteria,
+                          readOnly: ri!readOnly
+                        )
+                      }
+                    ),
+                    #"SYSTEM_SYSRULES_columnLayout"(
+                      contents: {
+                        if(
+                          ri!readOnly,
+                          #"SYSTEM_SYSRULES_textField"(
+                            label: "Type of Offer",
+                            labelPosition: "ADJACENT",
+                            value: ri!record.awardType,
+                            readOnly: true
+                          ),
+                          #"SYSTEM_SYSRULES_textField"(
+                            label: "Type of Offer",
+                            labelPosition: "ADJACENT",
+                            value: ri!record.awardType,
+                            readOnly: true
+                          )
+                        ),
+                        if(
+                          ri!record.typeOfOffer.value = "",
+                          #"SYSTEM_SYSRULES_textField"(
+                            label: "",
+                            readOnly: true
+                          ),
+                          {
+                            if(
+                              ri!record.typeOfOffer.value = "Lease",
+                              {
+                                #"SYSTEM_SYSRULES_floatingPointField"(
+                                  label: "Lease Price per month",
+                                  labelPosition: if(
+                                    ri!readOnly,
+                                    "ADJACENT",
+                                    "ABOVE"
+                                  ),
+                                  instructions: if(
+                                    ri!readOnly,
+                                    "",
+                                    ""
+                                  ),
+                                  helpTooltip: if(
+                                    ri!readOnly,
+                                    "",
+                                    ""
+                                  ),
+                                  placeholder: if(
+                                    ri!readOnly,
+                                    "",
+                                    ""
+                                  ),
+                                  required: false,
+                                  value: ri!record.leasePricePerMonth,
+                                  saveInto: ri!record.leasePricePerMonth,
+                                  readOnly: ri!readOnly
+                                ),
+                                #"SYSTEM_SYSRULES_floatingPointField"(
+                                  label: "Lease Term",
+                                  labelPosition: if(
+                                    ri!readOnly,
+                                    "ADJACENT",
+                                    "ABOVE"
+                                  ),
+                                  instructions: if(
+                                    ri!readOnly,
+                                    "",
+                                    ""
+                                  ),
+                                  helpTooltip: if(
+                                    ri!readOnly,
+                                    "",
+                                    ""
+                                  ),
+                                  placeholder: if(
+                                    ri!readOnly,
+                                    "",
+                                    ""
+                                  ),
+                                  required: false,
+                                  value: ri!record.leaseTerm,
+                                  saveInto: ri!record.leaseTerm,
+                                  readOnly: ri!readOnly
+                                ),
+                                #"SYSTEM_SYSRULES_floatingPointField"(
+                                  label: "Purchase at Lease End",
+                                  labelPosition: if(
+                                    ri!readOnly,
+                                    "ADJACENT",
+                                    "ABOVE"
+                                  ),
+                                  instructions: if(
+                                    ri!readOnly,
+                                    "",
+                                    ""
+                                  ),
+                                  helpTooltip: if(
+                                    ri!readOnly,
+                                    "",
+                                    ""
+                                  ),
+                                  placeholder: if(
+                                    ri!readOnly,
+                                    "",
+                                    ""
+                                  ),
+                                  required: false,
+                                  value: ri!record.purchaseAtLeaseEnd,
+                                  saveInto: ri!record.purchaseAtLeaseEnd,
+                                  readOnly: ri!readOnly
+                                )
+                              },
+                              if(
+                                ri!record.typeOfOffer.value = "APR",
+                                {
+                                  #"SYSTEM_SYSRULES_textField"(
+                                    label: "APR Rate",
+                                    labelPosition: if(
+                                      ri!readOnly,
+                                      "ADJACENT",
+                                      "ABOVE"
+                                    ),
+                                    instructions: if(
+                                      ri!readOnly,
+                                      "",
+                                      ""
+                                    ),
+                                    helpTooltip: if(
+                                      ri!readOnly,
+                                      "",
+                                      ""
+                                    ),
+                                    placeholder: if(
+                                      ri!readOnly,
+                                      "",
+                                      ""
+                                    ),
+                                    required: false,
+                                    value: ri!record.aprRate,
+                                    saveInto: ri!record.aprRate,
+                                    readOnly: ri!readOnly,
+                                    validations: if(
+                                      len(
+                                        ri!record.aprRate
+                                      ) &lt;= 200,
+                                      "",
+                                      "Value may not be longer than 200 characters. You have entered " &amp; len(
+                                        ri!record.aprRate
+                                      ) &amp; " characters."
+                                    )
+                                  ),
+                                  #"SYSTEM_SYSRULES_floatingPointField"(
+                                    label: "APR Term",
+                                    labelPosition: if(
+                                      ri!readOnly,
+                                      "ADJACENT",
+                                      "ABOVE"
+                                    ),
+                                    instructions: if(
+                                      ri!readOnly,
+                                      "",
+                                      ""
+                                    ),
+                                    helpTooltip: if(
+                                      ri!readOnly,
+                                      "",
+                                      ""
+                                    ),
+                                    placeholder: if(
+                                      ri!readOnly,
+                                      "",
+                                      ""
+                                    ),
+                                    required: false,
+                                    value: ri!record.aprTerm,
+                                    saveInto: ri!record.aprTerm,
+                                    readOnly: ri!readOnly
+                                  ),
+                                  #"SYSTEM_SYSRULES_floatingPointField"(
+                                    label: "Due at Signing",
+                                    labelPosition: if(
+                                      ri!readOnly,
+                                      "ADJACENT",
+                                      "ABOVE"
+                                    ),
+                                    instructions: if(
+                                      ri!readOnly,
+                                      "",
+                                      ""
+                                    ),
+                                    helpTooltip: if(
+                                      ri!readOnly,
+                                      "",
+                                      ""
+                                    ),
+                                    placeholder: if(
+                                      ri!readOnly,
+                                      "",
+                                      ""
+                                    ),
+                                    required: false,
+                                    value: ri!record.dueAtSigning,
+                                    saveInto: ri!record.dueAtSigning,
+                                    readOnly: ri!readOnly
+                                  )
+                                },
+                                if(
+                                  ri!record.typeOfOffer.value = "Owner",
+                                  {
+                                    if(
+                                      ri!readOnly,
+                                      #"SYSTEM_SYSRULES_textField"(
+                                        label: "Loyalty Offer Current Owner",
+                                        labelPosition: "ADJACENT",
+                                        value: ri!record.loyaltyOfferCurrentOwner.value,
+                                        readOnly: true
+                                      ),
+                                      #"SYSTEM_SYSRULES_dropdownField"(
+                                        label: "Loyalty Offer Current Owner",
+                                        labelPosition: "ABOVE",
+                                        instructions: "",
+                                        helpTooltip: "",
+                                        placeholderLabel: "--- Select a Value ---",
+                                        choiceLabels: local!loyaltyOfferCurrentOwnerOptions.value,
+                                        choiceValues: local!loyaltyOfferCurrentOwnerOptions,
+                                        required: false,
+                                        value: ri!record.loyaltyOfferCurrentOwner,
+                                        saveInto: ri!record.loyaltyOfferCurrentOwner
+                                      )
+                                    ),
+                                    #"SYSTEM_SYSRULES_floatingPointField"(
+                                      label: "Loyalty Discount",
+                                      labelPosition: if(
+                                        ri!readOnly,
+                                        "ADJACENT",
+                                        "ABOVE"
+                                      ),
+                                      instructions: if(
+                                        ri!readOnly,
+                                        "",
+                                        "Enter Dollar Amont"
+                                      ),
+                                      helpTooltip: if(
+                                        ri!readOnly,
+                                        "",
+                                        ""
+                                      ),
+                                      placeholder: if(
+                                        ri!readOnly,
+                                        "",
+                                        "Enter Dollar Amount"
+                                      ),
+                                      required: false,
+                                      value: ri!record.loyaltyDiscount,
+                                      saveInto: ri!record.loyaltyDiscount,
+                                      readOnly: ri!readOnly
+                                    ),
+                                    #"SYSTEM_SYSRULES_floatingPointField"(
+                                      label: "Model MSRP",
+                                      labelPosition: if(
+                                        ri!readOnly,
+                                        "ADJACENT",
+                                        "ABOVE"
+                                      ),
+                                      instructions: if(
+                                        ri!readOnly,
+                                        "",
+                                        ""
+                                      ),
+                                      helpTooltip: if(
+                                        ri!readOnly,
+                                        "",
+                                        ""
+                                      ),
+                                      placeholder: if(
+                                        ri!readOnly,
+                                        "",
+                                        ""
+                                      ),
+                                      required: false,
+                                      value: ri!record.modelMsrp,
+                                      saveInto: ri!record.modelMsrp,
+                                      readOnly: ri!readOnly
+                                    )
+                                  },
+                                  if(
+                                    ri!record.typeOfOffer.value = "Other",
+                                    {
+                                      #"SYSTEM_SYSRULES_paragraphField"(
+                                        label: "Offer Legal",
+                                        labelPosition: if(
+                                          ri!readOnly,
+                                          "ADJACENT",
+                                          "ABOVE"
+                                        ),
+                                        instructions: if(
+                                          ri!readOnly,
+                                          "",
+                                          ""
+                                        ),
+                                        helpTooltip: if(
+                                          ri!readOnly,
+                                          "",
+                                          ""
+                                        ),
+                                        placeholder: if(
+                                          ri!readOnly,
+                                          "",
+                                          ""
+                                        ),
+                                        required: false,
+                                        value: ri!record.offerLegal.value,
+                                        saveInto: ri!record.offerLegal.value,
+                                        readOnly: ri!readOnly,
+                                        height: "SHORT",
+                                        validations: if(
+                                          len(
+                                            ri!record.offerLegal.value
+                                          ) &lt;= 4000,
+                                          "",
+                                          "Value may not be longer than 4000 characters. You have entered " &amp; len(
+                                            ri!record.offerLegal.value
+                                          ) &amp; " characters."
+                                        )
+                                      ),
+                                      if(
+                                        ri!readOnly,
+                                        #"SYSTEM_SYSRULES_textField"(
+                                          label: "Coupon Available",
+                                          labelPosition: "ADJACENT",
+                                          value: ri!record.couponAvailable.value,
+                                          readOnly: true
+                                        ),
+                                        #"SYSTEM_SYSRULES_dropdownField"(
+                                          label: "Coupon Available",
+                                          labelPosition: "ABOVE",
+                                          instructions: "",
+                                          helpTooltip: "",
+                                          placeholderLabel: "--- Select a Value ---",
+                                          choiceLabels: local!couponAvailableOptions.value,
+                                          choiceValues: local!couponAvailableOptions,
+                                          required: false,
+                                          value: ri!record.couponAvailable,
+                                          saveInto: ri!record.couponAvailable
+                                        )
+                                      ),
+                                      #"SYSTEM_SYSRULES_textField"(
+                                        label: "Coupon URL",
+                                        labelPosition: if(
+                                          ri!readOnly,
+                                          "ADJACENT",
+                                          "ABOVE"
+                                        ),
+                                        instructions: if(
+                                          ri!readOnly,
+                                          "",
+                                          ""
+                                        ),
+                                        helpTooltip: if(
+                                          ri!readOnly,
+                                          "",
+                                          ""
+                                        ),
+                                        placeholder: if(
+                                          ri!readOnly,
+                                          "",
+                                          ""
+                                        ),
+                                        required: false,
+                                        value: ri!record.couponUrl,
+                                        saveInto: ri!record.couponUrl,
+                                        readOnly: ri!readOnly,
+                                        validations: if(
+                                          len(
+                                            ri!record.couponUrl
+                                          ) &lt;= 200,
+                                          "",
+                                          "Value may not be longer than 200 characters. You have entered " &amp; len(
+                                            ri!record.couponUrl
+                                          ) &amp; " characters."
+                                        )
+                                      )
+                                    },
+                                    if(
+                                      ri!record.typeOfOffer.value = "Pre-Owned",
+                                      {
+                                        #"SYSTEM_SYSRULES_paragraphField"(
+                                          label: "Offer Legal",
+                                          labelPosition: if(
+                                            ri!readOnly,
+                                            "ADJACENT",
+                                            "ABOVE"
+                                          ),
+                                          instructions: if(
+                                            ri!readOnly,
+                                            "",
+                                            ""
+                                          ),
+                                          helpTooltip: if(
+                                            ri!readOnly,
+                                            "",
+                                            ""
+                                          ),
+                                          placeholder: if(
+                                            ri!readOnly,
+                                            "",
+                                            ""
+                                          ),
+                                          required: false,
+                                          value: ri!record.offerLegal.value,
+                                          saveInto: ri!record.offerLegal.value,
+                                          readOnly: ri!readOnly,
+                                          height: "SHORT",
+                                          validations: if(
+                                            len(
+                                              ri!record.offerLegal.value
+                                            ) &lt;= 4000,
+                                            "",
+                                            "Value may not be longer than 4000 characters. You have entered " &amp; len(
+                                              ri!record.offerLegal.value
+                                            ) &amp; " characters."
+                                          )
+                                        ),
+                                        if(
+                                          ri!readOnly,
+                                          #"SYSTEM_SYSRULES_textField"(
+                                            label: "Certified Pre-Owned Offer",
+                                            labelPosition: "ADJACENT",
+                                            value: ri!record.certifiedPreownedOffer.value,
+                                            readOnly: true
+                                          ),
+                                          #"SYSTEM_SYSRULES_dropdownField"(
+                                            label: "Certified Pre-Owned Offer",
+                                            labelPosition: "ABOVE",
+                                            instructions: "",
+                                            helpTooltip: "",
+                                            placeholderLabel: "--- Select a Value ---",
+                                            choiceLabels: local!certifiedPreownedOfferOptions.value,
+                                            choiceValues: local!certifiedPreownedOfferOptions,
+                                            required: false,
+                                            value: ri!record.certifiedPreownedOffer,
+                                            saveInto: ri!record.certifiedPreownedOffer
+                                          )
+                                        )
+                                      },
+                                      if(
+                                        ri!record.typeOfOffer.value = "After Sales All",
+                                        {
+                                          #"SYSTEM_SYSRULES_floatingPointField"(
+                                            label: "Bonus Amount",
+                                            labelPosition: if(
+                                              ri!readOnly,
+                                              "ADJACENT",
+                                              "ABOVE"
+                                            ),
+                                            instructions: if(
+                                              ri!readOnly,
+                                              "",
+                                              ""
+                                            ),
+                                            helpTooltip: if(
+                                              ri!readOnly,
+                                              "",
+                                              ""
+                                            ),
+                                            placeholder: if(
+                                              ri!readOnly,
+                                              "",
+                                              ""
+                                            ),
+                                            required: false,
+                                            value: ri!record.bonusAmount,
+                                            saveInto: ri!record.bonusAmount,
+                                            readOnly: ri!readOnly
+                                          ),
+                                          #"SYSTEM_SYSRULES_textField"(
+                                            label: "Bonus Description",
+                                            labelPosition: if(
+                                              ri!readOnly,
+                                              "ADJACENT",
+                                              "ABOVE"
+                                            ),
+                                            instructions: if(
+                                              ri!readOnly,
+                                              "",
+                                              ""
+                                            ),
+                                            helpTooltip: if(
+                                              ri!readOnly,
+                                              "",
+                                              ""
+                                            ),
+                                            placeholder: if(
+                                              ri!readOnly,
+                                              "",
+                                              ""
+                                            ),
+                                            required: false,
+                                            value: ri!record.bonusDescription,
+                                            saveInto: ri!record.bonusDescription,
+                                            readOnly: ri!readOnly,
+                                            validations: if(
+                                              len(
+                                                ri!record.bonusDescription
+                                              ) &lt;= 200,
+                                              "",
+                                              "Value may not be longer than 200 characters. You have entered " &amp; len(
+                                                ri!record.bonusDescription
+                                              ) &amp; " characters."
+                                            )
+                                          )
+                                        },
+                                        #"SYSTEM_SYSRULES_textField"(
+                                          label: "",
+                                          readOnly: true
+                                        )
+                                      )
+                                    )
+                                  )
+                                )
+                              )
+                            )
+                          }
+                        ),
+                        if(
+                          ri!creating,
+                          {},
+                          {
+                            #"SYSTEM_SYSRULES_linkField"(
+                              label: "Updated By",
+                              labelPosition: if(
+                                ri!readOnly,
+                                "ADJACENT",
+                                "ABOVE"
+                              ),
+                              links: #"SYSTEM_SYSRULES_userRecordLink"(
+                                label: #"65026287-745f-41e2-90ed-50dbbd4b9ccf_FORMATNAME"(
+                                  ri!record.updatedBy
+                                ),
+                                user: ri!record.updatedBy
+                              )
+                            ),
+                            #"SYSTEM_SYSRULES_textField"(
+                              label: "Updated On",
+                              labelPosition: if(
+                                ri!readOnly,
+                                "ADJACENT",
+                                "ABOVE"
+                              ),
+                              value: #"_a-0000dfd8-6941-8000-9ba2-011c48011c48_184950"(
+                                ri!record.updatedOn
+                              ),
+                              readOnly: true
+                            )
+                          }
+                        )
+                      }
+                    )
+                  }
+                )
+              )
+            )
+          )
+        }
+      ),
+      
+    }
+  )
+)</definition>
+        <namedTypedValue>
+            <name>record</name>
+            <type>
+                <name>VIM_Incentive</name>
+                <namespace>urn:com:appian:types:VIM</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>creating</name>
+            <type>
+                <name>boolean</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>readOnly</name>
+            <type>
+                <name>boolean</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>documents</name>
+            <type>
+                <name>CollaborationDocument?list</name>
+                <namespace>http://www.appian.com/ae/types/2009</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>label</name>
+            <type>
+                <name>string</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+            <value/>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>deletedDocuments</name>
+            <type>
+                <name>CollaborationDocument?list</name>
+                <namespace>http://www.appian.com/ae/types/2009</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>vehicle</name>
+            <type>
+                <name>V_Vehicle?list</name>
+                <namespace>urn:com:appian:types:V</namespace>
+            </type>
+        </namedTypedValue>
+        <metadataExpr></metadataExpr>
+        <preferredEditor>interface</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role inherit="true" allowForAll="false" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="administrators">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <history>
+        <historyInfo versionUuid="_a-0000e067-d58d-8000-9ba2-011c48011c48_283116"/>
+        <historyInfo versionUuid="_a-0000e067-d58d-8000-9ba2-011c48011c48_286451"/>
+        <historyInfo versionUuid="_a-0000e044-c81a-8000-9ba2-011c48011c48_128856"/>
+        <historyInfo versionUuid="_a-0000e067-d58d-8000-9ba2-011c48011c48_298955"/>
+    </history>
+</contentHaul>

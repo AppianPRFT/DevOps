@@ -1,0 +1,397 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <versionUuid>_a-0000e067-d58d-8000-9ba2-011c48011c48_306578</versionUuid>
+    <rule>
+        <name>VIM_SaleApproval_Form</name>
+        <uuid>_a-0000e067-d58d-8000-9ba2-011c48011c48_282650</uuid>
+        <description>Sales form for Internal Claims procesor to correct necessary data for sales for an incentive</description>
+        <parentUuid>d1151d0a-2a3e-4e80-b3b0-105a99496272</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>load(
+  local!data: #"_a-0000e067-d58d-8000-9ba2-011c48011c48_302834"(
+    ri!salesData.id
+  ),
+  local!incentive: #"4028f35e-5814-4e3e-ab7f-f077d3d17e12_GETONERECORD"(
+    ri!salesData.incentiveId
+  ),
+  local!stage: 1,
+  {
+    #"SYSTEM_SYSRULES_sectionLayout_v1"(
+      label: "Review Sale",
+      contents: {
+        #"SYSTEM_SYSRULES_sideBySideLayout"(
+          items: {
+            #"SYSTEM_SYSRULES_sideBySideItem"(
+              #"SYSTEM_SYSRULES_linkField"(
+                align: "CENTER",
+                links: {}
+              )
+            ),
+            #"SYSTEM_SYSRULES_sideBySideItem"(
+              #"SYSTEM_SYSRULES_linkField"(
+                align: "CENTER",
+                links: {}
+              )
+            ),
+            #"SYSTEM_SYSRULES_sideBySideItem"(
+              #"SYSTEM_SYSRULES_ButtonArrayLayout"(
+                align: "CENTER",
+                buttons: #"SYSTEM_SYSRULES_ButtonWidget"(
+                  label: "Sale",
+                  style: "LINK",
+                  value: 1,
+                  saveInto: local!stage
+                )
+              )
+            ),
+            #"SYSTEM_SYSRULES_sideBySideItem"(
+              #"SYSTEM_SYSRULES_ButtonArrayLayout"(
+                align: "CENTER",
+                buttons: #"SYSTEM_SYSRULES_ButtonWidget"(
+                  label: "Incentive",
+                  style: "LINK",
+                  value: 2,
+                  saveInto: local!stage
+                )
+              )
+            ),
+            #"SYSTEM_SYSRULES_sideBySideItem"(
+              #"SYSTEM_SYSRULES_linkField"(
+                align: "CENTER",
+                links: {}
+              )
+            ),
+            #"SYSTEM_SYSRULES_sideBySideItem"(
+              #"SYSTEM_SYSRULES_linkField"(
+                align: "CENTER",
+                links: {}
+              )
+            )
+          }
+        ),
+        
+      }
+    ),
+    if(
+      local!stage = 1,
+      {
+        #"SYSTEM_SYSRULES_sectionLayout_v1"(
+          contents: {
+            #"SYSTEM_SYSRULES_boxLayout"(
+              label: "Sale Details",
+              contents: {
+                #"SYSTEM_SYSRULES_columnsLayout"(
+                  columns: {
+                    #"SYSTEM_SYSRULES_columnLayout"(
+                      contents: {
+                        #"SYSTEM_SYSRULES_textField"(
+                          label: "Sale",
+                          value: ri!salesData.title,
+                          saveInto: ri!salesData.title,
+                          readOnly: ri!readOnly,
+                          labelPosition: "ADJACENT"
+                        ),
+                        #"SYSTEM_SYSRULES_linkField"(
+                          label: "Associated Incentive",
+                          links: #"SYSTEM_SYSRULES_recordLink"(
+                            label: #"4028f35e-5814-4e3e-ab7f-f077d3d17e12_GETONERECORD"(
+                              ri!salesData.incentiveId
+                            ).title,
+                            recordType: #"_a-0000dfd8-6941-8000-9ba2-011c48011c48_184914",
+                            identifier: #"4028f35e-5814-4e3e-ab7f-f077d3d17e12_GETONERECORD"(
+                              ri!salesData.incentiveId
+                            ).id
+                          ),
+                          readOnly: ri!readOnly,
+                          labelPosition: "ADJACENT"
+                        ),
+                        #"SYSTEM_SYSRULES_textField"(
+                          label: "Make",
+                          value: ri!salesData.brand,
+                          saveInto: ri!salesData.brand,
+                          readOnly: ri!readOnly,
+                          labelPosition: "ADJACENT"
+                        ),
+                        #"SYSTEM_SYSRULES_textField"(
+                          label: "Country Sold",
+                          value: ri!salesData.country,
+                          saveInto: ri!salesData.country,
+                          readOnly: ri!readOnly,
+                          labelPosition: "ADJACENT"
+                        ),
+                        #"SYSTEM_SYSRULES_textField"(
+                          label: "APR Rate",
+                          value: ri!salesData.aprRate,
+                          saveInto: ri!salesData.aprRate,
+                          readOnly: ri!readOnly,
+                          labelPosition: "ADJACENT"
+                        ),
+                        #"SYSTEM_SYSRULES_textField"(
+                          label: "APR Term",
+                          value: ri!salesData.aprTerm,
+                          saveInto: ri!salesData.aprTerm,
+                          readOnly: ri!readOnly,
+                          labelPosition: "ADJACENT"
+                        ),
+                        #"SYSTEM_SYSRULES_textField"(
+                          label: "Award Type",
+                          value: ri!salesData.awardType,
+                          saveInto: ri!salesData.awardType,
+                          readOnly: ri!readOnly,
+                          labelPosition: "ADJACENT"
+                        ),
+                      }
+                    ),
+                    #"SYSTEM_SYSRULES_columnLayout"(
+                      contents: {
+                        #"SYSTEM_SYSRULES_textField"(
+                          label: "Model MSRP",
+                          value: ri!salesData.modelMsrp,
+                          saveInto: ri!salesData.modelMsrp,
+                          readOnly: ri!readOnly,
+                          labelPosition: "ADJACENT"
+                        ),
+                        #"SYSTEM_SYSRULES_textField"(
+                          label: "Sold By",
+                          value: ri!salesData.soldBy,
+                          saveInto: ri!salesData.soldBy,
+                          readOnly: ri!readOnly,
+                          labelPosition: "ADJACENT"
+                        ),
+                        #"SYSTEM_SYSRULES_textField"(
+                          label: "Sale Date",
+                          value: ri!salesData.soldOn,
+                          saveInto: ri!salesData.soldOn,
+                          readOnly: ri!readOnly,
+                          labelPosition: "ADJACENT"
+                        ),
+                        #"SYSTEM_SYSRULES_linkField"(
+                          label: "Vehicle",
+                          links: #"SYSTEM_SYSRULES_recordLink"(
+                            label: #"_a-0000dfd8-6941-8000-9ba2-011c48011c48_201605"(
+                              ri!salesData.vehicleId
+                            ).make &amp; " " &amp; #"_a-0000dfd8-6941-8000-9ba2-011c48011c48_201605"(
+                              ri!salesData.vehicleId
+                            ).model,
+                            recordType: #"_a-0000e067-d58d-8000-9ba2-011c48011c48_297373",
+                            identifier: ri!salesData.vehicleId
+                          ),
+                          readOnly: ri!readOnly,
+                          labelPosition: "ADJACENT"
+                        ),
+                        #"SYSTEM_SYSRULES_textField"(
+                          label: "Bonus Amount",
+                          value: ri!salesData.bonusAmount,
+                          saveInto: ri!salesData.bonusAmount,
+                          readOnly: ri!readOnly,
+                          labelPosition: "ADJACENT"
+                        ),
+                        
+                      }
+                    )
+                  }
+                )
+              }
+            ),
+            #"SYSTEM_SYSRULES_textField"(
+              readOnly: true
+            ),
+            #"SYSTEM_SYSRULES_boxLayout"(
+              label: "Review Details",
+              contents: {
+                #"SYSTEM_SYSRULES_textField"(
+                  label: "Error Code",
+                  value: index(
+                    #"_a-0000e067-d58d-8000-9ba2-011c48011c48_293716",
+                    cast(
+                      1,
+                      ri!errorCode
+                    ),
+                    "0001"
+                  ),
+                  readOnly: true
+                ),
+                #"SYSTEM_SYSRULES_paragraphField"(
+                  label: "Comment",
+                  readOnly: false,
+                  value: ri!salesData.comment,
+                  saveInto: ri!salesData.comment
+                )
+              }
+            ),
+            #"SYSTEM_SYSRULES_textField"(
+              readOnly: true
+            ),
+            #"SYSTEM_SYSRULES_ButtonLayout"(
+              primaryButtons: {
+                #"SYSTEM_SYSRULES_ButtonWidgetSubmit"(
+                  label: "Reject",
+                  style: "DESTRUCTIVE",
+                  value: "Reject",
+                  saveInto: ri!decision
+                ),
+                #"SYSTEM_SYSRULES_ButtonWidgetSubmit"(
+                  label: "Approve",
+                  style: "NORMAL",
+                  value: "Approved",
+                  saveInto: ri!decision
+                )
+              },
+              secondaryButtons: #"SYSTEM_SYSRULES_ButtonWidget"(
+                label: "Cancel"
+              )
+            )
+          }/*,*/
+          
+        )
+      },
+      #"_a-0000e067-d58d-8000-9ba2-011c48011c48_283107"(
+        record: local!incentive,
+        creating: false,
+        readOnly: true,
+        documents: if(
+          isnull(
+            local!incentive.folderId
+          ),
+          {},
+          folder(
+            local!incentive.folderId,
+            "documentChildren"
+          )
+        )
+      )
+    )
+  }
+)</definition>
+        <namedTypedValue>
+            <name>id</name>
+            <type>
+                <name>int</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>readOnly</name>
+            <type>
+                <name>boolean</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>errorCode</name>
+            <type>
+                <name>string</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+            <value/>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>comment</name>
+            <type>
+                <name>string</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+            <value/>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>salesData</name>
+            <type>
+                <name>VIM_SalesData</name>
+                <namespace>urn:com:appian:types:VIM</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>decision</name>
+            <type>
+                <name>string</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+            <value/>
+        </namedTypedValue>
+        <metadataExpr></metadataExpr>
+        <preferredEditor>interface</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role inherit="true" allowForAll="false" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="administrators">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <typedValue>
+        <type>
+            <name>RuleTestConfig?list</name>
+            <namespace>http://www.appian.com/ae/types/2009</namespace>
+        </type>
+        <value>
+            <el>
+                <a:name/>
+                <a:ruleInputTestConfigs>
+                    <a:value xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xsd:int">42</a:value>
+                    <a:nameRef>id</a:nameRef>
+                    <a:id/>
+                </a:ruleInputTestConfigs>
+                <a:ruleInputTestConfigs>
+                    <a:value xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true" xsi:type="xsd:boolean"/>
+                    <a:nameRef>readOnly</a:nameRef>
+                    <a:id/>
+                </a:ruleInputTestConfigs>
+                <a:ruleInputTestConfigs>
+                    <a:value xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xsd:string"/>
+                    <a:nameRef>errorCode</a:nameRef>
+                    <a:id/>
+                </a:ruleInputTestConfigs>
+                <a:ruleInputTestConfigs>
+                    <a:value xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xsd:string"/>
+                    <a:nameRef>comment</a:nameRef>
+                    <a:id/>
+                </a:ruleInputTestConfigs>
+                <a:ruleInputTestConfigs>
+                    <a:value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="a:Expression">#"_a-0000dfd8-6941-8000-9ba2-011c48011c48_191173"(4)</a:value>
+                    <a:nameRef>salesData</a:nameRef>
+                    <a:id/>
+                </a:ruleInputTestConfigs>
+                <a:ruleInputTestConfigs>
+                    <a:value xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xsd:string"/>
+                    <a:nameRef>decision</a:nameRef>
+                    <a:id/>
+                </a:ruleInputTestConfigs>
+                <a:assertions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+            </el>
+        </value>
+    </typedValue>
+    <history>
+        <historyInfo versionUuid="_a-0000e067-d58d-8000-9ba2-011c48011c48_283165"/>
+        <historyInfo versionUuid="_a-0000e044-c81a-8000-9ba2-011c48011c48_128861"/>
+        <historyInfo versionUuid="_a-0000e067-d58d-8000-9ba2-011c48011c48_294677"/>
+        <historyInfo versionUuid="_a-0000e067-d58d-8000-9ba2-011c48011c48_306578"/>
+    </history>
+</contentHaul>

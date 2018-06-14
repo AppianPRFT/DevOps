@@ -1,0 +1,319 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <versionUuid>_a-0000e067-d58d-8000-9ba2-011c48011c48_299542</versionUuid>
+    <rule>
+        <name>VIM_NewsTab</name>
+        <uuid>_a-0000dfd8-6941-8000-9ba2-011c48011c48_199661</uuid>
+        <description>Interface object that displays news and announcement information</description>
+        <parentUuid>d1151d0a-2a3e-4e80-b3b0-105a99496272</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>#"SYSTEM_SYSRULES_columnsLayout"(
+  columns: {
+    #"SYSTEM_SYSRULES_columnLayout"(
+      contents: {
+        #"SYSTEM_SYSRULES_boxLayout"(
+          label: "News &amp; Announcements",
+          contents: {
+            #"SYSTEM_SYSRULES_webContentField"(
+              source: "https://www.autonews.com/section/news?profilename="&amp;ri!brand,
+              showBorder: true
+            )
+            /*a!richTextDisplayField(*/
+              /*label: "",*/
+              /*labelPosition: "COLLAPSED",*/
+              /*value: {*/
+                /*a!richTextItem(*/
+                  /*text: "New Subaru and Volkswagen dealership in Waldorf",*/
+                  /*style: "HEADER_SMALL",*/
+                  /*link: a!safeLink(*/
+                    /*label: "...",*/
+                    /*uri: "http://www.thebaynet.com/articles/1117/new-subaru-and-volkswagen-dealership-in-waldorf.html"*/
+                  /*)*/
+                /*),*/
+                /*a!richTextItem(*/
+                  /*text: "Ourisman Motors in Waldorf has been doing business in Southern Maryland for nearly a century and the company is proud to welcome Ourisman Subaru Waldorf and Ourisman Volkswagen of Waldorf ",*/
+                  /*style: "NORMAL"*/
+                /*),*/
+                /*a!richTextItem(*/
+                  /*text: "...",*/
+                  /*style: "STRONG",*/
+                  /*link: a!safeLink(*/
+                    /*label: "...",*/
+                    /*uri: "http://www.thebaynet.com/articles/1117/new-subaru-and-volkswagen-dealership-in-waldorf.html"*/
+                  /*)*/
+                /*),*/
+                /*char(*/
+                  /*10*/
+                /*),*/
+                /*a!richTextItem(*/
+                  /*text: "five hours ago",*/
+                  /*style: "EMPHASIS"*/
+                /*),*/
+                /*a!richTextItem(*/
+                  /*text: "D.C. losing its last traditional car dealership with Ourisman moving to Bethesda",*/
+                  /*style: "HEADER_SMALL",*/
+                  /*link: a!safeLink(*/
+                    /*label: "...",*/
+                    /*uri: "https://www.washingtonpost.com/business/economy/the-last-place-to-buy-new-cars-in-dc-after-ourisman-volkswagen-moves-to-bethesda/2014/11/06/5199a38e-557a-11e4-892e-602188e70e9c_story.html?utm_term=.c945572a8db7"*/
+                  /*)*/
+                /*),*/
+                /*a!richTextItem(*/
+                  /*text: "Outside, new cars are backed side by side against the showroom, their hoods extending to the sidewalk. The small lot is crammed with a couple dozen used vehicles. Most of the dealership’s inventory is kept a couple miles away in an underground parking garage ",*/
+                  /*style: "NORMAL"*/
+                /*),*/
+                /*a!richTextItem(*/
+                  /*text: "...",*/
+                  /*style: "STRONG",*/
+                  /*link: a!safeLink(*/
+                    /*label: "...",*/
+                    /*uri: "https://www.washingtonpost.com/business/economy/the-last-place-to-buy-new-cars-in-dc-after-ourisman-volkswagen-moves-to-bethesda/2014/11/06/5199a38e-557a-11e4-892e-602188e70e9c_story.html?utm_term=.c945572a8db7"*/
+                  /*)*/
+                /*),*/
+                /*char(*/
+                  /*10*/
+                /*),*/
+                /*a!richTextItem(*/
+                  /*text: "two weeks ago",*/
+                  /*style: "EMPHASIS"*/
+                /*),*/
+                /*a!richTextItem(*/
+                  /*text: "Monday at NYSE a 'defining day' for Cars.com",*/
+                  /*style: "HEADER_SMALL",*/
+                  /*link: a!safeLink(*/
+                    /*label: "...",*/
+                    /*uri: "http://www.autoremarketing.com/technology/monday-nyse-defining-day-carscom"*/
+                  /*)*/
+                /*),*/
+                /*a!richTextItem(*/
+                  /*text: "Cars.com leadership and a handful of dealerships were on hand at the New York Stock Exchange to ring the Opening Bell, in what Vetter calls a “defining day for our company ",*/
+                  /*style: "NORMAL"*/
+                /*),*/
+                /*a!richTextItem(*/
+                  /*text: "...",*/
+                  /*style: "STRONG",*/
+                  /*link: a!safeLink(*/
+                    /*label: "...",*/
+                    /*uri: "http://www.autoremarketing.com/technology/monday-nyse-defining-day-carscom"*/
+                  /*)*/
+                /*),*/
+                /*char(*/
+                  /*10*/
+                /*),*/
+                /*a!richTextItem(*/
+                  /*text: "three weeks ago",*/
+                  /*style: "EMPHASIS"*/
+                /*),*/
+                /*a!richTextItem(*/
+                  /*text: "Public Has Another Chance to Weigh in on Ourisman Bethesda’s Trail Improvement Plans Tuesday",*/
+                  /*style: "HEADER_SMALL",*/
+                  /*link: a!safeLink(*/
+                    /*label: "...",*/
+                    /*uri: "http://www.bethesdamagazine.com/Bethesda-Beat/2017/Public-Has-Another-Chance-to-Weigh-in-on-Ourisman-Bethesdas-Trail-Improvement-Plans-Tuesday/"*/
+                  /*)*/
+                /*),*/
+                /*a!richTextItem(*/
+                  /*text: "The public will have another opportunity to weigh in on Ourisman Honda’s plans to widen the Capital Crescent Trail and build a new plaza near Bethesda Row ",*/
+                  /*style: "NORMAL"*/
+                /*),*/
+                /*a!richTextItem(*/
+                  /*text: "...",*/
+                  /*style: "STRONG",*/
+                  /*link: a!safeLink(*/
+                    /*label: "...",*/
+                    /*uri: "http://www.bethesdamagazine.com/Bethesda-Beat/2017/Public-Has-Another-Chance-to-Weigh-in-on-Ourisman-Bethesdas-Trail-Improvement-Plans-Tuesday/"*/
+                  /*)*/
+                /*),*/
+                /*char(*/
+                  /*10*/
+                /*),*/
+                /*a!richTextItem(*/
+                  /*text: "a month ago",*/
+                  /*style: "EMPHASIS"*/
+                /*)*/
+              /*}*/
+            /*)*/
+          },
+          style: "INFO"
+        )
+      }
+    )
+    /*,*/
+    /*a!columnLayout(*/
+      /*contents: {*/
+        /*a!boxLayout(*/
+          /*label: "Volkswagen News &amp; Announcements",*/
+          /*contents: {*/
+            /*a!richTextDisplayField(*/
+              /*label: "",*/
+              /*labelPosition: "COLLAPSED",*/
+              /*value: {*/
+                /*a!richTextItem(*/
+                  /*text: "The 2018 Volkswagen Arteon Is A Gorgeous Grand Tourer But I'm Not Sure Who It's For",*/
+                  /*style: "HEADER_SMALL",*/
+                  /*link: a!safeLink(*/
+                    /*label: "...",*/
+                    /*uri: "https://jalopnik.com/the-2018-volkswagen-arteon-is-a-gorgeous-grand-tourer-b-1823142631"*/
+                  /*)*/
+                /*),*/
+                /*a!richTextItem(*/
+                  /*text: "Volkswagen really needs to decide what it wants to be when it grows up ",*/
+                  /*style: "NORMAL"*/
+                /*),*/
+                /*a!richTextItem(*/
+                  /*text: "...",*/
+                  /*style: "STRONG",*/
+                  /*link: a!safeLink(*/
+                    /*label: "...",*/
+                    /*uri: "https://jalopnik.com/the-2018-volkswagen-arteon-is-a-gorgeous-grand-tourer-b-1823142631"*/
+                  /*)*/
+                /*),*/
+                /*char(*/
+                  /*10*/
+                /*),*/
+                /*a!richTextItem(*/
+                  /*text: "five hours ago",*/
+                  /*style: "EMPHASIS"*/
+                /*),*/
+                /*a!richTextItem(*/
+                  /*text: "Volkswagen is off to its best start ... ever",*/
+                  /*style: "HEADER_SMALL",*/
+                  /*link: a!safeLink(*/
+                    /*label: "...",*/
+                    /*uri: "http://money.cnn.com/2018/02/16/investing/volkswagen-sales-january-record/index.html"*/
+                  /*)*/
+                /*),*/
+                /*a!richTextItem(*/
+                  /*text: "Volkswagen Group said Friday that it has set a new sales record for January, with global deliveries increasing 10% over the same period in 2017 ",*/
+                  /*style: "NORMAL"*/
+                /*),*/
+                /*a!richTextItem(*/
+                  /*text: "...",*/
+                  /*style: "STRONG",*/
+                  /*link: a!safeLink(*/
+                    /*label: "...",*/
+                    /*uri: "http://money.cnn.com/2018/02/16/investing/volkswagen-sales-january-record/index.html"*/
+                  /*)*/
+                /*),*/
+                /*char(*/
+                  /*10*/
+                /*),*/
+                /*a!richTextItem(*/
+                  /*text: "two weeks ago",*/
+                  /*style: "EMPHASIS"*/
+                /*),*/
+                /*a!richTextItem(*/
+                  /*text: "China Helps Volkswagen Storm Back To Pre-Scandal Form",*/
+                  /*style: "HEADER_SMALL",*/
+                  /*link: a!safeLink(*/
+                    /*label: "...",*/
+                    /*uri: "https://www.forbes.com/sites/michaeltaylor/2018/02/12/china-helps-volkswagen-to-storm-back-to-pre-scandal-form/#f2d941d49d38"*/
+                  /*)*/
+                /*),*/
+                /*a!richTextItem(*/
+                  /*text: "The freeze is over for Volkswagen as it sales boomed in January, selling more than half a million cars around the world and seeing its volumes soar 7.1 percent over 2017 ",*/
+                  /*style: "NORMAL"*/
+                /*),*/
+                /*a!richTextItem(*/
+                  /*text: "...",*/
+                  /*style: "STRONG",*/
+                  /*link: a!safeLink(*/
+                    /*label: "...",*/
+                    /*uri: "https://www.forbes.com/sites/michaeltaylor/2018/02/12/china-helps-volkswagen-to-storm-back-to-pre-scandal-form/#f2d941d49d38"*/
+                  /*)*/
+                /*),*/
+                /*char(*/
+                  /*10*/
+                /*),*/
+                /*a!richTextItem(*/
+                  /*text: "three weeks ago",*/
+                  /*style: "EMPHASIS"*/
+                /*),*/
+                /*a!richTextItem(*/
+                  /*text: "*/
+/*How Volkswagen's New Large SUV Outgrew Tesla Almost Overnight",*/
+                  /*style: "HEADER_SMALL",*/
+                  /*link: a!safeLink(*/
+                    /*label: "...",*/
+                    /*uri: "https://seekingalpha.com/article/4147059-volkswagens-new-large-suv-outgrew-tesla-almost-overnight"*/
+                  /*)*/
+                /*),*/
+                /*a!richTextItem(*/
+                  /*text: "Volkswagen (OTCPK:VLKAY) had a problem in the U.S. market for decades ",*/
+                  /*style: "NORMAL"*/
+                /*),*/
+                /*a!richTextItem(*/
+                  /*text: "...",*/
+                  /*style: "STRONG",*/
+                  /*link: a!safeLink(*/
+                    /*label: "...",*/
+                    /*uri: "https://seekingalpha.com/article/4147059-volkswagens-new-large-suv-outgrew-tesla-almost-overnight"*/
+                  /*)*/
+                /*),*/
+                /*char(*/
+                  /*10*/
+                /*),*/
+                /*a!richTextItem(*/
+                  /*text: "a month ago",*/
+                  /*style: "EMPHASIS"*/
+                /*)*/
+              /*}*/
+            /*)*/
+          /*},*/
+          /*style: "INFO"*/
+        /*)*/
+      /*}*/
+    /*)*/
+  }
+)</definition>
+        <namedTypedValue>
+            <name>brand</name>
+            <type>
+                <name>string</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+            <value/>
+        </namedTypedValue>
+        <metadataExpr></metadataExpr>
+        <preferredEditor>interface</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role inherit="true" allowForAll="false" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="administrators">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <history>
+        <historyInfo versionUuid="_a-0000dfd8-6941-8000-9ba2-011c48011c48_199665"/>
+        <historyInfo versionUuid="_a-0000dfd8-6941-8000-9ba2-011c48011c48_202694"/>
+        <historyInfo versionUuid="_a-0000e067-d58d-8000-9ba2-011c48011c48_299542"/>
+    </history>
+</contentHaul>

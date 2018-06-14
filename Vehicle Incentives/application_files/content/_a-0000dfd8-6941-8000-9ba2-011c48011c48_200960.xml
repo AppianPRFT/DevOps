@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <versionUuid>_a-0000e067-d58d-8000-9ba2-011c48011c48_298438</versionUuid>
+    <rule>
+        <name>VIM_ManageException_Form</name>
+        <uuid>_a-0000dfd8-6941-8000-9ba2-011c48011c48_200960</uuid>
+        <description>Form for the manage exceptions action</description>
+        <parentUuid>d1151d0a-2a3e-4e80-b3b0-105a99496272</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>load(
+  local!labels,
+  local!identifiers,
+  local!suggestedFunction: #"SYSTEM_SYSRULES_dataSubset"(
+    data: #"SYSTEM_SYSRULES_forEach"(
+      #"_a-0000dfd8-6941-8000-9ba2-011c48011c48_200675"(),
+      fv!item.title
+    ),
+    identifiers: #"SYSTEM_SYSRULES_forEach"(
+      #"_a-0000dfd8-6941-8000-9ba2-011c48011c48_200675"(),
+      fv!item.id
+    )
+  ),
+  #"SYSTEM_SYSRULES_formLayout_v1"(
+    label: "Manage Exceptions",
+    contents: {
+      #"SYSTEM_SYSRULES_sectionLayout_v1"(
+        contents: {
+          #"SYSTEM_SYSRULES_columnsLayout"(
+            columns: {
+              #"SYSTEM_SYSRULES_columnLayout"(
+                contents: {
+                  #"SYSTEM_SYSRULES_boxLayout"(
+                    label: "Sales Details",
+                    contents: {
+                      #"SYSTEM_SYSRULES_dropdownField"(
+                        label: "Incentive",
+                        labelPosition: "ABOVE",
+                        instructions: "",
+                        helpTooltip: "",
+                        placeholderLabel: "--- Select a Value ---",
+                        choiceLabels: #"SYSTEM_SYSRULES_forEach"(
+                          #"_a-0000dfd8-6941-8000-9ba2-011c48011c48_200675"(),
+                          fv!item.title
+                        ),
+                        choiceValues: #"SYSTEM_SYSRULES_forEach"(
+                          #"_a-0000dfd8-6941-8000-9ba2-011c48011c48_200675"(),
+                          fv!item.id
+                        ),
+                        value: ri!incentive,
+                        saveInto: ri!incentive
+                      ),
+                      #"SYSTEM_SYSRULES_fileUploadField_v1"(
+                        label: "Upload Sales Forms",
+                        helpTooltip: "User Can upload one or multiple sales for incetive management.",
+                        value: ri!document,
+                        saveInto: ri!document,
+                        target: tofolder(
+                          52290
+                        )
+                      )
+                    }
+                  )
+                }
+              ),
+              #"SYSTEM_SYSRULES_columnLayout"(
+                contents: {
+                  #"SYSTEM_SYSRULES_documentBrowserFieldColumns_v1"(
+                    rootFolder: tofolder(
+                      52290
+                    )
+                  )
+                }
+              )
+            }
+          )
+        }
+      ),
+      
+    },
+    buttons: #"SYSTEM_SYSRULES_ButtonLayout"(
+      primaryButtons: {
+        #"SYSTEM_SYSRULES_ButtonWidgetSubmit"(
+          label: "Submit",
+          saveInto: {},
+          style: "PRIMARY"
+        )
+      },
+      secondaryButtons: {
+        #"SYSTEM_SYSRULES_ButtonWidgetSubmit"(
+          label: "Cancel",
+          value: true,
+          saveInto: ri!cancel,
+          style: "NORMAL",
+          skipValidation: true
+        )
+      }
+    ),
+    validations: {}
+  )
+)</definition>
+        <namedTypedValue>
+            <name>document</name>
+            <type>
+                <name>CollaborationDocument</name>
+                <namespace>http://www.appian.com/ae/types/2009</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>cancel</name>
+            <type>
+                <name>boolean</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>incentive</name>
+            <type>
+                <name>int</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+        </namedTypedValue>
+        <metadataExpr></metadataExpr>
+        <preferredEditor>interface</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role inherit="true" allowForAll="false" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="administrators">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <history>
+        <historyInfo versionUuid="_a-0000dfd8-6941-8000-9ba2-011c48011c48_203299"/>
+        <historyInfo versionUuid="_a-0000e067-d58d-8000-9ba2-011c48011c48_298438"/>
+    </history>
+</contentHaul>

@@ -1,0 +1,1299 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <versionUuid>_a-0000e067-d58d-8000-9ba2-011c48011c48_302524</versionUuid>
+    <rule>
+        <name>VIM_CreateIncentiveAction3</name>
+        <uuid>_a-0000e067-d58d-8000-9ba2-011c48011c48_283374</uuid>
+        <description>Form interface for creating new Incentives as an action or updating Incentives as a related action [Records]</description>
+        <parentUuid>d1151d0a-2a3e-4e80-b3b0-105a99496272</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>load(
+  local!dealer,
+  local!source,
+  local!trim,
+  local!selectedRegion,
+  local!selectedDealer,
+  local!selectedArea,
+  /*Should add the labels/ids to constants or as a ref table in the DB*/
+  local!dealerships: #"_a-0000e067-d58d-8000-9ba2-011c48011c48_299976"(
+    #"_a-0000e067-d58d-8000-9ba2-011c48011c48_288381"()
+  ),
+  local!dealerLabels: #"SYSTEM_SYSRULES_forEach"(
+    local!dealerships,
+    fv!item.dealership
+  ),
+  local!dealerIdentifiers: #"SYSTEM_SYSRULES_forEach"(
+    local!dealerships,
+    fv!item.id
+  ),
+  local!areas: #"_a-0000e067-d58d-8000-9ba2-011c48011c48_299564"(
+    true
+  ),
+  local!regions: #"_a-0000e067-d58d-8000-9ba2-011c48011c48_295961"(
+    isActive: true
+  ),
+  local!regionAbbreviations: local!regions.id,
+  local!regionLabels: local!regions.description,
+  local!areaAbbreviations: local!areas.id,
+  local!areaLabels: local!areas.description,
+  local!areaIdentifiers: local!areas.id,
+  local!page: 1,
+  local!creating: isnull(
+    ri!record
+  ),
+  local!selectedIdentifiers: tointeger(
+    {}
+  ),
+  local!vehicles,
+  with(
+    local!success: if(
+      #"_a-0000dd3a-dada-8000-daab-640000640000_11122"(
+        ri!record.incentiveVehicles
+      ),
+      0,
+      if(
+        contains(
+          ri!record.incentiveVehicles.amlSuccessPredictionValue,
+          todecimal(
+            null
+          )
+        ),
+        0,
+        average(
+          ri!record.incentiveVehicles.amlSuccessPredictionValue
+        )
+      )
+    ),
+    #"SYSTEM_SYSRULES_formLayout_v1"(
+      label: if(
+        local!creating,
+        "Add New Incentive Program",
+        "Update Incentive"
+      ),
+      contents: {
+        #"SYSTEM_SYSRULES_milestoneField"(
+          steps: {
+            "Add Incentive Details",
+            "Select Eligible Vehicles",
+            "Add Associations and Documents"
+          },
+          links: if(
+            local!creating,
+            {
+              if(
+                local!page &gt; 1,
+                #"SYSTEM_SYSRULES_dynamicLink"(
+                  value: 1,
+                  saveInto: local!page
+                ),
+                {}
+              ),
+              if(
+                local!page &gt; 2,
+                #"SYSTEM_SYSRULES_dynamicLink"(
+                  value: 2,
+                  saveInto: local!page
+                ),
+                {}
+              ),
+              if(
+                local!page &gt; 3,
+                #"SYSTEM_SYSRULES_dynamicLink"(
+                  value: 3,
+                  saveInto: local!page
+                ),
+                {}
+              )
+            },
+            {
+              #"SYSTEM_SYSRULES_dynamicLink"(
+                value: 1,
+                saveInto: local!page
+              ),
+              #"SYSTEM_SYSRULES_dynamicLink"(
+                value: 2,
+                saveInto: local!page
+              ),
+              #"SYSTEM_SYSRULES_dynamicLink"(
+                value: 3,
+                saveInto: local!page
+              )
+            }
+          ),
+          active: if(
+            local!creating,
+            local!page,
+            - 1
+          )
+        ),
+        if(
+          local!page = 1,
+          {
+            #"SYSTEM_SYSRULES_sectionLayout_v1"(
+              label: "Effective Details",
+              contents: {
+                #"SYSTEM_SYSRULES_linkField"(
+                  links: #"SYSTEM_SYSRULES_dynamicLink"(
+                    label: "Populate Data",
+                    saveInto: {
+                      /*a!save(*/
+                      /*ri!modelyear,*/
+                      /*2018*/
+                      /*),*/
+                      a!save(
+                        ri!record.programCode,
+                        "SET56111SE"
+                      ),
+                      if(
+                        isusermemberofgroup(
+                          loggedInUser(),
+                          #"_a-0000e067-d58d-8000-9ba2-011c48011c48_282564"
+                        ),
+                        a!save(
+                          ri!record.brand,
+                          "toyota"
+                        ),
+                        if(
+                          isusermemberofgroup(
+                            loggedInUser(),
+                            #"_a-0000e067-d58d-8000-9ba2-011c48011c48_297417"
+                          ),
+                          a!save(
+                            ri!record.brand,
+                            "Volkswagen"
+                          ),
+                          a!save(
+                            ri!record.brand,
+                            "Ford"
+                          )
+                        )
+                      ),
+                      a!save(
+                        ri!record.country,
+                        "USA"
+                      ),
+                      a!save(
+                        ri!record.country,
+                        "USA"
+                      ),
+                      a!save(
+                        ri!record.scope.value,
+                        1
+                      ),
+                      a!save(
+                        ri!record.scope.value,
+                        1
+                      ),
+                      a!save(
+                        ri!record.title,
+                        "Military for Retail Bonus $ Offer "
+                      ),
+                      /*  a!save(
+                        ri!record.awardAmount,
+                        25000
+                      ), */
+                      a!save(
+                        ri!record.awardType,
+                        "New"
+                      ),
+                      if(
+                        isusermemberofgroup(
+                          loggedInUser(),
+                          #"_a-0000e067-d58d-8000-9ba2-011c48011c48_282564"
+                        ),
+                        a!save(
+                          ri!record.programBulletinUrl,
+                          "https://www.cars.com/articles/2010/12/how-good-are-toyotathons-deals/"
+                        ),
+                        if(
+                          isusermemberofgroup(
+                            loggedInUser(),
+                            #"_a-0000e067-d58d-8000-9ba2-011c48011c48_297417"
+                          ),
+                          a!save(
+                            ri!record.programBulletinUrl,
+                            "https://www.cars.com/reviews/2018-volkswagen-golf-review-practical-fun-1420699973103/"
+                          ),
+                          a!save(
+                            ri!record.programBulletinUrl,
+                            "https://www.cars.com/articles/4-ways-ford-made-sure-the-new-2019-ranger-could-take-a-beating-1420699864879/"
+                          )
+                        )
+                      ),
+                      a!save(
+                        ri!record.offerStartDate2,
+                        fn!date(
+                          2018,
+                          10,
+                          1
+                        )
+                      ),
+                      a!save(
+                        ri!record.offerEndDate2,
+                        fn!date(
+                          2018,
+                          10,
+                          30
+                        )
+                      ),
+                      a!save(
+                        ri!record.offerCloseDate2,
+                        fn!date(
+                          2018,
+                          11,
+                          30
+                        )
+                      ),
+                      if(
+                        isusermemberofgroup(
+                          loggedInUser(),
+                          #"_a-0000e067-d58d-8000-9ba2-011c48011c48_282564"
+                        ),
+                        a!save(
+                          ri!record.offerDescription.value,
+                          "Qualified Military Personal get an extra $1000 Rebate toward purchase of a new Toyota."
+                        ),
+                        if(
+                          isusermemberofgroup(
+                            loggedInUser(),
+                            #"_a-0000e067-d58d-8000-9ba2-011c48011c48_297417"
+                          ),
+                          a!save(
+                            ri!record.offerDescription.value,
+                            "Qualified Military Personal get an extra $1000 Rebate toward purchase of a new Volkswagen."
+                          ),
+                          a!save(
+                            ri!record.offerDescription.value,
+                            "Qualified Military Personal get an extra $1000 Rebate toward purchase of a new Ford."
+                          )
+                        )
+                      )
+                    }
+                  )
+                ),
+                #"SYSTEM_SYSRULES_columnsLayout"(
+                  columns: {
+                    #"SYSTEM_SYSRULES_columnLayout"(
+                      contents: {
+                        #"SYSTEM_SYSRULES_sideBySideLayout"(
+                          items: {
+                            #"SYSTEM_SYSRULES_sideBySideItem"(
+                              item: if(
+                                isusermemberofgroup(
+                                  loggedInUser(),
+                                  #"_a-0000e067-d58d-8000-9ba2-011c48011c48_282564"
+                                ),
+                                #"SYSTEM_SYSRULES_radioButtonField"(
+                                  label: "Make",
+                                  choiceLabels: {
+                                    "Toyota",
+                                    "Lexus"
+                                  },
+                                  choiceValues: {
+                                    "toyota",
+                                    "lexus"
+                                  },
+                                  value: ri!record.brand,
+                                  saveInto: {
+                                    ri!record.brand
+                                  },
+                                  required: true,
+                                  choiceLayout: "COMPACT"
+                                ),
+                                if(
+                                  isusermemberofgroup(
+                                    loggedInUser(),
+                                    #"_a-0000e067-d58d-8000-9ba2-011c48011c48_297417"
+                                  ),
+                                  #"SYSTEM_SYSRULES_radioButtonField"(
+                                    label: "Make",
+                                    choiceLabels: {
+                                      "Audi",
+                                      "Volkswagen",
+                                      "Porsche"
+                                    },
+                                    choiceValues: {
+                                      "Audi",
+                                      "Volkswagen",
+                                      "Porsche"
+                                    },
+                                    value: ri!record.brand,
+                                    saveInto: {
+                                      ri!record.brand
+                                    },
+                                    required: true,
+                                    choiceLayout: "COMPACT"
+                                  ),
+                                  #"SYSTEM_SYSRULES_radioButtonField"(
+                                    label: "Make",
+                                    choiceLabels: {
+                                      "Ford",
+                                      "Lincoln"
+                                    },
+                                    choiceValues: {
+                                      "Ford",
+                                      "Lincoln"
+                                    },
+                                    value: ri!record.brand,
+                                    saveInto: {
+                                      ri!record.brand
+                                    },
+                                    required: true,
+                                    choiceLayout: "COMPACT"
+                                  )
+                                )
+                              )
+                            ),
+                            #"SYSTEM_SYSRULES_sideBySideItem"(
+                              item: if(
+                                ri!readOnly,
+                                #"SYSTEM_SYSRULES_textField"(
+                                  label: "Country",
+                                  labelPosition: "ADJACENT",
+                                  value: ri!record.country,
+                                  readOnly: true
+                                ),
+                                #"SYSTEM_SYSRULES_radioButtonField"(
+                                  label: "Country",
+                                  labelPosition: "ABOVE",
+                                  instructions: "",
+                                  helpTooltip: "",
+                                  /*placeholderLabel: "--- Select a Country ---",*/
+                                  choiceLabels: {
+                                    "United States",
+                                    "Canada",
+                                    "Mexico"
+                                  },
+                                  choiceValues: {
+                                    "USA",
+                                    "Canada",
+                                    "Mexico"
+                                  },
+                                  value: ri!record.country,
+                                  saveInto: {
+                                    ri!record.country
+                                  },
+                                  required: not(
+                                    ri!readOnly
+                                  ),
+                                  choiceLayout: "COMPACT"
+                                )
+                              )
+                            ),
+                            #"SYSTEM_SYSRULES_sideBySideItem"(
+                              item: if(
+                                ri!readOnly,
+                                #"SYSTEM_SYSRULES_textField"(
+                                  label: "Scope",
+                                  labelPosition: "ADJACENT",
+                                  value: ri!record.scope.value,
+                                  readOnly: true
+                                ),
+                                #"SYSTEM_SYSRULES_radioButtonField"(
+                                  label: "Scope",
+                                  choiceLabels: {
+                                    "Region",
+                                    "Area",
+                                    "Dealership"
+                                  },
+                                  choiceValues: {
+                                    "1",
+                                    "2",
+                                    "3"
+                                  },
+                                  value: ri!record.scope.value,
+                                  saveInto: {
+                                    ri!record.scope.value,
+                                    a!save(
+                                      ri!record.region,
+                                      ""
+                                    ),
+                                    a!save(
+                                      ri!record.area,
+                                      ""
+                                    )
+                                  },
+                                  required: true,
+                                  choiceLayout: "COMPACT"
+                                )
+                              )
+                            ),
+                            if(
+                              isnull(
+                                ri!record.scope.value
+                              ),
+                              {},
+                              {
+                                if(
+                                  ri!record.scope.value = 1,
+                                  #"SYSTEM_SYSRULES_sideBySideItem"(
+                                    item: #"SYSTEM_SYSRULES_pickerFieldCustom"(
+                                      label: "Region",
+                                      placeholder: "Type to select the Region For the Incentive",
+                                      maxSelections: 5,
+                                      suggestFunction: #"_a-0000e067-d58d-8000-9ba2-011c48011c48_284216"(
+                                        filter: _,
+                                        labels: local!regionLabels,
+                                        identifiers: local!regionAbbreviations
+                                      ),
+                                      selectedLabels: #"SYSTEM_SYSRULES_forEach"(
+                                        items: local!selectedRegion,
+                                        expression: index(
+                                          local!regionLabels,
+                                          wherecontains(
+                                            tointeger(
+                                              fv!item
+                                            ),
+                                            local!regionAbbreviations
+                                          )
+                                        )
+                                      ),
+                                      value: local!selectedRegion,
+                                      saveInto: {
+                                        local!selectedRegion,
+                                        a!save(
+                                          target: ri!record.region,
+                                          value: #"SYSTEM_SYSRULES_forEach"(
+                                            items: local!selectedRegion,
+                                            expression: index(
+                                              local!regions,
+                                              wherecontains(
+                                                tointeger(
+                                                  fv!item
+                                                ),
+                                                local!regionAbbreviations
+                                              )
+                                            )
+                                          )
+                                        )
+                                      }
+                                    )
+                                  ),
+                                  {}
+                                ),
+                                if(
+                                  ri!record.scope.value = 2,
+                                  #"SYSTEM_SYSRULES_sideBySideItem"(
+                                    item: #"SYSTEM_SYSRULES_pickerFieldCustom"(
+                                      label: "Area",
+                                      placeholder: "Type to select the area for Incentive",
+                                      maxSelections: 1,
+                                      suggestFunction: #"_a-0000e067-d58d-8000-9ba2-011c48011c48_284216"(
+                                        filter: _,
+                                        labels: local!areaLabels,
+                                        identifiers: local!areaIdentifiers
+                                      ),
+                                      selectedLabels: #"SYSTEM_SYSRULES_forEach"(
+                                        items: local!selectedArea,
+                                        expression: index(
+                                          local!areaLabels,
+                                          wherecontains(
+                                            tointeger(
+                                              fv!item
+                                            ),
+                                            local!areaIdentifiers
+                                          )
+                                        )
+                                      ),
+                                      value: local!selectedArea,
+                                      saveInto: {
+                                        local!selectedArea,
+                                        a!save(
+                                          target: ri!record.area,
+                                          value: #"SYSTEM_SYSRULES_forEach"(
+                                            items: local!selectedArea,
+                                            expression: index(
+                                              local!areas,
+                                              wherecontains(
+                                                tointeger(
+                                                  fv!item
+                                                ),
+                                                local!areaIdentifiers
+                                              )
+                                            )
+                                          )
+                                        )
+                                      }
+                                    )
+                                  ),
+                                  {}
+                                ),
+                                if(
+                                  ri!record.scope.value = 3,
+                                  #"SYSTEM_SYSRULES_sideBySideItem"(
+                                    item: #"SYSTEM_SYSRULES_pickerFieldCustom"(
+                                      label: "Dealer",
+                                      placeholder: "Type to select the dealer for Incentive",
+                                      maxSelections: 5,
+                                      suggestFunction: #"_a-0000e067-d58d-8000-9ba2-011c48011c48_284216"(
+                                        filter: _,
+                                        labels: local!dealerLabels,
+                                        identifiers: local!dealerIdentifiers
+                                      ),
+                                      selectedLabels: #"SYSTEM_SYSRULES_forEach"(
+                                        items: local!selectedDealer,
+                                        expression: index(
+                                          local!dealerLabels,
+                                          wherecontains(
+                                            tointeger(
+                                              fv!item
+                                            ),
+                                            local!dealerIdentifiers
+                                          )
+                                        )
+                                      ),
+                                      value: local!selectedDealer,
+                                      saveInto: {
+                                        local!selectedDealer,
+                                        a!save(
+                                          target: ri!record.dealership,
+                                          value: #"SYSTEM_SYSRULES_forEach"(
+                                            items: local!selectedDealer,
+                                            expression: index(
+                                              local!dealerships,
+                                              wherecontains(
+                                                tointeger(
+                                                  fv!item
+                                                ),
+                                                local!dealerIdentifiers
+                                              )
+                                            )
+                                          )
+                                        )
+                                      }
+                                    )
+                                  ),
+                                  {}
+                                )
+                              }
+                            )
+                          }
+                        )
+                      }
+                    )
+                  }
+                )
+              },
+              isCollapsible: true,
+              isInitiallyCollapsed: false
+            ),
+            #"SYSTEM_SYSRULES_sectionLayout_v1"(
+              label: "Program Details",
+              contents: {
+                #"SYSTEM_SYSRULES_columnsLayout"(
+                  columns: {
+                    #"SYSTEM_SYSRULES_columnLayout"(
+                      contents: {
+                        #"SYSTEM_SYSRULES_sideBySideLayout"(
+                          items: {
+                            #"SYSTEM_SYSRULES_sideBySideItem"(
+                              item: #"SYSTEM_SYSRULES_textField"(
+                                label: "Program Code",
+                                labelPosition: if(
+                                  ri!readOnly,
+                                  "ADJACENT",
+                                  "ABOVE"
+                                ),
+                                value: ri!record.programCode,
+                                saveInto: ri!record.programCode,
+                                required: not(
+                                  ri!readOnly
+                                ),
+                                readOnly: ri!readOnly,
+                                validations: if(
+                                  len(
+                                    ri!record.programCode
+                                  ) &lt;= 200,
+                                  "",
+                                  "Value may not be longer than 200 characters. You have entered " &amp; len(
+                                    ri!record.programCode
+                                  ) &amp; " characters."
+                                )
+                              )
+                            ),
+                            #"SYSTEM_SYSRULES_sideBySideItem"(
+                              item: #"SYSTEM_SYSRULES_textField"(
+                                label: "Program Name",
+                                labelPosition: if(
+                                  ri!readOnly,
+                                  "ADJACENT",
+                                  "ABOVE"
+                                ),
+                                value: ri!record.title,
+                                saveInto: ri!record.title,
+                                required: not(
+                                  ri!readOnly
+                                ),
+                                readOnly: ri!readOnly,
+                                validations: if(
+                                  len(
+                                    ri!record.programName
+                                  ) &lt;= 200,
+                                  "",
+                                  "Value may not be longer than 200 characters. You have entered " &amp; len(
+                                    ri!record.programName
+                                  ) &amp; " characters."
+                                )
+                              )
+                            )
+                          }
+                        )
+                      }
+                    ),
+                    #"SYSTEM_SYSRULES_columnLayout"(
+                      contents: {
+                        #"SYSTEM_SYSRULES_textField"(
+                          label: "Program Bulletin URL",
+                          labelPosition: if(
+                            ri!readOnly,
+                            "ADJACENT",
+                            "ABOVE"
+                          ),
+                          value: ri!record.programBulletinUrl,
+                          saveInto: ri!record.programBulletinUrl,
+                          readOnly: ri!readOnly,
+                          validations: if(
+                            len(
+                              ri!record.programBulletinUrl
+                            ) &lt;= 200,
+                            "",
+                            "Value may not be longer than 200 characters. You have entered " &amp; len(
+                              ri!record.programBulletinUrl
+                            ) &amp; " characters."
+                          )
+                        )
+                      }
+                    )
+                  }
+                ),
+                #"SYSTEM_SYSRULES_sideBySideLayout"(
+                  items: {
+                    #"SYSTEM_SYSRULES_sideBySideItem"(
+                      item: #"SYSTEM_SYSRULES_dateField"(
+                        label: "Program Start Date",
+                        labelPosition: if(
+                          ri!readOnly,
+                          "ADJACENT",
+                          "ABOVE"
+                        ),
+                        value: ri!record.offerStartDate2,
+                        saveInto: ri!record.offerStartDate2,
+                        required: if(
+                          ri!readOnly,
+                          false,
+                          true
+                        ),
+                        readOnly: ri!readOnly
+                      ),
+                      width: "5X"
+                    ),
+                    #"SYSTEM_SYSRULES_sideBySideItem"(
+                      item: #"SYSTEM_SYSRULES_dateField"(
+                        label: "Program End Date",
+                        labelPosition: if(
+                          ri!readOnly,
+                          "ADJACENT",
+                          "ABOVE"
+                        ),
+                        value: ri!record.offerEndDate2,
+                        saveInto: ri!record.offerEndDate2,
+                        required: if(
+                          ri!readOnly,
+                          false,
+                          true
+                        ),
+                        readOnly: ri!readOnly
+                      ),
+                      width: "5X"
+                    ),
+                    #"SYSTEM_SYSRULES_sideBySideItem"(
+                      item: #"SYSTEM_SYSRULES_dateField"(
+                        label: "Program Close Date",
+                        labelPosition: if(
+                          ri!readOnly,
+                          "ADJACENT",
+                          "ABOVE"
+                        ),
+                        value: ri!record.offerCloseDate2,
+                        saveInto: ri!record.offerCloseDate2,
+                        required: if(
+                          ri!readOnly,
+                          false,
+                          true
+                        ),
+                        readOnly: ri!readOnly
+                      ),
+                      width: "5X"
+                    ),
+                    #"SYSTEM_SYSRULES_sideBySideItem"(
+                      item: {},
+                      width: "5X"
+                    )
+                  }
+                )
+              },
+              isCollapsible: true,
+              isInitiallyCollapsed: false
+            ),
+            #"SYSTEM_SYSRULES_sectionLayout_v1"(
+              label: "Incentive Details",
+              contents: {
+                #"SYSTEM_SYSRULES_columnsLayout"(
+                  columns: {
+                    #"SYSTEM_SYSRULES_columnLayout"(
+                      contents: {
+                        #"SYSTEM_SYSRULES_sideBySideLayout"(
+                          items: {
+                            #"SYSTEM_SYSRULES_sideBySideItem"(
+                              item: if(
+                                ri!readOnly,
+                                #"SYSTEM_SYSRULES_textField"(
+                                  label: "Award Type",
+                                  labelPosition: "ADJACENT",
+                                  value: ri!record.status.value,
+                                  readOnly: true
+                                ),
+                                #"SYSTEM_SYSRULES_dropdownField"(
+                                  label: "Award Type",
+                                  labelPosition: "ABOVE",
+                                  instructions: "",
+                                  helpTooltip: "",
+                                  placeholderLabel: "--- Select an Award ---",
+                                  choiceLabels: {
+                                    "Financing",
+                                    "Acquisition",
+                                    "Loyalty",
+                                    "Damaged Car",
+                                    "Employee",
+                                    "Accessory",
+                                    "Fleet",
+                                    "Rebate"
+                                  },
+                                  choiceValues: {
+                                    "New",
+                                    "Used",
+                                    "Loyalty",
+                                    "Damaged Car",
+                                    "Employee",
+                                    "Accessory",
+                                    "Fleet",
+                                    "Coupon"
+                                  },
+                                  value: ri!record.awardType,
+                                  saveInto: {
+                                    ri!record.awardType/*a!save(*/
+                                    /*ri!record.modelMsrp,*/
+                                    /*null*/
+                                    /*)*/
+                                    
+                                  },
+                                  required: not(
+                                    ri!readOnly
+                                  )
+                                )
+                              ),
+                              width: "4X"
+                            ),
+                            #"SYSTEM_SYSRULES_sideBySideItem"(
+                              item: if(
+                                or(
+                                  ri!record.awardType = "Tradein",
+                                  ri!record.awardType = "Loyalty"
+                                ),
+                                #"SYSTEM_SYSRULES_textField"(
+                                  label: "% of MSRP",
+                                  labelPosition: if(
+                                    ri!readOnly,
+                                    "ADJACENT",
+                                    "ABOVE"
+                                  ),
+                                  value: ri!record.modelMsrp,
+                                  saveInto: ri!record.modelMsrp,
+                                  readOnly: ri!readOnly
+                                ),
+                                {}
+                              ),
+                              width: "4X"
+                            )
+                          }
+                        )
+                      }
+                    ),
+                    #"SYSTEM_SYSRULES_columnLayout"()
+                  }
+                ),
+                #"SYSTEM_SYSRULES_paragraphField"(
+                  label: "Requirements and Restrictions",
+                  labelPosition: if(
+                    ri!readOnly,
+                    "ADJACENT",
+                    "ABOVE"
+                  ),
+                  value: ri!record.offerDescription.value,
+                  saveInto: ri!record.offerDescription.value,
+                  required: false,
+                  readOnly: ri!readOnly
+                )
+              },
+              isCollapsible: true,
+              isInitiallyCollapsed: false
+            ),
+            #"SYSTEM_SYSRULES_sectionLayout_v1"(
+              label: "Creation Details",
+              contents: {
+                #"SYSTEM_SYSRULES_columnsLayout"(
+                  columns: {
+                    #"SYSTEM_SYSRULES_columnLayout"(
+                      contents: {
+                        if(
+                          local!creating,
+                          {
+                            #"SYSTEM_SYSRULES_linkField"(
+                              label: "Created By",
+                              labelPosition: "ADJACENT",
+                              links: #"SYSTEM_SYSRULES_userRecordLink"(
+                                label: #"65026287-745f-41e2-90ed-50dbbd4b9ccf_FORMATNAME"(
+                                  loggedInUser()
+                                ),
+                                user: ri!record.createdBy
+                              )
+                            )
+                          },
+                          {
+                            #"SYSTEM_SYSRULES_linkField"(
+                              label: "Created By",
+                              labelPosition: if(
+                                ri!readOnly,
+                                "ADJACENT",
+                                "ABOVE"
+                              ),
+                              links: #"SYSTEM_SYSRULES_userRecordLink"(
+                                label: #"65026287-745f-41e2-90ed-50dbbd4b9ccf_FORMATNAME"(
+                                  ri!record.createdBy
+                                ),
+                                user: ri!record.createdBy
+                              )
+                            )
+                          }
+                        )
+                      }
+                    ),
+                    #"SYSTEM_SYSRULES_columnLayout"(
+                      contents: {
+                        if(
+                          local!creating,
+                          {
+                            #"SYSTEM_SYSRULES_textField"(
+                              label: "Created On",
+                              labelPosition: "ADJACENT",
+                              value: #"_a-0000dfd8-6941-8000-9ba2-011c48011c48_184950"(
+                                today()
+                              ),
+                              readOnly: true
+                            )
+                          },
+                          {
+                            #"SYSTEM_SYSRULES_textField"(
+                              label: "Created On",
+                              labelPosition: if(
+                                ri!readOnly,
+                                "ADJACENT",
+                                "ABOVE"
+                              ),
+                              value: #"_a-0000dfd8-6941-8000-9ba2-011c48011c48_184950"(
+                                ri!record.createdOn
+                              ),
+                              readOnly: true
+                            )
+                          }
+                        )
+                      }
+                    ),
+                    #"SYSTEM_SYSRULES_columnLayout"(
+                      contents: {
+                        if(
+                          local!creating,
+                          {
+                            #"SYSTEM_SYSRULES_linkField"(
+                              label: "Updated By",
+                              labelPosition: "ADJACENT",
+                              links: #"SYSTEM_SYSRULES_userRecordLink"(
+                                label: #"65026287-745f-41e2-90ed-50dbbd4b9ccf_FORMATNAME"(
+                                  loggedInUser()
+                                ),
+                                user: ri!record.updatedBy
+                              )
+                            )
+                          },
+                          {
+                            #"SYSTEM_SYSRULES_linkField"(
+                              label: "Updated By",
+                              labelPosition: if(
+                                ri!readOnly,
+                                "ADJACENT",
+                                "ABOVE"
+                              ),
+                              links: #"SYSTEM_SYSRULES_userRecordLink"(
+                                label: #"65026287-745f-41e2-90ed-50dbbd4b9ccf_FORMATNAME"(
+                                  ri!record.updatedBy
+                                ),
+                                user: ri!record.updatedBy
+                              )
+                            )
+                          }
+                        )
+                      }
+                    ),
+                    #"SYSTEM_SYSRULES_columnLayout"(
+                      contents: {
+                        if(
+                          local!creating,
+                          {
+                            #"SYSTEM_SYSRULES_textField"(
+                              label: "Updated On",
+                              labelPosition: "ADJACENT",
+                              value: #"_a-0000dfd8-6941-8000-9ba2-011c48011c48_184950"(
+                                now()
+                              ),
+                              readOnly: true
+                            )
+                          },
+                          {
+                            #"SYSTEM_SYSRULES_textField"(
+                              label: "Updated On",
+                              labelPosition: if(
+                                ri!readOnly,
+                                "ADJACENT",
+                                "ABOVE"
+                              ),
+                              value: #"_a-0000dfd8-6941-8000-9ba2-011c48011c48_184950"(
+                                ri!record.updatedOn
+                              ),
+                              readOnly: true
+                            )
+                          }
+                        )
+                      }
+                    )
+                  }
+                )
+              },
+              isCollapsible: true,
+              isInitiallyCollapsed: true
+            )
+          },
+          if(
+            local!page = 2,
+            {
+              /*rule!VIM_IncentiveVehicleSelection_Grid(*/
+              /*make: ri!record.brand,*/
+              /*year: ri!modelYear,*/
+              /*vehicles: local!vehicles,*/
+              /*selectedIdentifiers: local!selectedIdentifiers,*/
+              /*awardType: ri!record.awardType,*/
+              /*startDate: ri!record.offerStartDate2,*/
+              /*endDate: ri!record.offerEndDate2*/
+              /*),*/
+              #"_a-0000e067-d58d-8000-9ba2-011c48011c48_298179"(
+                make: ri!record.brand,
+                year: ri!modelYear,
+                vehicles: ri!record.incentiveVehicles,
+                selectedIdentifiers: local!selectedIdentifiers,
+                awardType: ri!record.awardType,
+                startDate: ri!record.offerStartDate2,
+                endDate: ri!record.offerEndDate2
+              )
+            },
+            {
+              #"_a-0000e067-d58d-8000-9ba2-011c48011c48_289020"(
+                percentage: local!success
+              ),
+              /*rule!VIM_AssociateIncentives(*/
+              /*ri!record*/
+              /*),*/
+              #"_a-0000e067-d58d-8000-9ba2-011c48011c48_298242"(
+                ri!record
+              ),
+              #"_a-0000dfd8-6941-8000-9ba2-011c48011c48_184994"(
+                documents: ri!documents,
+                readOnly: ri!readOnly,
+                target: if(
+                  local!creating,
+                  #"_a-0000dfd8-6941-8000-9ba2-011c48011c48_184922",
+                  ri!record.folderId
+                ),
+                deletedDocuments: ri!deletedDocs
+              )
+            }
+          )
+        )
+      },
+      buttons: #"SYSTEM_SYSRULES_ButtonLayout"(
+        primaryButtons: {
+          if(
+            local!page = 1,
+            #"SYSTEM_SYSRULES_ButtonWidget"(
+              label: "Next",
+              value: 2,
+              saveInto: {
+                local!page,
+                a!save(
+                  ri!record.brand,
+                  ri!record.brand
+                )
+              }
+            ),
+            {}
+          ),
+          if(
+            local!page = 2,
+            #"SYSTEM_SYSRULES_ButtonWidget"(
+              label: "Next",
+              value: 3,
+              saveInto: {
+                local!page,
+                a!save(
+                  ri!record.brand,
+                  ri!record.brand
+                )/*,*/
+                /*a!save(*/
+                /*target: ri!record.incentiveVehicles,*/
+                /*value: index(*/
+                /*local!vehicles,*/
+                /*local!selectedIdentifiers,*/
+                /*null*/
+                /*)*/
+                /*)*/
+                
+              }
+            ),
+            {}
+          ),
+          if(
+            local!page = 3,
+            #"SYSTEM_SYSRULES_ButtonWidgetSubmit"(
+              label: "Submit Incentive",
+              saveInto: {
+                a!save(
+                  ri!record.createdOn,
+                  now()
+                ),
+                a!save(
+                  ri!record.createdBy,
+                  loggedInUser()
+                ),
+                a!save(
+                  ri!record.hasAccess,
+                  if(
+                    or(
+                      ri!record.brand = "toyota",
+                      ri!record.brand = "lexus"
+                    ),
+                    "Toyota",
+                    if(
+                      or(
+                        ri!record.brand = "audi",
+                        ri!record.brand = "volkswagen"
+                      ),
+                      "Volkswagen",
+                      if(
+                        or(
+                          ri!record.brand = "lincoln",
+                          ri!record.brand = "ford"
+                        ),
+                        "Ford",
+                        ""
+                      )
+                    )
+                  )
+                ),
+                a!save(
+                  ri!record.updatedOn,
+                  now()
+                ),
+                a!save(
+                  ri!record.updatedBy,
+                  loggedInUser()
+                ),
+                a!save(
+                  ri!documents,
+                  reject(
+                    fn!isnull,
+                    ri!documents
+                  )
+                )
+              },
+              style: "PRIMARY"
+            ),
+            {}
+          )
+        },
+        secondaryButtons: {
+          if(
+            local!page = 1,
+            #"SYSTEM_SYSRULES_ButtonWidgetSubmit"(
+              label: "Cancel",
+              value: true,
+              saveInto: ri!cancel,
+              skipValidation: true
+            ),
+            if(
+              local!page = 2,
+              #"SYSTEM_SYSRULES_ButtonWidget"(
+                label: "Back",
+                value: 1,
+                saveInto: local!page
+              ),
+              #"SYSTEM_SYSRULES_ButtonWidget"(
+                label: "Back",
+                value: 2,
+                saveInto: {
+                  local!page/*a!save(*/
+                  /*target: ri!record.incentiveVehicles,*/
+                  /*value: {}*/
+                  /*)*/
+                  
+                }
+              )
+            )
+          )
+        }
+      )
+    )
+  )
+)</definition>
+        <namedTypedValue>
+            <name>record</name>
+            <type>
+                <name>VIM_Incentive</name>
+                <namespace>urn:com:appian:types:VIM</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>documents</name>
+            <type>
+                <name>CollaborationDocument?list</name>
+                <namespace>http://www.appian.com/ae/types/2009</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>deletedDocs</name>
+            <type>
+                <name>CollaborationDocument?list</name>
+                <namespace>http://www.appian.com/ae/types/2009</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>cancel</name>
+            <type>
+                <name>boolean</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>readOnly</name>
+            <type>
+                <name>boolean</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>modelYear</name>
+            <type>
+                <name>int</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+        </namedTypedValue>
+        <metadataExpr></metadataExpr>
+        <preferredEditor>interface</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role inherit="true" allowForAll="false" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="administrators">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <typedValue>
+        <type>
+            <name>RuleTestConfig?list</name>
+            <namespace>http://www.appian.com/ae/types/2009</namespace>
+        </type>
+        <value>
+            <el>
+                <a:name/>
+                <a:ruleInputTestConfigs>
+                    <a:value xmlns:n1="urn:com:appian:types:VIM" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true" xsi:type="n1:VIM_Incentive"/>
+                    <a:nameRef>record</a:nameRef>
+                    <a:id/>
+                </a:ruleInputTestConfigs>
+                <a:ruleInputTestConfigs>
+                    <a:nameRef>documents</a:nameRef>
+                    <a:id/>
+                </a:ruleInputTestConfigs>
+                <a:ruleInputTestConfigs>
+                    <a:nameRef>deletedDocs</a:nameRef>
+                    <a:id/>
+                </a:ruleInputTestConfigs>
+                <a:ruleInputTestConfigs>
+                    <a:value xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true" xsi:type="xsd:boolean"/>
+                    <a:nameRef>cancel</a:nameRef>
+                    <a:id/>
+                </a:ruleInputTestConfigs>
+                <a:ruleInputTestConfigs>
+                    <a:value xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xsd:boolean">false</a:value>
+                    <a:nameRef>readOnly</a:nameRef>
+                    <a:id/>
+                </a:ruleInputTestConfigs>
+                <a:ruleInputTestConfigs>
+                    <a:value xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true" xsi:type="xsd:int"/>
+                    <a:nameRef>modelYear</a:nameRef>
+                    <a:id/>
+                </a:ruleInputTestConfigs>
+                <a:assertions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+            </el>
+        </value>
+    </typedValue>
+    <history>
+        <historyInfo versionUuid="_a-0000e067-d58d-8000-9ba2-011c48011c48_284070"/>
+        <historyInfo versionUuid="_a-0000e067-d58d-8000-9ba2-011c48011c48_284226"/>
+        <historyInfo versionUuid="_a-0000e044-c81a-8000-9ba2-011c48011c48_126905"/>
+        <historyInfo versionUuid="_a-0000e067-d58d-8000-9ba2-011c48011c48_285674"/>
+        <historyInfo versionUuid="_a-0000e067-d58d-8000-9ba2-011c48011c48_285715"/>
+        <historyInfo versionUuid="_a-0000e067-d58d-8000-9ba2-011c48011c48_286347"/>
+        <historyInfo versionUuid="_a-0000e067-d58d-8000-9ba2-011c48011c48_286395"/>
+        <historyInfo versionUuid="_a-0000e044-c81a-8000-9ba2-011c48011c48_128515"/>
+        <historyInfo versionUuid="_a-0000e067-d58d-8000-9ba2-011c48011c48_288011"/>
+        <historyInfo versionUuid="_a-0000e067-d58d-8000-9ba2-011c48011c48_288329"/>
+        <historyInfo versionUuid="_a-0000e067-d58d-8000-9ba2-011c48011c48_290222"/>
+        <historyInfo versionUuid="_a-0000e067-d58d-8000-9ba2-011c48011c48_302524"/>
+    </history>
+</contentHaul>

@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <versionUuid>_a-0000e067-d58d-8000-9ba2-011c48011c48_302999</versionUuid>
+    <rule>
+        <name>VIM_DealershipMainSummarySite</name>
+        <uuid>_a-0000dfd8-6941-8000-9ba2-011c48011c48_203614</uuid>
+        <description>Record Summary for Dealership Main</description>
+        <parentUuid>d1151d0a-2a3e-4e80-b3b0-105a99496272</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>load(
+  local!pagingInfo: #"SYSTEM_SYSRULES_pagingInfo"(
+    startIndex: 1,
+    batchsize: 20
+  ),
+  local!dealerships: todatasubset(
+    #"_a-0000dfd8-6941-8000-9ba2-011c48011c48_201558"(
+      1
+    ),
+    local!pagingInfo
+  ),
+  local!dealership: #"SYSTEM_SYSRULES_queryEntity"(
+    entity: #"_a-0000dfd8-6941-8000-9ba2-011c48011c48_186609",
+    query: #"SYSTEM_SYSRULES_query"(
+      logicalExpression: #"SYSTEM_SYSRULES_queryLogicalExpression"(
+        operator: "AND",
+        filters: {
+          #"SYSTEM_SYSRULES_queryFilter"(
+            field: "id",
+            operator: "not null"
+          ),
+          #"SYSTEM_SYSRULES_queryFilter"(
+            field: "hasAccess",
+            operator: "=",
+            value: #"_a-0000e067-d58d-8000-9ba2-011c48011c48_288381"()
+          )
+        }
+      ),
+      pagingInfo: local!pagingInfo
+    )
+  ),
+  #"SYSTEM_SYSRULES_dashboardLayout_v1"(
+    contents: {
+      #"SYSTEM_SYSRULES_sectionLayout_v1"(
+        label: "Subsidiary Locations",
+        contents: {
+          #"SYSTEM_SYSRULES_gridField"(
+            label: "",
+            labelPosition: "ABOVE",
+            totalCount: local!dealership.totalCount,
+            columns: {
+              #"SYSTEM_SYSRULES_gridTextColumn"(
+                label: "Dealership",
+                data: local!dealership.data.dealership,
+                links: #"SYSTEM_SYSRULES_forEach"(
+                  local!dealership.data,
+                  #"SYSTEM_SYSRULES_recordLink"(
+                    recordType: #"_a-0000dfd8-6941-8000-9ba2-011c48011c48_189986",
+                    identifier: fv!item.id
+                  )
+                )
+              ),
+              #"SYSTEM_SYSRULES_gridTextColumn"(
+                label: "Address",
+                data: local!dealership.data.address
+              ),
+              #"SYSTEM_SYSRULES_gridTextColumn"(
+                label: "Contact",
+                data: text(
+                  local!dealership.data.number,
+                  "[9999999]000-0000;(000) 000-0000"
+                )
+              )
+            },
+            value: local!pagingInfo,
+            saveInto: local!pagingInfo,
+            validations: {},
+            shadeAlternateRows: true
+          )
+        }
+      )
+    }
+  )
+)</definition>
+        <metadataExpr></metadataExpr>
+        <preferredEditor>interface</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role inherit="true" allowForAll="false" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="administrators">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <history>
+        <historyInfo versionUuid="_a-0000dfd8-6941-8000-9ba2-011c48011c48_203627"/>
+        <historyInfo versionUuid="_a-0000e044-c81a-8000-9ba2-011c48011c48_128282"/>
+        <historyInfo versionUuid="_a-0000e067-d58d-8000-9ba2-011c48011c48_288605"/>
+        <historyInfo versionUuid="_a-0000e067-d58d-8000-9ba2-011c48011c48_302999"/>
+    </history>
+</contentHaul>

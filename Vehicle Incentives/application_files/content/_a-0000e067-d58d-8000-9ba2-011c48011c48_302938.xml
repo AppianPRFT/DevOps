@@ -1,0 +1,537 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <versionUuid>_a-0000e067-d58d-8000-9ba2-011c48011c48_302991</versionUuid>
+    <rule>
+        <name>VIM_SLA_Report_Graph</name>
+        <uuid>_a-0000e067-d58d-8000-9ba2-011c48011c48_302938</uuid>
+        <description>Section that contains the stacked bar graph for the SLA report</description>
+        <parentUuid>d1151d0a-2a3e-4e80-b3b0-105a99496272</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>load(
+  local!pagingInfo: #"SYSTEM_SYSRULES_pagingInfo"(
+    startIndex: 1,
+    batchSize: 20,
+    sort: #"SYSTEM_SYSRULES_sortInfo"(
+      field: "id",
+      ascending: true
+    )
+  ),
+  local!generated: false,
+  local!id: 0,
+  local!test: cast(
+    'type!{urn:com:appian:types}SLA_Entry?list',
+    {}
+  ),
+  local!SLAData: #"SYSTEM_SYSRULES_forEach"(
+    {
+      1,
+      2,
+      3
+    },
+    todatasubset(
+      cast(
+        101,
+        #"SYSTEM_SYSRULES_forEach"(
+          #"_a-0000e067-d58d-8000-9ba2-011c48011c48_302966",
+          0
+        )
+      )
+    )
+  ),
+  with(
+    local!dataRecords: #"SYSTEM_SYSRULES_forEach"(
+      #"_a-0000df6d-83a9-8000-9ba2-011c48011c48_49108"(),
+      fv!item.recordId
+    ),
+    local!dataRecordIdentifiers: union(
+      local!dataRecords,
+      local!dataRecords
+    ),
+    local!Groupeddata: #"SYSTEM_SYSRULES_forEach"(
+      local!dataRecordIdentifiers,
+      #"_a-0000df6d-83a9-8000-9ba2-011c48011c48_49187"(
+        fv!item
+      )
+    ),
+    local!strippedGroupedData: #"SYSTEM_SYSRULES_forEach"(
+      local!Groupeddata,
+      if(
+        count(
+          fv!item
+        ) = count(
+          #"_a-0000e067-d58d-8000-9ba2-011c48011c48_302966"
+        ) + 1,
+        todatasubset(
+          fv!item
+        ),
+        {}
+      )
+    ),
+    local!analizedData1: #"SYSTEM_SYSRULES_forEach"(
+      local!strippedGroupedData,
+      #"_a-0000df6d-83a9-8000-9ba2-011c48011c48_50684"(
+        fv!item.data
+      )
+    ),
+    local!datasubset: #"SYSTEM_SYSRULES_queryEntity"(
+      entity: #"_a-0000e067-d58d-8000-9ba2-011c48011c48_302954",
+      query: #"SYSTEM_SYSRULES_query"(
+        selection: #"SYSTEM_SYSRULES_querySelection"(
+          columns: {
+            #"SYSTEM_SYSRULES_queryColumn"(
+              field: "id"
+            ),
+            #"SYSTEM_SYSRULES_queryColumn"(
+              field: "milestoneStartTime"
+            ),
+            #"SYSTEM_SYSRULES_queryColumn"(
+              field: "recordId"
+            ),
+            #"SYSTEM_SYSRULES_queryColumn"(
+              field: "milestoneId"
+            ),
+            #"SYSTEM_SYSRULES_queryColumn"(
+              field: "description"
+            ),
+            #"SYSTEM_SYSRULES_queryColumn"(
+              field: "slaType"
+            ),
+            #"SYSTEM_SYSRULES_queryColumn"(
+              field: "updatedBy"
+            ),
+            #"SYSTEM_SYSRULES_queryColumn"(
+              field: "hasAccess"
+            )
+            
+          }
+        ),
+        filter: {
+          if(
+            isnull(
+              /*was GLOBAL check for null*/
+              ri!recordId
+            ),
+            null,
+            #"SYSTEM_SYSRULES_queryFilter"(
+              field: "recordId",
+              operator: "=",
+              value: ri!recordId
+            )
+          )
+        },
+        pagingInfo: local!pagingInfo
+      )
+    ),
+    local!testingStaveIntoLabels: #"SYSTEM_SYSRULES_forEach"(
+      local!Groupeddata,
+      {
+        #"SYSTEM_SYSRULES_forEach"(
+          #"_a-0000df6d-83a9-8000-9ba2-011c48011c48_50684"(
+            fv!item
+          ),
+          if(
+            fv!item[1] &lt;= #"_a-0000df6d-83a9-8000-9ba2-011c48011c48_48101"[fv!index],
+            {
+              cast(
+                'type!{urn:com:appian:types}SLA_Entry',
+                {
+                  id: fv!item[2],
+                  milestoneStartTime: #"_a-0000df6d-83a9-8000-9ba2-011c48011c48_51041"(
+                    fv!item[2]
+                  ).milestoneStartTime,
+                  recordId: #"_a-0000df6d-83a9-8000-9ba2-011c48011c48_51041"(
+                    fv!item[2]
+                  ).recordId,
+                  milestoneId: #"_a-0000df6d-83a9-8000-9ba2-011c48011c48_51041"(
+                    fv!item[2]
+                  ).milestoneId,
+                  description: if(
+                    isnull(
+                      /*was GLOBAL check for null*/
+                      #"_a-0000df6d-83a9-8000-9ba2-011c48011c48_51041"(
+                        fv!item[2]
+                      ).description
+                    ),
+                    tostring(
+                      #"_a-0000df6d-83a9-8000-9ba2-011c48011c48_49484"[#"_a-0000df6d-83a9-8000-9ba2-011c48011c48_51041"(
+                        fv!item[2]
+                      ).milestoneId] &amp; " took " &amp; #"_a-0000df6d-83a9-8000-9ba2-011c48011c48_51041"(
+                        fv!item[2]
+                      ).updatedBy &amp; " " &amp; fv!item[1] &amp; " days to complete "
+                    ),
+                    tostring(
+                      #"_a-0000df6d-83a9-8000-9ba2-011c48011c48_49484"[#"_a-0000df6d-83a9-8000-9ba2-011c48011c48_51041"(
+                        fv!item[2]
+                      ).milestoneId] &amp; " took " &amp; #"_a-0000df6d-83a9-8000-9ba2-011c48011c48_51041"(
+                        fv!item[2]
+                      ).updatedBy &amp; " " &amp; fv!item[1] &amp; " days to complete "
+                    )/*rule!SLA_GetSLAEntryById(*/
+                    /*fv!item[2]*/
+                    /*).description*/
+                    
+                  ),
+                  slaType: "Above",
+                  updatedBy: #"_a-0000df6d-83a9-8000-9ba2-011c48011c48_51041"(
+                    fv!item[2]
+                  ).updatedBy
+                }
+              )
+            },
+            if(
+              fv!item[1] &gt;= #"_a-0000df6d-83a9-8000-9ba2-011c48011c48_48095"[fv!index],
+              {
+                cast(
+                  'type!{urn:com:appian:types}SLA_Entry',
+                  {
+                    id: fv!item[2],
+                    milestoneStartTime: #"_a-0000df6d-83a9-8000-9ba2-011c48011c48_51041"(
+                      fv!item[2]
+                    ).milestoneStartTime,
+                    recordId: #"_a-0000df6d-83a9-8000-9ba2-011c48011c48_51041"(
+                      fv!item[2]
+                    ).recordId,
+                    milestoneId: #"_a-0000df6d-83a9-8000-9ba2-011c48011c48_51041"(
+                      fv!item[2]
+                    ).milestoneId,
+                    description: if(
+                      isnull(
+                        /*was GLOBAL check for null*/
+                        #"_a-0000df6d-83a9-8000-9ba2-011c48011c48_51041"(
+                          fv!item[2]
+                        ).description
+                      ),
+                      tostring(
+                        #"_a-0000df6d-83a9-8000-9ba2-011c48011c48_49484"[#"_a-0000df6d-83a9-8000-9ba2-011c48011c48_51041"(
+                          fv!item[2]
+                        ).milestoneId] &amp; " took " &amp; /*was GLOBAL userfirst&amp;last*/
+                        #"_a-0000df6d-83a9-8000-9ba2-011c48011c48_51041"(
+                          fv!item[2]
+                        ).updatedBy &amp; " " &amp; fv!item[1] &amp; " days to complete "
+                      ),
+                      #"_a-0000df6d-83a9-8000-9ba2-011c48011c48_51041"(
+                        fv!item[2]
+                      ).description
+                    ),
+                    slaType: "Exceeds",
+                    updatedBy: #"_a-0000df6d-83a9-8000-9ba2-011c48011c48_51041"(
+                      fv!item[2]
+                    ).updatedBy
+                  }
+                )
+              },
+              if(
+                and(
+                  fv!item[1] &gt; #"_a-0000df6d-83a9-8000-9ba2-011c48011c48_48101"[fv!index],
+                  fv!item[1] &lt; #"_a-0000df6d-83a9-8000-9ba2-011c48011c48_48095"[fv!index]
+                ),
+                {
+                  cast(
+                    'type!{urn:com:appian:types}SLA_Entry',
+                    {
+                      id: fv!item[2],
+                      milestoneStartTime: #"_a-0000df6d-83a9-8000-9ba2-011c48011c48_51041"(
+                        fv!item[2]
+                      ).milestoneStartTime,
+                      recordId: #"_a-0000df6d-83a9-8000-9ba2-011c48011c48_51041"(
+                        fv!item[2]
+                      ).recordId,
+                      milestoneId: #"_a-0000df6d-83a9-8000-9ba2-011c48011c48_51041"(
+                        fv!item[2]
+                      ).milestoneId,
+                      description: if(
+                        isnull(
+                          #"_a-0000df6d-83a9-8000-9ba2-011c48011c48_51041"(
+                            fv!item[2]
+                          ).description
+                        ),
+                        tostring(
+                          #"_a-0000df6d-83a9-8000-9ba2-011c48011c48_49484"[#"_a-0000df6d-83a9-8000-9ba2-011c48011c48_51041"(
+                            fv!item[2]
+                          ).milestoneId] &amp; " took " &amp; /*was GLOBAL check for null*/
+                          #"_a-0000df6d-83a9-8000-9ba2-011c48011c48_51041"(
+                            fv!item[2]
+                          ).updatedBy &amp; " " &amp; fv!item[1] &amp; " days to complete "
+                        ),
+                        #"_a-0000df6d-83a9-8000-9ba2-011c48011c48_51041"(
+                          fv!item[2]
+                        ).description
+                      ),
+                      slaType: "Meets",
+                      updatedBy: #"_a-0000df6d-83a9-8000-9ba2-011c48011c48_51041"(
+                        fv!item[2]
+                      ).updatedBy
+                    }
+                  )
+                },
+                {}
+              )
+            )
+          )
+        )
+      }
+    ),
+    #"SYSTEM_SYSRULES_sectionLayout_v1"(
+      contents: {
+        #"SYSTEM_SYSRULES_linkField"(
+          labelPosition: "COLLAPSED",
+          links: #"SYSTEM_SYSRULES_dynamicLink"(
+            label: "Generate SLA Instance",
+            /*value: true,*/
+            saveInto: {
+              if(
+                local!generated,
+                {
+                 
+                  
+                  a!save(
+                    target: ri!totalCount,
+                    count(
+                      local!Groupeddata
+                    )
+                  )
+                },
+                {
+                  #"SYSTEM_SYSRULES_forEach"(
+                    local!Groupeddata,
+                    {
+                      #"SYSTEM_SYSRULES_forEach"(
+                        #"_a-0000df6d-83a9-8000-9ba2-011c48011c48_50684"(
+                          fv!item
+                        ),
+                        if(
+                          fv!item[1] &lt;= #"_a-0000df6d-83a9-8000-9ba2-011c48011c48_48101"[fv!index],
+                          a!save(
+                            local!SLAData[1].data[fv!index],
+                            cast(
+                              1,
+                              local!SLAData[1].data[fv!index]
+                            ) + 1
+                          ),
+                          if(
+                            fv!item[1] &gt;= #"_a-0000df6d-83a9-8000-9ba2-011c48011c48_48095"[fv!index],
+                            a!save(
+                              local!SLAData[3].data[fv!index],
+                              cast(
+                                1,
+                                local!SLAData[3].data[fv!index]
+                              ) + 1
+                            ),
+                            if(
+                              and(
+                                fv!item[1] &gt; #"_a-0000df6d-83a9-8000-9ba2-011c48011c48_48101"[fv!index],
+                                fv!item[1] &lt; #"_a-0000df6d-83a9-8000-9ba2-011c48011c48_48095"[fv!index]
+                              ),
+                              a!save(
+                                local!SLAData[2].data[fv!index],
+                                cast(
+                                  1,
+                                  local!SLAData[2].data[fv!index]
+                                ) + 1
+                              ),
+                              {}
+                            )
+                          )
+                        )
+                      )
+                    }
+                  ),
+                  #"SYSTEM_SYSRULES_writeToDataStoreEntity"(
+                    dataStoreEntity: #"_a-0000df6d-83a9-8000-9ba2-011c48011c48_48058",
+                    valueToStore: #"SYSTEM_SYSRULES_forEach"(
+                      local!testingStaveIntoLabels,
+                      fv!item
+                    )
+                  ),
+                  a!save(
+                    target: ri!totalCount,
+                    value: count(
+                      local!Groupeddata
+                    )
+                  ),
+                  a!save(
+                    target: local!generated,
+                    value: true
+                  )
+                }
+              )
+            }
+          ),
+          align: "CENTER"
+        ),
+        #"SYSTEM_SYSRULES_barChartField"(
+          label: "Milestone Duration",
+          labelPosition: "ABOVE",
+          categories: #"_a-0000df6d-83a9-8000-9ba2-011c48011c48_49484",
+          helpTooltip: "SLA must be generated before data populates. Data represents all completed records and their SLA status.",
+          series: {
+            #"SYSTEM_SYSRULES_chartSeries"(
+              label: "Above Average (Less than 2 Days)",
+              data: local!SLAData[1].data,
+              color: "GREEN",
+              links: #"SYSTEM_SYSRULES_forEach"(
+                local!SLAData[1].data,
+                #"SYSTEM_SYSRULES_dynamicLink"(
+                  value: "Above",
+                  saveInto: {
+                    a!save(
+                      ri!selectedType,
+                      "Above"
+                    ),
+                    a!save(
+                      ri!selectedMilestone,
+                      fv!index
+                    )
+                  }
+                )
+              )
+            ),
+            #"SYSTEM_SYSRULES_chartSeries"(
+              label: "Meet SLA (2-3 Days)",
+              data: local!SLAData[2].data,
+              color: "YELLOW",
+              links: #"SYSTEM_SYSRULES_forEach"(
+                local!SLAData[2].data,
+                #"SYSTEM_SYSRULES_dynamicLink"(
+                  value: "Meets",
+                  saveInto: {
+                    a!save(
+                      ri!selectedType,
+                      "Meets"
+                    ),
+                    a!save(
+                      ri!selectedMilestone,
+                      fv!index
+                    )
+                  }
+                )
+              )
+            ),
+            #"SYSTEM_SYSRULES_chartSeries"(
+              label: "Exceeded SLA (Over 3 Days)",
+              data: local!SLAData[3].data,
+              color: "RED",
+              links: #"SYSTEM_SYSRULES_forEach"(
+                local!SLAData[3].data,
+                #"SYSTEM_SYSRULES_dynamicLink"(
+                  value: "Exceeds",
+                  saveInto: {
+                    a!save(
+                      ri!selectedType,
+                      "Exceeds"
+                    ),
+                    a!save(
+                      ri!selectedMilestone,
+                      fv!index
+                    )
+                  }
+                )
+              )
+            ),
+            
+          },
+          stacking: "NORMAL",
+          showLegend: true,
+          showTooltips: true
+        ),
+        #"SYSTEM_SYSRULES_linkField"(
+          labelPosition: "COLLAPSED",
+          links: #"SYSTEM_SYSRULES_dynamicLink"(
+            label: "Clear Selection",
+            value: true,
+            saveInto: {
+              a!save(
+                ri!selectedMilestone,
+                ""
+              ),
+              a!save(
+                ri!selectedType,
+                ""
+              )
+            }
+          ),
+          align: "CENTER"
+        )/*,*/
+        /*a!textField(*/
+        /*value: local!SLAData*/
+        /*),*/
+        /*a!textField(*/
+        /*value: local!testingStaveIntoLabels*/
+        /*)*/
+        
+      }
+    )
+  )
+)/*Creator: Sam Bruns*/</definition>
+        <namedTypedValue>
+            <name>recordId</name>
+            <type>
+                <name>int</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>selectedType</name>
+            <type>
+                <name>string</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+            <value/>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>selectedMilestone</name>
+            <type>
+                <name>int</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>totalCount</name>
+            <type>
+                <name>int</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+        </namedTypedValue>
+        <metadataExpr></metadataExpr>
+        <preferredEditor>interface</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role inherit="true" allowForAll="false" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="administrators">
+            <users>
+                <userUuid>samuel.bruns@perficient.com</userUuid>
+            </users>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <history>
+        <historyInfo versionUuid="_a-0000e067-d58d-8000-9ba2-011c48011c48_302991"/>
+    </history>
+</contentHaul>

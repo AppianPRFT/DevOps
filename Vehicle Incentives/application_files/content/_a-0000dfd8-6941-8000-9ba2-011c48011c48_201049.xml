@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <versionUuid>_a-0000e067-d58d-8000-9ba2-011c48011c48_308355</versionUuid>
+    <rule>
+        <name>VIM_IncentiveSaleCompliance</name>
+        <uuid>_a-0000dfd8-6941-8000-9ba2-011c48011c48_201049</uuid>
+        <description>Determines if the sale complys with an active incentive</description>
+        <parentUuid>d1151d0a-2a3e-4e80-b3b0-105a99496272</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>load(
+  local!incentives: #"4028f35e-5814-4e3e-ab7f-f077d3d17e12_GETONERECORD"(
+    ri!incentive
+  ),
+  local!sale: #"_a-0000dfd8-6941-8000-9ba2-011c48011c48_191173"(
+    42
+  ),
+  local!compliance: #"SYSTEM_SYSRULES_forEach"(
+    local!incentives,
+    if(
+      and(
+        ri!salesData.soldOn &gt; fv!item.offerStartDate2,
+        ri!salesData.soldOn &lt; fv!item.offerEndDate2
+      ),
+      if(
+        or(
+          ri!salesData.brand = fv!item.brand,
+          ri!salesData.brand = proper(
+            fv!item.brand
+          ),
+          proper(
+            ri!salesData.brand
+          ) = fv!item.brand
+        ),
+        /*if(*/
+          /*ri!salesData.modelMsrp &gt;= fv!item.modelMsrp,*/
+          if(
+            or(
+              #"SYSTEM_SYSRULES_forEach"(
+                fv!item.incentiveVehicles,
+                if(
+                  fv!item.model = if(isnull(ri!salesData.model),#"_a-0000dfd8-6941-8000-9ba2-011c48011c48_201605"(
+                    ri!salesData.vehicleId
+                  ).model,ri!salesData.model),
+                  true,
+                  false
+                )
+              )
+            ),
+            if(
+              fv!item.awardType = ri!salesData.awardType,
+              0,
+              1
+            ),
+            2
+          ),
+          /*3*/
+        /*),*/
+        4
+      ),
+      5
+    )
+  ),
+  /*local!incentives*/
+  local!compliance
+)</definition>
+        <namedTypedValue>
+            <name>salesData</name>
+            <type>
+                <name>VIM_SalesData</name>
+                <namespace>urn:com:appian:types:VIM</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>incentive</name>
+            <type>
+                <name>int</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+        </namedTypedValue>
+        <preferredEditor>legacy</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role inherit="true" allowForAll="false" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="administrators">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <history>
+        <historyInfo versionUuid="_a-0000dfd8-6941-8000-9ba2-011c48011c48_202311"/>
+        <historyInfo versionUuid="_a-0000e044-c81a-8000-9ba2-011c48011c48_128773"/>
+        <historyInfo versionUuid="_a-0000e067-d58d-8000-9ba2-011c48011c48_293782"/>
+        <historyInfo versionUuid="_a-0000e067-d58d-8000-9ba2-011c48011c48_308355"/>
+    </history>
+</contentHaul>

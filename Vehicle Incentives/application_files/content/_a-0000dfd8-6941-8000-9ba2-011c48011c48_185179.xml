@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <versionUuid>_a-0000dfd8-6941-8000-9ba2-011c48011c48_185182</versionUuid>
+    <rule>
+        <name>VIM_GetActivityByRecord</name>
+        <uuid>_a-0000dfd8-6941-8000-9ba2-011c48011c48_185179</uuid>
+        <description>Returns all activity history for a single record [Activity History] [Data]</description>
+        <parentUuid>d1151d0a-2a3e-4e80-b3b0-105a99496272</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>#"SYSTEM_SYSRULES_queryEntity"(
+  entity: #"686308fd-111b-4fba-9ddd-dc53e099fe35_CHANGEDSECONSTANT",
+  query: #"SYSTEM_SYSRULES_query"(
+    logicalExpression: #"SYSTEM_SYSRULES_queryLogicalExpression"(
+      operator: "AND",
+      filters: {
+        #"SYSTEM_SYSRULES_queryFilter"(
+          field: "recordId",
+          operator: "=",
+          value: ri!recordId
+        ),
+        if(
+          isnull(ri!userFilter),
+          {},
+          #"SYSTEM_SYSRULES_queryFilter"(
+            field: "who",
+            operator: "=",
+            value: ri!userFilter
+          )
+        )
+      },
+      logicalExpressions: if(
+        isnull(ri!searchTerm),
+        {},
+        #"SYSTEM_SYSRULES_queryLogicalExpression"(
+          operator: "OR",
+          filters: {
+            #"SYSTEM_SYSRULES_queryFilter"(
+              field: "action",
+              operator: "includes",
+              value: ri!searchTerm
+            ),
+            #"SYSTEM_SYSRULES_queryFilter"(
+              field: "details",
+              operator: "includes",
+              value: ri!searchTerm
+            )
+          }
+        )
+      )
+    ),
+    pagingInfo: #"SYSTEM_SYSRULES_pagingInfo"(1, 25, #"SYSTEM_SYSRULES_sortInfo"("when", false))
+  )
+)</definition>
+        <namedTypedValue>
+            <name>recordId</name>
+            <type>
+                <name>int</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>searchTerm</name>
+            <type>
+                <name>string</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+            <value/>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>userFilter</name>
+            <type>
+                <name>User</name>
+                <namespace>http://www.appian.com/ae/types/2009</namespace>
+            </type>
+        </namedTypedValue>
+        <preferredEditor>legacy</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="false">
+        <role inherit="true" allowForAll="false" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="administrators">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <history>
+        <historyInfo versionUuid="_a-0000dfd8-6941-8000-9ba2-011c48011c48_185182"/>
+    </history>
+</contentHaul>

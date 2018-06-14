@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <versionUuid>_a-0000e067-d58d-8000-9ba2-011c48011c48_306734</versionUuid>
+    <rule>
+        <name>VIM_IncentiveVehicles</name>
+        <uuid>_a-0000dfd8-6941-8000-9ba2-011c48011c48_201963</uuid>
+        <description>Vehicle Grid of Incentives</description>
+        <parentUuid>d1151d0a-2a3e-4e80-b3b0-105a99496272</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>load(
+  local!incentive: #"4028f35e-5814-4e3e-ab7f-f077d3d17e12_GETONERECORD"(
+    ri!id
+  ),
+  local!vehicle: local!incentive.incentiveVehicles,
+  #"SYSTEM_SYSRULES_sectionLayout_v1"(
+    label: "Vehicles Eligible for Incentive",
+    contents: {
+      #"SYSTEM_SYSRULES_gridField"(
+        labelPosition: "ABOVE",
+        totalCount: count(
+          local!vehicle
+        ),
+        columns: {
+          #"SYSTEM_SYSRULES_gridTextColumn"(
+            label: "Year",
+            data: local!vehicle.year
+          ),
+          #"SYSTEM_SYSRULES_gridTextColumn"(
+            label: "Brand",
+            data: local!vehicle.make
+          ),
+          #"SYSTEM_SYSRULES_gridTextColumn"(
+            label: "Model",
+            data: local!vehicle.model
+          ),
+          #"SYSTEM_SYSRULES_gridTextColumn"(
+            label: "Award",
+            data: local!vehicle.award
+          ),
+          if(
+            isusermemberofgroup(
+              loggedInUser(),
+              #"_a-0000dfd8-6941-8000-9ba2-011c48011c48_205426"
+            ),
+            {
+              #"SYSTEM_SYSRULES_gridTextColumn"(
+                label: "Sales Target",
+                data: local!vehicle.salesTarget
+              ),
+              #"SYSTEM_SYSRULES_gridTextColumn"(
+                label: "Success Prediction",
+                data: local!vehicle.amlSuccessPrediction
+              )
+            },
+            {}
+          )
+        },
+        value: #"SYSTEM_SYSRULES_pagingInfo"(
+          startIndex: 1,
+          batchSize: 50
+        ),
+        saveInto: #"SYSTEM_SYSRULES_pagingInfo"(
+          startIndex: 1,
+          batchSize: 50
+        ),
+        validations: {},
+        shadeAlternateRows: true
+      )
+    }
+  )
+)</definition>
+        <namedTypedValue>
+            <name>id</name>
+            <type>
+                <name>int</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+        </namedTypedValue>
+        <metadataExpr></metadataExpr>
+        <preferredEditor>interface</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role inherit="true" allowForAll="false" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="administrators">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <history>
+        <historyInfo versionUuid="_a-0000e067-d58d-8000-9ba2-011c48011c48_282521"/>
+        <historyInfo versionUuid="_a-0000e067-d58d-8000-9ba2-011c48011c48_285561"/>
+        <historyInfo versionUuid="_a-0000e067-d58d-8000-9ba2-011c48011c48_286403"/>
+        <historyInfo versionUuid="_a-0000e067-d58d-8000-9ba2-011c48011c48_289175"/>
+        <historyInfo versionUuid="_a-0000e067-d58d-8000-9ba2-011c48011c48_306734"/>
+    </history>
+</contentHaul>

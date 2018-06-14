@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <versionUuid>_a-0000e067-d58d-8000-9ba2-011c48011c48_298446</versionUuid>
+    <rule>
+        <name>VIM_VehicleIncentives</name>
+        <uuid>_a-0000dfd8-6941-8000-9ba2-011c48011c48_188913</uuid>
+        <description>Incentives Associated to Vehicle</description>
+        <parentUuid>d1151d0a-2a3e-4e80-b3b0-105a99496272</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>load(
+  local!k: #"62ae16a7-bf3d-43ed-9669-754facca174e_GETONERECORD"(
+    ri!id
+  ).incentiveTitle,
+  local!kk: #"_a-0000dfd8-6941-8000-9ba2-011c48011c48_205404"(
+    local!k,
+    "Approved"
+  ),
+  {
+    #"SYSTEM_SYSRULES_gridField"(
+      totalCount: count(
+        local!kk
+      ),
+      columns: {
+        #"SYSTEM_SYSRULES_gridTextColumn"(
+          label: "Title",
+          data: local!kk.title,
+          links: #"SYSTEM_SYSRULES_forEach"(
+            local!kk,
+            #"SYSTEM_SYSRULES_recordLink"(
+              recordType: #"_a-0000dfd8-6941-8000-9ba2-011c48011c48_184914",
+              identifier: fv!item.id
+            )
+          )
+        ),
+        #"SYSTEM_SYSRULES_gridTextColumn"(
+          label: "Status",
+          data: local!kk.status.value
+        ),
+        #"SYSTEM_SYSRULES_gridTextColumn"(
+          label: "Type",
+          data: local!kk.typeOfOffer.value
+        ),
+        #"SYSTEM_SYSRULES_gridTextColumn"(
+          label: "Start Date",
+          data: #"SYSTEM_SYSRULES_forEach"(
+            local!kk.offerStartDate,
+            tostring(
+              todate(
+                fv!item
+              ) &amp; " at " &amp; totime(
+                fv!item
+              )
+            )
+          )
+        ),
+        #"SYSTEM_SYSRULES_gridTextColumn"(
+          label: "End Date",
+          data: #"SYSTEM_SYSRULES_forEach"(
+            local!kk.offerEndDate,
+            tostring(
+              todate(
+                fv!item
+              ) &amp; " at " &amp; totime(
+                fv!item
+              )
+            )
+          )
+        )
+      },
+      value: #"SYSTEM_SYSRULES_pagingInfo"(
+        startIndex: 1,
+        batchSize: 100
+      )
+    )
+  }
+)</definition>
+        <namedTypedValue>
+            <name>id</name>
+            <type>
+                <name>int</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+        </namedTypedValue>
+        <metadataExpr></metadataExpr>
+        <preferredEditor>interface</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role inherit="true" allowForAll="false" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="administrators">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <history>
+        <historyInfo versionUuid="_a-0000dfd8-6941-8000-9ba2-011c48011c48_192885"/>
+        <historyInfo versionUuid="_a-0000dfd8-6941-8000-9ba2-011c48011c48_205419"/>
+        <historyInfo versionUuid="_a-0000e067-d58d-8000-9ba2-011c48011c48_298446"/>
+    </history>
+</contentHaul>

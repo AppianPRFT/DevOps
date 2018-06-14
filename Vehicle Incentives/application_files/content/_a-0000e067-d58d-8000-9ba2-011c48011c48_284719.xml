@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <versionUuid>_a-0000e067-d58d-8000-9ba2-011c48011c48_298557</versionUuid>
+    <rule>
+        <name>VIM_IncentiveVehicleReview_Grid</name>
+        <uuid>_a-0000e067-d58d-8000-9ba2-011c48011c48_284719</uuid>
+        <description>Review grid for the incentive vehicles</description>
+        <parentUuid>d1151d0a-2a3e-4e80-b3b0-105a99496272</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>load(
+  local!gridSelection: #"SYSTEM_SYSRULES_gridSelection"(
+    pagingInfo: #"SYSTEM_SYSRULES_pagingInfo"(
+      startIndex: 1,
+      batchSize: 100,
+      sort: #"SYSTEM_SYSRULES_sortInfo"(
+        field: "Model_ID",
+        ascending: true
+      )
+    ),
+    selected: {}
+  ),
+  #"SYSTEM_SYSRULES_gridField"(
+    label: "",
+    labelPosition: "ABOVE",
+    totalCount: if(
+      isnull(
+        count(
+          ri!selectedVehicles
+        )
+      ),
+      0,
+      count(
+        ri!selectedVehicles
+      )
+    ),
+    columns: {
+      #"SYSTEM_SYSRULES_gridTextColumn"(
+        label: "Year",
+        data: #"SYSTEM_SYSRULES_forEach"(
+          ri!selectedVehicles,
+          fv!item.year
+        )
+      ),
+      #"SYSTEM_SYSRULES_gridTextColumn"(
+        label: "Make",
+        data: #"SYSTEM_SYSRULES_forEach"(
+          ri!selectedVehicles,
+          fv!item.make
+        )
+      ),
+      #"SYSTEM_SYSRULES_gridTextColumn"(
+        label: "Model",
+        data: #"SYSTEM_SYSRULES_forEach"(
+          ri!selectedVehicles,
+          fv!item.model
+        )
+      ),
+      #"SYSTEM_SYSRULES_gridTextColumn"(
+        label: "Award",
+        data: #"SYSTEM_SYSRULES_forEach"(
+          ri!selectedVehicles,
+          dollar(
+            fv!item.award
+          )
+        )
+      ),
+      #"SYSTEM_SYSRULES_gridTextColumn"(
+        label: "Sales Target",
+        data: #"SYSTEM_SYSRULES_forEach"(
+          ri!selectedVehicles,
+          fv!item.salesTarget
+        )
+      )
+    },
+    identifiers: #"SYSTEM_SYSRULES_forEach"(
+      ri!selectedVehicles,
+      fv!item.id
+    ),
+    value: local!gridSelection,
+    validations: {},
+    shadeAlternateRows: true
+  )
+)</definition>
+        <namedTypedValue>
+            <name>selectedVehicles</name>
+            <type>
+                <name>VIM_IncentiveVehicles?list</name>
+                <namespace>urn:com:appian:types</namespace>
+            </type>
+        </namedTypedValue>
+        <metadataExpr></metadataExpr>
+        <preferredEditor>interface</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role inherit="true" allowForAll="false" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="administrators">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <history>
+        <historyInfo versionUuid="_a-0000e067-d58d-8000-9ba2-011c48011c48_284865"/>
+        <historyInfo versionUuid="_a-0000e067-d58d-8000-9ba2-011c48011c48_286423"/>
+        <historyInfo versionUuid="_a-0000e067-d58d-8000-9ba2-011c48011c48_288324"/>
+        <historyInfo versionUuid="_a-0000e067-d58d-8000-9ba2-011c48011c48_298557"/>
+    </history>
+</contentHaul>

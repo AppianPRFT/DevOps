@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <versionUuid>_a-0000e067-d58d-8000-9ba2-011c48011c48_303716</versionUuid>
+    <rule>
+        <name>VIM_IncentiveReportDashboard</name>
+        <uuid>_a-0000e067-d58d-8000-9ba2-011c48011c48_303152</uuid>
+        <description>Interface that reports on the incentive sales progress</description>
+        <parentUuid>d1151d0a-2a3e-4e80-b3b0-105a99496272</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>load(
+  local!pagingInfo: #"SYSTEM_SYSRULES_pagingInfo"(
+    startIndex: 1,
+    batchSize: 10,
+    sort: #"SYSTEM_SYSRULES_sortInfo"(
+      field: "offerStartDate2",
+      ascending: true
+    )
+  ),
+  local!incentiveIndex,
+  local!selectedIncentive,
+  local!page: 1,
+  local!incentives: #"SYSTEM_SYSRULES_queryEntity"(
+    entity: #"e7237020-544a-4d98-8261-2408aa55562c_MAINDSECONSTANT",
+    query: #"SYSTEM_SYSRULES_query"(
+      selection: #"SYSTEM_SYSRULES_querySelection"(
+        columns: {
+          #"SYSTEM_SYSRULES_queryColumn"(
+            field: "id"
+          ),
+          #"SYSTEM_SYSRULES_queryColumn"(
+            field: "title"
+          ),
+          #"SYSTEM_SYSRULES_queryColumn"(
+            field: "status"
+          ),
+          #"SYSTEM_SYSRULES_queryColumn"(
+            field: "brand"
+          ),
+          #"SYSTEM_SYSRULES_queryColumn"(
+            field: "offerStartDate2"
+          ),
+          #"SYSTEM_SYSRULES_queryColumn"(
+            field: "offerEndDate2"
+          ),
+          #"SYSTEM_SYSRULES_queryColumn"(
+            field: "incentiveVehicles"
+          )
+        }
+      ),
+      pagingInfo: local!pagingInfo,
+      filter: #"SYSTEM_SYSRULES_queryFilter"(
+        field: "hasAccess",
+        operator: "includes",
+        value: #"_a-0000e067-d58d-8000-9ba2-011c48011c48_288381"()
+      )
+    )
+  ),
+  with(
+    if(
+      local!page = 1,
+      {
+        #"SYSTEM_SYSRULES_gridField"(
+          columns: {
+            #"SYSTEM_SYSRULES_gridTextColumn"(
+              label: "Program name",
+              data: local!incentives.data.title,
+              links: #"SYSTEM_SYSRULES_forEach"(
+                local!incentives.data,
+                #"SYSTEM_SYSRULES_dynamicLink"(
+                  value: fv!item.id,
+                  saveInto: {
+                    local!selectedIncentive,
+                    a!save(
+                      local!page,
+                      2
+                    ),
+                    a!save(
+                      local!incentiveIndex,
+                      fv!index
+                    )
+                  }
+                )
+              )
+            ),
+            #"SYSTEM_SYSRULES_gridTextColumn"(
+              label: "Status",
+              data: local!incentives.data.title
+            ),
+            #"SYSTEM_SYSRULES_gridTextColumn"(
+              label: "Start Date",
+              data: local!incentives.data.offerStartDate2
+            ),
+            #"SYSTEM_SYSRULES_gridTextColumn"(
+              label: "End Date",
+              data: local!incentives.data.offerEndDate2
+            ),
+            /*a!gridTextColumn(*/
+            /*label: "Award Range",*/
+            /*data: a!forEach(*/
+            /*local!incentives.data,*/
+            /*"$" &amp; min(*/
+            /*tointeger(*/
+            /*fv!item.incentiveVehicles.awards*/
+            /*)*/
+            /*) &amp; " - " &amp; "$" &amp; max(*/
+            /*tointeger(*/
+            /*fv!item.incentiveVehicles.awards*/
+            /*)*/
+            /*)*/
+            /*)*/
+            /*)*/
+            
+          },
+          totalCount: local!incentives.totalCount,
+          value: local!pagingInfo
+        )
+      },
+      #"_a-0000e067-d58d-8000-9ba2-011c48011c48_303278"(
+        local!selectedIncentive,
+        local!page,
+        local!incentives.data[local!incentiveIndex].brand,
+        local!incentives.data[local!incentiveIndex].title
+      )
+    )
+  )
+)</definition>
+        <metadataExpr></metadataExpr>
+        <preferredEditor>interface</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role inherit="true" allowForAll="false" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="administrators">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <history>
+        <historyInfo versionUuid="_a-0000e067-d58d-8000-9ba2-011c48011c48_303716"/>
+    </history>
+</contentHaul>

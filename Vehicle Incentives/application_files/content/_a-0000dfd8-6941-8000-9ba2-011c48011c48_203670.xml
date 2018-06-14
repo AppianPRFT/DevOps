@@ -1,0 +1,889 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <versionUuid>_a-0000e067-d58d-8000-9ba2-011c48011c48_308307</versionUuid>
+    <rule>
+        <name>VIM_DealershipMainSummaryCharts</name>
+        <uuid>_a-0000dfd8-6941-8000-9ba2-011c48011c48_203670</uuid>
+        <description>Contains Charts of Statistics</description>
+        <parentUuid>d1151d0a-2a3e-4e80-b3b0-105a99496272</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>= load(
+  local!pagingInfo: #"SYSTEM_SYSRULES_pagingInfo"(
+    startIndex: 1,
+    batchSize: - 1,
+    sort: #"SYSTEM_SYSRULES_sortInfo"(
+      field: "department",
+      ascending: true
+    )
+  ),
+  local!months: {
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec"
+  },
+  local!sales:#"_a-0000dfd8-6941-8000-9ba2-011c48011c48_200561"(8),
+  local!showAsGrid: false,
+  with(
+    local!datasubset: {
+      /*{*/
+        /*id: 5000,*/
+        /*department: rule!VIM_DetermineHasAccess()&amp;" Economy",*/
+        /*title: "Referrals"*/
+      /*},*/
+      /*{*/
+        /*id: 4000,*/
+        /*department: rule!VIM_DetermineHasAccess()&amp;" Luxury",*/
+        /*title: "Referrals"*/
+      /*},*/
+      {
+        id: 2000,
+        department: #"_a-0000e067-d58d-8000-9ba2-011c48011c48_288381"()&amp;" Economy",
+        title: "Referrals"
+      },
+      {
+        id: 10000,
+        department: #"_a-0000e067-d58d-8000-9ba2-011c48011c48_288381"()&amp;" Luxury",
+        title: "Referrals"
+      },
+      {
+        id: 2000,
+        department: if(#"_a-0000e067-d58d-8000-9ba2-011c48011c48_288381"()="Ford","Lincoln",if(#"_a-0000e067-d58d-8000-9ba2-011c48011c48_288381"()="Toyota","Lexus",if(#"_a-0000e067-d58d-8000-9ba2-011c48011c48_288381"()="Volkswagen","Audi","")))&amp;" Economy",
+        title: "Existing Buyers"
+      },
+      {
+        id: 200,
+        department: if(#"_a-0000e067-d58d-8000-9ba2-011c48011c48_288381"()="Ford","Lincoln",if(#"_a-0000e067-d58d-8000-9ba2-011c48011c48_288381"()="Toyota","Lexus",if(#"_a-0000e067-d58d-8000-9ba2-011c48011c48_288381"()="Volkswagen","Audi","")))&amp;" Luxury",
+        title: "Existing Buyers"
+      },
+      {
+        id: 400,
+        department: #"_a-0000e067-d58d-8000-9ba2-011c48011c48_288381"()&amp;" Economy",
+        title: "Existing Buyers"
+      },
+      {
+        id: 500,
+        department: #"_a-0000e067-d58d-8000-9ba2-011c48011c48_288381"()&amp;" Luxury",
+        title: "Existing Buyers"
+      },
+      {
+        id: 12500,
+        department: #"_a-0000e067-d58d-8000-9ba2-011c48011c48_288381"()&amp;" Economy",
+        title: "Advertising"
+      },
+      {
+        id: 5000,
+        department: #"_a-0000e067-d58d-8000-9ba2-011c48011c48_288381"()&amp;" Luxury",
+        title: "Advertising"
+      }
+      ,
+      {
+        id: 3000,
+        department: if(#"_a-0000e067-d58d-8000-9ba2-011c48011c48_288381"()="Ford","Lincoln",if(#"_a-0000e067-d58d-8000-9ba2-011c48011c48_288381"()="Toyota","Lexus",if(#"_a-0000e067-d58d-8000-9ba2-011c48011c48_288381"()="Volkswagen","Audi","")))&amp;" Economy",
+        title: "Advertising"
+      },
+      {
+        id: 10000,
+        department: if(#"_a-0000e067-d58d-8000-9ba2-011c48011c48_288381"()="Ford","Lincoln",if(#"_a-0000e067-d58d-8000-9ba2-011c48011c48_288381"()="Toyota","Lexus",if(#"_a-0000e067-d58d-8000-9ba2-011c48011c48_288381"()="Volkswagen","Audi","")))&amp;" Luxury",
+        title: "Advertising"
+      }
+    },
+    local!datasubset2: {
+      {
+        id: 5000,
+        department: "Toyota Economy",
+        title: "Referrals"
+      },
+      {
+        id: 4000,
+        department: "Toyota Luxury",
+        title: "Referrals"
+      },
+      {
+        id: 2000,
+        department: "Lexus Economy",
+        title: "Referrals"
+      },
+      {
+        id: 10000,
+        department: "Lexus Luxury",
+        title: "Referrals"
+      },
+      {
+        id: 2000,
+        department: "Toyota Economy",
+        title: "Existing Buyers"
+      },
+      {
+        id: 200,
+        department: "Toyota Luxury",
+        title: "Existing Buyers"
+      },
+      {
+        id: 400,
+        department: "Lexus Economy",
+        title: "Existing Buyers"
+      },
+      {
+        id: 500,
+        department: "Lexus Luxury",
+        title: "Existing Buyers"
+      },
+      {
+        id: 12500,
+        department: "Toyota Economy",
+        title: "Advertising"
+      },
+      {
+        id: 5000,
+        department: "Toyota Luxury",
+        title: "Advertising"
+      },
+      {
+        id: 3000,
+        department: "Lexus Economy",
+        title: "Advertising"
+      },
+      {
+        id: 10000,
+        department: "Lexus Luxury",
+        title: "Advertising"
+      },
+      {
+        id: 5000000,
+        department: "Toyota Economy",
+        title: "Total Unpaid $"
+      },
+      {
+        id: 4000000,
+        department: "Toyota Luxury",
+        title: "Total Unpaid $"
+      },
+      {
+        id: 2000000,
+        department: "Lexus Economy",
+        title: "Total Unpaid $"
+      },
+      {
+        id: 10000000,
+        department: "Lexus Luxury",
+        title: "Total Unpaid $"
+      },
+      {
+        id: 5000000,
+        department: "Total Unpaid $",
+        title: "Advertising"
+      },
+      {
+        id: 4000000,
+        department: "Total Unpaid $",
+        title: "Existing Buyers"
+      },
+      {
+        id: 2000000,
+        department: "Total Unpaid $",
+        title: "Referrals"
+      },
+      {
+        id: {},
+        department: "Total Unpaid $",
+        title: "Total Unpaid $"
+      }
+    },
+    local!categories: index(
+      local!datasubset,
+      "department",
+      {}
+    ),
+    /* Use union() to remove duplicates */
+    local!uniqueCategories: union(
+      local!categories,
+      cast(
+        typeof(
+          local!categories
+        ),
+        {}
+      )
+    ),
+    local!labels: index(
+      local!datasubset,
+      "title",
+      {}
+    ),
+    local!uniqueLabels: union(
+      local!labels,
+      cast(
+        typeof(
+          local!labels
+        ),
+        {}
+      )
+    ),
+    local!series: #"SYSTEM_SYSRULES_forEach"(
+      items: local!uniquelabels,
+      expression: with(
+        local!label: fv!item,
+        #"SYSTEM_SYSRULES_chartSeries"(
+          label: local!label,
+          data: #"SYSTEM_SYSRULES_forEach"(
+            items: local!uniqueCategories,
+            expression: with(
+              local!intersection: intersection(
+                where(
+                  local!categories = cast(
+                    typeof(
+                      local!categories
+                    ),
+                    fv!item
+                  ),
+                  0
+                ),
+                where(
+                  local!labels = cast(
+                    typeof(
+                      local!labels
+                    ),
+                    local!label
+                  ),
+                  0
+                )
+              ),
+              if(
+                length(
+                  local!intersection
+                ) = 0,
+                /* 
+                     * If there is no datapoint for this category-label pair, return 0 
+                     * so that all subsequent points are in the correct order with the 
+                     * categories.      
+                     */
+                0,
+                index(
+                  index(
+                    local!datasubset,
+                    "id",
+                    {}
+                  ),
+                  local!intersection,
+                  0
+                )
+              )
+            )
+          )
+        )
+      )
+    ),
+    local!categories2: index(
+      local!datasubset2,
+      "department",
+      {}
+    ),
+    local!uniqueCategories2: union(
+      local!categories2,
+      cast(
+        typeof(
+          local!categories2
+        ),
+        {}
+      )
+    ),
+    local!labels2: index(
+      local!datasubset2,
+      "title",
+      {}
+    ),
+    local!uniqueLabels2: union(
+      local!labels2,
+      cast(
+        typeof(
+          local!labels2
+        ),
+        {}
+      )
+    ),
+    local!series2: #"SYSTEM_SYSRULES_forEach"(
+      items: local!uniquelabels2,
+      expression: with(
+        local!label2: fv!item,
+        #"SYSTEM_SYSRULES_chartSeries"(
+          label: local!label2,
+          data: #"SYSTEM_SYSRULES_forEach"(
+            items: local!uniqueCategories2,
+            expression: with(
+              local!intersection2: intersection(
+                where(
+                  local!categories2 = cast(
+                    typeof(
+                      local!categories2
+                    ),
+                    fv!item
+                  ),
+                  0
+                ),
+                where(
+                  local!labels2 = cast(
+                    typeof(
+                      local!labels2
+                    ),
+                    local!label2
+                  ),
+                  0
+                )
+              ),
+              if(
+                length(
+                  local!intersection2
+                ) = 0,
+                0,
+                index(
+                  index(
+                    local!datasubset2,
+                    "id",
+                    {}
+                  ),
+                  local!intersection2,
+                  0
+                )
+              )
+            )
+          )
+        )
+      )
+    ),
+    {
+      #"SYSTEM_SYSRULES_columnsLayout"(
+        columns: {}
+      ),
+      #"SYSTEM_SYSRULES_columnsLayout"(
+        columns: {
+          #"SYSTEM_SYSRULES_columnLayout"(
+            contents: {
+              #"SYSTEM_SYSRULES_boxLayout"(
+                label: "News &amp; Announcements",
+                contents: {
+                  #"SYSTEM_SYSRULES_webContentField"(
+                    source: "https://www.autonews.com/section/news?profilename=" &amp; ri!brand,
+                    height: "TALL",
+                    showBorder: true
+                  )/*,*/
+                  /*a!richTextDisplayField(*/
+                  /*label: "",*/
+                  /*labelPosition: "COLLAPSED",*/
+                  /*value: {*/
+                  /*a!richTextItem(*/
+                  /*text: "New Subaru and Volkswagen dealership in Waldorf",*/
+                  /*style: "HEADER_SMALL",*/
+                  /*link: a!safeLink(*/
+                  /*label: "...",*/
+                  /*uri: "http://www.thebaynet.com/articles/1117/new-subaru-and-volkswagen-dealership-in-waldorf.html"*/
+                  /*)*/
+                  /*),*/
+                  /*a!richTextItem(*/
+                  /*text: "Ourisman Motors in Waldorf has been doing business in Southern Maryland for nearly a century and the company is proud to welcome Ourisman Subaru Waldorf and Ourisman Volkswagen of Waldorf ",*/
+                  /*style: "NORMAL"*/
+                  /*),*/
+                  /*a!richTextItem(*/
+                  /*text: "...",*/
+                  /*style: "STRONG",*/
+                  /*link: a!safeLink(*/
+                  /*label: "...",*/
+                  /*uri: "http://www.thebaynet.com/articles/1117/new-subaru-and-volkswagen-dealership-in-waldorf.html"*/
+                  /*)*/
+                  /*),*/
+                  /*char(*/
+                  /*10*/
+                  /*),*/
+                  /*a!richTextItem(*/
+                  /*text: "five hours ago",*/
+                  /*style: "EMPHASIS"*/
+                  /*),*/
+                  /*a!richTextItem(*/
+                  /*text: "D.C. losing its last traditional car dealership with Ourisman moving to Bethesda",*/
+                  /*style: "HEADER_SMALL",*/
+                  /*link: a!safeLink(*/
+                  /*label: "...",*/
+                  /*uri: "https://www.washingtonpost.com/business/economy/the-last-place-to-buy-new-cars-in-dc-after-ourisman-volkswagen-moves-to-bethesda/2014/11/06/5199a38e-557a-11e4-892e-602188e70e9c_story.html?utm_term=.c945572a8db7"*/
+                  /*)*/
+                  /*),*/
+                  /*a!richTextItem(*/
+                  /*text: "Outside, new cars are backed side by side against the showroom, their hoods extending to the sidewalk. The small lot is crammed with a couple dozen used vehicles. Most of the dealership’s inventory is kept a couple miles away in an underground parking garage ",*/
+                  /*style: "NORMAL"*/
+                  /*),*/
+                  /*a!richTextItem(*/
+                  /*text: "...",*/
+                  /*style: "STRONG",*/
+                  /*link: a!safeLink(*/
+                  /*label: "...",*/
+                  /*uri: "https://www.washingtonpost.com/business/economy/the-last-place-to-buy-new-cars-in-dc-after-ourisman-volkswagen-moves-to-bethesda/2014/11/06/5199a38e-557a-11e4-892e-602188e70e9c_story.html?utm_term=.c945572a8db7"*/
+                  /*)*/
+                  /*),*/
+                  /*char(*/
+                  /*10*/
+                  /*),*/
+                  /*a!richTextItem(*/
+                  /*text: "two weeks ago",*/
+                  /*style: "EMPHASIS"*/
+                  /*),*/
+                  /*a!richTextItem(*/
+                  /*text: "Monday at NYSE a 'defining day' for Cars.com",*/
+                  /*style: "HEADER_SMALL",*/
+                  /*link: a!safeLink(*/
+                  /*label: "...",*/
+                  /*uri: "http://www.autoremarketing.com/technology/monday-nyse-defining-day-carscom"*/
+                  /*)*/
+                  /*),*/
+                  /*a!richTextItem(*/
+                  /*text: "Cars.com leadership and a handful of dealerships were on hand at the New York Stock Exchange to ring the Opening Bell, in what Vetter calls a “defining day for our company ",*/
+                  /*style: "NORMAL"*/
+                  /*),*/
+                  /*a!richTextItem(*/
+                  /*text: "...",*/
+                  /*style: "STRONG",*/
+                  /*link: a!safeLink(*/
+                  /*label: "...",*/
+                  /*uri: "http://www.autoremarketing.com/technology/monday-nyse-defining-day-carscom"*/
+                  /*)*/
+                  /*),*/
+                  /*char(*/
+                  /*10*/
+                  /*),*/
+                  /*a!richTextItem(*/
+                  /*text: "three weeks ago",*/
+                  /*style: "EMPHASIS"*/
+                  /*),*/
+                  /*a!richTextItem(*/
+                  /*text: "Public Has Another Chance to Weigh in on Ourisman Bethesda’s Trail Improvement Plans Tuesday",*/
+                  /*style: "HEADER_SMALL",*/
+                  /*link: a!safeLink(*/
+                  /*label: "...",*/
+                  /*uri: "http://www.bethesdamagazine.com/Bethesda-Beat/2017/Public-Has-Another-Chance-to-Weigh-in-on-Ourisman-Bethesdas-Trail-Improvement-Plans-Tuesday/"*/
+                  /*)*/
+                  /*),*/
+                  /*a!richTextItem(*/
+                  /*text: "The public will have another opportunity to weigh in on Ourisman Honda’s plans to widen the Capital Crescent Trail and build a new plaza near Bethesda Row ",*/
+                  /*style: "NORMAL"*/
+                  /*),*/
+                  /*a!richTextItem(*/
+                  /*text: "...",*/
+                  /*style: "STRONG",*/
+                  /*link: a!safeLink(*/
+                  /*label: "...",*/
+                  /*uri: "http://www.bethesdamagazine.com/Bethesda-Beat/2017/Public-Has-Another-Chance-to-Weigh-in-on-Ourisman-Bethesdas-Trail-Improvement-Plans-Tuesday/"*/
+                  /*)*/
+                  /*),*/
+                  /*char(*/
+                  /*10*/
+                  /*),*/
+                  /*a!richTextItem(*/
+                  /*text: "a month ago",*/
+                  /*style: "EMPHASIS"*/
+                  /*),*/
+                  /*a!richTextItem(*/
+                  /*text: "The 2018 Volkswagen Arteon Is A Gorgeous Grand Tourer But I'm Not Sure Who It's For",*/
+                  /*style: "HEADER_SMALL",*/
+                  /*link: a!safeLink(*/
+                  /*label: "...",*/
+                  /*uri: "https://jalopnik.com/the-2018-volkswagen-arteon-is-a-gorgeous-grand-tourer-b-1823142631"*/
+                  /*)*/
+                  /*),*/
+                  /*a!richTextItem(*/
+                  /*text: "Volkswagen really needs to decide what it wants to be when it grows up ",*/
+                  /*style: "NORMAL"*/
+                  /*),*/
+                  /*a!richTextItem(*/
+                  /*text: "...",*/
+                  /*style: "STRONG",*/
+                  /*link: a!safeLink(*/
+                  /*label: "...",*/
+                  /*uri: "https://jalopnik.com/the-2018-volkswagen-arteon-is-a-gorgeous-grand-tourer-b-1823142631"*/
+                  /*)*/
+                  /*),*/
+                  /*char(*/
+                  /*10*/
+                  /*),*/
+                  /*a!richTextItem(*/
+                  /*text: "five hours ago",*/
+                  /*style: "EMPHASIS"*/
+                  /*),*/
+                  /*a!richTextItem(*/
+                  /*text: "Volkswagen is off to its best start ... ever",*/
+                  /*style: "HEADER_SMALL",*/
+                  /*link: a!safeLink(*/
+                  /*label: "...",*/
+                  /*uri: "http://money.cnn.com/2018/02/16/investing/volkswagen-sales-january-record/index.html"*/
+                  /*)*/
+                  /*),*/
+                  /*a!richTextItem(*/
+                  /*text: "Volkswagen Group said Friday that it has set a new sales record for January, with global deliveries increasing 10% over the same period in 2017 ",*/
+                  /*style: "NORMAL"*/
+                  /*),*/
+                  /*a!richTextItem(*/
+                  /*text: "...",*/
+                  /*style: "STRONG",*/
+                  /*link: a!safeLink(*/
+                  /*label: "...",*/
+                  /*uri: "http://money.cnn.com/2018/02/16/investing/volkswagen-sales-january-record/index.html"*/
+                  /*)*/
+                  /*),*/
+                  /*char(*/
+                  /*10*/
+                  /*),*/
+                  /*a!richTextItem(*/
+                  /*text: "two weeks ago",*/
+                  /*style: "EMPHASIS"*/
+                  /*),*/
+                  /*a!richTextItem(*/
+                  /*text: "China Helps Volkswagen Storm Back To Pre-Scandal Form",*/
+                  /*style: "HEADER_SMALL",*/
+                  /*link: a!safeLink(*/
+                  /*label: "...",*/
+                  /*uri: "https://www.forbes.com/sites/michaeltaylor/2018/02/12/china-helps-volkswagen-to-storm-back-to-pre-scandal-form/#f2d941d49d38"*/
+                  /*)*/
+                  /*),*/
+                  /*a!richTextItem(*/
+                  /*text: "The freeze is over for Volkswagen as it sales boomed in January, selling more than half a million cars around the world and seeing its volumes soar 7.1 percent over 2017 ",*/
+                  /*style: "NORMAL"*/
+                  /*),*/
+                  /*a!richTextItem(*/
+                  /*text: "...",*/
+                  /*style: "STRONG",*/
+                  /*link: a!safeLink(*/
+                  /*label: "...",*/
+                  /*uri: "https://www.forbes.com/sites/michaeltaylor/2018/02/12/china-helps-volkswagen-to-storm-back-to-pre-scandal-form/#f2d941d49d38"*/
+                  /*)*/
+                  /*),*/
+                  /*char(*/
+                  /*10*/
+                  /*),*/
+                  /*a!richTextItem(*/
+                  /*text: "three weeks ago",*/
+                  /*style: "EMPHASIS"*/
+                  /*),*/
+                  /*a!richTextItem(*/
+                  /*text: "*/
+                  /*Stiff Competition Incoming for Major Dealerships",*/
+                  /*style: "HEADER_SMALL",*/
+                  /*link: a!safeLink(*/
+                  /*label: "...",*/
+                  /*uri: "https://seekingalpha.com/article/4147059-volkswagens-new-large-suv-outgrew-tesla-almost-overnight"*/
+                  /*)*/
+                  /*),*/
+                  /*a!richTextItem(*/
+                  /*text: "Volkswagen (OTCPK:VLKAY) had a problem in the U.S. market for decades ",*/
+                  /*style: "NORMAL"*/
+                  /*),*/
+                  /*a!richTextItem(*/
+                  /*text: "...",*/
+                  /*style: "STRONG",*/
+                  /*link: a!safeLink(*/
+                  /*label: "...",*/
+                  /*uri: "https://seekingalpha.com/article/4147059-volkswagens-new-large-suv-outgrew-tesla-almost-overnight"*/
+                  /*)*/
+                  /*),*/
+                  /*char(*/
+                  /*10*/
+                  /*),*/
+                  /*a!richTextItem(*/
+                  /*text: "a month ago",*/
+                  /*style: "EMPHASIS"*/
+                  /*),*/
+                  /*a!richTextItem(*/
+                  /*text: "New Volkswagens are a Big Upgrade",*/
+                  /*style: "HEADER_SMALL",*/
+                  /*link: a!safeLink(*/
+                  /*label: "...",*/
+                  /*uri: "http://www.thebaynet.com/articles/1117/new-subaru-and-volkswagen-dealership-in-waldorf.html"*/
+                  /*)*/
+                  /*),*/
+                  /*a!richTextItem(*/
+                  /*text: "Ourisman Motors in Waldorf has been doing business in Southern Maryland for nearly a century and the company is proud to welcome Ourisman Subaru Waldorf and Ourisman Volkswagen of Waldorf ",*/
+                  /*style: "NORMAL"*/
+                  /*),*/
+                  /*a!richTextItem(*/
+                  /*text: "...",*/
+                  /*style: "STRONG",*/
+                  /*link: a!safeLink(*/
+                  /*label: "...",*/
+                  /*uri: "http://www.thebaynet.com/articles/1117/new-subaru-and-volkswagen-dealership-in-waldorf.html"*/
+                  /*)*/
+                  /*),*/
+                  /*char(*/
+                  /*10*/
+                  /*),*/
+                  /*a!richTextItem(*/
+                  /*text: "five hours ago",*/
+                  /*style: "EMPHASIS"*/
+                  /*),*/
+                  /*a!richTextItem(*/
+                  /*text: "The Vehicle World Is Changing",*/
+                  /*style: "HEADER_SMALL",*/
+                  /*link: a!safeLink(*/
+                  /*label: "...",*/
+                  /*uri: "https://www.washingtonpost.com/business/economy/the-last-place-to-buy-new-cars-in-dc-after-ourisman-volkswagen-moves-to-bethesda/2014/11/06/5199a38e-557a-11e4-892e-602188e70e9c_story.html?utm_term=.c945572a8db7"*/
+                  /*)*/
+                  /*),*/
+                  /*a!richTextItem(*/
+                  /*text: "Outside, new cars are backed side by side against the showroom, their hoods extending to the sidewalk. ",*/
+                  /*style: "NORMAL"*/
+                  /*),*/
+                  /*a!richTextItem(*/
+                  /*text: "...",*/
+                  /*style: "STRONG",*/
+                  /*link: a!safeLink(*/
+                  /*label: "...",*/
+                  /*uri: "https://www.washingtonpost.com/business/economy/the-last-place-to-buy-new-cars-in-dc-after-ourisman-volkswagen-moves-to-bethesda/2014/11/06/5199a38e-557a-11e4-892e-602188e70e9c_story.html?utm_term=.c945572a8db7"*/
+                  /*)*/
+                  /*),*/
+                  /*char(*/
+                  /*10*/
+                  /*)*/
+                  /*}*/
+                  /*)*/
+                  
+                },
+                style: "INFO"
+              )
+            }
+          ),
+          #"SYSTEM_SYSRULES_columnLayout"(
+            contents: #"SYSTEM_SYSRULES_sectionLayout_v1"(
+              contents: {
+                
+         
+                #"SYSTEM_SYSRULES_boxLayout"(
+                  label: "Monthly Sales Performance",
+                  contents: {
+                    #"SYSTEM_SYSRULES_lineChartField"(
+                      categories: {
+                        "Apr",
+                        "May",
+                        "Jun",
+                        "Jul",
+                        "Aug",
+                        "Sep",
+                        "Oct",
+                        "Nov",
+                        "Dec",
+                        "Jan",
+                        "Feb",
+                        "Mar"
+                      },
+                      series: {
+                        #"SYSTEM_SYSRULES_chartSeries"(
+                          label: "Vehicle Sales",
+                          data: {
+                            12,
+                            14,
+                            13,
+                            15,
+                            16,
+                            19,
+                            18,
+                            15,
+                            9,
+                            12,
+                            9,
+                            5
+                          },
+                          color: "GREEN"
+                        ),
+                        #"SYSTEM_SYSRULES_chartSeries"(
+                          label: "Sales Target",
+                          data: {
+                            10,
+                            10,
+                            13,
+                            13,
+                            15,
+                            15,
+                            15,
+                            15,
+                            15,
+                            15,
+                            10,
+                            13
+                          }
+                        )
+                      },
+                      xAxisTitle: "Month",
+                      yAxisTitle: "% Active",
+                      yAxisMax: 30,
+                      referenceLines: #"SYSTEM_SYSRULES_chartReferenceLine"(
+                        value: 10,
+                        color: "ORANGE"
+                      ),
+                      showLegend: true
+                    )
+                  }
+                ),
+                /*a!boxLayout(*/
+                /*label: "Monthly Sales Performance",*/
+                /*contents: {*/
+                /*a!lineChartField(*/
+                /*referenceLines: a!chartReferenceLine(*/
+                /*value: 10,*/
+                /*color: "ORANGE"*/
+                /*),*/
+                /*categories: {*/
+                /*"Apr",*/
+                /*"May",*/
+                /*"Jun",*/
+                /*"Jul",*/
+                /*"Aug",*/
+                /*"Sep",*/
+                /*"Oct",*/
+                /*"Nov",*/
+                /*"Dec",*/
+                /*"Jan",*/
+                /*"Feb",*/
+                /*"Mar"*/
+                /*},*/
+                /*series: {*/
+                /*a!chartSeries(*/
+                /*label: "Vehicle Sales",*/
+                /*color: "GREEN",*/
+                /*data: {*/
+                /*12,*/
+                /*14,*/
+                /*13,*/
+                /*15,*/
+                /*16,*/
+                /*19,*/
+                /*18,*/
+                /*15,*/
+                /*9,*/
+                /*12,*/
+                /*9,*/
+                /*5*/
+                /*}*/
+                /*),*/
+                /*a!chartSeries(*/
+                /*label: "Sales Target",*/
+                /*data: {*/
+                /*10,*/
+                /*10,*/
+                /*13,*/
+                /*13,*/
+                /*15,*/
+                /*15,*/
+                /*15,*/
+                /*15,*/
+                /*15,*/
+                /*15,*/
+                /*10,*/
+                /*13*/
+                /*}*/
+                /*)*/
+                /*},*/
+                /*xAxisTitle: "Month",*/
+                /*yAxisTitle: "% Active",*/
+                /*yAxisMax: 30,*/
+                /*showLegend: true*/
+                /*)*/
+                /*}*/
+                /*),*/
+                #"SYSTEM_SYSRULES_boxLayout"(
+                  label: "Customer Breakdown By Vehicle Class",
+                  contents: {
+                    {
+                      #"SYSTEM_SYSRULES_linkField"(
+                        links: {
+                          #"SYSTEM_SYSRULES_dynamicLink"(
+                            label: "View data as a " &amp; if(
+                              local!showAsGrid,
+                              "chart",
+                              "grid"
+                            ),
+                            value: not(
+                              local!showAsGrid
+                            ),
+                            saveInto: local!showAsGrid
+                          )
+                        }
+                      ),
+                      if(
+                        not(
+                          local!showAsGrid
+                        ),
+                        #"SYSTEM_SYSRULES_barChartField"(
+                          categories: local!uniqueCategories,
+                          series: local!series,
+                          showWhen: not(
+                            local!showAsGrid
+                          ),
+                          xAxisTitle: "",
+                          yAxisTitle: "",
+                          stacking: "NONE"
+                        ),
+                        #"_a-0000dfd8-6941-8000-9ba2-011c48011c48_203684"()
+                      )
+                    }
+                  }
+                )
+              }
+            )
+          )
+        }
+      )
+    }
+  )
+)</definition>
+        <namedTypedValue>
+            <name>brand</name>
+            <type>
+                <name>string</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+            <value/>
+        </namedTypedValue>
+        <metadataExpr></metadataExpr>
+        <preferredEditor>interface</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role inherit="true" allowForAll="false" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="administrators">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <history>
+        <historyInfo versionUuid="_a-0000dfd8-6941-8000-9ba2-011c48011c48_207600"/>
+        <historyInfo versionUuid="_a-0000e067-d58d-8000-9ba2-011c48011c48_308307"/>
+    </history>
+</contentHaul>

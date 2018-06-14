@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <versionUuid>_a-0000e067-d58d-8000-9ba2-011c48011c48_298385</versionUuid>
+    <rule>
+        <name>VIM_SendTaskFromReport</name>
+        <uuid>_a-0000dfd8-6941-8000-9ba2-011c48011c48_185062</uuid>
+        <description>Interface to send an ad-hoc task from a task report [Tasking]</description>
+        <parentUuid>d1151d0a-2a3e-4e80-b3b0-105a99496272</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>load(
+  local!recordId,
+  local!assignee,
+  local!taskDetails,
+  local!taskedOn,
+  local!taskFrom,
+  local!deadline,
+  local!sendTaskSuccess,
+  {
+    /* If the user just attempted to send a new task, inform them whether they were successful or not */
+    if(
+      not(
+        isnull(
+          ri!sendTaskSuccess
+        )
+      ),
+      if(
+        ri!sendTaskSuccess,
+        #"SYSTEM_SYSRULES_richTextDisplayField"(
+          value: #"SYSTEM_SYSRULES_richTextItem"(
+            text: "Your task has been successfully sent!"
+          ),
+          align: "CENTER"
+        ),
+        #"SYSTEM_SYSRULES_richTextDisplayField"(
+          value: "Your task was NOT sent successfully.
+Please try again.",
+          align: "CENTER"
+        )
+      ),
+      {}
+    ),
+    #"SYSTEM_SYSRULES_sectionLayout_v1"(
+      label: if(
+        or(
+          isnull(
+            local!recordId
+          ),
+          length(
+            local!recordId
+          ) = 0
+        ),
+        "Send Task",
+        "Send Task about " &amp; #"4028f35e-5814-4e3e-ab7f-f077d3d17e12_GETONERECORD"(
+          local!recordId
+        ).title
+      ),
+      showWhen: ri!sendingTask,
+      contents: {
+        #"SYSTEM_SYSRULES_pickerFieldRecords"(
+          label: "Incentive",
+          instructions: "Select the record this work is related to. Details of this record will be embedded in the task form.",
+          maxSelections: 1,
+          recordType: #"_a-0000dfd8-6941-8000-9ba2-011c48011c48_184914",
+          value: local!recordId,
+          saveInto: local!recordId,
+          required: true
+        ),
+        #"_a-0000dfd8-6941-8000-9ba2-011c48011c48_185042"(
+          assignee: local!assignee,
+          taskDetails: local!taskDetails,
+          deadline: local!deadline
+        ),
+        #"SYSTEM_SYSRULES_ButtonLayout"(
+          primaryButtons: {
+            #"SYSTEM_SYSRULES_ButtonWidget"(
+              label: "Send Task",
+              style: "PRIMARY",
+              confirmMessage: if(
+                or(
+                  isnull(
+                    local!assignee
+                  ),
+                  isusermemberofgroup(
+                    local!assignee,
+                    #"_a-0000dfd8-6941-8000-9ba2-011c48011c48_184902"
+                  )
+                ),
+                "",
+                "Are you sure you want to send a task to this user? They will receive access to all records in the Vehicle Incentives Management application."
+              ),
+              value: false,
+              saveInto: {
+                /* On submitting, start the Send Task process and pass parameters into it. *
+                 * If successful, clear the form values for next time. Otherwise, do not,  *
+                 * as the user may wish to try again.                                      */
+                a!save(
+                  local!taskedOn,
+                  now()
+                ),
+                a!save(
+                  local!taskFrom,
+                  loggedinuser()
+                ),
+                #"SYSTEM_SYSRULES_startProcess"(
+                  processModel: #"_a-0000dfd8-6941-8000-9ba2-011c48011c48_184918",
+                  processParameters: {
+                    assignee: local!assignee,
+                    taskDetails: local!taskDetails,
+                    deadline: local!deadline,
+                    taskedOn: local!taskedOn,
+                    taskFrom: local!taskFrom,
+                    recordId: local!recordId
+                  },
+                  onSuccess: {
+                    a!save(
+                      ri!sendTaskSuccess,
+                      true
+                    ),
+                    a!save(
+                      local!assignee,
+                      null
+                    ),
+                    a!save(
+                      local!taskDetails,
+                      null
+                    ),
+                    a!save(
+                      local!deadline,
+                      null
+                    ),
+                    a!save(
+                      local!taskedOn,
+                      null
+                    ),
+                    a!save(
+                      local!taskFrom,
+                      null
+                    ),
+                    a!save(
+                      local!recordId,
+                      null
+                    ),
+                    ri!sendingTask
+                  },
+                  onError: {
+                    a!save(
+                      ri!sendTaskSuccess,
+                      false
+                    )
+                  }
+                )
+              },
+              validate: true
+            )
+          },
+          secondaryButtons: {
+            #"SYSTEM_SYSRULES_ButtonWidget"(
+              label: "Cancel",
+              style: "NORMAL",
+              value: false,
+              saveInto: ri!sendingTask,
+              validate: false
+            )
+          }
+        )
+      }
+    )
+  }
+)</definition>
+        <namedTypedValue>
+            <name>sendingTask</name>
+            <type>
+                <name>boolean</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>sendTaskSuccess</name>
+            <type>
+                <name>boolean</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+        </namedTypedValue>
+        <metadataExpr></metadataExpr>
+        <preferredEditor>interface</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role inherit="true" allowForAll="false" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="administrators">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <history>
+        <historyInfo versionUuid="_a-0000dfd8-6941-8000-9ba2-011c48011c48_185707"/>
+        <historyInfo versionUuid="_a-0000e067-d58d-8000-9ba2-011c48011c48_298385"/>
+    </history>
+</contentHaul>

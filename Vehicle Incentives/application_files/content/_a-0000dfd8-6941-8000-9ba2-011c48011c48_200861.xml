@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <versionUuid>_a-0000e067-d58d-8000-9ba2-011c48011c48_300639</versionUuid>
+    <rule>
+        <name>VIM_MapAddress</name>
+        <uuid>_a-0000dfd8-6941-8000-9ba2-011c48011c48_200861</uuid>
+        <description>Displays visual map address using google map api</description>
+        <parentUuid>d1151d0a-2a3e-4e80-b3b0-105a99496272</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>load(
+  local!mapType: "map-geolocation",
+  local!zoom: "12",
+  local!address: #"_a-0000e067-d58d-8000-9ba2-011c48011c48_284407"(
+    input: ri!address
+  ),
+  {
+    #"SYSTEM_SYSRULES_sectionLayout"(
+      label: "",
+      firstColumnContents: {
+        #"SYSTEM_SYSRULES_paragraphField"(
+          value: {},
+          readOnly: true
+        ),
+        #"SYSTEM_SYSRULES_paragraphField"(
+          value: {},
+          readOnly: true
+        ),
+        #"SYSTEM_SYSRULES_imageField"(
+          labelPosition: "COLLAPSED",
+          instructions: " Click on the map for directions to -  " &amp; ri!address,
+          helpTooltip: "Clicking the map will navigate to the directions",
+          images: {
+            #"SYSTEM_SYSRULES_webImage"(
+              source: "http://maps.googleapis.com/maps/api/staticmap?center=" &amp; ri!zip &amp; "&amp;maptype=" &amp; local!mapType &amp; "&amp;zoom=" &amp; local!zoom &amp; "&amp;size=900x170&amp;sensor=false&amp;markers=size:mid%7C" &amp; ri!zip,
+              link: #"SYSTEM_SYSRULES_safeLink"(
+                uri: "https://www.google.com/maps/search/" &amp; local!address
+              )
+            )
+          },
+          size: "STANDARD"
+        )
+      }
+    )
+  }
+)</definition>
+        <namedTypedValue>
+            <name>address</name>
+            <type>
+                <name>Variant</name>
+                <namespace>http://www.appian.com/ae/types/2009</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>zip</name>
+            <type>
+                <name>int</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+        </namedTypedValue>
+        <metadataExpr></metadataExpr>
+        <preferredEditor>interface</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role inherit="true" allowForAll="false" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="administrators">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <history>
+        <historyInfo versionUuid="_a-0000dfd8-6941-8000-9ba2-011c48011c48_200989"/>
+        <historyInfo versionUuid="_a-0000e067-d58d-8000-9ba2-011c48011c48_284435"/>
+        <historyInfo versionUuid="_a-0000e067-d58d-8000-9ba2-011c48011c48_300639"/>
+    </history>
+</contentHaul>

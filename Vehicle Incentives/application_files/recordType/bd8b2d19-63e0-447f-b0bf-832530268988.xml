@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<recordTypeHaul xmlns:a="http://www.appian.com/ae/types/2009" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <versionUuid>a718050c-80fb-49a1-91b6-cd3f369b33d3</versionUuid>
+  <recordType a:uuid="bd8b2d19-63e0-447f-b0bf-832530268988" name="Vehicle">
+    <a:pluralName>Vehicles</a:pluralName>
+    <a:description>List of entries in the Vehicle application</a:description>
+    <a:urlStub>xN6OfQ</a:urlStub>
+    <a:source
+      a:uuid="ca182164-d707-450d-9eef-26a41617b7de@_a-0000dfd8-6941-8000-9ba2-011c48011c48_186999" xsi:type="a:DataStoreEntity"/>
+    <a:listViewTemplateExpr>#"SYSTEM_SYSRULES_recordGridLayoutColumns"(
+  emptygridmessage: "No Vehicles available",
+  columns: {
+    #"SYSTEM_SYSRULES_gridLayoutColumn"(
+      label: "Vehicle",
+      weight: 7,
+      field: "title",
+      component: #"SYSTEM_SYSRULES_recordGrid_linkField"(
+        links: #"SYSTEM_SYSRULES_recordLink"(
+          label: rf!title&amp; " | Vin: "&amp;rf!vin,
+          recordType: rp!type,
+          identifier: rp!id
+        )
+      )
+    ),
+    #"SYSTEM_SYSRULES_gridLayoutColumn"(
+      label: "Model",
+      width: "DISTRIBUTE",
+      weight: 4,
+      component: #"SYSTEM_SYSRULES_recordGrid_textField"(
+        displayvalue: rf!model
+      )
+    ),
+    
+    
+    #"SYSTEM_SYSRULES_gridLayoutColumn"(
+      label: "Created By",
+      weight: 4,
+      field: "createdBy",
+      component: #"SYSTEM_SYSRULES_recordGrid_linkField"(
+        links: {
+          #"SYSTEM_SYSRULES_userRecordLink"(
+            label: #"88c79a96-aa9a-458a-a591-00221885b708_FORMATNAME"(rf!createdBy),
+            user: rf!createdBy
+          )
+        }
+      )
+    ),
+    #"SYSTEM_SYSRULES_gridLayoutColumn"(
+      label: "Updated On",
+      width: "DISTRIBUTE",
+      weight: 2,
+      field: "updatedOn",
+      align: "RIGHT",
+      component: #"SYSTEM_SYSRULES_recordGrid_textField"(
+        displayvalue: #"_a-0000dfd8-6941-8000-9ba2-011c48011c48_186867"(rf!updatedOn),
+        align: "RIGHT"
+      )
+    )
+  },
+  pageSize: 50,
+  defaultSort: #"SYSTEM_SYSRULES_sortInfo"(
+    field: "updatedOn",
+    ascending: false
+  )
+)</a:listViewTemplateExpr>
+    <a:fieldCfg name="Created By">
+      <a:isSortable>false</a:isSortable>
+      <a:isSearchable>false</a:isSearchable>
+      <a:isFacet>true</a:isFacet>
+      <a:facetType>EXPRESSION</a:facetType>
+      <a:isExclusiveFacet>true</a:isExclusiveFacet>
+      <a:facetExpr>with(
+  local!creators:#"SYSTEM_SYSRULES_queryEntity"(
+    entity: #"70d6ca46-39d3-494a-a46d-9f7babae0ebf_MAINDSECONSTANT",
+    query: #"SYSTEM_SYSRULES_query"(
+      aggregation: #"SYSTEM_SYSRULES_queryAggregation"(
+        aggregationColumns: {
+          #"SYSTEM_SYSRULES_queryAggregationColumn"(field: "createdBy", isGrouping: true),
+          #"SYSTEM_SYSRULES_queryAggregationColumn"(field: "createdBy", alias: "numberCreated", aggregationFunction: "COUNT")
+        }
+      ),
+      pagingInfo: #"SYSTEM_SYSRULES_pagingInfo"(1, -1, #"SYSTEM_SYSRULES_sortInfo"("createdBy", true))
+    )
+  ),
+  if(
+    local!creators.totalCount = 0,
+    {},
+    #"SYSTEM_SYSRULES_facet_v1"(
+      name: "Created By",
+      options: #"SYSTEM_SYSRULES_forEach"(
+        items: local!creators,
+        expression: #"SYSTEM_SYSRULES_facetOption"(
+          id: fv!index,
+          name: #"88c79a96-aa9a-458a-a591-00221885b708_FORMATNAME"(fv!item.createdBy),
+          filter: #"SYSTEM_SYSRULES_queryFilter"(
+            field: "createdBy",
+            operator: "=",
+            value: fv!item.createdBy
+          ),
+          dataCount: fv!item.numberCreated
+        )
+      )
+    )
+  )
+)</a:facetExpr>
+      <a:sortOrderIndex>0</a:sortOrderIndex>
+      <a:facetOrderIndex>0</a:facetOrderIndex>
+      <a:visibilityExpr/>
+      <a:defaultOptionExpr/>
+      <a:allowMultipleSelections>false</a:allowMultipleSelections>
+    </a:fieldCfg>
+    <a:detailViewCfg>
+      <a:nameExpr>="Summary"</a:nameExpr>
+      <a:uiExpr>#"_a-0000e067-d58d-8000-9ba2-011c48011c48_296894"(rp!id)</a:uiExpr>
+      <a:visibilityExpr>=true()</a:visibilityExpr>
+      <a:urlStub>summary</a:urlStub>
+      <a:headerExpr/>
+      <a:relatedActionCfg>976afcb2-51a2-4464-97f4-a3fe786bf5ad</a:relatedActionCfg>
+    </a:detailViewCfg>
+    <a:detailViewCfg>
+      <a:nameExpr>"Incentives"</a:nameExpr>
+      <a:uiExpr>#"_a-0000dfd8-6941-8000-9ba2-011c48011c48_188913"(rp!id)</a:uiExpr>
+      <a:visibilityExpr>false()</a:visibilityExpr>
+      <a:urlStub>_9wXVQA</a:urlStub>
+      <a:headerExpr/>
+      <a:relatedActionCfg>976afcb2-51a2-4464-97f4-a3fe786bf5ad</a:relatedActionCfg>
+    </a:detailViewCfg>
+    <a:detailViewCfg>
+      <a:nameExpr>"Features and Specs"</a:nameExpr>
+      <a:uiExpr>{}</a:uiExpr>
+      <a:visibilityExpr>=true()</a:visibilityExpr>
+      <a:urlStub>_FkKdkQ</a:urlStub>
+      <a:headerExpr/>
+    </a:detailViewCfg>
+    <a:detailViewCfg>
+      <a:nameExpr>"Reviews"</a:nameExpr>
+      <a:uiExpr>{}</a:uiExpr>
+      <a:visibilityExpr>=true()</a:visibilityExpr>
+      <a:urlStub>_cxyj1Q</a:urlStub>
+      <a:headerExpr/>
+    </a:detailViewCfg>
+    <a:detailViewCfg>
+      <a:nameExpr>"Recalls"</a:nameExpr>
+      <a:uiExpr>#"_a-0000e067-d58d-8000-9ba2-011c48011c48_282897"(rf!year,rf!model,rf!make)</a:uiExpr>
+      <a:visibilityExpr>=true()</a:visibilityExpr>
+      <a:urlStub>_KCvnSg</a:urlStub>
+      <a:headerExpr/>
+    </a:detailViewCfg>
+    <a:detailViewCfg>
+      <a:nameExpr>"Attachments"</a:nameExpr>
+      <a:uiExpr>#"_a-0000dfd8-6941-8000-9ba2-011c48011c48_202590"()</a:uiExpr>
+      <a:visibilityExpr>=true()</a:visibilityExpr>
+      <a:urlStub>_pVuQMA</a:urlStub>
+      <a:headerExpr/>
+    </a:detailViewCfg>
+    <a:defaultFilter>
+      <a:field>hasAccess</a:field>
+      <a:operator>=</a:operator>
+      <a:valueExpression>#"_a-0000e067-d58d-8000-9ba2-011c48011c48_288381"()</a:valueExpression>
+    </a:defaultFilter>
+    <a:relatedActionCfg>
+      <a:target a:uuid="c5f5c606-5966-4ffe-b978-7c8aadd5f7ad" xsi:type="a:ProcessModel"/>
+      <a:contextExpr>with(
+  local!record: #"62ae16a7-bf3d-43ed-9669-754facca174e_GETONERECORD"(rp!id),
+  {
+    record: local!record,
+    documents: folder(local!record.folderId, "documentChildren"),
+  }
+)</a:contextExpr>
+      <a:visibilityExpr>=true()</a:visibilityExpr>
+      <a:iconId>f044</a:iconId>
+      <a:refId>e3f0750d-2ae9-4cb2-acd5-6896861d91e5</a:refId>
+      <a:title/>
+      <a:titleSource>DERIVED</a:titleSource>
+      <a:description/>
+      <a:descriptionSource>DERIVED</a:descriptionSource>
+    </a:relatedActionCfg>
+    <a:relatedActionCfg>
+      <a:target a:uuid="8743891a-f30e-46a2-be40-3928565bf52c" xsi:type="a:ProcessModel"/>
+      <a:contextExpr>{
+  record: #"62ae16a7-bf3d-43ed-9669-754facca174e_GETONERECORD"(rp!id)
+}</a:contextExpr>
+      <a:visibilityExpr>=true()</a:visibilityExpr>
+      <a:iconId>f014</a:iconId>
+      <a:refId>a8e54b3f-d5d5-4ffc-8536-c419c2951f04</a:refId>
+      <a:title/>
+      <a:titleSource>DERIVED</a:titleSource>
+      <a:description/>
+      <a:descriptionSource>DERIVED</a:descriptionSource>
+    </a:relatedActionCfg>
+    <a:relatedActionCfg>
+      <a:target a:uuid="0002e047-da81-8000-f92f-7f0000014e7a" xsi:type="a:ProcessModel"/>
+      <a:contextExpr>{}</a:contextExpr>
+      <a:visibilityExpr>=true()</a:visibilityExpr>
+      <a:iconId>f0e7</a:iconId>
+      <a:refId>1229b3f2-d8db-4e25-8e82-7ee768257537</a:refId>
+      <a:title/>
+      <a:titleSource>DERIVED</a:titleSource>
+      <a:description/>
+      <a:descriptionSource>DERIVED</a:descriptionSource>
+    </a:relatedActionCfg>
+    <a:relatedActionCfg>
+      <a:target a:uuid="0010e04a-cff0-8000-f92f-7f0000014e7a" xsi:type="a:ProcessModel"/>
+      <a:contextExpr>{}</a:contextExpr>
+      <a:visibilityExpr>=true()</a:visibilityExpr>
+      <a:iconId>f0e7</a:iconId>
+      <a:refId>976afcb2-51a2-4464-97f4-a3fe786bf5ad</a:refId>
+      <a:title/>
+      <a:titleSource>DERIVED</a:titleSource>
+      <a:description/>
+      <a:descriptionSource>DERIVED</a:descriptionSource>
+    </a:relatedActionCfg>
+    <a:isSystem>false</a:isSystem>
+    <a:dataSrcExpr/>
+    <a:facetsListExpr/>
+    <a:titleExpr>rf!title</a:titleExpr>
+    <a:defaultFiltersExpr/>
+    <a:layoutType>GRID</a:layoutType>
+    <a:security>16383</a:security>
+    <a:hideLatestNews>false</a:hideLatestNews>
+    <a:isExportable>true</a:isExportable>
+  </recordType>
+  <roleMap>
+    <role name="record_type_administrator">
+      <users/>
+      <groups>
+        <groupUuid>_e-0000dfd8-690f-8000-9aee-01075c01075c_135</groupUuid>
+      </groups>
+    </role>
+    <role name="record_type_viewer">
+      <users/>
+      <groups>
+        <groupUuid>_e-0000e067-d54a-8000-9aee-01075c01075c_233</groupUuid>
+        <groupUuid>_e-0000e067-d54a-8000-9aee-01075c01075c_231</groupUuid>
+        <groupUuid>_e-0000dfd8-690f-8000-9aee-01075c01075c_136</groupUuid>
+      </groups>
+    </role>
+  </roleMap>
+  <history>
+    <historyInfo versionUuid="05661bef-bd3c-4aad-bea5-85322fae0470"/>
+    <historyInfo versionUuid="e088b653-3365-4e3e-9596-225c5349f977"/>
+    <historyInfo versionUuid="82688a54-3dc1-4707-80d1-10a30feb7408"/>
+    <historyInfo versionUuid="92c55687-18f8-4b26-a3e9-1120e363108f"/>
+    <historyInfo versionUuid="c13f0b56-3458-4b2e-89fe-8787b16995e7"/>
+    <historyInfo versionUuid="a718050c-80fb-49a1-91b6-cd3f369b33d3"/>
+  </history>
+</recordTypeHaul>

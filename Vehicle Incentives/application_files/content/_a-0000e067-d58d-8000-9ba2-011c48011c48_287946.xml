@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <versionUuid>_a-0000e067-d58d-8000-9ba2-011c48011c48_300521</versionUuid>
+    <queryRule>
+        <name>VIM_GetVehiclesByVehicleModel</name>
+        <uuid>_a-0000e067-d58d-8000-9ba2-011c48011c48_287946</uuid>
+        <description>Grabs vehicle(with vin) by model</description>
+        <folderUuid>d1151d0a-2a3e-4e80-b3b0-105a99496272</folderUuid>
+        <dataStoreEntityCompositeUuid>ca182164-d707-450d-9eef-26a41617b7de@_a-0000dfd8-6941-8000-9ba2-011c48011c48_186999</dataStoreEntityCompositeUuid>
+        <params>
+            <param>
+                <description></description>
+                <name>vehicleModel</name>
+                <type>{http://www.w3.org/2001/XMLSchema}string</type>
+            </param>
+            <param>
+                <description></description>
+                <name>active</name>
+                <type>{http://www.w3.org/2001/XMLSchema}boolean</type>
+            </param>
+        </params>
+        <filters>
+            <filter>
+                <field>
+                    <name>model</name>
+                    <type>{http://www.w3.org/2001/XMLSchema}string</type>
+                </field>
+                <op>includes</op>
+                <value>vehicleModel</value>
+                <valueType>PARAMETER</valueType>
+            </filter>
+            <filter>
+                <field>
+                    <name>active</name>
+                    <type>{http://www.w3.org/2001/XMLSchema}boolean</type>
+                </field>
+                <op>=</op>
+                <value>active</value>
+                <valueType>PARAMETER</valueType>
+            </filter>
+        </filters>
+        <orderings/>
+    </queryRule>
+    <roleMap public="false">
+        <role inherit="true" allowForAll="false" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="administrators">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <history>
+        <historyInfo versionUuid="_a-0000e067-d58d-8000-9ba2-011c48011c48_287961"/>
+        <historyInfo versionUuid="_a-0000e067-d58d-8000-9ba2-011c48011c48_300521"/>
+    </history>
+</contentHaul>

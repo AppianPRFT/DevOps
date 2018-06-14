@@ -1,0 +1,417 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <versionUuid>_a-0000e067-d58d-8000-9ba2-011c48011c48_308275</versionUuid>
+    <rule>
+        <name>VIM_DealershipCustomerGrid</name>
+        <uuid>_a-0000dfd8-6941-8000-9ba2-011c48011c48_203684</uuid>
+        <description>Displays grid that summarizes total revenue and purchases made</description>
+        <parentUuid>d1151d0a-2a3e-4e80-b3b0-105a99496272</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>= load(
+  local!payor,
+  local!page: 1,
+  local!provider,
+  local!details: false,
+  local!items: {
+    {
+      item: "Referrals",
+      qty: 200,
+      qty2: 40,
+      qty3: 6090,
+      qty4: 2000,
+      unitPrice: 2323000
+    },
+    {
+      item: "Existing Buyers",
+      qty: 500,
+      qty2: 600,
+      qty3: 3020,
+      qty4: 570,
+      unitPrice: 984700
+    },
+    {
+      item: "Advertising",
+      qty: 7000,
+      qty2: 1000,
+      qty3: 63920,
+      qty4: 7800,
+      unitPrice: 5435000
+    },
+    {
+      item: "Total Purchases",
+      qty: 7700,
+      qty2: 1640,
+      qty3: 72360,
+      qty4: 10570,
+      unitPrice: 10
+    },
+    
+  },
+  {
+    #"SYSTEM_SYSRULES_gridLayout"(
+      instructions: "",
+      headerCells: {
+        #"SYSTEM_SYSRULES_gridLayoutHeaderCell"(
+          label: "Payer"
+        ),
+        #"SYSTEM_SYSRULES_gridLayoutHeaderCell"(
+          label: if(
+                        isusermemberofgroup(
+                          loggedInUser(),
+                          #"_a-0000e067-d58d-8000-9ba2-011c48011c48_288347"
+                        ),
+                        "Audi Economy",
+                        if(
+                          isusermemberofgroup(
+                            loggedInUser(),
+                            #"_a-0000e067-d58d-8000-9ba2-011c48011c48_282564"
+                          ),
+                          "Toyota Economy",
+                          if(
+                            isusermemberofgroup(
+                              loggedInUser(),
+                              #"_a-0000e067-d58d-8000-9ba2-011c48011c48_300304"
+                            ),
+                            "Ford Economy",
+                            ""
+                          )
+                        )
+                      ),
+          align: "RIGHT"
+        ),
+        #"SYSTEM_SYSRULES_gridLayoutHeaderCell"(
+          label: if(
+                        isusermemberofgroup(
+                          loggedInUser(),
+                          #"_a-0000e067-d58d-8000-9ba2-011c48011c48_288347"
+                        ),
+                        "Audi Luxury",
+                        if(
+                          isusermemberofgroup(
+                            loggedInUser(),
+                            #"_a-0000e067-d58d-8000-9ba2-011c48011c48_282564"
+                          ),
+                          "Toyota Luxury",
+                          if(
+                            isusermemberofgroup(
+                              loggedInUser(),
+                              #"_a-0000e067-d58d-8000-9ba2-011c48011c48_300304"
+                            ),
+                            "Ford Luxury",
+                            ""
+                          )
+                        )
+                      ),
+          align: "RIGHT"
+        ),
+        #"SYSTEM_SYSRULES_gridLayoutHeaderCell"(
+          label: if(
+                        isusermemberofgroup(
+                          loggedInUser(),
+                          #"_a-0000e067-d58d-8000-9ba2-011c48011c48_288347"
+                        ),
+                        "Volkswagen Economy",
+                        if(
+                          isusermemberofgroup(
+                            loggedInUser(),
+                            #"_a-0000e067-d58d-8000-9ba2-011c48011c48_282564"
+                          ),
+                          "Lexus Economy",
+                          if(
+                            isusermemberofgroup(
+                              loggedInUser(),
+                              #"_a-0000e067-d58d-8000-9ba2-011c48011c48_300304"
+                            ),
+                            "Lincoln Economy",
+                            ""
+                          )
+                        )
+                      ),
+          align: "RIGHT"
+        ),
+        #"SYSTEM_SYSRULES_gridLayoutHeaderCell"(
+          label: if(
+                        isusermemberofgroup(
+                          loggedInUser(),
+                          #"_a-0000e067-d58d-8000-9ba2-011c48011c48_288347"
+                        ),
+                        "Volkswagen Luxury",
+                        if(
+                          isusermemberofgroup(
+                            loggedInUser(),
+                            #"_a-0000e067-d58d-8000-9ba2-011c48011c48_282564"
+                          ),
+                          "Lexus Luxury",
+                          if(
+                            isusermemberofgroup(
+                              loggedInUser(),
+                              #"_a-0000e067-d58d-8000-9ba2-011c48011c48_300304"
+                            ),
+                            "Lincoln Luxury",
+                            ""
+                          )
+                        )
+                      ),
+          align: "RIGHT"
+        ),
+        #"SYSTEM_SYSRULES_gridLayoutHeaderCell"(
+          label: "Total Revenue $",
+          align: "RIGHT"
+        )
+      },
+      columnConfigs: {
+        #"SYSTEM_SYSRULES_gridLayoutColumnConfig"(
+          width: "DISTRIBUTE",
+          weight: 5
+        ),
+        #"SYSTEM_SYSRULES_gridLayoutColumnConfig"(
+          width: "DISTRIBUTE"
+        ),
+        #"SYSTEM_SYSRULES_gridLayoutColumnConfig"(
+          width: "DISTRIBUTE"
+        ),
+        #"SYSTEM_SYSRULES_gridLayoutColumnConfig"(
+          width: "DISTRIBUTE"
+        ),
+        #"SYSTEM_SYSRULES_gridLayoutColumnConfig"(
+          width: "DISTRIBUTE"
+        ),
+        #"SYSTEM_SYSRULES_gridLayoutColumnConfig"(
+          width: "DISTRIBUTE",
+          weight: 2
+        )
+      },
+      rows: {
+        #"SYSTEM_SYSRULES_gridRowLayout"(
+          id: 1,
+          contents: {
+            #"SYSTEM_SYSRULES_richTextDisplayField"(
+              value: #"SYSTEM_SYSRULES_richTextItem"(
+                text: local!items[1].item
+              ),
+              readOnly: true
+            ),
+            #"SYSTEM_SYSRULES_integerField"(
+              value: local!items[1].qty,
+              saveInto: local!items[1].qty,
+              readOnly: true,
+              align: "RIGHT"
+            ),
+            #"SYSTEM_SYSRULES_integerField"(
+              value: local!items[1].qty2,
+              saveInto: local!items[1].qty2,
+              readOnly: true,
+              align: "RIGHT"
+            ),
+            #"SYSTEM_SYSRULES_integerField"(
+              value: local!items[1].qty3,
+              saveInto: local!items[1].qty3,
+              readOnly: true,
+              align: "RIGHT"
+            ),
+            #"SYSTEM_SYSRULES_integerField"(
+              value: local!items[1].qty4,
+              saveInto: local!items[1].qty4,
+              readOnly: true,
+              align: "RIGHT"
+            ),
+            #"SYSTEM_SYSRULES_textField"(
+              value: dollar(
+                local!items[1].unitPrice
+              ),
+              readOnly: true,
+              align: "RIGHT"
+            )
+          }
+        ),
+        #"SYSTEM_SYSRULES_gridRowLayout"(
+          id: 2,
+          contents: {
+            #"SYSTEM_SYSRULES_richTextDisplayField"(
+              value: #"SYSTEM_SYSRULES_richTextItem"(
+                text: local!items[2].item
+              ),
+              readOnly: true
+            ),
+            #"SYSTEM_SYSRULES_integerField"(
+              value: local!items[2].qty,
+              saveInto: local!items[2].qty,
+              readOnly: true,
+              align: "RIGHT"
+            ),
+            #"SYSTEM_SYSRULES_integerField"(
+              value: local!items[2].qty2,
+              saveInto: local!items[2].qty2,
+              readOnly: true,
+              align: "RIGHT"
+            ),
+            #"SYSTEM_SYSRULES_integerField"(
+              value: local!items[2].qty3,
+              saveInto: local!items[2].qty3,
+              readOnly: true,
+              align: "RIGHT"
+            ),
+            #"SYSTEM_SYSRULES_integerField"(
+              value: local!items[2].qty4,
+              saveInto: local!items[2].qty4,
+              readOnly: true,
+              align: "RIGHT"
+            ),
+            #"SYSTEM_SYSRULES_textField"(
+              value: dollar(
+                local!items[2].unitPrice
+              ),
+              readOnly: true,
+              align: "RIGHT"
+            )
+          }
+        ),
+        #"SYSTEM_SYSRULES_gridRowLayout"(
+          id: 3,
+          contents: {
+            #"SYSTEM_SYSRULES_richTextDisplayField"(
+              value: #"SYSTEM_SYSRULES_richTextItem"(
+                text: local!items[3].item
+              ),
+              readOnly: true
+            ),
+            #"SYSTEM_SYSRULES_integerField"(
+              value: local!items[3].qty,
+              saveInto: local!items[3].qty,
+              readOnly: true,
+              align: "RIGHT"
+            ),
+            #"SYSTEM_SYSRULES_integerField"(
+              value: local!items[3].qty2,
+              saveInto: local!items[3].qty2,
+              readOnly: true,
+              align: "RIGHT"
+            ),
+            #"SYSTEM_SYSRULES_integerField"(
+              value: local!items[3].qty3,
+              saveInto: local!items[3].qty3,
+              readOnly: true,
+              align: "RIGHT"
+            ),
+            #"SYSTEM_SYSRULES_integerField"(
+              value: local!items[3].qty4,
+              saveInto: local!items[3].qty4,
+              readOnly: true,
+              align: "RIGHT"
+            ),
+            #"SYSTEM_SYSRULES_textField"(
+              value: dollar(
+                local!items[3].unitPrice
+              ),
+              readOnly: true,
+              align: "RIGHT"
+            )
+          }
+        ),
+        #"SYSTEM_SYSRULES_gridRowLayout"(
+          id: 4,
+          contents: {
+            #"SYSTEM_SYSRULES_richTextDisplayField"(
+              value: #"SYSTEM_SYSRULES_richTextItem"(
+                text: local!items[4].item,
+                style: "STRONG"
+              ),
+              readOnly: true
+            ),
+            #"SYSTEM_SYSRULES_integerField"(
+              value: local!items[4].qty,
+              saveInto: local!items[4].qty,
+              readOnly: true,
+              align: "RIGHT"
+            ),
+            #"SYSTEM_SYSRULES_integerField"(
+              value: local!items[4].qty2,
+              saveInto: local!items[4].qty2,
+              readOnly: true,
+              align: "RIGHT"
+            ),
+            #"SYSTEM_SYSRULES_integerField"(
+              value: local!items[4].qty3,
+              saveInto: local!items[4].qty3,
+              readOnly: true,
+              align: "RIGHT"
+            ),
+            #"SYSTEM_SYSRULES_integerField"(
+              value: local!items[4].qty4,
+              saveInto: local!items[4].qty4,
+              readOnly: true,
+              align: "RIGHT"
+            ),
+            #"SYSTEM_SYSRULES_textField"(
+              value: {},
+              readOnly: true,
+              align: "RIGHT"
+            )
+          }
+        ),
+        
+      }
+    ),
+    if(
+      local!page = 2,
+      #"SYSTEM_SYSRULES_ButtonLayout"(
+        secondaryButtons: #"SYSTEM_SYSRULES_ButtonWidget"(
+          label: "Back",
+          style: "SECONDARY",
+          value: 1,
+          saveInto: {
+            a!save(
+              local!details,
+              false
+            ),
+            local!page
+          }
+        )
+      ),
+      {}
+    )
+  }
+)</definition>
+        <metadataExpr></metadataExpr>
+        <preferredEditor>interface</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role inherit="true" allowForAll="false" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="administrators">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <history>
+        <historyInfo versionUuid="_a-0000dfd8-6941-8000-9ba2-011c48011c48_207604"/>
+        <historyInfo versionUuid="_a-0000e067-d58d-8000-9ba2-011c48011c48_308275"/>
+    </history>
+</contentHaul>

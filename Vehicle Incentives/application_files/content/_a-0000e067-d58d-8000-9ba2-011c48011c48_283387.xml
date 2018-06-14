@@ -1,0 +1,599 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <versionUuid>_a-0000e067-d58d-8000-9ba2-011c48011c48_298091</versionUuid>
+    <rule>
+        <name>VIM_IncentiveVehicleSelection_Grid</name>
+        <uuid>_a-0000e067-d58d-8000-9ba2-011c48011c48_283387</uuid>
+        <description>Grid containing the vehicles for an incentive given the make</description>
+        <parentUuid>d1151d0a-2a3e-4e80-b3b0-105a99496272</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>load(
+  if(
+    #"_a-0000dd3a-dada-8000-daab-640000640000_11122"(
+      ri!make
+    ),
+    #"SYSTEM_SYSRULES_richTextDisplayField"(
+      align: "CENTER",
+      value: #"SYSTEM_SYSRULES_richTextItem"(
+        text: "There are currently no vehicles associated with the selected make",
+        style: "HEADER_LARGE"
+      )
+    ),
+    {
+      #"SYSTEM_SYSRULES_sectionLayout_v1"(
+        contents: {
+          #"SYSTEM_SYSRULES_columnsLayout"(
+            columns: {
+              #"SYSTEM_SYSRULES_columnLayout"(
+                contents: {
+                  #"SYSTEM_SYSRULES_sideBySideLayout"(
+                    alignVertical: "BOTTOM",
+                    spacing: "DENSE",
+                    items: {
+                      #"SYSTEM_SYSRULES_sideBySideItem"(
+                        width: "3X",
+                        item: #"SYSTEM_SYSRULES_dropdownField"(
+                          label: "Select Year",
+                          choiceLabels: {
+                            2018,
+                            2017,
+                            2016,
+                            2015,
+                            2014,
+                            2013,
+                            2012,
+                            2011,
+                            2010,
+                            2009,
+                            2008,
+                            2007,
+                            2006,
+                            2005,
+                            2004,
+                            2003,
+                            2001,
+                            2000,
+                            1999,
+                            1998
+                          },
+                          choiceValues: {
+                            2018,
+                            2017,
+                            2016,
+                            2015,
+                            2014,
+                            2013,
+                            2012,
+                            2011,
+                            2010,
+                            2009,
+                            2008,
+                            2007,
+                            2006,
+                            2005,
+                            2004,
+                            2003,
+                            2001,
+                            2000,
+                            1999,
+                            1998
+                          },
+                          value: ri!year,
+                          saveInto: {
+                            ri!year
+                          },
+                          placeholderLabel: "Select Year"
+                        )
+                      ),
+                      #"SYSTEM_SYSRULES_sideBySideItem"(
+                        item: #"SYSTEM_SYSRULES_ButtonArrayLayout"(
+                          buttons: {
+                            #"SYSTEM_SYSRULES_ButtonWidget"(
+                              label: "Search",
+                              size: "SMALL",
+                              saveInto: {
+                                a!save(
+                                  ri!selectedIdentifiers,
+                                  {}
+                                ),
+                                a!save(
+                                  ri!vehicles,
+                                  {}
+                                ),
+                                a!save(
+                                  ri!vehicles,
+                                  load(
+                                    local!resultbody: #"SYSTEM_SYSRULES_fromJson"(
+                                      #"b02e4256-d640-41b9-9964-417f07a12777"(
+                                        ri!make,
+                                        ri!year
+                                      ).result.body
+                                    ),
+                                    #"SYSTEM_SYSRULES_forEach"(
+                                      local!resultbody.Results,
+                                      cast(
+                                        'type!{urn:com:appian:types}VIM_IncentiveVehicles',
+                                        {
+                                          id: null,
+                                          year: ri!year,
+                                          make: ri!make,
+                                          model: fv!item.Model_Name,
+                                          trim: null,
+                                          award: null,
+                                          salesTarget: null,
+                                          amlSuccessPrediction: null,
+                                          amlSuccessPredictionValue: null
+                                        }
+                                      )
+                                    )
+                                  )
+                                )
+                              }
+                            )
+                          },
+                          marginBelow: "NONE"
+                        )
+                      )
+                    }
+                  )
+                }
+              ),
+              #"SYSTEM_SYSRULES_columnLayout"(),
+              #"SYSTEM_SYSRULES_columnLayout"(
+                contents: {}
+              ),
+              #"SYSTEM_SYSRULES_columnLayout"(
+                contents: {}
+              )
+            }
+          ),
+          
+        }
+      ),
+      #"SYSTEM_SYSRULES_gridLayout"(
+        selectable: true,
+        selectionValue: ri!selectedIdentifiers,
+        totalCount: if(
+          #"_a-0000dd3a-dada-8000-daab-640000640000_11122"(
+            ri!vehicles
+          ),
+          0,
+          length(
+            ri!vehicles
+          )
+        ),
+        selectionSaveInto: {
+          ri!selectedIdentifiers
+        },
+        headerCells: {
+          #"SYSTEM_SYSRULES_gridLayoutHeaderCell"(
+            label: "Year"
+          ),
+          #"SYSTEM_SYSRULES_gridLayoutHeaderCell"(
+            label: "Make"
+          ),
+          #"SYSTEM_SYSRULES_gridLayoutHeaderCell"(
+            label: "Model"
+          ),
+          if(
+            or(
+              ri!awardType = "New",
+              ri!awardType = "Used",
+              ri!awardType = "Damaged Car",
+              ri!awardType = "Employee",
+              ri!awardType = "Accessory",
+              ri!awardType = "Fleet",
+              ri!awardType = "Coupon"
+            ),
+            #"SYSTEM_SYSRULES_gridLayoutHeaderCell"(
+              label: "Award"
+            ),
+            {}
+          ),
+          if(
+            or(
+              ri!awardType = "New",
+              ri!awardType = "Used",
+              ri!awardType = "Damaged Car",
+              ri!awardType = "Employee",
+              ri!awardType = "Accessory",
+              ri!awardType = "Fleet",
+              ri!awardType = "Coupon"
+            ),
+            #"SYSTEM_SYSRULES_gridLayoutHeaderCell"(
+              label: "Sales Target"
+            ),
+            {}
+          ),
+          #"SYSTEM_SYSRULES_gridLayoutHeaderCell"(
+            label: "Success Prediction"
+          )
+        },
+        columnConfigs: {
+          #"SYSTEM_SYSRULES_gridLayoutColumnConfig"(),
+          #"SYSTEM_SYSRULES_gridLayoutColumnConfig"(),
+          #"SYSTEM_SYSRULES_gridLayoutColumnConfig"(),
+          if(
+            or(
+              ri!awardType = "New",
+              ri!awardType = "Used",
+              ri!awardType = "Damaged Car",
+              ri!awardType = "Employee",
+              ri!awardType = "Accessory",
+              ri!awardType = "Fleet",
+              ri!awardType = "Coupon"
+            ),
+            #"SYSTEM_SYSRULES_gridLayoutColumnConfig"(),
+            {}
+          ),
+          #"SYSTEM_SYSRULES_gridLayoutColumnConfig"()
+        },
+        rows: {
+          #"SYSTEM_SYSRULES_forEach"(
+            ri!vehicles,
+            #"SYSTEM_SYSRULES_gridRowLayout"(
+              id: fv!index,
+              contents: {
+                #"SYSTEM_SYSRULES_textField"(
+                  label: "Year",
+                  value: fv!item.year,
+                  readOnly: true
+                ),
+                #"SYSTEM_SYSRULES_textField"(
+                  label: "Make",
+                  value: fv!item.make,
+                  readOnly: true
+                ),
+                #"SYSTEM_SYSRULES_textField"(
+                  label: "Model",
+                  value: fv!item.model,
+                  readOnly: true
+                ),
+                if(
+                  or(
+                    ri!awardType = "New",
+                    ri!awardType = "Used",
+                    ri!awardType = "Damaged Car",
+                    ri!awardType = "Employee",
+                    ri!awardType = "Accessory",
+                    ri!awardType = "Fleet",
+                    ri!awardType = "Coupon"
+                  ),
+                  #"SYSTEM_SYSRULES_textField"(
+                    label: "Award",
+                    value: fv!item.award,
+                    saveInto: {
+                      fv!item.award,
+                      if(
+                        or(
+                          #"_a-0000dd3a-dada-8000-daab-640000640000_11122"(
+                            fv!item.salesTarget
+                          ),
+                          #"_a-0000dd3a-dada-8000-daab-640000640000_11122"(
+                            fv!item.award
+                          )
+                        ),
+                        {},
+                        with(
+                          local!response: #"82870763-5964-4c10-9a52-c0b4e62f874c"(
+                            mlModelId: "ml-K2qJ1ttS4YI",
+                            attributeNames: {
+                              "Var01",
+                              "Var02",
+                              "Var03",
+                              "Var04",
+                              "Var05",
+                              "Var06",
+                              "Var07",
+                              "Var08"
+                            },
+                            attributeValues: {
+                              lower(
+                                fv!item.make
+                              ),
+                              fv!item.model,
+                              ri!year,
+                              fv!item.salesTarget,
+                              fv!item.award,
+                              ri!awardType,
+                              #"_a-0000dd4f-0404-8000-daab-640000640000_16792"(
+                                date1: ri!endDate,
+                                date2: ri!startDate
+                              ),
+                              #"_a-0000e067-d58d-8000-9ba2-011c48011c48_296601"(
+                                date: ri!startDate
+                              )
+                            }
+                          ),
+                          {
+                            a!save(
+                              target: fv!item.amlSuccessPrediction,
+                              value: concat(
+                                if(
+                                  local!response.predictedScores.attributeName = "1",
+                                  "Yes",
+                                  "No"
+                                ),
+                                " (",
+                                round(
+                                  local!response.predictedScores.attributeValue * 100,
+                                  0
+                                ),
+                                "%)"
+                              )
+                            ),
+                            a!save(
+                              target: fv!item.amlSuccessPredictionValue,
+                              value: local!response.predictedScores.attributeValue * 100
+                            )
+                          }
+                        )
+                      )
+                    },
+                    readOnly: if(
+                      contains(
+                        cast(
+                          101,
+                          ri!selectedIdentifiers
+                        ),
+                        fv!index
+                      ),
+                      false,
+                      true
+                    )
+                  ),
+                  {}
+                ),
+                if(
+                  or(
+                    ri!awardType = "New",
+                    ri!awardType = "Used",
+                    ri!awardType = "Damaged Car",
+                    ri!awardType = "Employee",
+                    ri!awardType = "Accessory",
+                    ri!awardType = "Fleet",
+                    ri!awardType = "Coupon"
+                  ),
+                  #"SYSTEM_SYSRULES_textField"(
+                    label: "Sales Target",
+                    value: fv!item.salesTarget,
+                    saveInto: {
+                      fv!item.salesTarget,
+                      if(
+                        or(
+                          #"_a-0000dd3a-dada-8000-daab-640000640000_11122"(
+                            fv!item.salesTarget
+                          ),
+                          #"_a-0000dd3a-dada-8000-daab-640000640000_11122"(
+                            fv!item.award
+                          )
+                        ),
+                        {},
+                        with(
+                          local!response: #"82870763-5964-4c10-9a52-c0b4e62f874c"(
+                            mlModelId: "ml-K2qJ1ttS4YI",
+                            attributeNames: {
+                              "Var01",
+                              "Var02",
+                              "Var03",
+                              "Var04",
+                              "Var05",
+                              "Var06",
+                              "Var07",
+                              "Var08"
+                            },
+                            attributeValues: {
+                              lower(
+                                fv!item.make
+                              ),
+                              fv!item.model,
+                              ri!year,
+                              fv!item.salesTarget,
+                              fv!item.award,
+                              ri!awardType,
+                              #"_a-0000dd4f-0404-8000-daab-640000640000_16792"(
+                                date1: ri!endDate,
+                                date2: ri!startDate
+                              ),
+                              #"_a-0000e067-d58d-8000-9ba2-011c48011c48_296601"(
+                                date: ri!startDate
+                              )
+                            }
+                          ),
+                          {
+                            a!save(
+                              target: fv!item.amlSuccessPrediction,
+                              value: concat(
+                                if(
+                                  local!response.predictedScores.attributeName = "1",
+                                  "Yes",
+                                  "No"
+                                ),
+                                " (",
+                                round(
+                                  local!response.predictedScores.attributeValue * 100,
+                                  0
+                                ),
+                                "%)"
+                              )
+                            ),
+                            a!save(
+                              target: fv!item.amlSuccessPredictionValue,
+                              value: local!response.predictedScores.attributeValue * 100
+                            )
+                          }
+                        )
+                      )
+                    },
+                    readOnly: if(
+                      contains(
+                        cast(
+                          101,
+                          ri!selectedIdentifiers
+                        ),
+                        fv!index
+                      ),
+                      false,
+                      true
+                    )
+                  ),
+                  {}
+                ),
+                #"SYSTEM_SYSRULES_textField"(
+                  label: "Success Prediction",
+                  value: fv!item.amlSuccessPrediction,
+                  readOnly: true
+                )
+              }
+            )
+          )
+        }
+      )
+    }
+  )
+)</definition>
+        <namedTypedValue>
+            <name>make</name>
+            <type>
+                <name>string</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+            <value/>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>year</name>
+            <type>
+                <name>int</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>vehicles</name>
+            <type>
+                <name>VIM_IncentiveVehicles?list</name>
+                <namespace>urn:com:appian:types</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>selectedIdentifiers</name>
+            <type>
+                <name>Integer?list</name>
+                <namespace>http://www.appian.com/ae/types/2009</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>awardType</name>
+            <type>
+                <name>string</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+            <value/>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>startDate</name>
+            <type>
+                <name>date</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>endDate</name>
+            <type>
+                <name>date</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+        </namedTypedValue>
+        <metadataExpr></metadataExpr>
+        <preferredEditor>interface</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role inherit="true" allowForAll="false" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="administrators">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <typedValue>
+        <type>
+            <name>RuleTestConfig?list</name>
+            <namespace>http://www.appian.com/ae/types/2009</namespace>
+        </type>
+        <value>
+            <el>
+                <a:name/>
+                <a:ruleInputTestConfigs>
+                    <a:value xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xsd:string">audi</a:value>
+                    <a:nameRef>make</a:nameRef>
+                    <a:id/>
+                </a:ruleInputTestConfigs>
+                <a:ruleInputTestConfigs>
+                    <a:value xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xsd:int">2000</a:value>
+                    <a:nameRef>year</a:nameRef>
+                    <a:id/>
+                </a:ruleInputTestConfigs>
+                <a:ruleInputTestConfigs>
+                    <a:nameRef>vehicles</a:nameRef>
+                    <a:id/>
+                </a:ruleInputTestConfigs>
+                <a:ruleInputTestConfigs>
+                    <a:nameRef>selectedIdentifiers</a:nameRef>
+                    <a:id/>
+                </a:ruleInputTestConfigs>
+                <a:ruleInputTestConfigs>
+                    <a:value xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xsd:string">New</a:value>
+                    <a:nameRef>awardType</a:nameRef>
+                    <a:id/>
+                </a:ruleInputTestConfigs>
+                <a:ruleInputTestConfigs>
+                    <a:value xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true" xsi:type="xsd:date"/>
+                    <a:nameRef>startDate</a:nameRef>
+                    <a:id/>
+                </a:ruleInputTestConfigs>
+                <a:ruleInputTestConfigs>
+                    <a:value xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true" xsi:type="xsd:date"/>
+                    <a:nameRef>endDate</a:nameRef>
+                    <a:id/>
+                </a:ruleInputTestConfigs>
+                <a:assertions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+            </el>
+        </value>
+    </typedValue>
+    <history>
+        <historyInfo versionUuid="_a-0000e067-d58d-8000-9ba2-011c48011c48_284078"/>
+        <historyInfo versionUuid="_a-0000e044-c81a-8000-9ba2-011c48011c48_126864"/>
+        <historyInfo versionUuid="_a-0000e067-d58d-8000-9ba2-011c48011c48_285571"/>
+        <historyInfo versionUuid="_a-0000e044-c81a-8000-9ba2-011c48011c48_127394"/>
+        <historyInfo versionUuid="_a-0000e067-d58d-8000-9ba2-011c48011c48_286332"/>
+        <historyInfo versionUuid="_a-0000e044-c81a-8000-9ba2-011c48011c48_128323"/>
+        <historyInfo versionUuid="_a-0000e067-d58d-8000-9ba2-011c48011c48_289664"/>
+        <historyInfo versionUuid="_a-0000e067-d58d-8000-9ba2-011c48011c48_298091"/>
+    </history>
+</contentHaul>

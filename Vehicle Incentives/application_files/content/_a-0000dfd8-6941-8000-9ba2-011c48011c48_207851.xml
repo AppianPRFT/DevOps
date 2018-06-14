@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <versionUuid>_a-0000e067-d58d-8000-9ba2-011c48011c48_308131</versionUuid>
+    <rule>
+        <name>VIM_ExceptionsTaskReport</name>
+        <uuid>_a-0000dfd8-6941-8000-9ba2-011c48011c48_207851</uuid>
+        <description>Task Report of Exceptions created from new sales</description>
+        <parentUuid>d1151d0a-2a3e-4e80-b3b0-105a99496272</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>load(
+  local!pagingInfo: #"SYSTEM_SYSRULES_pagingInfo"(
+    startIndex: 1,
+    batchSize: 20
+  ),
+  with(
+    local!report: a!queryProcessAnalytics(
+      report: #"_a-0000dfd8-6941-8000-9ba2-011c48011c48_207845",
+      contextProcessModels: #"_a-0000e067-d58d-8000-9ba2-011c48011c48_297558",
+      query: #"SYSTEM_SYSRULES_query"(
+        pagingInfo: local!pagingInfo,
+        filter: #"SYSTEM_SYSRULES_queryFilter"(
+          field:"c11",
+          operator: "=",
+          value: #"_a-0000e067-d58d-8000-9ba2-011c48011c48_288381"()
+        )
+      )
+    ),
+    #"SYSTEM_SYSRULES_sectionLayout_v1"(
+      label: "Exceptions Task Report",
+      contents: #"SYSTEM_SYSRULES_gridField"(
+        totalCount: local!report.totalCount,
+        columns: {
+          #"SYSTEM_SYSRULES_gridTextColumn"(
+            label: local!report.columnConfigs[5].label,
+            field: local!report.columnConfigs[5].field,
+            data: index(
+              local!report.data,
+              "c5",
+              {}
+            ),
+            links: #"SYSTEM_SYSRULES_forEach"(
+              items: local!report.data,
+              expression: #"SYSTEM_SYSRULES_processTaskLink"(
+                task: index(
+                  local!report.data,
+                  "c6",
+                  {}
+                )[fv!index]
+              )
+            )
+          ),
+          #"SYSTEM_SYSRULES_gridTextColumn"(
+            label: "Year",
+            field: local!report.columnConfigs[4].field,
+            data: #"SYSTEM_SYSRULES_forEach"(
+              local!report.data,
+              if(isnull(fv!item.c7),#"_a-0000e067-d58d-8000-9ba2-011c48011c48_302834"(fv!item.c10).year,#"_a-0000dfd8-6941-8000-9ba2-011c48011c48_201605"(
+                fv!item.c7
+              ).year)
+            )
+          ),
+          #"SYSTEM_SYSRULES_gridTextColumn"(
+            label: "Make",
+            field: local!report.columnConfigs[4].field,
+            data: #"SYSTEM_SYSRULES_forEach"(
+              local!report.data,
+              if(isnull(fv!item.c7),#"_a-0000e067-d58d-8000-9ba2-011c48011c48_302834"(fv!item.c10).brand,#"_a-0000dfd8-6941-8000-9ba2-011c48011c48_201605"(
+                fv!item.c7
+              ).make)
+            )
+          ),
+          #"SYSTEM_SYSRULES_gridTextColumn"(
+            label: "Model",
+            field: local!report.columnConfigs[4].field,
+            data: #"SYSTEM_SYSRULES_forEach"(
+              local!report.data,
+              if(isnull(fv!item.c7),#"_a-0000e067-d58d-8000-9ba2-011c48011c48_302834"(fv!item.c10).model,#"_a-0000dfd8-6941-8000-9ba2-011c48011c48_201605"(
+                fv!item.c7
+              ).model)
+            )
+          ),
+          #"SYSTEM_SYSRULES_gridTextColumn"(
+            label: "VIN",
+            field: local!report.columnConfigs[4].field,
+            data: #"SYSTEM_SYSRULES_forEach"(
+              local!report.data,
+              if(isnull(fv!item.c7),#"_a-0000e067-d58d-8000-9ba2-011c48011c48_302834"(fv!item.c10).vin,#"_a-0000dfd8-6941-8000-9ba2-011c48011c48_201605"(
+                fv!item.c7
+              ).vin)
+            )
+          ),
+          #"SYSTEM_SYSRULES_gridTextColumn"(
+            label: local!report.columnConfigs[3].label,
+            field: local!report.columnConfigs[3].field,
+            data: #"SYSTEM_SYSRULES_forEach"(
+              local!report.data,
+              index(
+                fv!item,
+                "c3",
+                {}
+              )/*)*/
+              
+            )
+          ),
+          #"SYSTEM_SYSRULES_gridTextColumn"(
+            label: local!report.columnConfigs[4].label,
+            field: local!report.columnConfigs[4].field,
+            data: #"SYSTEM_SYSRULES_forEach"(
+              local!report.data,
+              #"366e6de6-c357-4dcf-b200-caa7e4449868"(
+                index(
+                  fv!item,
+                  "c4",
+                  {}
+                )
+              )
+            )
+          ),
+          #"SYSTEM_SYSRULES_gridImageColumn_v1"(
+            label: local!report.columnConfigs[9].label,
+            field: local!report.columnConfigs[9].field,
+            data: #"SYSTEM_SYSRULES_forEach"(
+              index(
+                local!report.data,
+                "c9",
+                {}
+              ),
+              if(
+                fv!item = 1,
+                #"SYSTEM_SYSRULES_documentImage"(
+                  document: #"SYSTEM_SYSRULES_iconIndicator"(
+                    "PRIORITY_HIGH"
+                  )
+                ),
+                #"SYSTEM_SYSRULES_documentImage"(
+                  document: #"SYSTEM_SYSRULES_iconIndicator"(
+                    "PRIORITY_LOW"
+                  )
+                )
+              )
+            )
+          ),
+          #"SYSTEM_SYSRULES_gridTextColumn"(
+            label: local!report.columnConfigs[8].label,
+            field: local!report.columnConfigs[8].field,
+            data: #"SYSTEM_SYSRULES_forEach"(
+              local!report.data,
+              today() + 30
+            )
+          )
+        },
+        value: local!pagingInfo,
+        saveInto: local!pagingInfo
+      )
+    )
+  )
+)</definition>
+        <metadataExpr></metadataExpr>
+        <preferredEditor>interface</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role inherit="true" allowForAll="false" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="administrators">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <history>
+        <historyInfo versionUuid="_a-0000e067-d58d-8000-9ba2-011c48011c48_283044"/>
+        <historyInfo versionUuid="_a-0000e067-d58d-8000-9ba2-011c48011c48_284455"/>
+        <historyInfo versionUuid="_a-0000e067-d58d-8000-9ba2-011c48011c48_285323"/>
+        <historyInfo versionUuid="_a-0000e044-c81a-8000-9ba2-011c48011c48_128961"/>
+        <historyInfo versionUuid="_a-0000e067-d58d-8000-9ba2-011c48011c48_308131"/>
+    </history>
+</contentHaul>

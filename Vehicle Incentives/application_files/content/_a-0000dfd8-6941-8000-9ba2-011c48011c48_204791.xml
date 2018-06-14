@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <versionUuid>_a-0000e067-d58d-8000-9ba2-011c48011c48_308819</versionUuid>
+    <rule>
+        <name>VIM_DeterminSimilarIncentive</name>
+        <uuid>_a-0000dfd8-6941-8000-9ba2-011c48011c48_204791</uuid>
+        <description>Determines the similarity of all incentives based on the given base incentive</description>
+        <parentUuid>d1151d0a-2a3e-4e80-b3b0-105a99496272</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>load(
+  local!incentives: #"_a-0000dfd8-6941-8000-9ba2-011c48011c48_200675"(),
+  local!pagingInfo: #"SYSTEM_SYSRULES_pagingInfo"(
+    startIndex: 1,
+    batchSize: 15,
+    sort: #"SYSTEM_SYSRULES_sortInfo"(
+      field: "offerEndDate2",
+      ascending: true
+    )
+  ),
+  with(
+    local!data: #"SYSTEM_SYSRULES_queryEntity"(
+      entity: #"e7237020-544a-4d98-8261-2408aa55562c_MAINDSECONSTANT",
+      query: #"SYSTEM_SYSRULES_query"(
+        selection: #"SYSTEM_SYSRULES_querySelection"(
+          columns: {
+            #"SYSTEM_SYSRULES_queryColumn"(
+              field: "hasAccess"
+            ),
+            #"SYSTEM_SYSRULES_queryColumn"(
+              field: "offerEndDate2"
+            ),
+            #"SYSTEM_SYSRULES_queryColumn"(
+              field: "awardType"
+            ),
+            #"SYSTEM_SYSRULES_queryColumn"(
+              field: "title"
+            ),
+            #"SYSTEM_SYSRULES_queryColumn"(
+              field: "status"
+            ),
+            #"SYSTEM_SYSRULES_queryColumn"(
+              field: "offerStartDate2"
+            ),
+            #"SYSTEM_SYSRULES_queryColumn"(
+              field: "id"
+            )
+          }
+        ),
+        filter: #"SYSTEM_SYSRULES_queryFilter"(
+          field: "hasAccess",
+          operator: "=",
+          value: #"_a-0000e067-d58d-8000-9ba2-011c48011c48_288381"()
+        ),
+        pagingInfo: local!pagingInfo
+      )
+    ),
+    #"SYSTEM_SYSRULES_forEach"(
+      local!incentives,
+      sum(
+        {
+          /*if(*/
+          /*fv!item.title = ri!selectedIncentive.title,*/
+          /*1,*/
+          /*0*/
+          /*),*/
+          if(
+            fv!item.certifiedPreownedOffer = ri!selectedIncentive.certifiedPreownedOffer,
+            1,
+            0
+          ),
+          if(
+            fv!item.awardType = ri!selectedIncentive.awardType,
+            if(
+              and(
+                ri!selectedIncentive.typeOfOffer.value = "Lease",
+                fv!item.leasePricePerMonth &lt; ri!selectedIncentive.leasePricePerMonth + 100,
+                fv!item.leasePricePerMonth &gt; ri!selectedIncentive.leasePricePerMonth - 100
+              ),
+              2,
+              1
+            ),
+            0
+          ),
+          if(
+            fv!item.brand = ri!selectedIncentive.brand,
+            1,
+            0
+          ),
+          if(
+            fv!item.couponAvailable = ri!selectedIncentive.couponAvailable,
+            1,
+            0
+          ),
+          if(
+            fv!item.country = ri!selectedIncentive.country,
+            1,
+            0
+          ),
+          if(
+            and(
+              and(
+                fv!item.status.value = "Approved",
+                fv!item.offerStartDate &lt;= ri!selectedIncentive.offerStartDate
+              ),
+              and(
+                fv!item.status.value = "Approved",
+                or(
+                  fv!item.offerEndDate2 &gt;= ri!selectedIncentive.offerEndDate2,
+                  fv!item.offerEndDate2 &lt; ri!selectedIncentive.offerEndDate2
+                )
+              )
+            ),
+            1,
+            0
+          ),
+          if(
+            and(
+              fv!item.modelMsrp + 1000 &gt; ri!selectedIncentive.modelMsrp,
+              fv!item.modelMsrp - 1000 &lt; ri!selectedIncentive.modelMsrp
+            ),
+            1,
+            0
+          ),
+          1,
+          if(
+            ri!selectedIncentive.dueAtSigning,
+            1,
+            0
+          )
+        }
+      )
+    )
+  )
+)</definition>
+        <namedTypedValue>
+            <name>selectedIncentive</name>
+            <type>
+                <name>VIM_Incentive</name>
+                <namespace>urn:com:appian:types:VIM</namespace>
+            </type>
+        </namedTypedValue>
+        <preferredEditor>legacy</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role inherit="true" allowForAll="false" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="administrators">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <typedValue>
+        <type>
+            <name>RuleTestConfig?list</name>
+            <namespace>http://www.appian.com/ae/types/2009</namespace>
+        </type>
+        <value>
+            <el>
+                <a:name>Unnamed Test Case</a:name>
+                <a:ruleInputTestConfigs>
+                    <a:value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="a:Expression">#"_a-0000dfd8-6941-8000-9ba2-011c48011c48_200675"()[22]</a:value>
+                    <a:nameRef>selectedIncentive</a:nameRef>
+                    <a:id>1</a:id>
+                </a:ruleInputTestConfigs>
+                <a:assertions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+            </el>
+        </value>
+    </typedValue>
+    <history>
+        <historyInfo versionUuid="_a-0000dfd8-6941-8000-9ba2-011c48011c48_205259"/>
+        <historyInfo versionUuid="_a-0000e067-d58d-8000-9ba2-011c48011c48_295581"/>
+        <historyInfo versionUuid="_a-0000e067-d58d-8000-9ba2-011c48011c48_308819"/>
+    </history>
+</contentHaul>

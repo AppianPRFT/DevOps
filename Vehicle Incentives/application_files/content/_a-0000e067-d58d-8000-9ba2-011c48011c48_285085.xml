@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <versionUuid>_a-0000e067-d58d-8000-9ba2-011c48011c48_306535</versionUuid>
+    <rule>
+        <name>VIM_VehicleIncentivesForCarline</name>
+        <uuid>_a-0000e067-d58d-8000-9ba2-011c48011c48_285085</uuid>
+        <description>Incentives Associated to Vehicle</description>
+        <parentUuid>d1151d0a-2a3e-4e80-b3b0-105a99496272</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>load(
+  /*local!k: if(*/
+    /*isnull(*/
+      /*ri!incentiveVehicle*/
+    /*),*/
+    /*null,*/
+    /*rule!VIM_GetVehicleById(*/
+      /*ri!incentiveVehicle*/
+    /*)*/
+  /*),*/
+  local!kk: 
+    #"_a-0000e067-d58d-8000-9ba2-011c48011c48_285091"(
+      ri!incentiveVehicle.make,
+      ri!incentiveVehicle.model,
+      #"_a-0000e067-d58d-8000-9ba2-011c48011c48_288381"()
+  ),
+  if(
+    isnull(
+      local!kk
+    ),
+    #"SYSTEM_SYSRULES_textField"(
+      value: "Offer Does Not Apply",
+      readOnly: true
+    ),
+    {
+      #"SYSTEM_SYSRULES_gridField"(
+        totalCount: count(
+          local!kk
+        ),
+        columns: {
+          #"SYSTEM_SYSRULES_gridTextColumn"(
+            label: "Customer $ Offer",
+            /*come from the incentive award type*/
+            data: local!kk.title,
+            links: #"SYSTEM_SYSRULES_forEach"(
+              local!kk,
+              #"SYSTEM_SYSRULES_recordLink"(
+                recordType: #"_a-0000dfd8-6941-8000-9ba2-011c48011c48_184914",
+                identifier: fv!item.id
+              )
+            )
+          ),
+          #"SYSTEM_SYSRULES_gridTextColumn"(
+            label: "Type",
+            data: local!kk.awardType
+          ),
+          #"SYSTEM_SYSRULES_gridTextColumn"(
+            label: "Start Date",
+            data: local!kk.offerStartDate2
+          ),
+          #"SYSTEM_SYSRULES_gridTextColumn"(
+            label: "End Date",
+            data: local!kk.offerEndDate2
+          )
+        },
+        value: #"SYSTEM_SYSRULES_pagingInfo"(
+          startIndex: 1,
+          batchSize: 100
+        )
+      )
+    }
+  )
+)</definition>
+        <namedTypedValue>
+            <name>incentiveVehicle</name>
+            <type>
+                <name>VIM_IncentiveVehicles</name>
+                <namespace>urn:com:appian:types</namespace>
+            </type>
+        </namedTypedValue>
+        <metadataExpr></metadataExpr>
+        <preferredEditor>interface</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role inherit="true" allowForAll="false" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="administrators">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <history>
+        <historyInfo versionUuid="_a-0000e067-d58d-8000-9ba2-011c48011c48_285621"/>
+        <historyInfo versionUuid="_a-0000e044-c81a-8000-9ba2-011c48011c48_128304"/>
+        <historyInfo versionUuid="_a-0000e067-d58d-8000-9ba2-011c48011c48_306535"/>
+    </history>
+</contentHaul>

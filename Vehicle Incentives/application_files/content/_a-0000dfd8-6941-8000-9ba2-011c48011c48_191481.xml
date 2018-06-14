@@ -1,0 +1,438 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <versionUuid>_a-0000e067-d58d-8000-9ba2-011c48011c48_299547</versionUuid>
+    <rule>
+        <name>VIM_SalesDashboard</name>
+        <uuid>_a-0000dfd8-6941-8000-9ba2-011c48011c48_191481</uuid>
+        <description>Contains new, paid, rejected sales. </description>
+        <parentUuid>d1151d0a-2a3e-4e80-b3b0-105a99496272</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>load(
+  local!seller,
+  local!location,
+  local!sale,
+  local!page: 1,
+  local!paymentDetails,
+  local!pagingInfo: #"SYSTEM_SYSRULES_pagingInfo"(
+    startIndex: 1,
+    batchSize: 10,
+    sort: #"SYSTEM_SYSRULES_sortInfo"(
+      field: "soldOn",
+      ascending: false
+    )
+  ),
+  local!gridSelection: #"SYSTEM_SYSRULES_gridSelection"(
+    pagingInfo: #"SYSTEM_SYSRULES_pagingInfo"(
+      startIndex: 1,
+      batchSize: 10,
+      sort: #"SYSTEM_SYSRULES_sortInfo"(
+        field: "soldOn",
+        ascending: false
+      )
+    )
+  ),
+  local!incentive: #"4028f35e-5814-4e3e-ab7f-f077d3d17e12_GETONERECORD"(
+    ri!id
+  ),
+  local!choice: 1,
+  local!data: 1,
+  local!dataToShow,
+  with(
+    local!saleData: #"SYSTEM_SYSRULES_queryEntity"(
+      entity: #"_a-0000dfd8-6941-8000-9ba2-011c48011c48_191192",
+      query: #"SYSTEM_SYSRULES_query"(
+        logicalExpression: #"SYSTEM_SYSRULES_queryLogicalExpression"(
+          operator: "AND",
+          filters: {
+            #"SYSTEM_SYSRULES_queryFilter"(
+              field: "incentiveId",
+              operator: "=",
+              value: ri!id
+            ),
+            if(
+              local!data = 2,
+              #"SYSTEM_SYSRULES_queryFilter"(
+                field: "bonusPaid",
+                operator: "is null"
+              ),
+              {}
+            ),
+            if(
+              local!data = 3,
+              #"SYSTEM_SYSRULES_queryFilter"(
+                field: "bonusPaid",
+                operator: "=",
+                value: "Yes"
+              ),
+              {}
+            ),
+            if(
+              local!data = 4,
+              #"SYSTEM_SYSRULES_queryFilter"(
+                field: "bonusPaid",
+                operator: "=",
+                value: "No"
+              ),
+              {}
+            ),
+            if(
+              #"_a-0000dd3a-dada-8000-daab-640000640000_11122"(
+                local!sale
+              ),
+              {},
+              #"SYSTEM_SYSRULES_queryFilter"(
+                field: "title",
+                operator: "includes",
+                value: local!sale
+              )
+            ),
+            if(
+              #"_a-0000dd3a-dada-8000-daab-640000640000_11122"(
+                local!location
+              ),
+              {},
+              #"SYSTEM_SYSRULES_queryFilter"(
+                field: "soldLocation",
+                operator: "includes",
+                value: local!location
+              )
+            ),
+            if(
+              #"_a-0000dd3a-dada-8000-daab-640000640000_11122"(
+                local!seller
+              ),
+              {},
+              #"SYSTEM_SYSRULES_queryFilter"(
+                field: "soldBy",
+                operator: "includes",
+                value: local!seller
+              )
+            )
+          }
+        ),
+        pagingInfo: local!pagingInfo
+      )
+    ),
+    local!selectedSale: if(
+      #"_a-0000dd3a-dada-8000-daab-640000640000_11122"(
+        local!gridSelection.selected
+      ),
+      {},
+      #"_a-0000dfd8-6941-8000-9ba2-011c48011c48_191173"(
+        local!gridSelection.selected
+      )
+    ),
+    {
+      #"SYSTEM_SYSRULES_sectionLayout_v1"(
+        label: "Associated Sales",
+        contents: {}
+      ),
+      {
+        if(
+          local!page = 1,
+          if(
+            #"_a-0000dd3a-dada-8000-daab-640000640000_11122"(
+              local!saleData.data
+            ),
+            #"SYSTEM_SYSRULES_richTextDisplayField"(
+              align: "CENTER",
+              value: #"SYSTEM_SYSRULES_richTextItem"(
+                text: "There are currently no sales associated to this Incentive",
+                style: "HEADER_LARGE"
+              )
+            ),
+            {
+              #"SYSTEM_SYSRULES_sectionLayout_v1"(
+                contents: {
+                  #"SYSTEM_SYSRULES_columnsLayout"(
+                    columns: {
+                      #"SYSTEM_SYSRULES_columnLayout"(
+                        contents: {
+                          #"SYSTEM_SYSRULES_radioButtonField"(
+                            choiceLabels: {
+                              "All",
+                              "New",
+                              "Paid",
+                              "Unpaid"
+                            },
+                            choiceValues: {
+                              1,
+                              2,
+                              3,
+                              4
+                            },
+                            value: local!data,
+                            saveInto: local!data,
+                            choiceLayout: "COMPACT"
+                          )
+                        }
+                      ),
+                      #"SYSTEM_SYSRULES_columnLayout"(
+                        contents: #"SYSTEM_SYSRULES_textField"(
+                          value: local!sale,
+                          saveInto: local!sale,
+                          labelPosition: "COLLAPSED",
+                          placeholder: "Sale"
+                        )
+                      ),
+                      #"SYSTEM_SYSRULES_columnLayout"(
+                        contents: {
+                          #"SYSTEM_SYSRULES_textField"(
+                            value: local!seller,
+                            saveInto: local!seller,
+                            labelPosition: "COLLAPSED",
+                            placeholder: "Sold By"
+                          )
+                        }
+                      ),
+                      #"SYSTEM_SYSRULES_columnLayout"(
+                        contents: {
+                          #"SYSTEM_SYSRULES_textField"(
+                            value: local!location,
+                            saveInto: local!location,
+                            labelPosition: "COLLAPSED",
+                            placeholder: "Location"
+                          )
+                        }
+                      )
+                    }
+                  )
+                }
+              ),
+              #"SYSTEM_SYSRULES_gridField"(
+                label: "",
+                labelPosition: "ABOVE",
+                totalCount: local!saleData.totalCount,
+                columns: {
+                  #"SYSTEM_SYSRULES_gridTextColumn"(
+                    label: "Sale",
+                    data: local!saleData.data.title,
+                    links: #"SYSTEM_SYSRULES_forEach"(
+                      local!saleData.data,
+                      #"SYSTEM_SYSRULES_recordLink"(
+                        recordType: #"_a-0000dfd8-6941-8000-9ba2-011c48011c48_189976",
+                        identifier: fv!item.id
+                      )
+                    )
+                  ),
+                  #"SYSTEM_SYSRULES_gridTextColumn"(
+                    label: "Sold By",
+                    data: local!saleData.data.soldBy
+                  ),
+                  #"SYSTEM_SYSRULES_gridTextColumn"(
+                    label: "Location",
+                    data: local!saleData.data.soldLocation
+                  ),
+                  #"SYSTEM_SYSRULES_gridTextColumn"(
+                    label: "Sale Date",
+                    data: #"SYSTEM_SYSRULES_forEach"(
+                      local!saleData.data.soldOn,
+                      tostring(
+                        todate(
+                          fv!item
+                        ) &amp; " at " &amp; totime(
+                          fv!item
+                        )
+                      )
+                    )
+                  ),
+                  #"SYSTEM_SYSRULES_gridImageColumn_v1"(
+                    label: "Status",
+                    data: #"SYSTEM_SYSRULES_forEach"(
+                      local!saleData.data.bonusPaid,
+                      if(
+                        fv!item = "Yes",
+                        #"SYSTEM_SYSRULES_documentImage"(
+                          document: #"SYSTEM_SYSRULES_iconIndicator"(
+                            "STATUS_OK"
+                          )
+                        ),
+                        if(
+                          fv!item = "No",
+                          #"SYSTEM_SYSRULES_documentImage"(
+                            document: #"SYSTEM_SYSRULES_iconIndicator"(
+                              "STATUS_NOTDONE"
+                            )
+                          ),
+                          #"SYSTEM_SYSRULES_documentImage"(
+                            document: #"SYSTEM_SYSRULES_iconIndicator"(
+                              "STATUS_WARN"
+                            )
+                          )
+                        )
+                      )
+                    )
+                  )
+                },
+                identifiers: local!saleData.identifiers,
+                selection: true,
+                value: local!gridSelection,
+                saveInto: {
+                  local!gridSelection,
+                  a!save(
+                    local!dataToShow,
+                    local!saleData.data.title
+                  )
+                },
+                validations: {},
+                shadeAlternateRows: true
+              ),
+              #"SYSTEM_SYSRULES_ButtonLayout"(
+                primaryButtons: {
+                  #"SYSTEM_SYSRULES_ButtonWidget"(
+                    label: "Review Sale",
+                    style: "PRIMARY",
+                    disabled: if(
+                      #"_a-0000dd3a-dada-8000-daab-640000640000_11122"(
+                        local!selectedSale
+                      ),
+                      true,
+                      if(
+                        #"_a-0000dd3a-dada-8000-daab-640000640000_11122"(
+                          local!selectedSale.bonusPaid
+                        ),
+                        true,
+                        false
+                      ),
+                      false,
+                      true
+                    ),
+                    value: 2,
+                    saveInto: local!page
+                  ),
+                  
+                },
+                secondaryButtons: {
+                  #"SYSTEM_SYSRULES_ButtonWidget"(
+                    label: "Reopen Sale",
+                    value: 3,
+                    disabled: if(
+                      #"_a-0000dd3a-dada-8000-daab-640000640000_11122"(
+                        local!selectedSale
+                      ),
+                      true,
+                      if(
+                        #"_a-0000dd3a-dada-8000-daab-640000640000_11122"(
+                          local!selectedSale.bonusPaid
+                        ),
+                        true,
+                        false
+                      ),
+                      true,
+                      false
+                    ),
+                    style: "DESTRUCTIVE",
+                    saveInto: {}
+                  )
+                }
+              )
+            }
+          ),
+          {
+            #"_a-0000dfd8-6941-8000-9ba2-011c48011c48_191091"(
+              local!selectedSale,
+              local!incentive,
+              local!paymentDetails
+            ),
+            #"SYSTEM_SYSRULES_ButtonLayout"(
+              primaryButtons: {
+                #"SYSTEM_SYSRULES_ButtonWidgetSubmit"(
+                  label: "Pay Sale",
+                  style: "PRIMARY",
+                  confirmButtonLabel: "Are you sure you would like to Pay this Sale",
+                  saveInto: {}
+                  /*a!startProcess(
+                    cons!VIM_SALE_PAYMENT_PROCESS_MODEL,
+                    local!paymentDetails
+                  )*/
+                )
+              },
+              secondaryButtons: {
+                #"SYSTEM_SYSRULES_ButtonWidget"(
+                  label: "Back",
+                  value: 1,
+                  saveInto: local!page
+                ),
+                #"SYSTEM_SYSRULES_ButtonWidget"(
+                  label: "Reject Sale",
+                  value: 3,
+                  confirmButtonLabel: "Are you sure you would like to Reject this Sale",
+                  style: "DESTRUCTIVE",
+                  saveInto: local!page
+                )
+              }
+            )
+          }
+        )
+      }
+    }
+  )
+)</definition>
+        <namedTypedValue>
+            <name>id</name>
+            <type>
+                <name>int</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+        </namedTypedValue>
+        <metadataExpr></metadataExpr>
+        <preferredEditor>interface</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role inherit="true" allowForAll="false" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="administrators">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <typedValue>
+        <type>
+            <name>RuleTestConfig?list</name>
+            <namespace>http://www.appian.com/ae/types/2009</namespace>
+        </type>
+        <value>
+            <el>
+                <a:name/>
+                <a:ruleInputTestConfigs>
+                    <a:value xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xsd:int">3</a:value>
+                    <a:nameRef>id</a:nameRef>
+                    <a:id/>
+                </a:ruleInputTestConfigs>
+                <a:assertions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+            </el>
+        </value>
+    </typedValue>
+    <history>
+        <historyInfo versionUuid="_a-0000dfd8-6941-8000-9ba2-011c48011c48_199530"/>
+        <historyInfo versionUuid="_a-0000dfd8-6941-8000-9ba2-011c48011c48_202641"/>
+        <historyInfo versionUuid="_a-0000e067-d58d-8000-9ba2-011c48011c48_299547"/>
+    </history>
+</contentHaul>

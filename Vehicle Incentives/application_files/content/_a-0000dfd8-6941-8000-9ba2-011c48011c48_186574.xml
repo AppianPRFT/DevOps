@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <versionUuid>_a-0000e067-d58d-8000-9ba2-011c48011c48_298503</versionUuid>
+    <rule>
+        <name>VIM_DealershipDetails</name>
+        <uuid>_a-0000dfd8-6941-8000-9ba2-011c48011c48_186574</uuid>
+        <description>Section interface showing the base Dealership interface module. Contains all the basic fields of the record. Used by the summary record view, create and update forms, as well as task forms. [Base] [Records]</description>
+        <parentUuid>d1151d0a-2a3e-4e80-b3b0-105a99496272</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>load(
+  /* The local variables store the options for the Pick Single / Multiple from List fields    *
+   * We only show the active options, plus any inactive options already stored on this record */
+  {
+    #"SYSTEM_SYSRULES_sectionLayout_v1"(
+      label: "Details",
+      contents: #"SYSTEM_SYSRULES_columnsLayout"(
+        columns: {
+          #"SYSTEM_SYSRULES_columnLayout"(
+            contents: {
+              #"SYSTEM_SYSRULES_textField"(
+                label: "Dealership",
+                labelPosition: if(
+                  ri!readOnly,
+                  "ADJACENT",
+                  "ABOVE"
+                ),
+                instructions: if(
+                  ri!readOnly,
+                  "",
+                  ""
+                ),
+                helpTooltip: if(
+                  ri!readOnly,
+                  "",
+                  ""
+                ),
+                placeholder: if(
+                  ri!readOnly,
+                  "",
+                  ""
+                ),
+                required: not(
+                  ri!readOnly
+                ),
+                value: ri!record.dealership,
+                saveInto: ri!record.dealership,
+                readOnly: ri!readOnly,
+                validations: if(
+                  len(
+                    ri!record.dealership
+                  ) &lt;= 200,
+                  "",
+                  "Value may not be longer than 200 characters. You have entered " &amp; len(
+                    ri!record.dealership
+                  ) &amp; " characters."
+                )
+              ),
+              #"SYSTEM_SYSRULES_textField"(
+                label: "Address",
+                labelPosition: if(
+                  ri!readOnly,
+                  "ADJACENT",
+                  "ABOVE"
+                ),
+                instructions: if(
+                  ri!readOnly,
+                  "",
+                  ""
+                ),
+                helpTooltip: if(
+                  ri!readOnly,
+                  "",
+                  ""
+                ),
+                placeholder: if(
+                  ri!readOnly,
+                  "",
+                  ""
+                ),
+                required: false,
+                value: ri!record.address,
+                saveInto: ri!record.address,
+                readOnly: ri!readOnly,
+                validations: if(
+                  len(
+                    ri!record.address
+                  ) &lt;= 200,
+                  "",
+                  "Value may not be longer than 200 characters. You have entered " &amp; len(
+                    ri!record.address
+                  ) &amp; " characters."
+                )
+              ),
+              if(
+                ri!creating,
+                {},
+                {}
+              )
+            }
+          ),
+          #"SYSTEM_SYSRULES_columnLayout"(
+            contents: {
+              #"SYSTEM_SYSRULES_textField"(
+                label: "Phone Number",
+                labelPosition: if(
+                  ri!readOnly,
+                  "ADJACENT",
+                  "ABOVE"
+                ),
+                instructions: if(
+                  ri!readOnly,
+                  "",
+                  ""
+                ),
+                helpTooltip: if(
+                  ri!readOnly,
+                  "",
+                  ""
+                ),
+                placeholder: if(
+                  ri!readOnly,
+                  "",
+                  ""
+                ),
+                required: false,
+                value: text(
+                  ri!record.number,
+                  "[&lt;=9999999]000-0000;(000) 000-0000"
+                ),
+                saveInto: ri!record.number,
+                readOnly: ri!readOnly,
+                validations: if(
+                  len(
+                    ri!record.number
+                  ) &lt;= 200,
+                  "",
+                  "Value may not be longer than 200 characters. You have entered " &amp; len(
+                    ri!record.number
+                  ) &amp; " characters."
+                )
+              ),
+              if(
+                ri!creating,
+                {},
+                {}
+              )
+            }
+          )
+        }
+      )
+    ),
+    #"_a-0000dfd8-6941-8000-9ba2-011c48011c48_184994"(
+      documents: ri!documents,
+      deletedDocuments: ri!deletedDocuments,
+      readOnly: ri!readOnly,
+      target: if(
+        ri!creating,
+        #"_a-0000dfd8-6941-8000-9ba2-011c48011c48_184922",
+        ri!record.folderId
+      )
+    )
+  }
+)</definition>
+        <namedTypedValue>
+            <name>record</name>
+            <type>
+                <name>VIM_Dealership</name>
+                <namespace>urn:com:appian:types:VIM</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>creating</name>
+            <type>
+                <name>boolean</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>readOnly</name>
+            <type>
+                <name>boolean</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>documents</name>
+            <type>
+                <name>CollaborationDocument?list</name>
+                <namespace>http://www.appian.com/ae/types/2009</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>label</name>
+            <type>
+                <name>string</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+            <value/>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>deletedDocuments</name>
+            <type>
+                <name>CollaborationDocument?list</name>
+                <namespace>http://www.appian.com/ae/types/2009</namespace>
+            </type>
+        </namedTypedValue>
+        <metadataExpr></metadataExpr>
+        <preferredEditor>interface</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role inherit="true" allowForAll="false" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="administrators">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <history>
+        <historyInfo versionUuid="_a-0000dfd8-6941-8000-9ba2-011c48011c48_192893"/>
+        <historyInfo versionUuid="_a-0000e044-c81a-8000-9ba2-011c48011c48_128827"/>
+        <historyInfo versionUuid="_a-0000e067-d58d-8000-9ba2-011c48011c48_298503"/>
+    </history>
+</contentHaul>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<tempoReportHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <versionUuid>244bd1c0-f5e3-41fe-9c10-ca3630418d08</versionUuid>
+    <tempoReport a:uuid="be5a62c8-a131-4cc9-8c79-dacfcfbe8f1c" name="VIM_VehicleIncentivesReportFeed">
+        <a:description>Feed Report on the vehicle incentives</a:description>
+        <a:uiExpr>=#"_a-0000dfd8-6941-8000-9ba2-011c48011c48_205463"()</a:uiExpr>
+        <a:urlStub>-ErIIg</a:urlStub>
+    </tempoReport>
+    <roleMap>
+        <role name="report_administrator">
+            <users/>
+            <groups>
+                <groupUuid>_e-0000e067-d54a-8000-9aee-01075c01075c_285</groupUuid>
+            </groups>
+        </role>
+        <role name="report_viewer">
+            <users/>
+            <groups>
+                <groupUuid>_e-0000e067-d54a-8000-9aee-01075c01075c_289</groupUuid>
+            </groups>
+        </role>
+    </roleMap>
+    <history>
+        <historyInfo versionUuid="c3acf160-c888-4f53-8a72-38b0aaa64f7c"/>
+        <historyInfo versionUuid="244bd1c0-f5e3-41fe-9c10-ca3630418d08"/>
+    </history>
+</tempoReportHaul>

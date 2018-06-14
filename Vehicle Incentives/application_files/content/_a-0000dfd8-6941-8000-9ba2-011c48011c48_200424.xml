@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <versionUuid>_a-0000e067-d58d-8000-9ba2-011c48011c48_299454</versionUuid>
+    <rule>
+        <name>VIM_DealershipAvailableVehicles</name>
+        <uuid>_a-0000dfd8-6941-8000-9ba2-011c48011c48_200424</uuid>
+        <description>Available Vehicles Grid for Dealership</description>
+        <parentUuid>d1151d0a-2a3e-4e80-b3b0-105a99496272</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>load(
+  local!Name,
+  local!Year,
+  local!Vin,
+  local!data,
+  local!pagingInfo: #"SYSTEM_SYSRULES_pagingInfo"(
+    startIndex: 1,
+    batchSize: 20,
+    sort: #"SYSTEM_SYSRULES_sortInfo"(
+      field: "title",
+      ascending: true
+    )
+  ),
+  local!pagingInfo2: #"SYSTEM_SYSRULES_pagingInfo"(
+    startIndex: 1,
+    batchSize: 20,
+    sort: #"SYSTEM_SYSRULES_sortInfo"(
+      field: "title",
+      ascending: true
+    )
+  ),
+  with(
+    local!v: todatasubset(
+      #"_a-0000dfd8-6941-8000-9ba2-011c48011c48_187805"(
+        ri!id
+      ),
+      local!pagingInfo
+    ),
+    local!sold: todatasubset(
+      #"_a-0000dfd8-6941-8000-9ba2-011c48011c48_188831"(
+        #"_a-0000dfd8-6941-8000-9ba2-011c48011c48_200561"(
+          ri!id
+        ).vehicleId
+      )
+    ),
+    if(
+      #"_a-0000dd3a-dada-8000-daab-640000640000_11122"(
+        local!v.data
+      ),
+      #"SYSTEM_SYSRULES_richTextDisplayField"(
+        align: "CENTER",
+        value: #"SYSTEM_SYSRULES_richTextItem"(
+          text: "There are currently no Vehicles associated to this Dealership",
+          style: "HEADER_LARGE"
+        )
+      ),
+      {
+        #"SYSTEM_SYSRULES_columnsLayout"(
+          columns: {
+            #"SYSTEM_SYSRULES_columnLayout"(
+              contents: {
+                #"SYSTEM_SYSRULES_multipleDropdownField"(
+                  labelPosition: "COLLAPSED",
+                  placeholder: "Dealership(s)",
+                  choiceLabels: {
+                    "All",
+                    "Rockville",
+                    "Arizona",
+                    "Miami"
+                  },
+                  choiceValues: {
+                    1,
+                    2,
+                    3,
+                    4
+                  },
+                  value: local!data,
+                  saveInto: local!data
+                ),
+                #"SYSTEM_SYSRULES_paragraphField"(
+                  value: {},
+                  readOnly: true
+                )
+              }
+            ),
+            #"SYSTEM_SYSRULES_columnLayout"(
+              contents: #"SYSTEM_SYSRULES_textField"(
+                labelPosition: "COLLAPSED",
+                placeholder: "Model",
+                value: local!Name,
+                saveInto: local!Name
+              )
+            ),
+            #"SYSTEM_SYSRULES_columnLayout"(
+              contents: {
+                #"SYSTEM_SYSRULES_textField"(
+                  labelPosition: "COLLAPSED",
+                  placeholder: "Year",
+                  value: local!Year,
+                  saveInto: local!Year
+                )
+              }
+            ),
+            #"SYSTEM_SYSRULES_columnLayout"(
+              contents: {
+                #"SYSTEM_SYSRULES_textField"(
+                  labelPosition: "COLLAPSED",
+                  placeholder: "Vin",
+                  value: local!Vin,
+                  saveInto: local!Vin
+                )
+              }
+            )
+          }
+        ),
+        #"SYSTEM_SYSRULES_sectionLayout_v1"(
+          label: "Vehicles Available with Active Incentive",
+          contents: {
+            #"SYSTEM_SYSRULES_gridField"(
+              label: "",
+              labelPosition: "ABOVE",
+              totalCount: local!v.totalCount,
+              columns: {
+                #"SYSTEM_SYSRULES_gridTextColumn"(
+                  label: "Year",
+                  data: local!v.data.year
+                ),
+                #"SYSTEM_SYSRULES_gridTextColumn"(
+                  label: "Model",
+                  data: local!v.data.title,
+                  links: #"SYSTEM_SYSRULES_forEach"(
+                    items: local!v.data,
+                    expression: #"SYSTEM_SYSRULES_recordLink"(
+                      recordType: #"_a-0000e067-d58d-8000-9ba2-011c48011c48_297373",
+                      identifier: fv!item.id
+                    )
+                  )
+                ),
+                #"SYSTEM_SYSRULES_gridTextColumn"(
+                  label: "Trim",
+                  data: local!v.data.trim
+                ),
+                #"SYSTEM_SYSRULES_gridTextColumn"(
+                  label: "Engine",
+                  data: local!v.data.engine
+                ),
+                #"SYSTEM_SYSRULES_gridTextColumn"(
+                  label: "Vin",
+                  data: local!v.data.vin
+                )
+              },
+              value: local!pagingInfo,
+              saveInto: local!pagingInfo,
+              validations: {},
+              shadeAlternateRows: true
+            )
+          }
+        ),
+        #"SYSTEM_SYSRULES_paragraphField"(
+          value: {},
+          readOnly: true
+        ),
+        #"SYSTEM_SYSRULES_sectionLayout_v1"(
+          label: "Available Vehicle Inventory",
+          contents: {
+            #"_a-0000dfd8-6941-8000-9ba2-011c48011c48_200505"(
+              local!v,
+              local!pagingInfo,
+              ""
+            )
+          }
+        ),
+        #"SYSTEM_SYSRULES_paragraphField"(
+          value: {},
+          readOnly: true
+        ),
+        #"SYSTEM_SYSRULES_sectionLayout_v1"(
+          label: "Sold Vehicles",
+          contents: #"_a-0000dfd8-6941-8000-9ba2-011c48011c48_200505"(
+            local!sold,
+            local!pagingInfo2,
+            ""
+          )
+        )
+      }
+    )
+  )
+)</definition>
+        <namedTypedValue>
+            <name>id</name>
+            <type>
+                <name>int</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+        </namedTypedValue>
+        <metadataExpr></metadataExpr>
+        <preferredEditor>interface</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role inherit="true" allowForAll="false" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="administrators">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <history>
+        <historyInfo versionUuid="_a-0000dfd8-6941-8000-9ba2-011c48011c48_207168"/>
+        <historyInfo versionUuid="_a-0000e067-d58d-8000-9ba2-011c48011c48_299454"/>
+    </history>
+</contentHaul>

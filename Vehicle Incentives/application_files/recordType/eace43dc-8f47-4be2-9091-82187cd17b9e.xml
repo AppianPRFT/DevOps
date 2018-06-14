@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<recordTypeHaul xmlns:a="http://www.appian.com/ae/types/2009" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <versionUuid>467e7407-aca1-4360-84d9-84d580dc13e4</versionUuid>
+  <recordType a:uuid="eace43dc-8f47-4be2-9091-82187cd17b9e" name="Dealership">
+    <a:pluralName>Dealerships</a:pluralName>
+    <a:description>Dealerships qualified for Incentives</a:description>
+    <a:urlStub>WqHc9g</a:urlStub>
+    <a:source
+      a:uuid="6fe4c7c2-716e-40cf-802d-c35a5e594753@_a-0000dfd8-6941-8000-9ba2-011c48011c48_185078" xsi:type="a:DataStoreEntity"/>
+    <a:listViewTemplateExpr>#"SYSTEM_SYSRULES_recordGridLayoutColumns"(
+  columns: {
+    #"SYSTEM_SYSRULES_gridLayoutColumn"(
+      label: "Dealership",
+      field: "dealership",
+      component: #"SYSTEM_SYSRULES_recordGrid_linkField"(
+        links: #"SYSTEM_SYSRULES_recordLink"(
+          label: rf!dealership,
+          recordType: rp!type,
+          identifier: rp!id
+        )
+      )
+    ),
+    #"SYSTEM_SYSRULES_gridLayoutColumn"(
+      label: "Address",
+      field: "address",
+      component: #"SYSTEM_SYSRULES_recordGrid_textField"(
+        displayValue: rf!address,
+        align: null
+      )
+    ),
+    #"SYSTEM_SYSRULES_gridLayoutColumn"(
+      label: "Phone Number",
+      field: "number",
+      component: #"SYSTEM_SYSRULES_recordGrid_textField"(
+        displayValue: rf!number,
+        align: null
+      )
+    )
+  },
+  pageSize: 50,
+  defaultSort: #"SYSTEM_SYSRULES_sortInfo"(
+    field: "dealership",
+    ascending: fn!true()
+  )
+)</a:listViewTemplateExpr>
+    <a:fieldCfg name="Created By">
+      <a:isSortable>false</a:isSortable>
+      <a:isSearchable>false</a:isSearchable>
+      <a:isFacet>true</a:isFacet>
+      <a:facetType>EXPRESSION</a:facetType>
+      <a:isExclusiveFacet>true</a:isExclusiveFacet>
+      <a:facetExpr>/*with(*/
+  /*local!creators:a!queryEntity(*/
+    /*entity: cons!VIM_DEALERSHIP_DSE,*/
+    /*query: a!query(*/
+      /*aggregation: a!queryAggregation(*/
+        /*aggregationColumns: {*/
+          /*a!queryAggregationColumn(field: "createdBy", isGrouping: true),*/
+          /*a!queryAggregationColumn(field: "createdBy", alias: "numberCreated", aggregationFunction: "COUNT")*/
+        /*}*/
+      /*),*/
+      /*pagingInfo: a!pagingInfo(1, -1, a!sortInfo("createdBy", true))*/
+    /*)*/
+  /*),*/
+  /*if(*/
+    /*local!creators.totalCount = 0,*/
+    /*{},*/
+    /*a!facet(*/
+      /*name: "Created By",*/
+      /*options: a!forEach(*/
+        /*items: local!creators,*/
+        /*expression: a!facetOption(*/
+          /*id: fv!index,*/
+          /*name: rule!VIM_FormatName(fv!item.createdBy),*/
+          /*filter: a!queryFilter(*/
+            /*field: "createdBy",*/
+            /*operator: "=",*/
+            /*value: fv!item.createdBy*/
+          /*),*/
+          /*dataCount: fv!item.numberCreated*/
+        /*)*/
+      /*)*/
+    /*)*/
+  /*)*/
+/*)*/</a:facetExpr>
+      <a:sortOrderIndex>0</a:sortOrderIndex>
+      <a:facetOrderIndex>0</a:facetOrderIndex>
+      <a:visibilityExpr/>
+      <a:defaultOptionExpr/>
+      <a:allowMultipleSelections>true</a:allowMultipleSelections>
+    </a:fieldCfg>
+    <a:detailViewCfg>
+      <a:nameExpr>="Summary"</a:nameExpr>
+      <a:uiExpr>#"_a-0000dfd8-6941-8000-9ba2-011c48011c48_186629"(rp!id)</a:uiExpr>
+      <a:visibilityExpr>=true()</a:visibilityExpr>
+      <a:urlStub>summary</a:urlStub>
+      <a:headerExpr/>
+      <a:relatedActionCfg>b1d4224e-e907-43d9-b45c-4ed2c866e660</a:relatedActionCfg>
+    </a:detailViewCfg>
+    <a:detailViewCfg>
+      <a:nameExpr>"Vehicles"</a:nameExpr>
+      <a:uiExpr>#"_a-0000dfd8-6941-8000-9ba2-011c48011c48_200424"(rf!id)</a:uiExpr>
+      <a:visibilityExpr>=true()</a:visibilityExpr>
+      <a:urlStub>_nikrCw</a:urlStub>
+      <a:headerExpr/>
+      <a:relatedActionCfg>b1d4224e-e907-43d9-b45c-4ed2c866e660</a:relatedActionCfg>
+    </a:detailViewCfg>
+    <a:defaultFilter>
+      <a:field>hasAccess</a:field>
+      <a:operator>=</a:operator>
+      <a:valueExpression>#"_a-0000e067-d58d-8000-9ba2-011c48011c48_288381"()</a:valueExpression>
+    </a:defaultFilter>
+    <a:relatedActionCfg>
+      <a:target a:uuid="0009e009-d1aa-8000-f92f-7f0000014e7a" xsi:type="a:ProcessModel"/>
+      <a:contextExpr>with(
+  local!record: #"_a-0000dfd8-6941-8000-9ba2-011c48011c48_186635"(rp!id),
+  {
+    record: local!record,
+    documents: folder(local!record.folderId, "documentChildren"),
+  }
+)</a:contextExpr>
+      <a:visibilityExpr>=true()</a:visibilityExpr>
+      <a:iconId>f0e7</a:iconId>
+      <a:refId>f9359f74-80db-45f1-bb73-a833fd757361</a:refId>
+      <a:title/>
+      <a:titleSource>DERIVED</a:titleSource>
+      <a:description/>
+      <a:descriptionSource>DERIVED</a:descriptionSource>
+    </a:relatedActionCfg>
+    <a:relatedActionCfg>
+      <a:target a:uuid="0007e009-d192-8000-f92f-7f0000014e7a" xsi:type="a:ProcessModel"/>
+      <a:contextExpr>{
+  record: #"_a-0000dfd8-6941-8000-9ba2-011c48011c48_186635"(rp!id)
+}</a:contextExpr>
+      <a:visibilityExpr>=true()</a:visibilityExpr>
+      <a:iconId>f014</a:iconId>
+      <a:refId>3174e948-d4ea-4443-9efc-c88da5bfa261</a:refId>
+      <a:title/>
+      <a:titleSource>DERIVED</a:titleSource>
+      <a:description/>
+      <a:descriptionSource>DERIVED</a:descriptionSource>
+    </a:relatedActionCfg>
+    <a:relatedActionCfg>
+      <a:target a:uuid="0006e04a-8ad0-8000-f92f-7f0000014e7a" xsi:type="a:ProcessModel"/>
+      <a:contextExpr>{
+  document: null /* Document */
+}</a:contextExpr>
+      <a:visibilityExpr>true()</a:visibilityExpr>
+      <a:iconId>f0e7</a:iconId>
+      <a:refId>b1d4224e-e907-43d9-b45c-4ed2c866e660</a:refId>
+      <a:title/>
+      <a:titleSource>DERIVED</a:titleSource>
+      <a:description/>
+      <a:descriptionSource>DERIVED</a:descriptionSource>
+    </a:relatedActionCfg>
+    <a:relatedActionCfg>
+      <a:target a:uuid="0002e047-da81-8000-f92f-7f0000014e7a" xsi:type="a:ProcessModel"/>
+      <a:contextExpr>{}</a:contextExpr>
+      <a:visibilityExpr>=false()</a:visibilityExpr>
+      <a:iconId>f0e7</a:iconId>
+      <a:refId>a5f951ce-7f7b-46b2-8ebd-9b869653940f</a:refId>
+      <a:title/>
+      <a:titleSource>DERIVED</a:titleSource>
+      <a:description/>
+      <a:descriptionSource>DERIVED</a:descriptionSource>
+    </a:relatedActionCfg>
+    <a:isSystem>false</a:isSystem>
+    <a:dataSrcExpr/>
+    <a:facetsListExpr/>
+    <a:titleExpr>rf!dealership</a:titleExpr>
+    <a:defaultFiltersExpr/>
+    <a:layoutType>GRID</a:layoutType>
+    <a:security>16383</a:security>
+    <a:hideLatestNews>false</a:hideLatestNews>
+    <a:isExportable>true</a:isExportable>
+  </recordType>
+  <roleMap>
+    <role name="record_type_administrator">
+      <users/>
+      <groups>
+        <groupUuid>_e-0000e067-d54a-8000-9aee-01075c01075c_285</groupUuid>
+      </groups>
+    </role>
+    <role name="record_type_viewer">
+      <users/>
+      <groups>
+        <groupUuid>_e-0000e067-d54a-8000-9aee-01075c01075c_289</groupUuid>
+        <groupUuid>_e-0000e067-d54a-8000-9aee-01075c01075c_233</groupUuid>
+        <groupUuid>_e-0000e067-d54a-8000-9aee-01075c01075c_231</groupUuid>
+      </groups>
+    </role>
+  </roleMap>
+  <history>
+    <historyInfo versionUuid="976c5ca0-63c0-4068-9801-a1d82c916aad"/>
+    <historyInfo versionUuid="2f7f5b27-961a-4f0a-aaaa-722fe1de90b0"/>
+    <historyInfo versionUuid="c17c150b-644a-4c96-83f3-155e3a2a39ad"/>
+    <historyInfo versionUuid="a7e20ce5-5956-44b2-94a7-ec59ccbab478"/>
+    <historyInfo versionUuid="467e7407-aca1-4360-84d9-84d580dc13e4"/>
+  </history>
+</recordTypeHaul>

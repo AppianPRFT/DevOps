@@ -1,0 +1,319 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <versionUuid>_a-0000e067-d58d-8000-9ba2-011c48011c48_298455</versionUuid>
+    <rule>
+        <name>VIM_ViewSalePayment</name>
+        <uuid>_a-0000dfd8-6941-8000-9ba2-011c48011c48_191263</uuid>
+        <description>Sale Payment Screen for viewing of paid details</description>
+        <parentUuid>d1151d0a-2a3e-4e80-b3b0-105a99496272</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>{
+  #"SYSTEM_SYSRULES_milestoneField"(
+    labelPosition: "COLLAPSED",
+    steps: {
+      "Approved",
+      "In Progress",
+      "In Dispute",
+      "Paid"
+    },
+    active: 4
+  ),
+  #"SYSTEM_SYSRULES_paragraphField"(
+    value: {},
+    readOnly: true
+  ),
+  #"SYSTEM_SYSRULES_sectionLayout_v1"(
+    contents: {
+      #"SYSTEM_SYSRULES_columnsLayout"(
+        columns: {
+          #"SYSTEM_SYSRULES_columnLayout"(
+            contents: {
+              #"SYSTEM_SYSRULES_textField"(
+                label: "Sale",
+                labelPosition: "ADJACENT",
+                value: "123456789",
+                readOnly: true
+              ),
+              #"SYSTEM_SYSRULES_pickerFieldUsers"(
+                label: "Payee",
+                labelPosition: "ADJACENT",
+                value: loggedInUser(),
+                readOnly: true
+              ),
+              #"SYSTEM_SYSRULES_textField"(
+                label: "Title",
+                labelPosition: "ADJACENT",
+                value: "Sales",
+                readOnly: true
+              ),
+              #"SYSTEM_SYSRULES_dateField"(
+                label: "Approval Date",
+                labelPosition: "ADJACENT",
+                value: today(),
+                readOnly: true
+              )
+            }
+          ),
+          #"SYSTEM_SYSRULES_columnLayout"(
+            contents: {
+              #"SYSTEM_SYSRULES_textField"(
+                label: "Account",
+                labelPosition: "ADJACENT",
+                value: "123 Sesame Street",
+                readOnly: true
+              ),
+              #"SYSTEM_SYSRULES_textField"(
+                label: "Payment Date",
+                labelPosition: "ADJACENT",
+                value: "New York",
+                readOnly: true
+              ),
+              #"SYSTEM_SYSRULES_textField"(
+                label: "Incentive",
+                labelPosition: "ADJACENT",
+                value: "NY",
+                readOnly: true
+              ),
+              #"SYSTEM_SYSRULES_textField"(
+                label: "Details",
+                labelPosition: "ADJACENT",
+                value: "12345",
+                readOnly: true
+              )
+            }
+          )
+        }
+      )
+    }
+  ),
+  #"SYSTEM_SYSRULES_paragraphField"(
+    value: {},
+    readOnly: true
+  ),
+  #"SYSTEM_SYSRULES_sectionLayout_v1"(
+    label: "Payment",
+    contents: {
+      /* This grid is not configured to page or sort */
+      #"SYSTEM_SYSRULES_gridField"(
+        labelPosition: "ABOVE",
+        totalCount: 5,
+        columns: {
+          #"SYSTEM_SYSRULES_gridTextColumn"(
+            label: "Bonus",
+            data: {
+              dollar(
+                {
+                  "1000"
+                }
+              )
+            }
+          ),
+          #"SYSTEM_SYSRULES_gridTextColumn"(
+            label: "Tax",
+            data: {
+              dollar(
+                {
+                  "50"
+                }
+              )
+            }
+          ),
+          #"SYSTEM_SYSRULES_gridTextColumn"(
+            label: "Exclusions",
+            data: {
+              dollar(
+                {
+                  10
+                }
+              )
+            },
+            alignment: "RIGHT"
+          ),
+          #"SYSTEM_SYSRULES_gridTextColumn"(
+            label: "Unit Price",
+            data: {
+              dollar(
+                {
+                  150
+                }
+              ),
+              "Total"
+            },
+            alignment: "RIGHT"
+          ),
+          #"SYSTEM_SYSRULES_gridTextColumn"(
+            label: "Extra",
+            data: dollar(
+              {
+                300,
+                500.99
+              }
+            ),
+            alignment: "RIGHT"
+          )
+        },
+        value: #"SYSTEM_SYSRULES_pagingInfo"(
+          startIndex: 1,
+          batchSize: 5
+        ),
+        saveInto: {}
+      )
+    }
+  ),
+  #"SYSTEM_SYSRULES_sectionLayout_v1"(
+    label: "Approval",
+    contents: {
+      #"SYSTEM_SYSRULES_columnsLayout"(
+        columns: {
+          #"SYSTEM_SYSRULES_columnLayout"(
+            contents: {
+              #"SYSTEM_SYSRULES_textField"(
+                label: "Approved By",
+                labelPosition: "ADJACENT",
+                value: "Paul Smith",
+                readOnly: true
+              ),
+              #"SYSTEM_SYSRULES_dateField"(
+                label: "Approved On",
+                labelPosition: "ADJACENT",
+                value: today(),
+                readOnly: true
+              ),
+              #"SYSTEM_SYSRULES_paragraphField"(
+                label: "Comments",
+                labelPosition: "ADJACENT",
+                value: "Sale was within all parameters for payment",
+                readOnly: true
+              )
+            }
+          ),
+          #"SYSTEM_SYSRULES_columnLayout"(
+            contents: {
+              #"SYSTEM_SYSRULES_imageField_v1"(
+                labelPosition: "COLLAPSED",
+                images: {
+                  #"SYSTEM_SYSRULES_documentImage"(
+                    document: #"SYSTEM_SYSRULES_expd_exampleSignatureImage"(),
+                    altText: "Paul Smith signature",
+                    /* This is an example image that should not be used outside of this template. Instead, use a constant or variable that references your image. */
+                    caption: "Paul Smith"
+                  )
+                },
+                size: "FIT"
+              )
+            }
+          )
+        }
+      )
+    }
+  ),
+  #"SYSTEM_SYSRULES_sectionLayout_v1"(
+    label: "Payee Information",
+    contents: {
+      #"SYSTEM_SYSRULES_columnsLayout"(
+        columns: {
+          #"SYSTEM_SYSRULES_columnLayout"(
+            contents: {
+              #"SYSTEM_SYSRULES_textField"(
+                label: "Job Title",
+                labelPosition: "ADJACENT",
+                value: "Manager",
+                readOnly: true
+              ),
+              #"SYSTEM_SYSRULES_textField"(
+                label: "Contact",
+                labelPosition: "ADJACENT",
+                value: "John Coleman",
+                readOnly: true
+              ),
+              #"SYSTEM_SYSRULES_textField"(
+                label: "Phone",
+                labelPosition: "ADJACENT",
+                value: "(123) 456-7890",
+                readOnly: true
+              ),
+              #"SYSTEM_SYSRULES_textField"(
+                label: "Email",
+                labelPosition: "ADJACENT",
+                value: "companyA@example.com",
+                readOnly: true
+              )
+            }
+          ),
+          #"SYSTEM_SYSRULES_columnLayout"(
+            contents: {
+              #"SYSTEM_SYSRULES_textField"(
+                label: "Address",
+                labelPosition: "ADJACENT",
+                value: "456 Sesame Street",
+                readOnly: true
+              ),
+              #"SYSTEM_SYSRULES_textField"(
+                label: "City",
+                labelPosition: "ADJACENT",
+                value: "New York",
+                readOnly: true
+              ),
+              #"SYSTEM_SYSRULES_textField"(
+                label: "State/Province",
+                labelPosition: "ADJACENT",
+                value: "NY",
+                readOnly: true
+              ),
+              #"SYSTEM_SYSRULES_textField"(
+                label: "Zip/Postal Code",
+                labelPosition: "ADJACENT",
+                value: "12345",
+                readOnly: true
+              )
+            }
+          )
+        }
+      )
+    }
+  )
+}</definition>
+        <metadataExpr></metadataExpr>
+        <preferredEditor>interface</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role inherit="true" allowForAll="false" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="administrators">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <history>
+        <historyInfo versionUuid="_a-0000dfd8-6941-8000-9ba2-011c48011c48_191305"/>
+        <historyInfo versionUuid="_a-0000dfd8-6941-8000-9ba2-011c48011c48_207126"/>
+        <historyInfo versionUuid="_a-0000e067-d58d-8000-9ba2-011c48011c48_298455"/>
+    </history>
+</contentHaul>

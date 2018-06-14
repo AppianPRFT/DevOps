@@ -1,0 +1,402 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <versionUuid>_a-0000e067-d58d-8000-9ba2-011c48011c48_303004</versionUuid>
+    <rule>
+        <name>VIM_VehicleModelDashboard</name>
+        <uuid>_a-0000dfd8-6941-8000-9ba2-011c48011c48_190539</uuid>
+        <description>Vehicle Models Dashboard</description>
+        <parentUuid>d1151d0a-2a3e-4e80-b3b0-105a99496272</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>with(
+  /*local!vehicle: rule!VIM_GetVehicleModelById(*/
+  /*ri!id*/
+  /*),*/
+  local!hasAccess: #"_a-0000e067-d58d-8000-9ba2-011c48011c48_288381"(),
+  /*local!vehicles:rule!VIM_GetAllIncentiveVehicles(local!hasAccess),*/
+  local!vehicle: #"_a-0000e067-d58d-8000-9ba2-011c48011c48_301991"(
+    ri!id,
+    local!hasAccess
+  ),
+  /*local!record: rule!V_GetVehicleById(*/
+  /*ri!id*/
+  /*),*/
+  local!toyotaUser: isusermemberofgroup(
+    loggedInUser(),
+    #"_a-0000e067-d58d-8000-9ba2-011c48011c48_282564"
+  ),
+  local!vehicleModel: #"_a-0000e067-d58d-8000-9ba2-011c48011c48_287946"(
+    local!vehicle.model,
+    1
+  ),
+  #"SYSTEM_SYSRULES_dashboardLayout_v1"(
+    contents: {
+      #"SYSTEM_SYSRULES_richTextDisplayField"(
+        value: #"SYSTEM_SYSRULES_richTextItem"(
+          text: proper(
+            local!vehicle.make
+          ) &amp; " " &amp; local!vehicle.model,
+          style: "HEADER_LARGE"
+        ),
+        align: "CENTER"
+      ),
+      #"SYSTEM_SYSRULES_milestoneField"(
+        label: "",
+        steps: {
+          "",
+          ""
+        }
+      ),
+      #"SYSTEM_SYSRULES_columnsLayout"(
+        columns: {
+          #"SYSTEM_SYSRULES_columnLayout"(
+            contents: #"SYSTEM_SYSRULES_imageField_v1"(
+              images: #"SYSTEM_SYSRULES_documentImage"(
+                document: if(
+                  local!vehicle.model = "A8",
+                  #"_a-0000dfd8-6941-8000-9ba2-011c48011c48_189883",
+                  if(
+                    local!vehicle.model = "A4",
+                    #"_a-0000dfd8-6941-8000-9ba2-011c48011c48_206539",
+                    if(
+                      local!vehicle.model = "TT",
+                      #"_a-0000dfd8-6941-8000-9ba2-011c48011c48_206545",
+                      if(
+                        local!vehicle.model = "A3",
+                        #"_a-0000dfd8-6941-8000-9ba2-011c48011c48_206557",
+                        if(
+                          local!vehicle.model = "Beetle",
+                          #"_a-0000dfd8-6941-8000-9ba2-011c48011c48_206563",
+                          if(
+                            local!vehicle.model = "CC",
+                            #"_a-0000dfd8-6941-8000-9ba2-011c48011c48_206569",
+                            if(
+                              local!vehicle.model = "Passat",
+                              #"_a-0000dfd8-6941-8000-9ba2-011c48011c48_206569",
+                              if(
+                                local!vehicle.model = "Touareg",
+                                #"_a-0000e067-d58d-8000-9ba2-011c48011c48_297564",
+                                if(
+                                  local!vehicle.model = "Avalon",
+                                  #"_a-0000e067-d58d-8000-9ba2-011c48011c48_297526",
+                                  if(
+                                    local!vehicle.model = "C-HR",
+                                    #"_a-0000e067-d58d-8000-9ba2-011c48011c48_297520",
+                                    if(
+                                      local!vehicle.model = "Corolla",
+                                      #"_a-0000e067-d58d-8000-9ba2-011c48011c48_286296",
+                                      if(
+                                        local!vehicle.model = "Prius",
+                                        #"_a-0000e067-d58d-8000-9ba2-011c48011c48_286302",
+                                        if(
+                                          local!vehicle.model = "Sequoia",
+                                          #"_a-0000e067-d58d-8000-9ba2-011c48011c48_297544",
+                                          if(
+                                            local!vehicle.model = "Sienna",
+                                            #"_a-0000e067-d58d-8000-9ba2-011c48011c48_297550",
+                                            if(
+                                              local!vehicle.model = "Tacoma",
+                                              #"_a-0000e067-d58d-8000-9ba2-011c48011c48_297538",
+                                              if(
+                                                local!vehicle.model = "Yaris",
+                                                #"_a-0000e067-d58d-8000-9ba2-011c48011c48_297532",
+                                                if(
+                                                  local!vehicle.model = "Edge",
+                                                  #"_a-0000e067-d58d-8000-9ba2-011c48011c48_302131",
+                                                  if(
+                                                    local!vehicle.model = "Fiesta",
+                                                    #"_a-0000e067-d58d-8000-9ba2-011c48011c48_302137",
+                                                    if(
+                                                      local!vehicle.model = "Fusion",
+                                                      #"_a-0000e067-d58d-8000-9ba2-011c48011c48_302149",
+                                                      if(
+                                                        local!vehicle.model = "Focus",
+                                                        #"_a-0000e067-d58d-8000-9ba2-011c48011c48_302143",
+                                                        if(
+                                                          local!vehicle.model = "Mustang",
+                                                          #"_a-0000e067-d58d-8000-9ba2-011c48011c48_302261",
+                                                          if(
+                                                            local!vehicle.model = "F-150",
+                                                            #"_a-0000e067-d58d-8000-9ba2-011c48011c48_302243",
+                                                            if(
+                                                              local!vehicle.model = "Expedition",
+                                                              #"_a-0000e067-d58d-8000-9ba2-011c48011c48_302395",
+                                                              if(
+                                                                local!vehicle.model = "Super Duty",
+                                                                #"_a-0000e067-d58d-8000-9ba2-011c48011c48_302389",
+                                                                #"_a-0000e067-d58d-8000-9ba2-011c48011c48_297538"
+                                                              )
+                                                            )
+                                                          )
+                                                        )
+                                                      )
+                                                    )
+                                                  )
+                                                )
+                                              )
+                                            )
+                                          )
+                                        )
+                                      )
+                                    )
+                                  )
+                                )
+                              )
+                            )
+                          )
+                        )
+                      )
+                    )
+                  )
+                )
+              ),
+              size: "FIT",
+              align: "CENTER"
+            )
+          ),
+          #"SYSTEM_SYSRULES_columnLayout"(
+            contents: {
+              #"SYSTEM_SYSRULES_sideBySideLayout"(
+                items: {
+                  #"SYSTEM_SYSRULES_sideBySideItem"(
+                    item: #"SYSTEM_SYSRULES_imageField_v1"(
+                      images: {
+                        #"SYSTEM_SYSRULES_documentImage"(
+                          document: if(
+                            local!toyotaUser,
+                            #"_a-0000e067-d58d-8000-9ba2-011c48011c48_297444",
+                            #"_a-0000dfd8-6941-8000-9ba2-011c48011c48_191021"
+                          )
+                        )
+                      },
+                      size: "MEDIUM",
+                      align: "CENTER"
+                    )
+                  ),
+                  #"SYSTEM_SYSRULES_sideBySideItem"(
+                    item: #"SYSTEM_SYSRULES_imageField_v1"(
+                      images: {
+                        #"SYSTEM_SYSRULES_documentImage"(
+                          document: if(
+                            local!toyotaUser,
+                            #"_a-0000e067-d58d-8000-9ba2-011c48011c48_297460",
+                            #"_a-0000dfd8-6941-8000-9ba2-011c48011c48_191033"
+                          )
+                        )
+                      },
+                      size: "MEDIUM",
+                      align: "CENTER"
+                    )
+                  ),
+                  #"SYSTEM_SYSRULES_sideBySideItem"(
+                    item: {}
+                  )
+                }
+              ),
+              #"SYSTEM_SYSRULES_sideBySideLayout"(
+                items: {
+                  #"SYSTEM_SYSRULES_sideBySideItem"(
+                    item: #"SYSTEM_SYSRULES_imageField_v1"(
+                      images: {
+                        #"SYSTEM_SYSRULES_documentImage"(
+                          document: if(
+                            local!toyotaUser,
+                            #"_a-0000e067-d58d-8000-9ba2-011c48011c48_297438",
+                            #"_a-0000dfd8-6941-8000-9ba2-011c48011c48_191015"
+                          )
+                        )
+                      },
+                      size: "MEDIUM",
+                      align: "CENTER"
+                    )
+                  ),
+                  #"SYSTEM_SYSRULES_sideBySideItem"(
+                    item: #"SYSTEM_SYSRULES_imageField_v1"(
+                      images: {
+                        #"SYSTEM_SYSRULES_documentImage"(
+                          document: if(
+                            local!toyotaUser,
+                            #"_a-0000e067-d58d-8000-9ba2-011c48011c48_297450",
+                            #"_a-0000dfd8-6941-8000-9ba2-011c48011c48_191027"
+                          )
+                        )
+                      },
+                      size: "MEDIUM",
+                      align: "CENTER"
+                    )
+                  ),
+                  #"SYSTEM_SYSRULES_sideBySideItem"(
+                    item: {}
+                  )
+                }
+              )
+            }
+          )
+        }
+      ),
+      #"SYSTEM_SYSRULES_milestoneField"(
+        label: "",
+        steps: {
+          "",
+          ""
+        }
+      ),
+      #"SYSTEM_SYSRULES_paragraphField"(
+        value: {},
+        readOnly: true
+      ),
+      #"_a-0000dfd8-6941-8000-9ba2-011c48011c48_205365"(
+        local!vehicleModel
+      ),
+      #"SYSTEM_SYSRULES_paragraphField"(
+        value: {},
+        readOnly: true
+      ),
+      with(
+        #"SYSTEM_SYSRULES_boxLayout"(
+          contents: #"SYSTEM_SYSRULES_sectionLayout_v1"(
+            label: "Inventory",
+            contents: {
+              /* This grid is not configured to page or sort */
+              #"SYSTEM_SYSRULES_gridField"(
+                labelPosition: "ABOVE",
+                totalCount: count(
+                  local!vehicleModel
+                ),
+                emptyGridMessage: "Inventory Not Available",
+                columns: {
+                  #"SYSTEM_SYSRULES_gridTextColumn"(
+                    label: "Year",
+                    data: local!vehicleModel.year
+                  ),
+                  #"SYSTEM_SYSRULES_gridTextColumn"(
+                    label: "Make",
+                    data: local!vehicleModel.make
+                  ),
+                  #"SYSTEM_SYSRULES_gridTextColumn"(
+                    label: "Model",
+                    data: local!vehicleModel.model,
+                    links: #"SYSTEM_SYSRULES_forEach"(
+                      items: local!vehicleModel,
+                      expression: #"SYSTEM_SYSRULES_recordLink"(
+                        recordType: #"_a-0000e067-d58d-8000-9ba2-011c48011c48_297373",
+                        identifier: fv!item.id
+                      )
+                    )
+                  ),
+                  #"SYSTEM_SYSRULES_gridTextColumn"(
+                    label: "Trim",
+                    data: local!vehicleModel.trim
+                  ),
+                  #"SYSTEM_SYSRULES_gridTextColumn"(
+                    label: "Vin",
+                    data: local!vehicleModel.vin
+                  ),
+                  #"SYSTEM_SYSRULES_gridTextColumn"(
+                    label: "Engine",
+                    data: local!vehicleModel.engine
+                  )
+                },
+                value: #"SYSTEM_SYSRULES_pagingInfo"(
+                  startIndex: 1,
+                  batchSize: 500
+                ),
+                saveInto: {}
+              )
+            }
+          )
+        )
+      ),
+      #"SYSTEM_SYSRULES_linkField"(
+        links: #"SYSTEM_SYSRULES_dynamicLink"(
+          label: "&lt;&lt; Back",
+          value: 1,
+          saveInto: ri!page
+        )
+      )
+    }
+  )
+)</definition>
+        <namedTypedValue>
+            <name>id</name>
+            <type>
+                <name>int</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>page</name>
+            <type>
+                <name>int</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+        </namedTypedValue>
+        <metadataExpr></metadataExpr>
+        <preferredEditor>interface</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role inherit="true" allowForAll="false" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="administrators">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <typedValue>
+        <type>
+            <name>RuleTestConfig?list</name>
+            <namespace>http://www.appian.com/ae/types/2009</namespace>
+        </type>
+        <value>
+            <el>
+                <a:name/>
+                <a:ruleInputTestConfigs>
+                    <a:value xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xsd:int">100</a:value>
+                    <a:nameRef>id</a:nameRef>
+                    <a:id/>
+                </a:ruleInputTestConfigs>
+                <a:ruleInputTestConfigs>
+                    <a:value xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true" xsi:type="xsd:int"/>
+                    <a:nameRef>page</a:nameRef>
+                    <a:id/>
+                </a:ruleInputTestConfigs>
+                <a:assertions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+            </el>
+        </value>
+    </typedValue>
+    <history>
+        <historyInfo versionUuid="_a-0000dfd8-6941-8000-9ba2-011c48011c48_191062"/>
+        <historyInfo versionUuid="_a-0000dfd8-6941-8000-9ba2-011c48011c48_199999"/>
+        <historyInfo versionUuid="_a-0000e067-d58d-8000-9ba2-011c48011c48_285625"/>
+        <historyInfo versionUuid="_a-0000e044-c81a-8000-9ba2-011c48011c48_129016"/>
+        <historyInfo versionUuid="_a-0000e067-d58d-8000-9ba2-011c48011c48_287993"/>
+        <historyInfo versionUuid="_a-0000e067-d58d-8000-9ba2-011c48011c48_289536"/>
+        <historyInfo versionUuid="_a-0000e067-d58d-8000-9ba2-011c48011c48_303004"/>
+    </history>
+</contentHaul>

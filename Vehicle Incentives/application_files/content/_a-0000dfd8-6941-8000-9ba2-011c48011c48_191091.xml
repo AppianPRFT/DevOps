@@ -1,0 +1,661 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <versionUuid>_a-0000e067-d58d-8000-9ba2-011c48011c48_308750</versionUuid>
+    <rule>
+        <name>VIM_SalePaymentScreen</name>
+        <uuid>_a-0000dfd8-6941-8000-9ba2-011c48011c48_191091</uuid>
+        <description>Payment Screen to Confirm a Sale has met all qualifications of an incentive.</description>
+        <parentUuid>d1151d0a-2a3e-4e80-b3b0-105a99496272</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>load(
+  local!comment,
+  local!selectedLabel,
+  {
+    /*a!buttonArrayLayout(buttons: a!buttonWidget(*/
+    /*label:"Dispute Sale"*/
+    /*)),*/
+    #"SYSTEM_SYSRULES_boxLayout"(
+      contents: #"SYSTEM_SYSRULES_sectionLayout_v1"(
+        contents: {
+          #"SYSTEM_SYSRULES_richTextDisplayField"(
+            value: #"SYSTEM_SYSRULES_richTextItem"(
+              text: "The " &amp; ri!data.year &amp; " " &amp; ri!data.brand &amp; " " &amp; ri!data.model &amp; " " &amp; if(
+                ri!data.bonusPaid = "Paid",
+                #"_a-0000e067-d58d-8000-9ba2-011c48011c48_290329"[3],
+                if(
+                  ri!data.bonusPaid = "Yes",
+                  #"_a-0000e067-d58d-8000-9ba2-011c48011c48_290329"[1],
+                  #"_a-0000e067-d58d-8000-9ba2-011c48011c48_290329"[2]
+                )
+              ),
+              style: "HEADER_LARGE"
+            ),
+            align: "CENTER"
+          ),
+          /*a!richTextDisplayField(*/
+          /*align: "CENTER",*/
+          /*value: a!richTextItem(*/
+          /*text: "Review the following Sale",*/
+          /*style: "HEADER_MEDIUM"*/
+          /*)*/
+          /*),*/
+          #"SYSTEM_SYSRULES_paragraphField"(
+            value: {},
+            readOnly: true
+          ),
+          #"SYSTEM_SYSRULES_columnsLayout"(
+            columns: {
+              #"SYSTEM_SYSRULES_columnLayout"(
+                contents: {
+                  #"SYSTEM_SYSRULES_textField"(
+                    label: "Sale",
+                    labelPosition: "ADJACENT",
+                    value: ri!data.title,
+                    readOnly: true
+                  ),
+                  /*a!textField(*/
+                  /*label: "Loyalty Discount",*/
+                  /*value: ri!data.loyaltyDiscount,*/
+                  /*readOnly: true,*/
+                  /*labelPosition: "ADJACENT"*/
+                  /*),*/
+                  #"SYSTEM_SYSRULES_textField"(
+                    label: "Brand",
+                    labelPosition: "ADJACENT",
+                    value: ri!data.brand,
+                    readOnly: if(
+                      proper(
+                        ri!data.brand
+                      ) = proper(
+                        ri!incentive.brand
+                      ),
+                      true,
+                      false
+                    ),
+                    validations: if(
+                      proper(
+                        ri!data.brand
+                      ) = proper(
+                        ri!incentive.brand
+                      ),
+                      {},
+                      "Brand Invalid"
+                    )
+                  ),
+                  #"SYSTEM_SYSRULES_textField"(
+                    label: "Country Sold",
+                    labelPosition: "ADJACENT",
+                    value: ri!data.country,
+                    readOnly: if(
+                      or(
+                        ri!data.country = ri!incentive.country,
+                        and(
+                          ri!data.country = "United States",
+                          ri!incentive.country = "USA"
+                        )
+                      ),
+                      true,
+                      false
+                    ),
+                    validations: if(
+                      or(
+                        ri!data.country = ri!incentive.country,
+                        and(
+                          ri!data.country = "United States",
+                          ri!incentive.country = "USA"
+                        )
+                      ),
+                      {},
+                      "Country Invalid"
+                    )
+                  ),
+                  #"SYSTEM_SYSRULES_textField"(
+                    label: "Bonus Amount",
+                    labelPosition: "ADJACENT",
+                    value: ri!data.bonusAmount,
+                    readOnly: true
+                  ),
+                  /*a!textField(*/
+                  /*label: "Bonus Description",*/
+                  /*value: ri!data.bonusDescription,*/
+                  /*readOnly: true,*/
+                  /*labelPosition: "ADJACENT"*/
+                  /*),*/
+                  #"SYSTEM_SYSRULES_textField"(
+                    label: "APR Rate",
+                    labelPosition: "ADJACENT",
+                    value: ri!data.aprRate,
+                    readOnly: true
+                  ),
+                  #"SYSTEM_SYSRULES_textField"(
+                    label: "APR Term",
+                    labelPosition: "ADJACENT",
+                    value: ri!data.aprTerm,
+                    readOnly: true
+                  ),
+                  #"SYSTEM_SYSRULES_textField"(
+                    label: "Award Type",
+                    labelPosition: "ADJACENT",
+                    value: ri!data.awardType,
+                    saveInto: ri!data.awardType,
+                    readOnly: if(
+                      ri!incentive.awardType = ri!data.awardType,
+                      true,
+                      false
+                    ),
+                    validations: if(
+                      ri!incentive.awardType = ri!data.awardType,
+                      "",
+                      "Award Type Invalid"
+                    )
+                  )/*a!textField(*/
+                  /*label: "Lease Price Per Month",*/
+                  /*value: ri!data.leasePricePerMonth,*/
+                  /*readOnly: true,*/
+                  /*labelPosition: "ADJACENT"*/
+                  /*),*/
+                  /*a!textField(*/
+                  /*label: "Lease Term",*/
+                  /*value: ri!data.leaseTerm,*/
+                  /*readOnly: true,*/
+                  /*labelPosition: "ADJACENT"*/
+                  /*),*/
+                  /*a!textField(*/
+                  /*label: "Monthly Payments",*/
+                  /*value: ri!data.monthlyPayments,*/
+                  /*readOnly: true,*/
+                  /*labelPosition: "ADJACENT"/*,*/
+                  /*validations: if(*/
+                  /*ri!data.monthlyPayments = ri!incentive.monthlyPayments,*/
+                  /*{},*/
+                  /*"Monthly Payments Do Not Qualify"*/
+                  /*)*/
+                  /*),*/
+                  /*a!textField(*/
+                  /*label: "Due At Signing",*/
+                  /*value: ri!data.dueAtSigning,*/
+                  /*readOnly: true,*/
+                  /*labelPosition: "ADJACENT"*/
+                  /*)*/
+                  
+                }
+              ),
+              #"SYSTEM_SYSRULES_columnLayout"(
+                contents: {
+                  /*a!textField(*/
+                  /*label: "Exclusions",*/
+                  /*value: ri!data.addExclusions,*/
+                  /*readOnly: true,*/
+                  /*labelPosition: "ADJACENT"*/
+                  /*),*/
+                  #"SYSTEM_SYSRULES_textField"(
+                    label: "Model MSRP",
+                    labelPosition: "ADJACENT",
+                    value: ri!data.modelMsrp,
+                    readOnly: true
+                  ),
+                  /*a!textField(*/
+                  /*label: "Dealer Monthly Contribution",*/
+                  /*value: ri!data.dealerMonthlyContribution,*/
+                  /*readOnly: true,*/
+                  /*labelPosition: "ADJACENT"*/
+                  /*),*/
+                  /*a!textField(*/
+                  /*label: "Purchase at Lease End",*/
+                  /*value: ri!data.purchaseAtLeaseend,*/
+                  /*readOnly: true,*/
+                  /*labelPosition: "ADJACENT"*/
+                  /*),*/
+                  #"SYSTEM_SYSRULES_textField"(
+                    label: "Sold By",
+                    labelPosition: "ADJACENT",
+                    value: ri!data.soldBy,
+                    readOnly: true
+                  ),
+                  #"SYSTEM_SYSRULES_textField"(
+                    label: "Sale Date",
+                    /*if(*/
+                    /*and(*/
+                    /*and(*/
+                    /*todate(*/
+                    /*ri!incentive.offerStartDate2*/
+                    /*) &lt; ri!data.soldOn*/
+                    /*),*/
+                    /*and(*/
+                    /*todate(*/
+                    /*ri!incentive.offerEndDate2*/
+                    /*) &gt; ri!data.soldOn*/
+                    /*)*/
+                    /*),*/
+                    /*true,*/
+                    /*false*/
+                    /*),*/
+                    labelPosition: "ADJACENT",
+                    value: ri!data.soldOn,
+                    readOnly: true
+                  ),
+                  #"SYSTEM_SYSRULES_sideBySideLayout"(
+                    items: {
+                      #"SYSTEM_SYSRULES_sideBySideItem"(
+                        item: #"SYSTEM_SYSRULES_textField"(
+                          label: "Vehicle Model",
+                          labelPosition: "ADJACENT",
+                          value: if(
+                            isnull(
+                              ri!data.vehicleId
+                            ),
+                            ri!data.model,
+                            #"_a-0000dfd8-6941-8000-9ba2-011c48011c48_201605"(
+                              ri!data.vehicleId
+                            ).model
+                          ),
+                          readOnly: true,
+                          validations: if(
+                            isnull(
+                              ri!data.vehicleId
+                            ),
+                            "",
+                            if(
+                              or(
+                                #"SYSTEM_SYSRULES_forEach"(
+                                  ri!incentive.incentiveVehicles,
+                                  if(
+                                    fv!item.model = #"_a-0000dfd8-6941-8000-9ba2-011c48011c48_201605"(
+                                      ri!data.vehicleId
+                                    ).model,
+                                    true,
+                                    false
+                                  )
+                                )
+                              ),
+                              {},
+                              "Vehicle Model Invalid"
+                            )
+                          )
+                        )
+                      ),
+                      #"SYSTEM_SYSRULES_sideBySideItem"(
+                        item: #"SYSTEM_SYSRULES_textField"(
+                          label: "Year",
+                          labelPosition: "ADJACENT",
+                          value: if(
+                            isnull(
+                              ri!data.vehicleId
+                            ),
+                            ri!data.year,
+                            #"_a-0000dfd8-6941-8000-9ba2-011c48011c48_201605"(
+                              ri!data.vehicleId
+                            ).year
+                          ),
+                          readOnly: true,
+                          validations: if(
+                            isnull(
+                              ri!data.vehicleId
+                            ),
+                            "",
+                            if(
+                              or(
+                                #"SYSTEM_SYSRULES_forEach"(
+                                  ri!incentive.incentiveVehicles,
+                                  if(
+                                    fv!item.year = #"_a-0000dfd8-6941-8000-9ba2-011c48011c48_201605"(
+                                      ri!data.vehicleId
+                                    ).year,
+                                    true,
+                                    false
+                                  )
+                                )
+                              ),
+                              {},
+                              "Vehicle Year Invalid"
+                            )
+                          )
+                        )
+                      )
+                    },
+                    spacing: "DENSE"
+                  ),
+                  if(
+                    and(
+                      isnull(
+                        ri!data.vehicleId
+                      )isnull(
+                        ri!data.model
+                      )
+                    ),
+                    load(
+                      local!vehicles: #"_a-0000dfd8-6941-8000-9ba2-011c48011c48_187599"(),
+                      #"SYSTEM_SYSRULES_pickerFieldCustom"(
+                        label: "Select New Vehicle",
+                        labelPosition: "ADJACENT",
+                        maxSelections: 1,
+                        suggestFunction: #"SYSTEM_SYSRULES_dataSubset"(
+                          startIndex: 1,
+                          batchSize: 15,
+                          sort: #"SYSTEM_SYSRULES_sortInfo"(
+                            field: "model"
+                          ),
+                          totalCount: count(
+                            local!vehicles
+                          ),
+                          data: #"SYSTEM_SYSRULES_forEach"(
+                            local!vehicles,
+                            fv!item.make &amp; " " &amp; fv!item.model &amp; " " &amp; fv!item.vin
+                          ),
+                          identifiers: #"SYSTEM_SYSRULES_forEach"(
+                            local!vehicles,
+                            fv!item.id
+                          )
+                        ),
+                        selectedLabels: if(
+                          isnull(
+                            ri!data.vehicleId
+                          ),
+                          {},
+                          #"_a-0000dfd8-6941-8000-9ba2-011c48011c48_201605"(
+                            ri!data.vehicleId
+                          ).make &amp; " " &amp; #"_a-0000dfd8-6941-8000-9ba2-011c48011c48_201605"(
+                            ri!data.vehicleId
+                          ).model &amp; " " &amp; #"_a-0000dfd8-6941-8000-9ba2-011c48011c48_201605"(
+                            ri!data.vehicleId
+                          ).vin
+                        ),
+                        value: if(
+                          isnull(
+                            ri!data.vehicleId
+                          ),
+                          {},
+                          ri!data.vehicleId
+                        ),
+                        saveInto: {
+                          ri!data.vehicleId,
+                          ri!data.vehicle
+                        },
+                        disabled: if(
+                          isnull(
+                            ri!data.vehicleId
+                          ),
+                          false,
+                          true
+                        )
+                      )
+                    ),
+                    if(
+                      if(
+                        or(
+                          #"SYSTEM_SYSRULES_forEach"(
+                            ri!incentive.incentiveVehicles,
+                            if(
+                              fv!item.model = if(
+                                isnull(
+                                  ri!data.vehicleId
+                                ),
+                                ri!data.model,
+                                #"_a-0000dfd8-6941-8000-9ba2-011c48011c48_201605"(
+                                  ri!data.vehicleId
+                                ).model
+                              ),
+                              true,
+                              false
+                            )
+                          )
+                        ),
+                        false,
+                        true
+                      ),
+                      load(
+                        local!vehicles: #"_a-0000dfd8-6941-8000-9ba2-011c48011c48_187599"(),
+                        #"SYSTEM_SYSRULES_pickerFieldCustom"(
+                          label: "Select New Vehicle",
+                          labelPosition: "ADJACENT",
+                          maxSelections: 1,
+                          suggestFunction: #"SYSTEM_SYSRULES_dataSubset"(
+                            startIndex: 1,
+                            batchSize: 15,
+                            sort: #"SYSTEM_SYSRULES_sortInfo"(
+                              field: "model"
+                            ),
+                            totalCount: count(
+                              local!vehicles
+                            ),
+                            data: #"SYSTEM_SYSRULES_forEach"(
+                              local!vehicles,
+                              fv!item.make &amp; " " &amp; fv!item.model &amp; " " &amp; fv!item.vin
+                            ),
+                            identifiers: #"SYSTEM_SYSRULES_forEach"(
+                              local!vehicles,
+                              fv!item.id
+                            )
+                          ),
+                          selectedLabels: #"_a-0000dfd8-6941-8000-9ba2-011c48011c48_201605"(
+                            ri!data.vehicleId
+                          ).make &amp; " " &amp; #"_a-0000dfd8-6941-8000-9ba2-011c48011c48_201605"(
+                            ri!data.vehicleId
+                          ).model &amp; " " &amp; #"_a-0000dfd8-6941-8000-9ba2-011c48011c48_201605"(
+                            ri!data.vehicleId
+                          ).vin,
+                          value: ri!data.vehicleId,
+                          saveInto: {
+                            ri!data.vehicleId,
+                            ri!data.vehicle
+                          },
+                          disabled: if(
+                            or(
+                              #"SYSTEM_SYSRULES_forEach"(
+                                ri!incentive.incentiveVehicles,
+                                if(
+                                  fv!item.model = if(
+                                    isnull(
+                                      ri!data.vehicleId
+                                    ),
+                                    ri!data.model,
+                                    #"_a-0000dfd8-6941-8000-9ba2-011c48011c48_201605"(
+                                      ri!data.vehicleId
+                                    ).model
+                                  ),
+                                  true,
+                                  false
+                                )
+                              )
+                            ),
+                            true,
+                            false
+                          )
+                        )
+                      ),
+                      {}
+                    )
+                  ),
+                  /*a!textField(*/
+                  /*label: "Additional Details",*/
+                  /*value: ri!data.details,*/
+                  /*readOnly: true,*/
+                  /*labelPosition: "ADJACENT"*/
+                  /*),*/
+                  #"SYSTEM_SYSRULES_textField"(
+                    label: "Pre-Owned",
+                    labelPosition: "ADJACENT",
+                    value: "No",
+                    readOnly: true
+                  ),
+                  #"SYSTEM_SYSRULES_textField"(
+                    label: "Location Sold",
+                    labelPosition: "ADJACENT",
+                    value: #"_a-0000dfd8-6941-8000-9ba2-011c48011c48_186635"(
+                      ri!data.dealershipId
+                    ).dealership,
+                    readOnly: true
+                  )/*,*/
+                  /*a!textField(*/
+                  /*label: "Coupon Used",*/
+                  /*value: ri!data.couponUsed,*/
+                  /*readOnly: true,*/
+                  /*labelPosition: "ADJACENT"*/
+                  /*),*/
+                  /*a!textField(*/
+                  /*label: "Coupon URL",*/
+                  /*value: ri!data.couponUrl,*/
+                  /*readOnly: true,*/
+                  /*labelPosition: "ADJACENT"*/
+                  /*)*/
+                  
+                }
+              )
+            }
+          )
+        },
+        /*label: ri!data.title &amp; " Sale Details",*/
+        isCollapsible: false
+      ),
+      style: "ERROR"
+    ),
+    #"SYSTEM_SYSRULES_paragraphField"(
+      value: {},
+      readOnly: true
+    ),
+    #"SYSTEM_SYSRULES_boxLayout"(
+      label: "",
+      contents: {
+        /*a!textField(value:a!fromJson(*/
+        /*rule!VIM_DecodeVin(*/
+        /*cast(*/
+        /*1,*/
+        /*rule!VIM_GetVehicleById(ri!data.vehicleId).year*/
+        /*),*/
+        /*ri!data.vin*/
+        /*).result.body*/
+        /*).Results[2].ValueId),*/
+        #"SYSTEM_SYSRULES_richTextDisplayField"(
+          label: "Error Code",
+          value: #"SYSTEM_SYSRULES_richTextItem"(
+            text: ri!data.rejectCode &amp; " - " &amp; if(
+              cast(
+                1,
+                ri!data.rejectCode
+              ) &lt;&gt; 0,
+              index(
+                #"_a-0000e067-d58d-8000-9ba2-011c48011c48_293716",
+                ri!data.rejectCode
+              ),
+              ri!data.rejectCode
+            ),
+            style: "NEGATIVE"
+          ),
+          align: "LEFT"
+        ),
+        #"SYSTEM_SYSRULES_paragraphField"(
+          label: "Comment",
+          value: ri!data.comment,
+          saveInto: ri!data.comment,
+          readOnly: ri!readOnly
+        )
+      }
+    )
+  }
+)</definition>
+        <namedTypedValue>
+            <name>data</name>
+            <type>
+                <name>VIM_SalesData</name>
+                <namespace>urn:com:appian:types:VIM</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>incentive</name>
+            <type>
+                <name>VIM_Incentive</name>
+                <namespace>urn:com:appian:types:VIM</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>paymentDetails</name>
+            <type>
+                <name>VIM_SalePaymentDetails</name>
+                <namespace>urn:com:appian:types</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>readOnly</name>
+            <type>
+                <name>boolean</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+        </namedTypedValue>
+        <metadataExpr></metadataExpr>
+        <preferredEditor>interface</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role inherit="true" allowForAll="false" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="administrators">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <typedValue>
+        <type>
+            <name>RuleTestConfig?list</name>
+            <namespace>http://www.appian.com/ae/types/2009</namespace>
+        </type>
+        <value>
+            <el>
+                <a:name/>
+                <a:ruleInputTestConfigs>
+                    <a:value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="a:Expression">#"_a-0000e067-d58d-8000-9ba2-011c48011c48_302834"(26)</a:value>
+                    <a:nameRef>data</a:nameRef>
+                    <a:id/>
+                </a:ruleInputTestConfigs>
+                <a:ruleInputTestConfigs>
+                    <a:value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="a:Expression">#"_a-0000dfd8-6941-8000-9ba2-011c48011c48_200675"()[1]</a:value>
+                    <a:nameRef>incentive</a:nameRef>
+                    <a:id/>
+                </a:ruleInputTestConfigs>
+                <a:ruleInputTestConfigs>
+                    <a:value xmlns:n1="urn:com:appian:types" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true" xsi:type="n1:VIM_SalePaymentDetails"/>
+                    <a:nameRef>paymentDetails</a:nameRef>
+                    <a:id/>
+                </a:ruleInputTestConfigs>
+                <a:ruleInputTestConfigs>
+                    <a:value xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xsd:boolean">false</a:value>
+                    <a:nameRef>readOnly</a:nameRef>
+                    <a:id/>
+                </a:ruleInputTestConfigs>
+                <a:assertions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+            </el>
+        </value>
+    </typedValue>
+    <history>
+        <historyInfo versionUuid="_a-0000dfd8-6941-8000-9ba2-011c48011c48_194208"/>
+        <historyInfo versionUuid="_a-0000e067-d58d-8000-9ba2-011c48011c48_285308"/>
+        <historyInfo versionUuid="_a-0000e044-c81a-8000-9ba2-011c48011c48_128782"/>
+        <historyInfo versionUuid="_a-0000e067-d58d-8000-9ba2-011c48011c48_308395"/>
+        <historyInfo versionUuid="_a-0000e067-d58d-8000-9ba2-011c48011c48_308750"/>
+    </history>
+</contentHaul>

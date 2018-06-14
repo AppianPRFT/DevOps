@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <versionUuid>_a-0000e067-d58d-8000-9ba2-011c48011c48_282942</versionUuid>
+    <outboundIntegration>
+        <name>VehicleIntegration</name>
+        <uuid>b2b6d248-28de-4bc1-ac12-391b04330ccf</uuid>
+        <description>Integration test or vehicle data access</description>
+        <parentUuid>d1151d0a-2a3e-4e80-b3b0-105a99496272</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition></definition>
+        <namedTypedValue>
+            <name>modelyear</name>
+            <type>
+                <name>int</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>make</name>
+            <type>
+                <name>string</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+            <value/>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>model</name>
+            <type>
+                <name>string</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+            <value/>
+        </namedTypedValue>
+        <metadataExpr></metadataExpr>
+        <preferredEditor>legacy</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+        <sharedConfigParameters>
+            <a:Dictionary xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                <url xsi:type="xsd:string">https://one.nhtsa.gov/webapi/api/Recalls/vehicle</url>
+                <authType xsi:type="xsd:string">None</authType>
+                <authDetails xsi:type="xsd:string"/>
+            </a:Dictionary>
+        </sharedConfigParameters>
+        <configParameters>
+            <a:Dictionary xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                <contentType xsi:type="xsd:string"/>
+                <method xsi:type="xsd:string">GET</method>
+                <headers xsi:type="a:NameValue?list"/>
+                <parameters xsi:type="a:NameValue?list">
+                    <item>
+                        <a:name>modelyear</a:name>
+                        <a:value xsi:type="a:Expression">ri!modelyear</a:value>
+                    </item>
+                    <item>
+                        <a:name>make</a:name>
+                        <a:value xsi:type="a:Expression">ri!make</a:value>
+                    </item>
+                    <item>
+                        <a:name>model</a:name>
+                        <a:value xsi:type="a:Expression">ri!model</a:value>
+                    </item>
+                </parameters>
+                <body xsi:type="xsd:string"/>
+            </a:Dictionary>
+        </configParameters>
+        <isWrite>false</isWrite>
+        <integrationType>system.http</integrationType>
+        <connectedSystemUuid></connectedSystemUuid>
+        <isConnectedSystemConnectionOptionSelected>false</isConnectedSystemConnectionOptionSelected>
+        <integrationOutputs>
+            <a:Dictionary xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                <outputs xsi:type="a:IntegrationOutput?list"/>
+            </a:Dictionary>
+        </integrationOutputs>
+    </outboundIntegration>
+    <roleMap public="true">
+        <role inherit="true" allowForAll="false" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="administrators">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <history>
+        <historyInfo versionUuid="_a-0000e067-d58d-8000-9ba2-011c48011c48_282942"/>
+    </history>
+</contentHaul>

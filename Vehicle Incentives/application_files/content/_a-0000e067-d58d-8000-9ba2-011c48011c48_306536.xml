@@ -1,0 +1,412 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <versionUuid>_a-0000e067-d58d-8000-9ba2-011c48011c48_306682</versionUuid>
+    <rule>
+        <name>VIM_IncentiveReportChart</name>
+        <uuid>_a-0000e067-d58d-8000-9ba2-011c48011c48_306536</uuid>
+        <description>Interface that reports on the incentive sales progress</description>
+        <parentUuid>d1151d0a-2a3e-4e80-b3b0-105a99496272</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>load(
+  local!pagingInfo: #"SYSTEM_SYSRULES_pagingInfo"(
+    startIndex: 1,
+    batchSize: 10,
+    sort: #"SYSTEM_SYSRULES_sortInfo"(
+      field: "offerStartDate2",
+      ascending: true
+    )
+  ),
+  local!pagingInfo2: #"SYSTEM_SYSRULES_pagingInfo"(
+    startIndex: 1,
+    batchSize: 20,
+    sort: #"SYSTEM_SYSRULES_sortInfo"(
+      field: "sales",
+      ascending: false
+    )
+  ),
+  local!threshold: {
+    10
+  },
+  local!selectedVehicleModel,
+  local!incentiveIndex,
+  local!selectedIncentive,
+  local!page: 2,
+  local!incentives: #"SYSTEM_SYSRULES_queryEntity"(
+    entity: #"e7237020-544a-4d98-8261-2408aa55562c_MAINDSECONSTANT",
+    query: #"SYSTEM_SYSRULES_query"(
+      selection: #"SYSTEM_SYSRULES_querySelection"(
+        columns: {
+          #"SYSTEM_SYSRULES_queryColumn"(
+            field: "id"
+          ),
+          #"SYSTEM_SYSRULES_queryColumn"(
+            field: "title"
+          ),
+          #"SYSTEM_SYSRULES_queryColumn"(
+            field: "status"
+          ),
+          #"SYSTEM_SYSRULES_queryColumn"(
+            field: "brand"
+          ),
+          #"SYSTEM_SYSRULES_queryColumn"(
+            field: "offerStartDate2"
+          ),
+          #"SYSTEM_SYSRULES_queryColumn"(
+            field: "offerEndDate2"
+          ),
+          #"SYSTEM_SYSRULES_queryColumn"(
+            field: "incentiveVehicles"
+          )
+        }
+      ),
+      pagingInfo: local!pagingInfo,
+      filter: #"SYSTEM_SYSRULES_queryFilter"(
+        field: "hasAccess",
+        operator: "includes",
+        value: #"_a-0000e067-d58d-8000-9ba2-011c48011c48_288381"()
+      )
+    )
+  ),
+  with(
+    local!sales: #"_a-0000dfd8-6941-8000-9ba2-011c48011c48_188212"(
+      ri!incentiveId
+    ),
+    local!viewDataQuery: #"SYSTEM_SYSRULES_queryEntity"(
+      entity: #"_a-0000e067-d58d-8000-9ba2-011c48011c48_303431",
+      query: #"SYSTEM_SYSRULES_query"(
+        selection: #"SYSTEM_SYSRULES_querySelection"(
+          columns: {
+            #"SYSTEM_SYSRULES_queryColumn"(
+              field: "id"
+            ),
+            #"SYSTEM_SYSRULES_queryColumn"(
+              field: "incentiveid"
+            ),
+            #"SYSTEM_SYSRULES_queryColumn"(
+              field: "make"
+            ),
+            #"SYSTEM_SYSRULES_queryColumn"(
+              field: "model"
+            ),
+            #"SYSTEM_SYSRULES_queryColumn"(
+              field: "year"
+            ),
+            #"SYSTEM_SYSRULES_queryColumn"(
+              field: "salestarget"
+            ),
+            #"SYSTEM_SYSRULES_queryColumn"(
+              field: "sales"
+            )
+          }
+        ),
+        pagingInfo: local!pagingInfo2,
+        filter: #"SYSTEM_SYSRULES_queryFilter"(
+          field: "incentiveid",
+          operator: "=",
+          value: ri!IncentiveId
+        )
+      )
+    ),
+    local!totalSalesTarget: sum(
+      #"SYSTEM_SYSRULES_forEach"(
+        local!viewDataQuery.data,
+        fv!item.salestarget
+      )
+    ),
+    local!averageSalesTarget: local!totalSalesTarget / count(
+      local!viewDataQuery.data
+    ),
+    local!passData: #"SYSTEM_SYSRULES_forEach"(
+      local!viewDataQuery.data,
+      if(
+        cast(
+          1,
+          fv!item.sales
+        ) &gt; cast(
+          1,
+          fv!item.salestarget
+        ),
+        fv!item.sales,
+        0
+      )
+    ),
+    local!usedData: #"SYSTEM_SYSRULES_forEach"(
+      local!viewDataQuery.data,
+      if(
+        true,
+        fv!item.sales,
+        0
+      )
+    ),
+    local!failData: #"SYSTEM_SYSRULES_forEach"(
+      local!viewDataQuery.data,
+      if(
+        and(
+          cast(
+            1,
+            fv!item.sales
+          ) &lt; cast(
+            1,
+            fv!item.salestarget
+          ),
+          not(
+            cast(
+              1,
+              fv!item.salestarget
+            ) - cast(
+              1,
+              fv!item.sales
+            ) &lt; local!threshold
+          )
+        ),
+        fv!item.sales,
+        0
+      )
+    ),
+    local!ToBeDeterminedData: #"SYSTEM_SYSRULES_forEach"(
+      local!viewDataQuery.data,
+      if(
+        cast(
+          1,
+          fv!item.salestarget
+        ) - cast(
+          1,
+          fv!item.sales
+        ) &lt; local!threshold,
+        fv!item.sales,
+        0
+      )
+    ),
+    if(
+      local!page = 1,
+      {
+        #"SYSTEM_SYSRULES_gridField"(
+          columns: {
+            #"SYSTEM_SYSRULES_gridTextColumn"(
+              label: "Program name",
+              data: local!incentives.data.title,
+              links: #"SYSTEM_SYSRULES_forEach"(
+                local!incentives.data,
+                #"SYSTEM_SYSRULES_dynamicLink"(
+                  value: fv!item.id,
+                  saveInto: {
+                    local!selectedIncentive,
+                    a!save(
+                      local!page,
+                      2
+                    ),
+                    a!save(
+                      local!incentiveIndex,
+                      fv!index
+                    )
+                  }
+                )
+              )
+            ),
+            #"SYSTEM_SYSRULES_gridTextColumn"(
+              label: "Status",
+              data: local!incentives.data.title
+            ),
+            #"SYSTEM_SYSRULES_gridTextColumn"(
+              label: "Start Date",
+              data: local!incentives.data.offerStartDate2
+            ),
+            #"SYSTEM_SYSRULES_gridTextColumn"(
+              label: "End Date",
+              data: local!incentives.data.offerEndDate2
+            ),
+            /*a!gridTextColumn(*/
+            /*label: "Award Range",*/
+            /*data: a!forEach(*/
+            /*local!incentives.data,*/
+            /*"$" &amp; min(*/
+            /*tointeger(*/
+            /*fv!item.incentiveVehicles.awards*/
+            /*)*/
+            /*) &amp; " - " &amp; "$" &amp; max(*/
+            /*tointeger(*/
+            /*fv!item.incentiveVehicles.awards*/
+            /*)*/
+            /*)*/
+            /*)*/
+            /*)*/
+            
+          },
+          totalCount: local!incentives.totalCount,
+          value: local!pagingInfo
+        )
+      },
+      {
+        /*a!textField(local!viewDataQuery.data),a!textField(local!usedData),*/
+        #"SYSTEM_SYSRULES_columnChartField"(
+          label: "Incentive Sales by Vehicles",
+          instructions: "Number of vehicles sold per month associated to the incentive.",
+          helptooltip: "",
+          categories: #"SYSTEM_SYSRULES_forEach"(
+            local!viewDataQuery.data,
+            proper(
+              fv!item.make
+            ) &amp; " " &amp; fv!item.model &amp; " " &amp; fv!item.year
+          ),
+          series: {
+            #"SYSTEM_SYSRULES_chartSeries"(
+              label: "Total Sales",
+              data: local!usedData,
+              links: #"SYSTEM_SYSRULES_forEach"(
+                local!viewDataQuery.data,
+                #"SYSTEM_SYSRULES_dynamicLink"(
+                  value: fv!item.model,
+                  saveInto: local!selectedVehicleModel
+                )
+              ),
+              showWhen: true,
+              color: "BLUEGRAY"
+            ),
+            #"SYSTEM_SYSRULES_chartSeries"(
+              label: "Sales Target: ",
+              data: #"SYSTEM_SYSRULES_forEach"(
+                local!usedData,
+                null
+              ),
+              links: #"SYSTEM_SYSRULES_forEach"(
+                local!viewDataQuery.data,
+                #"SYSTEM_SYSRULES_dynamicLink"(
+                  value: fv!item.model,
+                  saveInto: local!selectedVehicleModel
+                )
+              ),
+              showWhen: true,
+              color: "BLUEGRAY"
+            )/*a!chartSeries(*/
+            /*label: "Total Sales",*/
+            /*data: local!failData,*/
+            /*showWhen: if(*/
+            /*isnull(*/
+            /*local!failData*/
+            /*),{},*/
+            /*if(*/
+            /*or(*/
+            /*a!forEach(*/
+            /*local!failData,*/
+            /*if(*/
+            /*fv!item &gt; 0,*/
+            /*true,*/
+            /*false*/
+            /*)*/
+            /*)*/
+            /*),*/
+            /*true,*/
+            /*false*/
+            /*)*/
+            /*),*/
+            /*color: "Red"*/
+            /*),*/
+            /*a!chartSeries(*/
+            /*label: "Total Sales",*/
+            /*data: local!ToBeDeterminedData,*/
+            /*showWhen: if(*/
+            /*isnull(*/
+            /*local!ToBeDeterminedData*/
+            /*),{},*/
+            /*if(*/
+            /*or(*/
+            /*a!forEach(*/
+            /*local!ToBeDeterminedData,*/
+            /*if(*/
+            /*cast(1,fv!item) &gt; 0,*/
+            /*true,*/
+            /*false*/
+            /*)*/
+            /*)*/
+            /*),*/
+            /*true,*/
+            /*false*/
+            /*)*/
+            /*),*/
+            /*color: "BLUEGRAY"*/
+            /*)*/
+            
+          },
+          yAxisTitle: "Sales",
+          
+          xAxisTitle: "Vehicles",
+          stacking: "NORMAL",
+          referenceLines: #"SYSTEM_SYSRULES_chartReferenceLine"(
+            label: "Average Sales Target",
+            value: local!averageSalesTarget
+          ),
+          showLegend: false,
+          showTooltips: true
+        )
+      }
+    )
+  )
+)</definition>
+        <namedTypedValue>
+            <name>incentiveId</name>
+            <type>
+                <name>int</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+        </namedTypedValue>
+        <metadataExpr></metadataExpr>
+        <preferredEditor>interface</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role inherit="true" allowForAll="false" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="administrators">
+            <users>
+                <userUuid>samuel.bruns@perficient.com</userUuid>
+            </users>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <typedValue>
+        <type>
+            <name>RuleTestConfig?list</name>
+            <namespace>http://www.appian.com/ae/types/2009</namespace>
+        </type>
+        <value>
+            <el>
+                <a:name/>
+                <a:ruleInputTestConfigs>
+                    <a:value xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xsd:int">1</a:value>
+                    <a:nameRef>incentiveId</a:nameRef>
+                    <a:id/>
+                </a:ruleInputTestConfigs>
+                <a:assertions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+            </el>
+        </value>
+    </typedValue>
+    <history>
+        <historyInfo versionUuid="_a-0000e067-d58d-8000-9ba2-011c48011c48_306682"/>
+    </history>
+</contentHaul>

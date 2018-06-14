@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <versionUuid>_a-0000e067-d58d-8000-9ba2-011c48011c48_298405</versionUuid>
+    <rule>
+        <name>VIM_SendTask</name>
+        <uuid>_a-0000dfd8-6941-8000-9ba2-011c48011c48_185038</uuid>
+        <description>Form interface used to send an ad-hoc task from a Incentive record [Tasking]</description>
+        <parentUuid>d1151d0a-2a3e-4e80-b3b0-105a99496272</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>= #"SYSTEM_SYSRULES_formLayout_v1"(
+  label: if(
+    isnull(
+      ri!recordId
+    ),
+    "Send Task",
+    "Send Task from " &amp; #"4028f35e-5814-4e3e-ab7f-f077d3d17e12_GETONERECORD"(
+      ri!recordId
+    ).title
+  ),
+  /*instructions: "Details of this record will be embedded in the task form",*/
+  contents: #"_a-0000dfd8-6941-8000-9ba2-011c48011c48_185042"(
+    assignee: ri!assignee,
+    taskDetails: ri!taskDetails,
+    deadline: ri!deadline
+  ),
+  buttons: #"SYSTEM_SYSRULES_ButtonLayout"(
+    primaryButtons: {
+      #"SYSTEM_SYSRULES_ButtonWidgetSubmit"(
+        label: "Send Task",
+        style: "PRIMARY",
+        confirmMessage: if(
+          or(
+            isnull(
+              ri!assignee
+            ),
+            isusermemberofgroup(
+              ri!assignee,
+              #"_a-0000dfd8-6941-8000-9ba2-011c48011c48_184902"
+            )
+          ),
+          "",
+          "Are you sure you want to send a task to this user? They will receive access to all records in the Vehicle Incentives Management application."
+        ),
+        saveInto: {
+          a!save(
+            ri!taskedOn,
+            now()
+          ),
+          a!save(
+            ri!taskFrom,
+            loggedinuser()
+          )
+        }
+      )
+    },
+    secondaryButtons: {
+      #"SYSTEM_SYSRULES_ButtonWidgetSubmit"(
+        label: "Cancel",
+        style: "NORMAL",
+        value: true,
+        saveInto: ri!cancel,
+        skipValidation: true
+      )
+    }
+  )
+)</definition>
+        <namedTypedValue>
+            <name>assignee</name>
+            <type>
+                <name>User</name>
+                <namespace>http://www.appian.com/ae/types/2009</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>taskDetails</name>
+            <type>
+                <name>string</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+            <value/>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>taskedOn</name>
+            <type>
+                <name>dateTime</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>taskFrom</name>
+            <type>
+                <name>User</name>
+                <namespace>http://www.appian.com/ae/types/2009</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>recordId</name>
+            <type>
+                <name>int</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>cancel</name>
+            <type>
+                <name>boolean</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>deadline</name>
+            <type>
+                <name>dateTime</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+        </namedTypedValue>
+        <metadataExpr></metadataExpr>
+        <preferredEditor>interface</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role inherit="true" allowForAll="false" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="administrators">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <history>
+        <historyInfo versionUuid="_a-0000dfd8-6941-8000-9ba2-011c48011c48_189342"/>
+        <historyInfo versionUuid="_a-0000e067-d58d-8000-9ba2-011c48011c48_298405"/>
+    </history>
+</contentHaul>

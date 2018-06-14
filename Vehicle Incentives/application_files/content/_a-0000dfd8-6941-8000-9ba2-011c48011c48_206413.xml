@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <versionUuid>_a-0000e067-d58d-8000-9ba2-011c48011c48_302608</versionUuid>
+    <rule>
+        <name>VIM_BillboardIconSize</name>
+        <uuid>_a-0000dfd8-6941-8000-9ba2-011c48011c48_206413</uuid>
+        <description>Reusable Billboard Icon Size</description>
+        <parentUuid>d1151d0a-2a3e-4e80-b3b0-105a99496272</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>#"SYSTEM_SYSRULES_billboardLayout"(
+  overlayStyle: "LIGHT",
+  backgroundMedia: #"SYSTEM_SYSRULES_documentImage"(
+    document: ri!image
+  ),
+  height: "MEDIUM",
+  overlayColumnWidth: "WIDE",
+  overlayPositionBar: "BOTTOM",
+  overlayContents: {
+    #"SYSTEM_SYSRULES_columnsLayout"(
+      columns: {
+        #"SYSTEM_SYSRULES_columnLayout"(
+          contents: {
+            #"SYSTEM_SYSRULES_richTextDisplayField"(
+              align: "CENTER",
+              labelPosition: "ABOVE",
+              value: #"SYSTEM_SYSRULES_richTextItem"(
+                text: ri!title,
+                style: "HEADER_MEDIUM"
+              )
+            ),
+            #"SYSTEM_SYSRULES_ButtonArrayLayout"(
+              align: "CENTER",
+              buttons: #"SYSTEM_SYSRULES_ButtonWidget"(
+                label: "Explore",
+                value: ri!page + 1,
+                saveInto: {
+                  ri!page,
+                  a!save(
+                    ri!saveInto,
+                    ri!recordId
+                  )
+                },
+                style: "SECONDARY",
+                size: "SMALL"
+              )
+            ),
+            
+          }
+        ),
+        
+      },
+      alignVertical: "MIDDLE"
+    )
+  }
+)</definition>
+        <namedTypedValue>
+            <name>image</name>
+            <type>
+                <name>CollaborationDocument</name>
+                <namespace>http://www.appian.com/ae/types/2009</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>title</name>
+            <type>
+                <name>string</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+            <value/>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>recordId</name>
+            <type>
+                <name>int</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>page</name>
+            <type>
+                <name>int</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>saveInto</name>
+            <type>
+                <name>int</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+        </namedTypedValue>
+        <metadataExpr></metadataExpr>
+        <preferredEditor>interface</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role inherit="true" allowForAll="false" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="administrators">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <history>
+        <historyInfo versionUuid="_a-0000dfd8-6941-8000-9ba2-011c48011c48_207316"/>
+        <historyInfo versionUuid="_a-0000e067-d58d-8000-9ba2-011c48011c48_284842"/>
+        <historyInfo versionUuid="_a-0000e044-c81a-8000-9ba2-011c48011c48_128387"/>
+        <historyInfo versionUuid="_a-0000e067-d58d-8000-9ba2-011c48011c48_302608"/>
+    </history>
+</contentHaul>

@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<recordTypeHaul xmlns:a="http://www.appian.com/ae/types/2009" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <versionUuid>5adab431-fb8a-4947-b646-608b82996dfd</versionUuid>
+  <recordType a:uuid="35a06d9a-4fec-412b-ab79-487c043a4934" name="Carline">
+    <a:pluralName>Carlines</a:pluralName>
+    <a:description>Current Vehicle Models in Distribution</a:description>
+    <a:urlStub>aiOkLA</a:urlStub>
+    <a:source
+      a:uuid="8a67452b-a249-4bbb-90b5-acdc0933371a@_a-0000dfd8-6941-8000-9ba2-011c48011c48_185078" xsi:type="a:DataStoreEntity"/>
+    <a:listViewTemplateExpr>#"SYSTEM_SYSRULES_recordGridLayoutColumns"(
+  columns: {
+    #"SYSTEM_SYSRULES_gridLayoutColumn"(
+      label: "Year",
+      width: "DISTRIBUTE",
+      component: #"SYSTEM_SYSRULES_recordGrid_integerField"(
+        displayvalue: 2018
+      )
+    ),
+    #"SYSTEM_SYSRULES_gridLayoutColumn"(
+      label: "Make",
+      field: "name",
+      component: #"SYSTEM_SYSRULES_recordGrid_linkField"(
+        links: #"SYSTEM_SYSRULES_recordLink"(
+          label: rf!name,
+          recordType: rp!type,
+          identifier: rp!id
+        )
+      )
+    ),
+    #"SYSTEM_SYSRULES_gridLayoutColumn"(
+      label: "Model",
+      field: "brand",
+      component: #"SYSTEM_SYSRULES_recordGrid_textField"(
+        displayValue: rf!brand,
+        align: null
+      )
+    ),
+    #"SYSTEM_SYSRULES_gridLayoutColumn"(
+      label: "Id",
+      field: "id",
+      component: #"SYSTEM_SYSRULES_recordGrid_integerField"(
+        displayValue: rf!id,
+        align: "RIGHT"
+      )
+    )
+  },
+  pageSize: 50,
+  defaultSort: #"SYSTEM_SYSRULES_sortInfo"(
+    field: "name",
+    ascending: fn!true()
+  ),
+  shadeAlternateRows: true
+)</a:listViewTemplateExpr>
+    <a:detailViewCfg>
+      <a:nameExpr>="Summary"</a:nameExpr>
+      <a:uiExpr>#"_a-0000dfd8-6941-8000-9ba2-011c48011c48_190539"(rf!id, 1)</a:uiExpr>
+      <a:visibilityExpr>=true()</a:visibilityExpr>
+      <a:urlStub>summary</a:urlStub>
+      <a:headerExpr/>
+    </a:detailViewCfg>
+    <a:detailViewCfg>
+      <a:nameExpr>"Recalls"</a:nameExpr>
+      <a:uiExpr>#"_a-0000e067-d58d-8000-9ba2-011c48011c48_282897"(2018,rf!name,rf!brand)</a:uiExpr>
+      <a:visibilityExpr>=true()</a:visibilityExpr>
+      <a:urlStub>_LAHphw</a:urlStub>
+      <a:headerExpr/>
+    </a:detailViewCfg>
+    <a:defaultFilter>
+      <a:field>hasAccess</a:field>
+      <a:operator>=</a:operator>
+      <a:valueExpression>#"_a-0000e067-d58d-8000-9ba2-011c48011c48_288381"()</a:valueExpression>
+    </a:defaultFilter>
+    <a:isSystem>false</a:isSystem>
+    <a:dataSrcExpr/>
+    <a:facetsListExpr/>
+    <a:titleExpr/>
+    <a:defaultFiltersExpr/>
+    <a:layoutType>GRID</a:layoutType>
+    <a:security>16383</a:security>
+    <a:hideLatestNews>false</a:hideLatestNews>
+    <a:isExportable>true</a:isExportable>
+  </recordType>
+  <roleMap>
+    <role name="record_type_administrator">
+      <users/>
+      <groups>
+        <groupUuid>_e-0000e067-d54a-8000-9aee-01075c01075c_285</groupUuid>
+      </groups>
+    </role>
+    <role name="record_type_viewer">
+      <users/>
+      <groups>
+        <groupUuid>_e-0000e067-d54a-8000-9aee-01075c01075c_289</groupUuid>
+        <groupUuid>_e-0000e067-d54a-8000-9aee-01075c01075c_233</groupUuid>
+        <groupUuid>_e-0000e067-d54a-8000-9aee-01075c01075c_231</groupUuid>
+      </groups>
+    </role>
+  </roleMap>
+  <history>
+    <historyInfo versionUuid="18bf79c4-fbe3-4faf-9deb-bf9885b0e72f"/>
+    <historyInfo versionUuid="ad12d80c-d2b4-4b93-bbdb-c89f9ac687a9"/>
+    <historyInfo versionUuid="dc3dcf6d-73ec-4562-861b-edcbbf99e3e2"/>
+    <historyInfo versionUuid="fb798671-6c5c-4466-a36c-2abee1158b8c"/>
+    <historyInfo versionUuid="bcd3a97f-8a02-4f80-bd52-322feb299f02"/>
+    <historyInfo versionUuid="5adab431-fb8a-4947-b646-608b82996dfd"/>
+  </history>
+</recordTypeHaul>

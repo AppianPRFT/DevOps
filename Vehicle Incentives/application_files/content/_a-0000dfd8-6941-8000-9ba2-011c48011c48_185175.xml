@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <versionUuid>_a-0000dfd8-6941-8000-9ba2-011c48011c48_185178</versionUuid>
+    <rule>
+        <name>VIM_GetAllExclusionList</name>
+        <uuid>_a-0000dfd8-6941-8000-9ba2-011c48011c48_185175</uuid>
+        <description>Returns all exclusion list options for Incentives [Data]</description>
+        <parentUuid>d1151d0a-2a3e-4e80-b3b0-105a99496272</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>cast(
+  'type!{urn:com:appian:types:VIM}VIM_ExclusionList?list',
+  #"SYSTEM_SYSRULES_queryEntity"(
+    entity: #"_a-0000dfd8-6941-8000-9ba2-011c48011c48_185127",
+    query: #"SYSTEM_SYSRULES_query"(
+      pagingInfo: #"SYSTEM_SYSRULES_pagingInfo"(1, -1, #"SYSTEM_SYSRULES_sortInfo"("order", true))
+    )
+  ).data
+)</definition>
+        <preferredEditor>legacy</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="false">
+        <role inherit="true" allowForAll="false" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="administrators">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <history>
+        <historyInfo versionUuid="_a-0000dfd8-6941-8000-9ba2-011c48011c48_185178"/>
+    </history>
+</contentHaul>

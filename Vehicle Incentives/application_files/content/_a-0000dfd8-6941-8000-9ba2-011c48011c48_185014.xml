@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <versionUuid>_a-0000e067-d58d-8000-9ba2-011c48011c48_298361</versionUuid>
+    <rule>
+        <name>VIM_OpenTasksGrid</name>
+        <uuid>_a-0000dfd8-6941-8000-9ba2-011c48011c48_185014</uuid>
+        <description>Component interface that returns a grid showing all open tasks for a given Incentive record [Tasking] [Records]</description>
+        <parentUuid>d1151d0a-2a3e-4e80-b3b0-105a99496272</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>load(
+  local!pagingInfo: #"SYSTEM_SYSRULES_pagingInfo"(
+    startIndex: 1,
+    batchSize: 5
+  ),
+  with(
+    local!report: a!queryProcessAnalytics(
+      report: #"_a-0000dfd8-6941-8000-9ba2-011c48011c48_184926",
+      contextProcessModels: #"_a-0000dfd8-6941-8000-9ba2-011c48011c48_184918",
+      query: #"SYSTEM_SYSRULES_query"(
+        filter: #"SYSTEM_SYSRULES_queryFilter"(
+          field: "c7",
+          operator: "=",
+          value: ri!recordId
+        ),
+        pagingInfo: local!pagingInfo
+      )
+    ),
+    {
+      #"SYSTEM_SYSRULES_gridField"(
+        label: local!report.name,
+        showWhen: local!report.totalCount &gt; 0,
+        instructions: local!report.description,
+        totalCount: local!report.totalCount,
+        columns: {
+          #"SYSTEM_SYSRULES_forEach"(
+            items: local!report.columnConfigs,
+            expression: #"_a-0000dfd8-6941-8000-9ba2-011c48011c48_185050"(
+              columnConfig: fv!item,
+              data: local!report.data,
+              filterByRecord: true
+            )
+          )
+        },
+        value: local!pagingInfo,
+        saveInto: local!pagingInfo
+      )
+    }
+  )
+)</definition>
+        <namedTypedValue>
+            <name>recordId</name>
+            <type>
+                <name>int</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+        </namedTypedValue>
+        <metadataExpr></metadataExpr>
+        <preferredEditor>interface</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role inherit="true" allowForAll="false" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="administrators">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <history>
+        <historyInfo versionUuid="_a-0000dfd8-6941-8000-9ba2-011c48011c48_185328"/>
+        <historyInfo versionUuid="_a-0000e067-d58d-8000-9ba2-011c48011c48_298361"/>
+    </history>
+</contentHaul>

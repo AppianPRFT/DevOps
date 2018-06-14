@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <versionUuid>_a-0000e067-d58d-8000-9ba2-011c48011c48_303736</versionUuid>
+    <rule>
+        <name>VIM_DealershipDashboard</name>
+        <uuid>_a-0000dfd8-6941-8000-9ba2-011c48011c48_186629</uuid>
+        <description>Dashboard interface for the summary view of the Dealerships record type [Records]</description>
+        <parentUuid>d1151d0a-2a3e-4e80-b3b0-105a99496272</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>load(
+  local!record: #"_a-0000dfd8-6941-8000-9ba2-011c48011c48_186635"(
+    ri!id
+  ),
+  #"SYSTEM_SYSRULES_dashboardLayout_v1"(
+    contents: {
+      #"SYSTEM_SYSRULES_billboardLayout"(
+          height: "SHORT",
+          overlayContents: {
+            #"SYSTEM_SYSRULES_richTextDisplayField"(
+              value: #"SYSTEM_SYSRULES_richTextItem"(
+                text: proper(
+                  local!record.dealership),
+                style: "LARGE"
+              )
+            )
+          },
+          backgroundMedia: #"SYSTEM_SYSRULES_documentImage"(
+            document: todocument(
+              #"_a-0000e067-d58d-8000-9ba2-011c48011c48_303653"()
+            )
+          )
+        ),
+        #"SYSTEM_SYSRULES_textField"(
+          readOnly: true
+        ),
+      #"SYSTEM_SYSRULES_boxLayout"(
+        contents: {
+          #"_a-0000dfd8-6941-8000-9ba2-011c48011c48_186574"(
+            record: local!record,
+            creating: false,
+            readOnly: true,
+            documents: {}
+          )
+        }
+      ),
+      #"_a-0000dfd8-6941-8000-9ba2-011c48011c48_185014"(
+        ri!id
+      )
+    }
+  )
+)</definition>
+        <namedTypedValue>
+            <name>id</name>
+            <type>
+                <name>int</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+        </namedTypedValue>
+        <metadataExpr></metadataExpr>
+        <preferredEditor>interface</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role inherit="true" allowForAll="false" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="administrators">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <history>
+        <historyInfo versionUuid="_a-0000dfd8-6941-8000-9ba2-011c48011c48_192897"/>
+        <historyInfo versionUuid="_a-0000dfd8-6941-8000-9ba2-011c48011c48_202518"/>
+        <historyInfo versionUuid="_a-0000e044-c81a-8000-9ba2-011c48011c48_127827"/>
+        <historyInfo versionUuid="_a-0000e067-d58d-8000-9ba2-011c48011c48_303736"/>
+    </history>
+</contentHaul>

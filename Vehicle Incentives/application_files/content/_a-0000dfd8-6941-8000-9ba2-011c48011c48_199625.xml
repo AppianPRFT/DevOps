@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <versionUuid>_a-0000e067-d58d-8000-9ba2-011c48011c48_300592</versionUuid>
+    <rule>
+        <name>VIM_OverviewLandingPage</name>
+        <uuid>_a-0000dfd8-6941-8000-9ba2-011c48011c48_199625</uuid>
+        <description>Landing PAge with top buttons for summary dashboard</description>
+        <parentUuid>d1151d0a-2a3e-4e80-b3b0-105a99496272</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>load(
+  local!pageToShow: 1,
+  #"SYSTEM_SYSRULES_dashboardLayout_v1"(
+    contents: {
+      #"SYSTEM_SYSRULES_billboardLayout"(
+        backgroundMedia: #"SYSTEM_SYSRULES_documentImage"(
+          document: #"_a-0000dfd8-6941-8000-9ba2-011c48011c48_189883"
+        ),
+        overlayPositionBar: "BOTTOM",
+        overlayContents: {
+          #"SYSTEM_SYSRULES_columnsLayout"(
+            columns: {
+              #"SYSTEM_SYSRULES_columnLayout"(
+                contents: {
+                  #"SYSTEM_SYSRULES_imageField_v1"(
+                    images: #"SYSTEM_SYSRULES_documentImage"(
+                      document: #"_a-0000e067-d58d-8000-9ba2-011c48011c48_284413"
+                    )
+                  )
+                }
+              ),
+              #"SYSTEM_SYSRULES_columnLayout"(
+                contents: {
+                  #"SYSTEM_SYSRULES_richTextDisplayField"(
+                    labelPosition: "ABOVE",
+                    value: #"SYSTEM_SYSRULES_richTextItem"(
+                      text: "Audi of Volkswagen",
+                      style: "HEADER_MEDIUM"
+                    )
+                  ),
+                  #"SYSTEM_SYSRULES_richTextDisplayField"(
+                    label: "Label",
+                    labelPosition: "COLLAPSED",
+                    value: {
+                      #"SYSTEM_SYSRULES_richTextItem"(
+                        text: "#1 Ranked Car Providers in the World",
+                        style: "EMPHASIS"
+                      )
+                    }
+                  )
+                }
+              ),
+              #"SYSTEM_SYSRULES_columnLayout"(
+                contents: {
+                  #"SYSTEM_SYSRULES_richTextDisplayField"(
+                    label: "Contact Information",
+                    value: {
+                      #"SYSTEM_SYSRULES_richTextImage"(
+                        image: #"SYSTEM_SYSRULES_documentImage"(
+                          document: #"_a-0000e067-d58d-8000-9ba2-011c48011c48_284386"
+                        )
+                      ),
+                      #"SYSTEM_SYSRULES_richTextItem"(
+                        text: #"SYSTEM_SYSRULES_richTextItem"(
+                          text: proper(
+                            "235 Audi World" &amp; "; " &amp; "San Francisco" &amp; ", "
+                          ) &amp; "CA" &amp; proper(
+                            " " &amp; "92614" &amp; " " &amp; "United States" &amp; char(
+                              10
+                            )
+                          ),
+                          style: "STRONG"
+                        ),
+                        style: "EMPHASIS"
+                      ),
+                      #"SYSTEM_SYSRULES_richTextImage"(
+                        image: #"SYSTEM_SYSRULES_documentImage"(
+                          document: #"_a-0000e067-d58d-8000-9ba2-011c48011c48_284401"
+                        )
+                      ),
+                      #"SYSTEM_SYSRULES_richTextItem"(
+                        text: #"SYSTEM_SYSRULES_richTextItem"(
+                          text: "(" &amp; left(
+                            1234567890,
+                            3
+                          ) &amp; ")" &amp; " " &amp; mid(
+                            1234567890,
+                            4,
+                            3
+                          ) &amp; "-" &amp; right(
+                            1234567890,
+                            4
+                          ) &amp; char(
+                            10
+                          ),
+                          style: "STRONG"
+                        ),
+                        style: "EMPHASIS"
+                      ),
+                      #"SYSTEM_SYSRULES_richTextImage"(
+                        image: #"SYSTEM_SYSRULES_documentImage"(
+                          document: #"_a-0000e067-d58d-8000-9ba2-011c48011c48_284380"
+                        )
+                      ),
+                      #"SYSTEM_SYSRULES_richTextItem"(
+                        text: #"SYSTEM_SYSRULES_richTextItem"(
+                          text: stripwith(
+                            "Jeremychen",
+                            " "
+                          ) &amp; "@gmail.com",
+                          style: "STRONG"
+                        ),
+                        style: "EMPHASIS"
+                      )
+                    }
+                  )
+                }
+              ),
+              #"SYSTEM_SYSRULES_columnLayout"(
+                contents: {
+                  #"SYSTEM_SYSRULES_richTextDisplayField"(
+                    label: "NPI",
+                    value: #"SYSTEM_SYSRULES_richTextItem"(
+                      text: #"SYSTEM_SYSRULES_richTextItem"(
+                        text: "1234567890",
+                        style: "STRONG"
+                      ),
+                      style: "POSITIVE"
+                    )
+                  ),
+                  #"SYSTEM_SYSRULES_richTextDisplayField"(
+                    label: "Provider Since",
+                    value: 1846
+                  ),
+                  #"SYSTEM_SYSRULES_richTextDisplayField"(
+                    label: "Specialty",
+                    value: "High Performance Vehicles"
+                  )
+                }
+              )
+            },
+            alignVertical: "MIDDLE"
+          )
+        }
+      ),
+      #"SYSTEM_SYSRULES_richTextDisplayField"(
+        value: {
+          #"SYSTEM_SYSRULES_richTextItem"(
+            text: "Home",
+            style: if(
+              local!pageToShow = 1,
+              "STRONG",
+              "NORMAL"
+            ),
+            link: #"SYSTEM_SYSRULES_dynamicLink"(
+              label: "Home",
+              value: 1,
+              saveInto: local!pageToShow
+            )
+          ),
+          #"SYSTEM_SYSRULES_richTextItem"(
+            text: " | "
+          ),
+          #"SYSTEM_SYSRULES_richTextItem"(
+            text: "News",
+            style: if(
+              local!pageToShow = 2,
+              "STRONG",
+              "NORMAL"
+            ),
+            link: #"SYSTEM_SYSRULES_dynamicLink"(
+              label: "Claims History",
+              value: 2,
+              saveInto: local!pageToShow
+            )
+          ),
+          #"SYSTEM_SYSRULES_richTextItem"(
+            text: " | "
+          ),
+          #"SYSTEM_SYSRULES_richTextItem"(
+            text: "Claim History",
+            style: "NORMAL",
+            link: #"SYSTEM_SYSRULES_dynamicLink"(
+              label: "Manage Documents"
+            )
+          ),
+          #"SYSTEM_SYSRULES_richTextItem"(
+            text: " | "
+          ),
+          #"SYSTEM_SYSRULES_richTextItem"(
+            text: "Learn More",
+            style: if(
+              local!pageToShow = 6,
+              "STRONG",
+              "NORMAL"
+            ),
+            link: #"SYSTEM_SYSRULES_dynamicLink"(
+              label: "Learn More",
+              value: 6,
+              saveInto: local!pageToShow
+            )
+          )
+        }
+      ),
+      if(
+        local!pageToShow = 1,
+        #"_a-0000dfd8-6941-8000-9ba2-011c48011c48_199619"(),
+        if(
+          local!pageToShow = 2,
+          {},
+          {}
+        )
+      )
+    }
+  )
+)</definition>
+        <metadataExpr></metadataExpr>
+        <preferredEditor>interface</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role inherit="true" allowForAll="false" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="administrators">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <history>
+        <historyInfo versionUuid="_a-0000dfd8-6941-8000-9ba2-011c48011c48_199660"/>
+        <historyInfo versionUuid="_a-0000dfd8-6941-8000-9ba2-011c48011c48_200407"/>
+        <historyInfo versionUuid="_a-0000e067-d58d-8000-9ba2-011c48011c48_284191"/>
+        <historyInfo versionUuid="_a-0000e067-d58d-8000-9ba2-011c48011c48_284422"/>
+        <historyInfo versionUuid="_a-0000e067-d58d-8000-9ba2-011c48011c48_300592"/>
+    </history>
+</contentHaul>

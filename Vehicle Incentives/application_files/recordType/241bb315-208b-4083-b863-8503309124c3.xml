@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<recordTypeHaul xmlns:a="http://www.appian.com/ae/types/2009" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <versionUuid>c5be3d93-699b-4437-ab62-f140562bf086</versionUuid>
+  <recordType a:uuid="241bb315-208b-4083-b863-8503309124c3" name="Vehicle Brand">
+    <a:pluralName>Vehicle Brands</a:pluralName>
+    <a:description>Current Vehicle Brands in Distribution</a:description>
+    <a:urlStub>ElnwMg</a:urlStub>
+    <a:source
+      a:uuid="8a67452b-a249-4bbb-90b5-acdc0933371a@_a-0000dfd8-6941-8000-9ba2-011c48011c48_185078" xsi:type="a:DataStoreEntity"/>
+    <a:listViewTemplateExpr>#"SYSTEM_SYSRULES_recordGridLayoutColumns"(
+  pageSize: 50,
+  defaultSort: #"SYSTEM_SYSRULES_sortInfo"(
+    field: "name",
+    ascending: fn!true()
+  ),
+  columns: {
+    #"SYSTEM_SYSRULES_gridLayoutColumn"(
+      label: "Name",
+      field: "name",
+      component: #"SYSTEM_SYSRULES_recordGrid_linkField"(
+        links: #"SYSTEM_SYSRULES_recordLink"(
+          label: rf!name,
+          recordType: rp!type,
+          identifier: rp!id
+        )
+      )
+    ),
+    #"SYSTEM_SYSRULES_gridLayoutColumn"(
+      label: "Brand",
+      field: "brand",
+      component: #"SYSTEM_SYSRULES_recordGrid_textField"(
+        displayValue: rf!brand,
+        align: null
+      )
+    ),
+    #"SYSTEM_SYSRULES_gridLayoutColumn"(
+      label: "Created By",
+      field: "createdBy",
+      component: #"SYSTEM_SYSRULES_recordGrid_textField"(
+        displayValue: rf!createdBy,
+        align: null
+      )
+    ),
+    #"SYSTEM_SYSRULES_gridLayoutColumn"(
+      label: "Id",
+      field: "id",
+      component: #"SYSTEM_SYSRULES_recordGrid_integerField"(
+        displayValue: rf!id,
+        align: "RIGHT"
+      )
+    )
+  }
+)</a:listViewTemplateExpr>
+    <a:detailViewCfg>
+      <a:nameExpr>="Summary"</a:nameExpr>
+      <a:uiExpr>#"_a-0000dfd8-6941-8000-9ba2-011c48011c48_190539"(rf!id)</a:uiExpr>
+      <a:visibilityExpr>=true()</a:visibilityExpr>
+      <a:urlStub>summary</a:urlStub>
+      <a:headerExpr/>
+    </a:detailViewCfg>
+    <a:defaultFilter>
+      <a:field>hasAccess</a:field>
+      <a:operator>=</a:operator>
+      <a:valueExpression>#"_a-0000e067-d58d-8000-9ba2-011c48011c48_288381"()</a:valueExpression>
+    </a:defaultFilter>
+    <a:isSystem>false</a:isSystem>
+    <a:dataSrcExpr/>
+    <a:facetsListExpr/>
+    <a:titleExpr>rf!brand</a:titleExpr>
+    <a:defaultFiltersExpr/>
+    <a:layoutType>GRID</a:layoutType>
+    <a:security>16383</a:security>
+    <a:hideLatestNews>false</a:hideLatestNews>
+    <a:isExportable>true</a:isExportable>
+  </recordType>
+  <roleMap>
+    <role name="record_type_administrator">
+      <users/>
+      <groups>
+        <groupUuid>_e-0000e067-d54a-8000-9aee-01075c01075c_285</groupUuid>
+      </groups>
+    </role>
+    <role name="record_type_viewer">
+      <users/>
+      <groups>
+        <groupUuid>_e-0000e067-d54a-8000-9aee-01075c01075c_289</groupUuid>
+        <groupUuid>_e-0000e067-d54a-8000-9aee-01075c01075c_233</groupUuid>
+        <groupUuid>_e-0000e067-d54a-8000-9aee-01075c01075c_231</groupUuid>
+      </groups>
+    </role>
+  </roleMap>
+  <history>
+    <historyInfo versionUuid="ec4987a4-ddb2-49d7-8602-a9bb96370400"/>
+    <historyInfo versionUuid="1335ae36-ccd8-4530-973b-a6bf183c26f7"/>
+    <historyInfo versionUuid="c5be3d93-699b-4437-ab62-f140562bf086"/>
+  </history>
+</recordTypeHaul>

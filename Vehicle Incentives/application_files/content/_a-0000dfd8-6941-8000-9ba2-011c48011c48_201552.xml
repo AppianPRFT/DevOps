@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <versionUuid>_a-0000e067-d58d-8000-9ba2-011c48011c48_298417</versionUuid>
+    <rule>
+        <name>VIM_DealershipMainSummary</name>
+        <uuid>_a-0000dfd8-6941-8000-9ba2-011c48011c48_201552</uuid>
+        <description>Record Summary for Dealership Main</description>
+        <parentUuid>d1151d0a-2a3e-4e80-b3b0-105a99496272</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>load(
+  local!pagingInfo: #"SYSTEM_SYSRULES_pagingInfo"(
+    startIndex: 1,
+    batchsize: 20
+  ),
+  local!dealerships: todatasubset(
+    #"_a-0000dfd8-6941-8000-9ba2-011c48011c48_201558"(
+      ri!id
+    ),
+    local!pagingInfo
+  ),
+  local!dealership: #"_a-0000dfd8-6941-8000-9ba2-011c48011c48_201541"(
+    ri!id
+  ),
+  #"SYSTEM_SYSRULES_dashboardLayout_v1"(
+    contents: {
+      #"SYSTEM_SYSRULES_sectionLayout_v1"(
+        label: "Subsidiary Locations",
+        contents: {
+          #"SYSTEM_SYSRULES_gridField"(
+            label: "",
+            labelPosition: "ABOVE",
+            totalCount: local!dealerships.totalCount,
+            columns: {
+              #"SYSTEM_SYSRULES_gridTextColumn"(
+                label: "Dealership",
+                data: local!dealerships.data.dealership,
+                links: #"SYSTEM_SYSRULES_forEach"(
+                  local!dealerships.data,
+                  #"SYSTEM_SYSRULES_recordLink"(
+                    recordType: #"_a-0000dfd8-6941-8000-9ba2-011c48011c48_189986",
+                    identifier: fv!item.id
+                  )
+                )
+              ),
+              #"SYSTEM_SYSRULES_gridTextColumn"(
+                label: "Address",
+                data: local!dealerships.data.address
+              ),
+              #"SYSTEM_SYSRULES_gridTextColumn"(
+                label: "Contact",
+                data: local!dealerships.data.number
+              )
+            },
+            value: local!pagingInfo,
+            saveInto: local!pagingInfo,
+            validations: {},
+            shadeAlternateRows: true
+          )
+        }
+      )
+    }
+  )
+)</definition>
+        <namedTypedValue>
+            <name>id</name>
+            <type>
+                <name>int</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+        </namedTypedValue>
+        <metadataExpr></metadataExpr>
+        <preferredEditor>interface</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role inherit="true" allowForAll="false" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="administrators">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <history>
+        <historyInfo versionUuid="_a-0000dfd8-6941-8000-9ba2-011c48011c48_201600"/>
+        <historyInfo versionUuid="_a-0000e067-d58d-8000-9ba2-011c48011c48_298417"/>
+    </history>
+</contentHaul>

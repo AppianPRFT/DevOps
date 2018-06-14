@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <versionUuid>_a-0000dfd8-6941-8000-9ba2-011c48011c48_185069</versionUuid>
+    <constant>
+        <name>VIM_FIELD_DISPLAY_NAMES</name>
+        <uuid>_a-0000dfd8-6941-8000-9ba2-011c48011c48_185066</uuid>
+        <description>Constant storing all of the field display names from the CDT. Used to check for changes to the CDT. Parallel to the FIELD_NAMES and FIELD_TYPES constants. [Activity History]</description>
+        <parentUuid>d1151d0a-2a3e-4e80-b3b0-105a99496272</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <typedValue>
+            <type>
+                <name>Text?list</name>
+                <namespace>http://www.appian.com/ae/types/2009</namespace>
+            </type>
+            <value>
+                <el>Title</el>
+                <el>Status</el>
+                <el>Priority</el>
+                <el>Type of Offer</el>
+                <el>Details</el>
+                <el>Additional Terms</el>
+                <el>Offer Description</el>
+                <el>Vehicle</el>
+                <el>Loyalty Offer Current Owner</el>
+                <el>Loyalty Discount</el>
+                <el>Certified Pre-Owned Offer</el>
+                <el>Coupon Available</el>
+                <el>Coupon URL</el>
+                <el>Brand</el>
+                <el>Country</el>
+                <el>Publish Location</el>
+                <el>Bonus Amount</el>
+                <el>Bonus Description</el>
+                <el>Model</el>
+                <el>Offer Subtitle</el>
+                <el>Exclusion List</el>
+                <el>Offer Legal</el>
+                <el>Offer Start Date</el>
+                <el>Offer End Date</el>
+                <el>APR Rate</el>
+                <el>APR Term</el>
+                <el>Sample Amount Financed</el>
+                <el>Lease Price per month</el>
+                <el>Lease Term</el>
+                <el>Monthly Payments</el>
+                <el>Due at Signing</el>
+                <el>Add Exclusions</el>
+                <el>Mileage Responsibility and Wear and Tear</el>
+                <el>Model MSRP</el>
+                <el>Dealer Monthly Contribution</el>
+                <el>Purchase at Lease End</el>
+            </value>
+        </typedValue>
+        <isEnvironmentSpecific>false</isEnvironmentSpecific>
+    </constant>
+    <roleMap public="false">
+        <role inherit="true" allowForAll="false" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="administrators">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <history>
+        <historyInfo versionUuid="_a-0000dfd8-6941-8000-9ba2-011c48011c48_185069"/>
+    </history>
+</contentHaul>

@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <versionUuid>_a-0000e067-d58d-8000-9ba2-011c48011c48_298373</versionUuid>
+    <rule>
+        <name>VIM_TaskGridColumn</name>
+        <uuid>_a-0000dfd8-6941-8000-9ba2-011c48011c48_185050</uuid>
+        <description>Component interface that generates a single column dynamically for use in task grids on Incentive records and in task reports. Dynamic generation lets changes to the process report be reflected instantly without needing to reconfigure the SAIL interface. [Tasking] [Records]</description>
+        <parentUuid>c7eca2b1-08cd-4132-90e3-4f0b4c26a307</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>with(
+  local!columnData: index(
+    ri!data,
+    ri!columnConfig.field,
+    {}
+  ),
+  local!recordNames: if(
+    or(
+      isnull(
+        ri!recordNames
+      ),
+      length(
+        ri!recordNames
+      ) = 0
+    ),
+    {},
+    index(
+      ri!recordNames.title,
+      #"SYSTEM_SYSRULES_forEach"(
+        items: tointeger(
+          local!columnData
+        ),
+        expression: fn!wherecontains(
+          fv!item,
+          tointeger(
+            ri!recordNames.id
+          )
+        )
+      )
+    )
+  ),
+  if(
+    and(
+      ri!columnConfig.configuredFormatting = "TASK_STATUS",
+      count(
+        local!columnData
+      ) &gt; 0
+    ),
+    #"SYSTEM_SYSRULES_gridImageColumn_v1"(
+      label: ri!columnConfig.label,
+      field: ri!columnConfig.field,
+      data: #"SYSTEM_SYSRULES_forEach"(
+        items: local!columnData,
+        expression: #"_a-0000dfd8-6941-8000-9ba2-011c48011c48_184970"(
+          fv!item
+        )
+      ),
+      size: "ICON"
+    ),
+    #"SYSTEM_SYSRULES_gridTextColumn"(
+      label: ri!columnConfig.label,
+      showWhen: and(
+        not(
+          and(
+            ri!columnConfig.field = "c7",
+            ri!filterByRecord
+          )
+        ),
+        not(
+          and(
+            ri!columnConfig.label = if(
+              ri!toOrFrom = "my tasks",
+              "Assignee",
+              "From"
+            ),
+            not(
+              ri!filterByRecord
+            )
+          )
+        )
+      ),
+      field: ri!columnConfig.field,
+      data: if(
+        ri!columnConfig.configuredDrilldown = "USER_PROFILE",
+        #"SYSTEM_SYSRULES_forEach"(
+          items: local!columnData,
+          expression: #"65026287-745f-41e2-90ed-50dbbd4b9ccf_FORMATNAME"(
+            tostring(
+              fv!item
+            )
+          )
+        ),
+        if(
+          ri!columnConfig.configuredFormatting = "DATE_TIME",
+          #"SYSTEM_SYSRULES_forEach"(
+            items: local!columnData,
+            expression: #"_a-0000dfd8-6941-8000-9ba2-011c48011c48_184950"(
+              fv!item
+            )
+          ),
+          if(
+            ri!columnConfig.field = "c7",
+            local!recordNames,
+            local!columnData
+          )
+        )
+      ),
+      links: if(
+        ri!columnConfig.configuredDrilldown = "USER_PROFILE",
+        #"SYSTEM_SYSRULES_forEach"(
+          items: local!columnData,
+          expression: #"SYSTEM_SYSRULES_userRecordLink"(
+            label: fv!item,
+            user: fv!item
+          )
+        ),
+        if(
+          ri!columnConfig.field = "c7",
+          #"SYSTEM_SYSRULES_forEach"(
+            items: local!columnData,
+            expression: #"SYSTEM_SYSRULES_recordLink"(
+              label: local!recordNames[fv!index],
+              recordType: #"_a-0000dfd8-6941-8000-9ba2-011c48011c48_184914",
+              identifier: fv!item
+            )
+          ),
+          if(
+            ri!columnConfig.configuredDrilldown = "TASK_DETAILS",
+            #"SYSTEM_SYSRULES_forEach"(
+              items: index(
+                ri!data,
+                ri!columnConfig.drilldownField,
+                {}
+              ),
+              expression: if(
+                touser(
+                  index(
+                    ri!data,
+                    "c8",
+                    null
+                  )[fv!index]
+                ) = loggedInUser(),
+                #"SYSTEM_SYSRULES_processTaskLink"(
+                  task: fv!item
+                ),
+                null
+              )
+            ),
+            {}
+          )
+        )
+      ),
+      alignment: if(
+        ri!columnConfig.configuredFormatting = "DATE_TIME",
+        "RIGHT",
+        "LEFT"
+      )
+    )
+  )
+)</definition>
+        <namedTypedValue>
+            <name>columnConfig</name>
+            <type>
+                <name>Variant</name>
+                <namespace>http://www.appian.com/ae/types/2009</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>data</name>
+            <type>
+                <name>Variant</name>
+                <namespace>http://www.appian.com/ae/types/2009</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>recordNames</name>
+            <type>
+                <name>Variant</name>
+                <namespace>http://www.appian.com/ae/types/2009</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>filterByRecord</name>
+            <type>
+                <name>boolean</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>toOrFrom</name>
+            <type>
+                <name>string</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+            <value/>
+        </namedTypedValue>
+        <metadataExpr></metadataExpr>
+        <preferredEditor>interface</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role inherit="true" allowForAll="false" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="administrators">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <history>
+        <historyInfo versionUuid="_a-0000dfd8-6941-8000-9ba2-011c48011c48_185527"/>
+        <historyInfo versionUuid="_a-0000e067-d58d-8000-9ba2-011c48011c48_298373"/>
+    </history>
+</contentHaul>

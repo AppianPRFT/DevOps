@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<tempoReportHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <versionUuid>e2c4c610-1859-49be-8a22-44f3c1c5388d</versionUuid>
+    <tempoReport a:uuid="8a41bf33-954f-4acf-b6f8-db0b726abfd3" name="Dealership Site My Tasks">
+        <a:description></a:description>
+        <a:uiExpr>=#"_a-0000dfd8-6941-8000-9ba2-011c48011c48_207851"()</a:uiExpr>
+        <a:urlStub>QMB07Q</a:urlStub>
+    </tempoReport>
+    <roleMap>
+        <role name="report_administrator">
+            <users/>
+            <groups>
+                <groupUuid>_e-0000e067-d54a-8000-9aee-01075c01075c_285</groupUuid>
+            </groups>
+        </role>
+        <role name="report_viewer">
+            <users/>
+            <groups>
+                <groupUuid>_e-0000e067-d54a-8000-9aee-01075c01075c_289</groupUuid>
+            </groups>
+        </role>
+    </roleMap>
+    <history>
+        <historyInfo versionUuid="f90bfa07-25fe-4fe0-aba3-c40ec6e71c91"/>
+        <historyInfo versionUuid="e2c4c610-1859-49be-8a22-44f3c1c5388d"/>
+    </history>
+</tempoReportHaul>

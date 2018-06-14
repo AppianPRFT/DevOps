@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <versionUuid>_a-0000e067-d58d-8000-9ba2-011c48011c48_298483</versionUuid>
+    <rule>
+        <name>VIM_VehicleRecall_Summary</name>
+        <uuid>_a-0000e067-d58d-8000-9ba2-011c48011c48_282897</uuid>
+        <description>Summary of the recalls for a specific vehicle</description>
+        <parentUuid>d1151d0a-2a3e-4e80-b3b0-105a99496272</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>load(
+  local!results: #"b2b6d248-28de-4bc1-ac12-391b04330ccf"(
+    ri!year,
+    ri!make,
+    ri!model
+  ),
+  local!recalls: #"SYSTEM_SYSRULES_fromJson"(
+    local!results.result.body
+  ),
+  {
+    #"SYSTEM_SYSRULES_sectionLayout_v1"(
+      label: cast(
+        3,
+        "Recalls for " &amp; cast(
+          3,
+          ri!year
+        ) &amp; " " &amp; ri!make &amp; " " &amp; ri!model
+      ),
+      contents: {
+        if(
+          cast(
+            1,
+            local!recalls.Count
+          ) = 0,
+          #"SYSTEM_SYSRULES_textField"(
+            value: local!recalls.Message,
+            readOnly: true
+          ),
+          #"SYSTEM_SYSRULES_gridField"(
+            totalCount: local!recalls.Count,
+            columns: {
+              #"SYSTEM_SYSRULES_gridTextColumn"(
+                label: "Recall #",
+                data: local!recalls.Results.NHTSAActionNumber
+              ),
+              #"SYSTEM_SYSRULES_gridTextColumn"(
+                label: "Manufacturer",
+                data: local!recalls.Results.Manufacturer
+              ),
+              #"SYSTEM_SYSRULES_gridTextColumn"(
+                label: "Summary",
+                data: local!recalls.Results.Summary
+              ),
+              #"SYSTEM_SYSRULES_gridTextColumn"(
+                label: "Component",
+                data: local!recalls.Results.Component
+              ),
+              #"SYSTEM_SYSRULES_gridTextColumn"(
+                label: "Notes",
+                data: local!recalls.Results.Notes
+              )
+            },
+            value: #"SYSTEM_SYSRULES_pagingInfo"(
+              startIndex: 1,
+              batchSize: 10
+            )
+          )
+        )
+      }
+    )
+  }
+)</definition>
+        <namedTypedValue>
+            <name>year</name>
+            <type>
+                <name>int</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>model</name>
+            <type>
+                <name>string</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+            <value/>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>make</name>
+            <type>
+                <name>string</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+            <value/>
+        </namedTypedValue>
+        <metadataExpr></metadataExpr>
+        <preferredEditor>interface</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role inherit="true" allowForAll="false" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="administrators">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <history>
+        <historyInfo versionUuid="_a-0000e067-d58d-8000-9ba2-011c48011c48_283060"/>
+        <historyInfo versionUuid="_a-0000e067-d58d-8000-9ba2-011c48011c48_298483"/>
+    </history>
+</contentHaul>

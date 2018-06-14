@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <versionUuid>_a-0000e067-d58d-8000-9ba2-011c48011c48_299467</versionUuid>
+    <rule>
+        <name>VIM_VehicleAndVinGrid</name>
+        <uuid>_a-0000dfd8-6941-8000-9ba2-011c48011c48_200505</uuid>
+        <description>Grid displaying individual vehicles with pass in for data</description>
+        <parentUuid>d1151d0a-2a3e-4e80-b3b0-105a99496272</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>#"SYSTEM_SYSRULES_gridField"(
+  label: ri!title,
+  labelPosition: "ABOVE",
+  totalCount: ri!vehicle.totalCount,
+  columns: {
+    #"SYSTEM_SYSRULES_gridTextColumn"(
+      label: "Year",
+      data: ri!vehicle.data.year
+    ),
+    #"SYSTEM_SYSRULES_gridTextColumn"(
+      label: "Model",
+      data: ri!vehicle.data.title,
+      links: #"SYSTEM_SYSRULES_forEach"(
+        items: ri!vehicle.data,
+        expression: #"SYSTEM_SYSRULES_recordLink"(
+          recordType: #"_a-0000e067-d58d-8000-9ba2-011c48011c48_297373",
+          identifier: fv!item.id
+        )
+      )
+    ),
+    #"SYSTEM_SYSRULES_gridTextColumn"(
+      label: "Trim",
+      data: ri!vehicle.data.trim
+    ),
+    #"SYSTEM_SYSRULES_gridTextColumn"(
+      label: "Engine",
+      data: ri!vehicle.data.engine
+    ),
+    #"SYSTEM_SYSRULES_gridTextColumn"(
+      label: "Vin",
+      data: ri!vehicle.data.vin
+    )
+  },
+  value: ri!pagingInfo,
+  saveInto: ri!pagingInfo,
+  validations: {},
+  shadeAlternateRows: true
+)</definition>
+        <namedTypedValue>
+            <name>vehicle</name>
+            <type>
+                <name>DataSubset</name>
+                <namespace>http://www.appian.com/ae/types/2009</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>pagingInfo</name>
+            <type>
+                <name>PagingInfo</name>
+                <namespace>http://www.appian.com/ae/types/2009</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>title</name>
+            <type>
+                <name>string</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+            <value/>
+        </namedTypedValue>
+        <metadataExpr></metadataExpr>
+        <preferredEditor>interface</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role inherit="true" allowForAll="false" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="administrators">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <history>
+        <historyInfo versionUuid="_a-0000dfd8-6941-8000-9ba2-011c48011c48_207172"/>
+        <historyInfo versionUuid="_a-0000e067-d58d-8000-9ba2-011c48011c48_299467"/>
+    </history>
+</contentHaul>
