@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<dataStoreHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <versionUuid>_a-0000e067-d58d-8000-9ba2-011c48011c48_300825</versionUuid>
+    <dataStore>
+        <uuid>_a-0000e067-d58d-8000-9ba2-011c48011c48_297824</uuid>
+        <name>VIM Vehicles</name>
+        <description>Data store containing all application's data store entities. [Data]</description>
+        <dataSourceKey>java:/jdbc/Appian</dataSourceKey>
+        <adaptingExplicitSqlNames>false</adaptingExplicitSqlNames>
+        <autoUpdateSchema>false</autoUpdateSchema>
+        <entities>
+            <entity>
+                <uuid>a5bac0b6-63ba-4c90-b5c1-f903ad8076cb</uuid>
+                <name>V_Paragraph</name>
+                <type>{urn:com:appian:types:V}V_Paragraph</type>
+            </entity>
+            <entity>
+                <uuid>1641e6fd-f50e-4881-95f5-0c964aed4deb</uuid>
+                <name>V_Activity</name>
+                <type>{urn:com:appian:types:V}V_Activity</type>
+            </entity>
+            <entity>
+                <uuid>0fe5c9e2-10d9-44d0-99dc-cbdd988ce309</uuid>
+                <name>V_Vehicle</name>
+                <type>{urn:com:appian:types:V}V_Vehicle</type>
+            </entity>
+        </entities>
+    </dataStore>
+    <isPublished>true</isPublished>
+    <roleMap>
+        <role inherit="false" allowForAll="false" name="administrators">
+            <users/>
+            <groups>
+                <groupUuid>_e-0000e067-d54a-8000-9aee-01075c01075c_285</groupUuid>
+            </groups>
+        </role>
+        <role inherit="false" allowForAll="false" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="readers">
+            <users/>
+            <groups>
+                <groupUuid>_e-0000e067-d54a-8000-9aee-01075c01075c_289</groupUuid>
+            </groups>
+        </role>
+    </roleMap>
+    <history>
+        <historyInfo versionUuid="_a-0000e067-d58d-8000-9ba2-011c48011c48_300825"/>
+    </history>
+</dataStoreHaul>

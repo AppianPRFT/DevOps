@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema targetNamespace="urn:com:appian:types:VIM"
+  xmlns:tns="urn:com:appian:types:VIM"
+  xmlns:types1="urn:com:appian:types" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:import namespace="urn:com:appian:types" schemaLocation="%7Burn%3Acom%3Aappian%3Atypes%7DVIM_Area_Ref.xsd"/>
+  <xsd:import namespace="urn:com:appian:types" schemaLocation="%7Burn%3Acom%3Aappian%3Atypes%7DVIM_Geography.xsd"/>
+  <xsd:complexType name="VIM_Dealership">
+    <xsd:annotation>
+      <xsd:appinfo source="appian.jpa">@Table(name="VIM_DEALERSHIP")</xsd:appinfo>
+      <xsd:documentation><![CDATA[Base data structure for a single Dealershiprecord]]></xsd:documentation>
+      <xsd:appinfo source="http://www.appian.com/ae/types/2009">
+        <ns2:Metadata xmlns:ns2="http://www.appian.com/ae/types/2009">
+          <ns2:versionUuid>0001e0ba-cf3c-8000-f92f-7f0000014e7a</ns2:versionUuid>
+          <ns2:history>
+            <ns2:historyInfo versionUuid="0001e0ba-cf3c-8000-f92f-7f0000014e7a"/>
+          </ns2:history>
+        </ns2:Metadata>
+      </xsd:appinfo>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element name="id" nillable="true" type="xsd:int">
+        <xsd:annotation>
+          <xsd:appinfo source="appian.jpa">@Id @GeneratedValue</xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="dealership" nillable="true" type="xsd:string">
+        <xsd:annotation>
+          <xsd:appinfo source="appian.jpa">@Column(name="dealership")</xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="address" nillable="true" type="xsd:string">
+        <xsd:annotation>
+          <xsd:appinfo source="appian.jpa">@Column(name="address")</xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="number" nillable="true" type="xsd:string">
+        <xsd:annotation>
+          <xsd:appinfo source="appian.jpa">@Column(name="number")</xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="folderId" nillable="true" type="xsd:int"/>
+      <xsd:element name="createdBy" nillable="true" type="xsd:string"/>
+      <xsd:element name="createdOn" nillable="true" type="xsd:dateTime"/>
+      <xsd:element name="updatedBy" nillable="true" type="xsd:string"/>
+      <xsd:element name="updatedOn" nillable="true" type="xsd:dateTime"/>
+      <xsd:element name="dealershipMainId" nillable="true" type="xsd:int"/>
+      <xsd:element name="geography" nillable="true" type="types1:VIM_Geography">
+        <xsd:annotation>
+          <xsd:appinfo source="appian.jpa">@OneToOne(cascade=CascadeType.REFRESH)</xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="geographyId" nillable="true" type="xsd:int"/>
+      <xsd:element name="area" nillable="true" type="types1:VIM_Area_Ref">
+        <xsd:annotation>
+          <xsd:appinfo source="appian.jpa">@ManyToOne(cascade=CascadeType.REFRESH)</xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="hasAccess" nillable="true" type="xsd:string">
+        <xsd:annotation>
+          <xsd:appinfo source="appian.jpa">@Column(length=255)</xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+</xsd:schema>

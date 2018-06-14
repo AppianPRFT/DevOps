@@ -1,0 +1,392 @@
+Success (31):
+datatype 4416 {urn:com:appian:types:VIM}VIM_Status "{urn:com:appian:types:VIM}VIM_Status"
+datatype 4438 {urn:com:appian:types:VIM}VIM_Priority "{urn:com:appian:types:VIM}VIM_Priority"
+datatype 4452 {urn:com:appian:types:VIM}VIM_Paragraph "{urn:com:appian:types:VIM}VIM_Paragraph"
+datatype 4466 {urn:com:appian:types:VIM}VIM_Activity "{urn:com:appian:types:VIM}VIM_Activity"
+datatype 4484 {urn:com:appian:types}VIM_IncentiveVehicles "{urn:com:appian:types}VIM_IncentiveVehicles"
+datatype 4536 {urn:com:appian:types}VIM_Country_Ref "{urn:com:appian:types}VIM_Country_Ref"
+datatype 4598 {urn:com:appian:types}VIM_Region_Ref "{urn:com:appian:types}VIM_Region_Ref"
+datatype 4600 {urn:com:appian:types}VIM_Area_Ref "{urn:com:appian:types}VIM_Area_Ref"
+datatype 5014 {urn:com:appian:types}VIM_Geography "{urn:com:appian:types}VIM_Geography"
+datatype 4602 {urn:com:appian:types:VIM}VIM_Dealership "{urn:com:appian:types:VIM}VIM_Dealership"
+datatype 4926 {urn:com:appian:types:VIM}VIM_Scope "{urn:com:appian:types:VIM}VIM_Scope"
+datatype 4380 {urn:com:appian:types:VIM}VIM_Incentive "{urn:com:appian:types:VIM}VIM_Incentive"
+datatype 4990 {urn:com:appian:types:VIM}VIM_SalesData "{urn:com:appian:types:VIM}VIM_SalesData"
+datatype 3054 {urn:com:appian:types:V}V_Paragraph "{urn:com:appian:types:V}V_Paragraph"
+datatype 4496 {urn:com:appian:types:V}VIM_Vehicle "{urn:com:appian:types:V}VIM_Vehicle"
+datatype 3062 {urn:com:appian:types:V}V_Activity "{urn:com:appian:types:V}V_Activity"
+datatype 4656 {urn:com:appian:types}VIM_Brand_Ref "{urn:com:appian:types}VIM_Brand_Ref"
+datatype 4946 {urn:com:appian:types}VIM_SLA_Entry "{urn:com:appian:types}VIM_SLA_Entry"
+datatype 4128 {urn:com:appian:types}VIM_INCENTIVEREPORT_VIEW "{urn:com:appian:types}VIM_INCENTIVEREPORT_VIEW"
+dataStore 60419 _a-0000e067-d58d-8000-9ba2-011c48011c48_297824 "VIM Vehicles"
+dataStore 62207 _a-0000dfd8-6941-8000-9ba2-011c48011c48_185078 "VIM Incentives"
+group 207 _e-0000e067-d54a-8000-9aee-01075c01075c_285 "VIM Administrators"
+group 208 _e-0000e067-d54a-8000-9aee-01075c01075c_287 "VIM Internal Claims Processors"
+group 211 _e-0000e067-d54a-8000-9aee-01075c01075c_293 "VIM Ford Users"
+group 209 _e-0000e067-d54a-8000-9aee-01075c01075c_289 "VIM Users"
+group 193 _e-0000e067-d54a-8000-9aee-01075c01075c_231 "VIM Toyota Users"
+group 173 _e-0000dfd8-690f-8000-9aee-01075c01075c_157 "VIM OEM User"
+group 205 _e-0000e067-d54a-8000-9aee-01075c01075c_281 "VIM Volkswagen Users"
+group 206 _e-0000e067-d54a-8000-9aee-01075c01075c_283 "VIM Corporate Users"
+group 210 _e-0000e067-d54a-8000-9aee-01075c01075c_291 "VIM Ourisman Dealership Users"
+application 60339 _a-0000e067-d58d-8000-9ba2-011c48011c48_297291 "VIM CDTs, Data Stores and Groups"
+
+Referenced precedents that were not exported (15):
+datatype 3972 {urn:com:appian:types:VIM}VIM_ExclusionList
+datatype 3968 {urn:com:appian:types:VIM}VIM_Model
+datatype 3964 {urn:com:appian:types:VIM}VIM_PublishLocation
+datatype 5054 {urn:com:appian:types:V}V_Vehicle
+datatype 3940 {urn:com:appian:types:VIM}VIM_TypeOfOffer
+datatype 3948 {urn:com:appian:types:VIM}VIM_Vehicle
+datatype 3952 {urn:com:appian:types:VIM}VIM_LoyaltyOfferCurrentOwner
+datatype 3956 {urn:com:appian:types:VIM}VIM_CertifiedPreownedOffer
+datatype 3960 {urn:com:appian:types:VIM}VIM_CouponAvailable
+datatype 4010 {urn:com:appian:types}VIM_Vehicles
+datatype 4776 {urn:com:appian:types}VIM_Vehicle_Model
+datatype 4986 {urn:com:appian:types}VIM_SalePaymentDetails
+datatype 4760 {urn:com:appian:types}VIM_DealershipMain
+datatype 4732 {urn:com:appian:types}qckapp_vim_main
+group 194 _e-0000e067-d54a-8000-9aee-01075c01075c_233
+
+Trace:
+2018-06-14 17:17:22.434 DEBUG application 60339 _a-0000e067-d58d-8000-9ba2-011c48011c48_297291 Begin transport.
+2018-06-14 17:17:22.434 DEBUG application 60339 _a-0000e067-d58d-8000-9ba2-011c48011c48_297291 Retrieving object data.
+2018-06-14 17:17:22.441 DEBUG application 60339 _a-0000e067-d58d-8000-9ba2-011c48011c48_297291 App associated objects: [datatype=[{urn:com:appian:types:VIM}VIM_Status, {urn:com:appian:types:VIM}VIM_Priority, {urn:com:appian:types:VIM}VIM_Paragraph, {urn:com:appian:types:VIM}VIM_Activity, {urn:com:appian:types}VIM_IncentiveVehicles, {urn:com:appian:types:VIM}VIM_Incentive, {urn:com:appian:types:VIM}VIM_Dealership, {urn:com:appian:types:VIM}VIM_Scope, {urn:com:appian:types}VIM_Region_Ref, {urn:com:appian:types}VIM_Geography, {urn:com:appian:types:VIM}VIM_SalesData, {urn:com:appian:types:V}VIM_Vehicle, {urn:com:appian:types:V}V_Paragraph, {urn:com:appian:types:V}V_Activity, {urn:com:appian:types}VIM_Area_Ref, {urn:com:appian:types:VIM}VIM_DEALERSHIP, {urn:com:appian:types}VIM_Country_Ref, {urn:com:appian:types}VIM_Brand_Ref, {urn:com:appian:types}VIM_SLA_Entry, {urn:com:appian:types}VIM_INCENTIVEREPORT_VIEW],dataStore=[_a-0000e067-d58d-8000-9ba2-011c48011c48_297824, _a-0000dfd8-6941-8000-9ba2-011c48011c48_185078],group=[_e-0000dfd8-690f-8000-9aee-01075c01075c_157, _e-0000e067-d54a-8000-9aee-01075c01075c_231, _e-0000e067-d54a-8000-9aee-01075c01075c_281, _e-0000e067-d54a-8000-9aee-01075c01075c_283, _e-0000e067-d54a-8000-9aee-01075c01075c_285, _e-0000e067-d54a-8000-9aee-01075c01075c_287, _e-0000e067-d54a-8000-9aee-01075c01075c_289, _e-0000e067-d54a-8000-9aee-01075c01075c_291, _e-0000e067-d54a-8000-9aee-01075c01075c_293]]
+2018-06-14 17:17:22.452 DEBUG application 60339 _a-0000e067-d58d-8000-9ba2-011c48011c48_297291 Invalid associated objects: [datatype=[{urn:com:appian:types:VIM}VIM_DEALERSHIP]]
+2018-06-14 17:17:22.452 DEBUG application 60339 _a-0000e067-d58d-8000-9ba2-011c48011c48_297291 Adding valid associated objects to be exported: GlobalBindingMap[datatype={{urn:com:appian:types:VIM}VIM_Status=4416, {urn:com:appian:types:VIM}VIM_Priority=4438, {urn:com:appian:types:VIM}VIM_Paragraph=4452, {urn:com:appian:types:VIM}VIM_Activity=4466, {urn:com:appian:types}VIM_IncentiveVehicles=4484, {urn:com:appian:types:VIM}VIM_Incentive=4380, {urn:com:appian:types:VIM}VIM_Dealership=4602, {urn:com:appian:types:VIM}VIM_Scope=4926, {urn:com:appian:types}VIM_Region_Ref=4598, {urn:com:appian:types}VIM_Geography=5014, {urn:com:appian:types:VIM}VIM_SalesData=4990, {urn:com:appian:types:V}VIM_Vehicle=4496, {urn:com:appian:types:V}V_Paragraph=3054, {urn:com:appian:types:V}V_Activity=3062, {urn:com:appian:types}VIM_Area_Ref=4600, {urn:com:appian:types}VIM_Country_Ref=4536, {urn:com:appian:types}VIM_Brand_Ref=4656, {urn:com:appian:types}VIM_SLA_Entry=4946, {urn:com:appian:types}VIM_INCENTIVEREPORT_VIEW=4128},dataStore={_a-0000e067-d58d-8000-9ba2-011c48011c48_297824=60419, _a-0000dfd8-6941-8000-9ba2-011c48011c48_185078=62207},group={_e-0000dfd8-690f-8000-9aee-01075c01075c_157=173, _e-0000e067-d54a-8000-9aee-01075c01075c_231=193, _e-0000e067-d54a-8000-9aee-01075c01075c_281=205, _e-0000e067-d54a-8000-9aee-01075c01075c_283=206, _e-0000e067-d54a-8000-9aee-01075c01075c_285=207, _e-0000e067-d54a-8000-9aee-01075c01075c_287=208, _e-0000e067-d54a-8000-9aee-01075c01075c_289=209, _e-0000e067-d54a-8000-9aee-01075c01075c_291=210, _e-0000e067-d54a-8000-9aee-01075c01075c_293=211}]
+2018-06-14 17:17:22.452 DEBUG application 60339 _a-0000e067-d58d-8000-9ba2-011c48011c48_297291 Setting uuids of object references.
+2018-06-14 17:17:22.452 DEBUG application 60339 _a-0000e067-d58d-8000-9ba2-011c48011c48_297291 Processing reference: Application.forum
+2018-06-14 17:17:22.453 DEBUG application 60339 _a-0000e067-d58d-8000-9ba2-011c48011c48_297291 Processing reference: Application.parent
+2018-06-14 17:17:22.457 DEBUG application 60339 _a-0000e067-d58d-8000-9ba2-011c48011c48_297291 Processing reference: com.appiancorp.suiteapi.content.ContentRoleMap@7e0c8e7c[
+  ContentRole[name=readers,groupIds=[209],inherit=false,allowForAll=false]
+  ContentRole[name=authors,inherit=false,allowForAll=false]
+  ContentRole[name=administrators,groupIds=[207],inherit=false,allowForAll=false]
+  ContentRole[name=denyReaders,inherit=false,allowForAll=false]
+  ContentRole[name=denyAuthors,inherit=false,allowForAll=false]
+  ContentRole[name=denyAdministrators,inherit=false,allowForAll=false]
+  securityVector=1:SEC_PUBLIC=true,SEC_CREATOR_ADMIN=false,SEC_INH_ADMIN=false,SEC_INH_EDITOR=false,SEC_INH_VIEWER=false,SEC_ALL_ADMIN=false,SEC_ALL_EDITOR=false,SEC_ALL_VIEWER=false
+]
+2018-06-14 17:17:22.457 DEBUG application 60339 _a-0000e067-d58d-8000-9ba2-011c48011c48_297291 Processing reference: ContentRole[name=readers,groupIds=[209],inherit=false,allowForAll=false]
+2018-06-14 17:17:22.458 DEBUG group 209 _e-0000e067-d54a-8000-9aee-01075c01075c_289 Begin transport.
+2018-06-14 17:17:22.458 DEBUG group 209 _e-0000e067-d54a-8000-9aee-01075c01075c_289 Retrieving object data.
+2018-06-14 17:17:22.466 DEBUG group 209 _e-0000e067-d54a-8000-9aee-01075c01075c_289 Setting uuids of object references.
+2018-06-14 17:17:22.466 DEBUG group 209 _e-0000e067-d54a-8000-9aee-01075c01075c_289 Processing reference: Role[name=<null>,groupIds=[207]]
+2018-06-14 17:17:22.468 DEBUG group 207 _e-0000e067-d54a-8000-9aee-01075c01075c_285 Begin transport.
+2018-06-14 17:17:22.468 DEBUG group 207 _e-0000e067-d54a-8000-9aee-01075c01075c_285 Retrieving object data.
+2018-06-14 17:17:22.476 DEBUG group 207 _e-0000e067-d54a-8000-9aee-01075c01075c_285 Setting uuids of object references.
+2018-06-14 17:17:22.476 DEBUG group 207 _e-0000e067-d54a-8000-9aee-01075c01075c_285 Processing reference: Role[name=<null>,groupIds=[207]]
+2018-06-14 17:17:22.477 DEBUG group 207 _e-0000e067-d54a-8000-9aee-01075c01075c_285 Begin transport.
+2018-06-14 17:17:22.477 DEBUG group 207 _e-0000e067-d54a-8000-9aee-01075c01075c_285 Loop detected: [group:207]
+2018-06-14 17:17:22.477 DEBUG group 207 Breaking loop [group:207]. group:207 will be transported with its reference to 207 nulled out and will require a second pass.
+2018-06-14 17:17:22.478 DEBUG group 207 _e-0000e067-d54a-8000-9aee-01075c01075c_285 Processing reference: Group.groupTypeId
+2018-06-14 17:17:22.48 DEBUG group 207 _e-0000e067-d54a-8000-9aee-01075c01075c_285 Processing reference: Group.parentId
+2018-06-14 17:17:22.481 DEBUG group 207 _e-0000e067-d54a-8000-9aee-01075c01075c_285 Processing reference: Group.homePageId
+2018-06-14 17:17:22.481 DEBUG group 207 _e-0000e067-d54a-8000-9aee-01075c01075c_285 Processing reference: Role[name=<null>]
+2018-06-14 17:17:22.482 DEBUG group 207 _e-0000e067-d54a-8000-9aee-01075c01075c_285 Completing produce.
+2018-06-14 17:17:22.482 DEBUG group 207 _e-0000e067-d54a-8000-9aee-01075c01075c_285 Object transported with these references nulled out: [group:207]
+2018-06-14 17:17:22.482 DEBUG group 207 _e-0000e067-d54a-8000-9aee-01075c01075c_285 Binding pending incomplete: group:207
+2018-06-14 17:17:22.483 DEBUG group 207 _e-0000e067-d54a-8000-9aee-01075c01075c_285 Begin transport.
+2018-06-14 17:17:22.483 DEBUG group 207 _e-0000e067-d54a-8000-9aee-01075c01075c_285 Retrieving object data.
+2018-06-14 17:17:22.49 DEBUG group 207 _e-0000e067-d54a-8000-9aee-01075c01075c_285 Setting uuids of object references.
+2018-06-14 17:17:22.49 DEBUG group 207 _e-0000e067-d54a-8000-9aee-01075c01075c_285 Processing reference: Role[name=<null>,groupIds=[207]]
+2018-06-14 17:17:22.491 DEBUG group 207 _e-0000e067-d54a-8000-9aee-01075c01075c_285 Processing reference: Group.groupTypeId
+2018-06-14 17:17:22.493 DEBUG group 207 _e-0000e067-d54a-8000-9aee-01075c01075c_285 Processing reference: Group.parentId
+2018-06-14 17:17:22.493 DEBUG group 207 _e-0000e067-d54a-8000-9aee-01075c01075c_285 Processing reference: Group.homePageId
+2018-06-14 17:17:22.493 DEBUG group 207 _e-0000e067-d54a-8000-9aee-01075c01075c_285 Processing reference: Role[name=<null>]
+2018-06-14 17:17:22.493 DEBUG group 207 _e-0000e067-d54a-8000-9aee-01075c01075c_285 Completing produce.
+2018-06-14 17:17:22.493 DEBUG group 207 _e-0000e067-d54a-8000-9aee-01075c01075c_285 Exporting binary resources.
+2018-06-14 17:17:22.493 DEBUG group 207 _e-0000e067-d54a-8000-9aee-01075c01075c_285 Serializing object to XML.
+2018-06-14 17:17:22.5 DEBUG group 207 _e-0000e067-d54a-8000-9aee-01075c01075c_285 Removed object from incomplete list.
+2018-06-14 17:17:22.5 DEBUG group 207 _e-0000e067-d54a-8000-9aee-01075c01075c_285 Object transported.
+2018-06-14 17:17:22.5 DEBUG group 207 _e-0000e067-d54a-8000-9aee-01075c01075c_285 Binding pending incomplete: group:207
+2018-06-14 17:17:22.501 DEBUG group 209 _e-0000e067-d54a-8000-9aee-01075c01075c_289 Processing reference: Group.groupTypeId
+2018-06-14 17:17:22.503 DEBUG group 209 _e-0000e067-d54a-8000-9aee-01075c01075c_289 Processing reference: Group.parentId
+2018-06-14 17:17:22.503 DEBUG group 209 _e-0000e067-d54a-8000-9aee-01075c01075c_289 Processing reference: Group.homePageId
+2018-06-14 17:17:22.503 DEBUG group 209 _e-0000e067-d54a-8000-9aee-01075c01075c_289 Processing reference: Role[name=<null>,groupIds=[208, 211, 207]]
+2018-06-14 17:17:22.504 DEBUG group 208 _e-0000e067-d54a-8000-9aee-01075c01075c_287 Begin transport.
+2018-06-14 17:17:22.504 DEBUG group 208 _e-0000e067-d54a-8000-9aee-01075c01075c_287 Retrieving object data.
+2018-06-14 17:17:22.511 DEBUG group 208 _e-0000e067-d54a-8000-9aee-01075c01075c_287 Setting uuids of object references.
+2018-06-14 17:17:22.511 DEBUG group 208 _e-0000e067-d54a-8000-9aee-01075c01075c_287 Processing reference: Role[name=<null>,groupIds=[207]]
+2018-06-14 17:17:22.513 DEBUG group 208 _e-0000e067-d54a-8000-9aee-01075c01075c_287 Processing reference: Group.groupTypeId
+2018-06-14 17:17:22.514 DEBUG group 208 _e-0000e067-d54a-8000-9aee-01075c01075c_287 Processing reference: Group.parentId
+2018-06-14 17:17:22.514 DEBUG group 208 _e-0000e067-d54a-8000-9aee-01075c01075c_287 Processing reference: Group.homePageId
+2018-06-14 17:17:22.515 DEBUG group 208 _e-0000e067-d54a-8000-9aee-01075c01075c_287 Processing reference: Role[name=<null>]
+2018-06-14 17:17:22.515 DEBUG group 208 _e-0000e067-d54a-8000-9aee-01075c01075c_287 Completing produce.
+2018-06-14 17:17:22.515 DEBUG group 208 _e-0000e067-d54a-8000-9aee-01075c01075c_287 Exporting binary resources.
+2018-06-14 17:17:22.515 DEBUG group 208 _e-0000e067-d54a-8000-9aee-01075c01075c_287 Serializing object to XML.
+2018-06-14 17:17:22.52 DEBUG group 208 _e-0000e067-d54a-8000-9aee-01075c01075c_287 Object transported.
+2018-06-14 17:17:22.52 DEBUG group 211 _e-0000e067-d54a-8000-9aee-01075c01075c_293 Begin transport.
+2018-06-14 17:17:22.52 DEBUG group 211 _e-0000e067-d54a-8000-9aee-01075c01075c_293 Retrieving object data.
+2018-06-14 17:17:22.527 DEBUG group 211 _e-0000e067-d54a-8000-9aee-01075c01075c_293 Setting uuids of object references.
+2018-06-14 17:17:22.527 DEBUG group 211 _e-0000e067-d54a-8000-9aee-01075c01075c_293 Processing reference: Role[name=<null>,groupIds=[207]]
+2018-06-14 17:17:22.529 DEBUG group 211 _e-0000e067-d54a-8000-9aee-01075c01075c_293 Processing reference: Group.groupTypeId
+2018-06-14 17:17:22.531 DEBUG group 211 _e-0000e067-d54a-8000-9aee-01075c01075c_293 Processing reference: Group.parentId
+2018-06-14 17:17:22.531 DEBUG group 211 _e-0000e067-d54a-8000-9aee-01075c01075c_293 Processing reference: Group.homePageId
+2018-06-14 17:17:22.531 DEBUG group 211 _e-0000e067-d54a-8000-9aee-01075c01075c_293 Processing reference: Role[name=<null>]
+2018-06-14 17:17:22.531 DEBUG group 211 _e-0000e067-d54a-8000-9aee-01075c01075c_293 Completing produce.
+2018-06-14 17:17:22.531 DEBUG group 211 _e-0000e067-d54a-8000-9aee-01075c01075c_293 Exporting binary resources.
+2018-06-14 17:17:22.531 DEBUG group 211 _e-0000e067-d54a-8000-9aee-01075c01075c_293 Serializing object to XML.
+2018-06-14 17:17:22.539 DEBUG group 211 _e-0000e067-d54a-8000-9aee-01075c01075c_293 Object transported.
+2018-06-14 17:17:22.539 DEBUG group 209 _e-0000e067-d54a-8000-9aee-01075c01075c_289 Completing produce.
+2018-06-14 17:17:22.539 DEBUG group 209 _e-0000e067-d54a-8000-9aee-01075c01075c_289 Exporting binary resources.
+2018-06-14 17:17:22.539 DEBUG group 209 _e-0000e067-d54a-8000-9aee-01075c01075c_289 Serializing object to XML.
+2018-06-14 17:17:22.547 DEBUG group 209 _e-0000e067-d54a-8000-9aee-01075c01075c_289 Object transported.
+2018-06-14 17:17:22.547 DEBUG application 60339 _a-0000e067-d58d-8000-9ba2-011c48011c48_297291 Processing reference: ContentRole[name=authors,inherit=false,allowForAll=false]
+2018-06-14 17:17:22.547 DEBUG application 60339 _a-0000e067-d58d-8000-9ba2-011c48011c48_297291 Processing reference: ContentRole[name=administrators,groupIds=[207],inherit=false,allowForAll=false]
+2018-06-14 17:17:22.548 DEBUG application 60339 _a-0000e067-d58d-8000-9ba2-011c48011c48_297291 Processing reference: ContentRole[name=denyReaders,inherit=false,allowForAll=false]
+2018-06-14 17:17:22.548 DEBUG application 60339 _a-0000e067-d58d-8000-9ba2-011c48011c48_297291 Processing reference: ContentRole[name=denyAuthors,inherit=false,allowForAll=false]
+2018-06-14 17:17:22.548 DEBUG application 60339 _a-0000e067-d58d-8000-9ba2-011c48011c48_297291 Processing reference: ContentRole[name=denyAdministrators,inherit=false,allowForAll=false]
+2018-06-14 17:17:22.549 DEBUG datatype 4416 {urn:com:appian:types:VIM}VIM_Status Begin transport.
+2018-06-14 17:17:22.549 DEBUG datatype 4416 {urn:com:appian:types:VIM}VIM_Status Retrieving object data.
+2018-06-14 17:17:22.594 DEBUG datatype 4416 {urn:com:appian:types:VIM}VIM_Status Setting uuids of object references.
+2018-06-14 17:17:22.597 DEBUG datatype 4416 {urn:com:appian:types:VIM}VIM_Status Completing produce.
+2018-06-14 17:17:22.597 DEBUG datatype 4416 {urn:com:appian:types:VIM}VIM_Status Exporting binary resources.
+2018-06-14 17:17:22.597 DEBUG datatype 4416 {urn:com:appian:types:VIM}VIM_Status Serializing object to XML.
+2018-06-14 17:17:22.612 DEBUG datatype 4416 {urn:com:appian:types:VIM}VIM_Status Object transported.
+2018-06-14 17:17:22.612 DEBUG datatype 4438 {urn:com:appian:types:VIM}VIM_Priority Begin transport.
+2018-06-14 17:17:22.612 DEBUG datatype 4438 {urn:com:appian:types:VIM}VIM_Priority Retrieving object data.
+2018-06-14 17:17:22.639 DEBUG datatype 4438 {urn:com:appian:types:VIM}VIM_Priority Setting uuids of object references.
+2018-06-14 17:17:22.639 DEBUG datatype 4438 {urn:com:appian:types:VIM}VIM_Priority Completing produce.
+2018-06-14 17:17:22.639 DEBUG datatype 4438 {urn:com:appian:types:VIM}VIM_Priority Exporting binary resources.
+2018-06-14 17:17:22.639 DEBUG datatype 4438 {urn:com:appian:types:VIM}VIM_Priority Serializing object to XML.
+2018-06-14 17:17:22.656 DEBUG datatype 4438 {urn:com:appian:types:VIM}VIM_Priority Object transported.
+2018-06-14 17:17:22.656 DEBUG datatype 4452 {urn:com:appian:types:VIM}VIM_Paragraph Begin transport.
+2018-06-14 17:17:22.656 DEBUG datatype 4452 {urn:com:appian:types:VIM}VIM_Paragraph Retrieving object data.
+2018-06-14 17:17:22.682 DEBUG datatype 4452 {urn:com:appian:types:VIM}VIM_Paragraph Setting uuids of object references.
+2018-06-14 17:17:22.683 DEBUG datatype 4452 {urn:com:appian:types:VIM}VIM_Paragraph Completing produce.
+2018-06-14 17:17:22.683 DEBUG datatype 4452 {urn:com:appian:types:VIM}VIM_Paragraph Exporting binary resources.
+2018-06-14 17:17:22.683 DEBUG datatype 4452 {urn:com:appian:types:VIM}VIM_Paragraph Serializing object to XML.
+2018-06-14 17:17:22.701 DEBUG datatype 4452 {urn:com:appian:types:VIM}VIM_Paragraph Object transported.
+2018-06-14 17:17:22.701 DEBUG datatype 4466 {urn:com:appian:types:VIM}VIM_Activity Begin transport.
+2018-06-14 17:17:22.701 DEBUG datatype 4466 {urn:com:appian:types:VIM}VIM_Activity Retrieving object data.
+2018-06-14 17:17:22.741 DEBUG datatype 4466 {urn:com:appian:types:VIM}VIM_Activity Setting uuids of object references.
+2018-06-14 17:17:22.741 DEBUG datatype 4466 {urn:com:appian:types:VIM}VIM_Activity Completing produce.
+2018-06-14 17:17:22.741 DEBUG datatype 4466 {urn:com:appian:types:VIM}VIM_Activity Exporting binary resources.
+2018-06-14 17:17:22.741 DEBUG datatype 4466 {urn:com:appian:types:VIM}VIM_Activity Serializing object to XML.
+2018-06-14 17:17:22.753 DEBUG datatype 4466 {urn:com:appian:types:VIM}VIM_Activity Object transported.
+2018-06-14 17:17:22.753 DEBUG datatype 4484 {urn:com:appian:types}VIM_IncentiveVehicles Begin transport.
+2018-06-14 17:17:22.753 DEBUG datatype 4484 {urn:com:appian:types}VIM_IncentiveVehicles Retrieving object data.
+2018-06-14 17:17:22.794 DEBUG datatype 4484 {urn:com:appian:types}VIM_IncentiveVehicles Setting uuids of object references.
+2018-06-14 17:17:22.794 DEBUG datatype 4484 {urn:com:appian:types}VIM_IncentiveVehicles Completing produce.
+2018-06-14 17:17:22.794 DEBUG datatype 4484 {urn:com:appian:types}VIM_IncentiveVehicles Exporting binary resources.
+2018-06-14 17:17:22.794 DEBUG datatype 4484 {urn:com:appian:types}VIM_IncentiveVehicles Serializing object to XML.
+2018-06-14 17:17:22.805 DEBUG datatype 4484 {urn:com:appian:types}VIM_IncentiveVehicles Object transported.
+2018-06-14 17:17:22.805 DEBUG datatype 4380 {urn:com:appian:types:VIM}VIM_Incentive Begin transport.
+2018-06-14 17:17:22.805 DEBUG datatype 4380 {urn:com:appian:types:VIM}VIM_Incentive Retrieving object data.
+2018-06-14 17:17:23.03 DEBUG datatype 4380 {urn:com:appian:types:VIM}VIM_Incentive Setting uuids of object references.
+2018-06-14 17:17:23.032 DEBUG datatype 4600 {urn:com:appian:types}VIM_Area_Ref Begin transport.
+2018-06-14 17:17:23.032 DEBUG datatype 4600 {urn:com:appian:types}VIM_Area_Ref Retrieving object data.
+2018-06-14 17:17:23.101 DEBUG datatype 4600 {urn:com:appian:types}VIM_Area_Ref Setting uuids of object references.
+2018-06-14 17:17:23.101 DEBUG datatype 4598 {urn:com:appian:types}VIM_Region_Ref Begin transport.
+2018-06-14 17:17:23.101 DEBUG datatype 4598 {urn:com:appian:types}VIM_Region_Ref Retrieving object data.
+2018-06-14 17:17:23.151 DEBUG datatype 4598 {urn:com:appian:types}VIM_Region_Ref Setting uuids of object references.
+2018-06-14 17:17:23.152 DEBUG datatype 4536 {urn:com:appian:types}VIM_Country_Ref Begin transport.
+2018-06-14 17:17:23.152 DEBUG datatype 4536 {urn:com:appian:types}VIM_Country_Ref Retrieving object data.
+2018-06-14 17:17:23.183 DEBUG datatype 4536 {urn:com:appian:types}VIM_Country_Ref Setting uuids of object references.
+2018-06-14 17:17:23.184 DEBUG datatype 4536 {urn:com:appian:types}VIM_Country_Ref Completing produce.
+2018-06-14 17:17:23.184 DEBUG datatype 4536 {urn:com:appian:types}VIM_Country_Ref Exporting binary resources.
+2018-06-14 17:17:23.184 DEBUG datatype 4536 {urn:com:appian:types}VIM_Country_Ref Serializing object to XML.
+2018-06-14 17:17:23.195 DEBUG datatype 4536 {urn:com:appian:types}VIM_Country_Ref Object transported.
+2018-06-14 17:17:23.195 DEBUG datatype 4598 {urn:com:appian:types}VIM_Region_Ref Completing produce.
+2018-06-14 17:17:23.195 DEBUG datatype 4598 {urn:com:appian:types}VIM_Region_Ref Exporting binary resources.
+2018-06-14 17:17:23.195 DEBUG datatype 4598 {urn:com:appian:types}VIM_Region_Ref Serializing object to XML.
+2018-06-14 17:17:23.206 DEBUG datatype 4598 {urn:com:appian:types}VIM_Region_Ref Object transported.
+2018-06-14 17:17:23.206 DEBUG datatype 4600 {urn:com:appian:types}VIM_Area_Ref Completing produce.
+2018-06-14 17:17:23.206 DEBUG datatype 4600 {urn:com:appian:types}VIM_Area_Ref Exporting binary resources.
+2018-06-14 17:17:23.206 DEBUG datatype 4600 {urn:com:appian:types}VIM_Area_Ref Serializing object to XML.
+2018-06-14 17:17:23.216 DEBUG datatype 4600 {urn:com:appian:types}VIM_Area_Ref Object transported.
+2018-06-14 17:17:23.217 DEBUG datatype 4602 {urn:com:appian:types:VIM}VIM_Dealership Begin transport.
+2018-06-14 17:17:23.217 DEBUG datatype 4602 {urn:com:appian:types:VIM}VIM_Dealership Retrieving object data.
+2018-06-14 17:17:23.267 DEBUG datatype 4602 {urn:com:appian:types:VIM}VIM_Dealership Setting uuids of object references.
+2018-06-14 17:17:23.267 DEBUG datatype 5014 {urn:com:appian:types}VIM_Geography Begin transport.
+2018-06-14 17:17:23.267 DEBUG datatype 5014 {urn:com:appian:types}VIM_Geography Retrieving object data.
+2018-06-14 17:17:23.298 DEBUG datatype 5014 {urn:com:appian:types}VIM_Geography Setting uuids of object references.
+2018-06-14 17:17:23.302 DEBUG datatype 5014 {urn:com:appian:types}VIM_Geography Completing produce.
+2018-06-14 17:17:23.302 DEBUG datatype 5014 {urn:com:appian:types}VIM_Geography Exporting binary resources.
+2018-06-14 17:17:23.302 DEBUG datatype 5014 {urn:com:appian:types}VIM_Geography Serializing object to XML.
+2018-06-14 17:17:23.315 DEBUG datatype 5014 {urn:com:appian:types}VIM_Geography Object transported.
+2018-06-14 17:17:23.315 DEBUG datatype 4602 {urn:com:appian:types:VIM}VIM_Dealership Completing produce.
+2018-06-14 17:17:23.315 DEBUG datatype 4602 {urn:com:appian:types:VIM}VIM_Dealership Exporting binary resources.
+2018-06-14 17:17:23.315 DEBUG datatype 4602 {urn:com:appian:types:VIM}VIM_Dealership Serializing object to XML.
+2018-06-14 17:17:23.329 DEBUG datatype 4602 {urn:com:appian:types:VIM}VIM_Dealership Object transported.
+2018-06-14 17:17:23.329 DEBUG datatype 4926 {urn:com:appian:types:VIM}VIM_Scope Begin transport.
+2018-06-14 17:17:23.329 DEBUG datatype 4926 {urn:com:appian:types:VIM}VIM_Scope Retrieving object data.
+2018-06-14 17:17:23.36 DEBUG datatype 4926 {urn:com:appian:types:VIM}VIM_Scope Setting uuids of object references.
+2018-06-14 17:17:23.361 DEBUG datatype 4926 {urn:com:appian:types:VIM}VIM_Scope Completing produce.
+2018-06-14 17:17:23.361 DEBUG datatype 4926 {urn:com:appian:types:VIM}VIM_Scope Exporting binary resources.
+2018-06-14 17:17:23.361 DEBUG datatype 4926 {urn:com:appian:types:VIM}VIM_Scope Serializing object to XML.
+2018-06-14 17:17:23.375 DEBUG datatype 4926 {urn:com:appian:types:VIM}VIM_Scope Object transported.
+2018-06-14 17:17:23.375 DEBUG datatype 4380 {urn:com:appian:types:VIM}VIM_Incentive Completing produce.
+2018-06-14 17:17:23.375 DEBUG datatype 4380 {urn:com:appian:types:VIM}VIM_Incentive Exporting binary resources.
+2018-06-14 17:17:23.375 DEBUG datatype 4380 {urn:com:appian:types:VIM}VIM_Incentive Serializing object to XML.
+2018-06-14 17:17:23.39 DEBUG datatype 4380 {urn:com:appian:types:VIM}VIM_Incentive Object transported.
+2018-06-14 17:17:23.39 DEBUG datatype 4990 {urn:com:appian:types:VIM}VIM_SalesData Begin transport.
+2018-06-14 17:17:23.39 DEBUG datatype 4990 {urn:com:appian:types:VIM}VIM_SalesData Retrieving object data.
+2018-06-14 17:17:23.449 DEBUG datatype 4990 {urn:com:appian:types:VIM}VIM_SalesData Setting uuids of object references.
+2018-06-14 17:17:23.45 DEBUG datatype 4990 {urn:com:appian:types:VIM}VIM_SalesData Completing produce.
+2018-06-14 17:17:23.45 DEBUG datatype 4990 {urn:com:appian:types:VIM}VIM_SalesData Exporting binary resources.
+2018-06-14 17:17:23.45 DEBUG datatype 4990 {urn:com:appian:types:VIM}VIM_SalesData Serializing object to XML.
+2018-06-14 17:17:23.465 DEBUG datatype 4990 {urn:com:appian:types:VIM}VIM_SalesData Object transported.
+2018-06-14 17:17:23.465 DEBUG datatype 4496 {urn:com:appian:types:V}VIM_Vehicle Begin transport.
+2018-06-14 17:17:23.465 DEBUG datatype 4496 {urn:com:appian:types:V}VIM_Vehicle Retrieving object data.
+2018-06-14 17:17:23.54 DEBUG datatype 4496 {urn:com:appian:types:V}VIM_Vehicle Setting uuids of object references.
+2018-06-14 17:17:23.54 DEBUG datatype 3054 {urn:com:appian:types:V}V_Paragraph Begin transport.
+2018-06-14 17:17:23.54 DEBUG datatype 3054 {urn:com:appian:types:V}V_Paragraph Retrieving object data.
+2018-06-14 17:17:23.58 DEBUG datatype 3054 {urn:com:appian:types:V}V_Paragraph Setting uuids of object references.
+2018-06-14 17:17:23.581 DEBUG datatype 3054 {urn:com:appian:types:V}V_Paragraph Completing produce.
+2018-06-14 17:17:23.581 DEBUG datatype 3054 {urn:com:appian:types:V}V_Paragraph Exporting binary resources.
+2018-06-14 17:17:23.581 DEBUG datatype 3054 {urn:com:appian:types:V}V_Paragraph Serializing object to XML.
+2018-06-14 17:17:23.595 DEBUG datatype 3054 {urn:com:appian:types:V}V_Paragraph Object transported.
+2018-06-14 17:17:23.595 DEBUG datatype 4496 {urn:com:appian:types:V}VIM_Vehicle Completing produce.
+2018-06-14 17:17:23.595 DEBUG datatype 4496 {urn:com:appian:types:V}VIM_Vehicle Exporting binary resources.
+2018-06-14 17:17:23.595 DEBUG datatype 4496 {urn:com:appian:types:V}VIM_Vehicle Serializing object to XML.
+2018-06-14 17:17:23.609 DEBUG datatype 4496 {urn:com:appian:types:V}VIM_Vehicle Object transported.
+2018-06-14 17:17:23.609 DEBUG datatype 3062 {urn:com:appian:types:V}V_Activity Begin transport.
+2018-06-14 17:17:23.609 DEBUG datatype 3062 {urn:com:appian:types:V}V_Activity Retrieving object data.
+2018-06-14 17:17:23.647 DEBUG datatype 3062 {urn:com:appian:types:V}V_Activity Setting uuids of object references.
+2018-06-14 17:17:23.648 DEBUG datatype 3062 {urn:com:appian:types:V}V_Activity Completing produce.
+2018-06-14 17:17:23.648 DEBUG datatype 3062 {urn:com:appian:types:V}V_Activity Exporting binary resources.
+2018-06-14 17:17:23.648 DEBUG datatype 3062 {urn:com:appian:types:V}V_Activity Serializing object to XML.
+2018-06-14 17:17:23.658 DEBUG datatype 3062 {urn:com:appian:types:V}V_Activity Object transported.
+2018-06-14 17:17:23.658 DEBUG datatype 4656 {urn:com:appian:types}VIM_Brand_Ref Begin transport.
+2018-06-14 17:17:23.658 DEBUG datatype 4656 {urn:com:appian:types}VIM_Brand_Ref Retrieving object data.
+2018-06-14 17:17:23.696 DEBUG datatype 4656 {urn:com:appian:types}VIM_Brand_Ref Setting uuids of object references.
+2018-06-14 17:17:23.697 DEBUG datatype 4656 {urn:com:appian:types}VIM_Brand_Ref Completing produce.
+2018-06-14 17:17:23.697 DEBUG datatype 4656 {urn:com:appian:types}VIM_Brand_Ref Exporting binary resources.
+2018-06-14 17:17:23.697 DEBUG datatype 4656 {urn:com:appian:types}VIM_Brand_Ref Serializing object to XML.
+2018-06-14 17:17:23.705 DEBUG datatype 4656 {urn:com:appian:types}VIM_Brand_Ref Object transported.
+2018-06-14 17:17:23.705 DEBUG datatype 4946 {urn:com:appian:types}VIM_SLA_Entry Begin transport.
+2018-06-14 17:17:23.705 DEBUG datatype 4946 {urn:com:appian:types}VIM_SLA_Entry Retrieving object data.
+2018-06-14 17:17:23.783 DEBUG datatype 4946 {urn:com:appian:types}VIM_SLA_Entry Setting uuids of object references.
+2018-06-14 17:17:23.783 DEBUG datatype 4946 {urn:com:appian:types}VIM_SLA_Entry Completing produce.
+2018-06-14 17:17:23.784 DEBUG datatype 4946 {urn:com:appian:types}VIM_SLA_Entry Exporting binary resources.
+2018-06-14 17:17:23.784 DEBUG datatype 4946 {urn:com:appian:types}VIM_SLA_Entry Serializing object to XML.
+2018-06-14 17:17:23.797 DEBUG datatype 4946 {urn:com:appian:types}VIM_SLA_Entry Object transported.
+2018-06-14 17:17:23.797 DEBUG datatype 4128 {urn:com:appian:types}VIM_INCENTIVEREPORT_VIEW Begin transport.
+2018-06-14 17:17:23.797 DEBUG datatype 4128 {urn:com:appian:types}VIM_INCENTIVEREPORT_VIEW Retrieving object data.
+2018-06-14 17:17:23.832 DEBUG datatype 4128 {urn:com:appian:types}VIM_INCENTIVEREPORT_VIEW Setting uuids of object references.
+2018-06-14 17:17:23.834 DEBUG datatype 4128 {urn:com:appian:types}VIM_INCENTIVEREPORT_VIEW Completing produce.
+2018-06-14 17:17:23.834 DEBUG datatype 4128 {urn:com:appian:types}VIM_INCENTIVEREPORT_VIEW Exporting binary resources.
+2018-06-14 17:17:23.834 DEBUG datatype 4128 {urn:com:appian:types}VIM_INCENTIVEREPORT_VIEW Serializing object to XML.
+2018-06-14 17:17:23.841 DEBUG datatype 4128 {urn:com:appian:types}VIM_INCENTIVEREPORT_VIEW Object transported.
+2018-06-14 17:17:23.846 DEBUG dataStore 60419 _a-0000e067-d58d-8000-9ba2-011c48011c48_297824 Begin transport.
+2018-06-14 17:17:23.846 DEBUG dataStore 60419 _a-0000e067-d58d-8000-9ba2-011c48011c48_297824 Retrieving object data.
+2018-06-14 17:17:23.859 DEBUG dataStore 60419 _a-0000e067-d58d-8000-9ba2-011c48011c48_297824 Setting uuids of object references.
+2018-06-14 17:17:23.862 DEBUG dataStore 60419 _a-0000e067-d58d-8000-9ba2-011c48011c48_297824 Processing reference: datatypeRef[id=3054]
+2018-06-14 17:17:23.862 DEBUG dataStore 60419 _a-0000e067-d58d-8000-9ba2-011c48011c48_297824 Processing reference: datatypeRef[id=3062]
+2018-06-14 17:17:23.862 DEBUG dataStore 60419 _a-0000e067-d58d-8000-9ba2-011c48011c48_297824 Processing reference: datatypeRef[id=5054]
+2018-06-14 17:17:23.864 DEBUG dataStore 60419 _a-0000e067-d58d-8000-9ba2-011c48011c48_297824 Processing reference: ContentRole[name=administrators,groupIds=[207],inherit=false,allowForAll=false]
+2018-06-14 17:17:23.866 DEBUG dataStore 60419 _a-0000e067-d58d-8000-9ba2-011c48011c48_297824 Processing reference: ContentRole[name=authors,inherit=false,allowForAll=false]
+2018-06-14 17:17:23.866 DEBUG dataStore 60419 _a-0000e067-d58d-8000-9ba2-011c48011c48_297824 Processing reference: ContentRole[name=denyAdministrators,inherit=false,allowForAll=false]
+2018-06-14 17:17:23.866 DEBUG dataStore 60419 _a-0000e067-d58d-8000-9ba2-011c48011c48_297824 Processing reference: ContentRole[name=denyAuthors,inherit=false,allowForAll=false]
+2018-06-14 17:17:23.866 DEBUG dataStore 60419 _a-0000e067-d58d-8000-9ba2-011c48011c48_297824 Processing reference: ContentRole[name=denyReaders,inherit=false,allowForAll=false]
+2018-06-14 17:17:23.866 DEBUG dataStore 60419 _a-0000e067-d58d-8000-9ba2-011c48011c48_297824 Processing reference: ContentRole[name=readers,groupIds=[209],inherit=false,allowForAll=false]
+2018-06-14 17:17:23.868 DEBUG dataStore 60419 _a-0000e067-d58d-8000-9ba2-011c48011c48_297824 Completing produce.
+2018-06-14 17:17:23.868 DEBUG dataStore 60419 _a-0000e067-d58d-8000-9ba2-011c48011c48_297824 Exporting binary resources.
+2018-06-14 17:17:23.868 DEBUG dataStore 60419 _a-0000e067-d58d-8000-9ba2-011c48011c48_297824 Serializing object to XML.
+2018-06-14 17:17:23.879 DEBUG dataStore 60419 _a-0000e067-d58d-8000-9ba2-011c48011c48_297824 Object transported.
+2018-06-14 17:17:23.879 DEBUG dataStore 62207 _a-0000dfd8-6941-8000-9ba2-011c48011c48_185078 Begin transport.
+2018-06-14 17:17:23.879 DEBUG dataStore 62207 _a-0000dfd8-6941-8000-9ba2-011c48011c48_185078 Retrieving object data.
+2018-06-14 17:17:23.886 DEBUG dataStore 62207 _a-0000dfd8-6941-8000-9ba2-011c48011c48_185078 Setting uuids of object references.
+2018-06-14 17:17:23.886 DEBUG dataStore 62207 _a-0000dfd8-6941-8000-9ba2-011c48011c48_185078 Processing reference: datatypeRef[id=4416]
+2018-06-14 17:17:23.886 DEBUG dataStore 62207 _a-0000dfd8-6941-8000-9ba2-011c48011c48_185078 Processing reference: datatypeRef[id=4438]
+2018-06-14 17:17:23.886 DEBUG dataStore 62207 _a-0000dfd8-6941-8000-9ba2-011c48011c48_185078 Processing reference: datatypeRef[id=3940]
+2018-06-14 17:17:23.886 DEBUG dataStore 62207 _a-0000dfd8-6941-8000-9ba2-011c48011c48_185078 Processing reference: datatypeRef[id=4452]
+2018-06-14 17:17:23.886 DEBUG dataStore 62207 _a-0000dfd8-6941-8000-9ba2-011c48011c48_185078 Processing reference: datatypeRef[id=3948]
+2018-06-14 17:17:23.886 DEBUG dataStore 62207 _a-0000dfd8-6941-8000-9ba2-011c48011c48_185078 Processing reference: datatypeRef[id=3952]
+2018-06-14 17:17:23.886 DEBUG dataStore 62207 _a-0000dfd8-6941-8000-9ba2-011c48011c48_185078 Processing reference: datatypeRef[id=3956]
+2018-06-14 17:17:23.887 DEBUG dataStore 62207 _a-0000dfd8-6941-8000-9ba2-011c48011c48_185078 Processing reference: datatypeRef[id=3960]
+2018-06-14 17:17:23.887 DEBUG dataStore 62207 _a-0000dfd8-6941-8000-9ba2-011c48011c48_185078 Processing reference: datatypeRef[id=3964]
+2018-06-14 17:17:23.887 DEBUG dataStore 62207 _a-0000dfd8-6941-8000-9ba2-011c48011c48_185078 Processing reference: datatypeRef[id=3968]
+2018-06-14 17:17:23.887 DEBUG dataStore 62207 _a-0000dfd8-6941-8000-9ba2-011c48011c48_185078 Processing reference: datatypeRef[id=3972]
+2018-06-14 17:17:23.887 DEBUG dataStore 62207 _a-0000dfd8-6941-8000-9ba2-011c48011c48_185078 Processing reference: datatypeRef[id=4466]
+2018-06-14 17:17:23.888 DEBUG dataStore 62207 _a-0000dfd8-6941-8000-9ba2-011c48011c48_185078 Processing reference: datatypeRef[id=4380]
+2018-06-14 17:17:23.888 DEBUG dataStore 62207 _a-0000dfd8-6941-8000-9ba2-011c48011c48_185078 Processing reference: datatypeRef[id=4010]
+2018-06-14 17:17:23.888 DEBUG dataStore 62207 _a-0000dfd8-6941-8000-9ba2-011c48011c48_185078 Processing reference: datatypeRef[id=4602]
+2018-06-14 17:17:23.888 DEBUG dataStore 62207 _a-0000dfd8-6941-8000-9ba2-011c48011c48_185078 Processing reference: datatypeRef[id=4990]
+2018-06-14 17:17:23.888 DEBUG dataStore 62207 _a-0000dfd8-6941-8000-9ba2-011c48011c48_185078 Processing reference: datatypeRef[id=4776]
+2018-06-14 17:17:23.888 DEBUG dataStore 62207 _a-0000dfd8-6941-8000-9ba2-011c48011c48_185078 Processing reference: datatypeRef[id=4986]
+2018-06-14 17:17:23.888 DEBUG dataStore 62207 _a-0000dfd8-6941-8000-9ba2-011c48011c48_185078 Processing reference: datatypeRef[id=4760]
+2018-06-14 17:17:23.888 DEBUG dataStore 62207 _a-0000dfd8-6941-8000-9ba2-011c48011c48_185078 Processing reference: datatypeRef[id=5014]
+2018-06-14 17:17:23.889 DEBUG dataStore 62207 _a-0000dfd8-6941-8000-9ba2-011c48011c48_185078 Processing reference: datatypeRef[id=4732]
+2018-06-14 17:17:23.889 DEBUG dataStore 62207 _a-0000dfd8-6941-8000-9ba2-011c48011c48_185078 Processing reference: datatypeRef[id=4484]
+2018-06-14 17:17:23.889 DEBUG dataStore 62207 _a-0000dfd8-6941-8000-9ba2-011c48011c48_185078 Processing reference: datatypeRef[id=4598]
+2018-06-14 17:17:23.889 DEBUG dataStore 62207 _a-0000dfd8-6941-8000-9ba2-011c48011c48_185078 Processing reference: datatypeRef[id=4600]
+2018-06-14 17:17:23.889 DEBUG dataStore 62207 _a-0000dfd8-6941-8000-9ba2-011c48011c48_185078 Processing reference: datatypeRef[id=4536]
+2018-06-14 17:17:23.889 DEBUG dataStore 62207 _a-0000dfd8-6941-8000-9ba2-011c48011c48_185078 Processing reference: datatypeRef[id=4656]
+2018-06-14 17:17:23.889 DEBUG dataStore 62207 _a-0000dfd8-6941-8000-9ba2-011c48011c48_185078 Processing reference: datatypeRef[id=4946]
+2018-06-14 17:17:23.889 DEBUG dataStore 62207 _a-0000dfd8-6941-8000-9ba2-011c48011c48_185078 Processing reference: datatypeRef[id=4128]
+2018-06-14 17:17:23.889 DEBUG dataStore 62207 _a-0000dfd8-6941-8000-9ba2-011c48011c48_185078 Processing reference: ContentRole[name=administrators,groupIds=[207],inherit=false,allowForAll=false]
+2018-06-14 17:17:23.893 DEBUG dataStore 62207 _a-0000dfd8-6941-8000-9ba2-011c48011c48_185078 Processing reference: ContentRole[name=authors,inherit=false,allowForAll=false]
+2018-06-14 17:17:23.893 DEBUG dataStore 62207 _a-0000dfd8-6941-8000-9ba2-011c48011c48_185078 Processing reference: ContentRole[name=denyAdministrators,inherit=false,allowForAll=false]
+2018-06-14 17:17:23.893 DEBUG dataStore 62207 _a-0000dfd8-6941-8000-9ba2-011c48011c48_185078 Processing reference: ContentRole[name=denyAuthors,inherit=false,allowForAll=false]
+2018-06-14 17:17:23.893 DEBUG dataStore 62207 _a-0000dfd8-6941-8000-9ba2-011c48011c48_185078 Processing reference: ContentRole[name=denyReaders,inherit=false,allowForAll=false]
+2018-06-14 17:17:23.893 DEBUG dataStore 62207 _a-0000dfd8-6941-8000-9ba2-011c48011c48_185078 Processing reference: ContentRole[name=readers,groupIds=[193, 209, 194],inherit=false,allowForAll=false]
+2018-06-14 17:17:23.895 DEBUG group 193 _e-0000e067-d54a-8000-9aee-01075c01075c_231 Begin transport.
+2018-06-14 17:17:23.895 DEBUG group 193 _e-0000e067-d54a-8000-9aee-01075c01075c_231 Retrieving object data.
+2018-06-14 17:17:23.906 DEBUG group 193 _e-0000e067-d54a-8000-9aee-01075c01075c_231 Setting uuids of object references.
+2018-06-14 17:17:23.906 DEBUG group 193 _e-0000e067-d54a-8000-9aee-01075c01075c_231 Processing reference: Role[name=<null>,groupIds=[207]]
+2018-06-14 17:17:23.908 DEBUG group 193 _e-0000e067-d54a-8000-9aee-01075c01075c_231 Processing reference: Group.groupTypeId
+2018-06-14 17:17:23.911 DEBUG group 193 _e-0000e067-d54a-8000-9aee-01075c01075c_231 Processing reference: Group.parentId
+2018-06-14 17:17:23.912 DEBUG group 193 _e-0000e067-d54a-8000-9aee-01075c01075c_231 Processing reference: Group.homePageId
+2018-06-14 17:17:23.912 DEBUG group 193 _e-0000e067-d54a-8000-9aee-01075c01075c_231 Processing reference: Role[name=<null>]
+2018-06-14 17:17:23.912 DEBUG group 193 _e-0000e067-d54a-8000-9aee-01075c01075c_231 Completing produce.
+2018-06-14 17:17:23.912 DEBUG group 193 _e-0000e067-d54a-8000-9aee-01075c01075c_231 Exporting binary resources.
+2018-06-14 17:17:23.912 DEBUG group 193 _e-0000e067-d54a-8000-9aee-01075c01075c_231 Serializing object to XML.
+2018-06-14 17:17:23.924 DEBUG group 193 _e-0000e067-d54a-8000-9aee-01075c01075c_231 Object transported.
+2018-06-14 17:17:23.924 DEBUG dataStore 62207 _a-0000dfd8-6941-8000-9ba2-011c48011c48_185078 Completing produce.
+2018-06-14 17:17:23.924 DEBUG dataStore 62207 _a-0000dfd8-6941-8000-9ba2-011c48011c48_185078 Exporting binary resources.
+2018-06-14 17:17:23.924 DEBUG dataStore 62207 _a-0000dfd8-6941-8000-9ba2-011c48011c48_185078 Serializing object to XML.
+2018-06-14 17:17:23.932 DEBUG dataStore 62207 _a-0000dfd8-6941-8000-9ba2-011c48011c48_185078 Object transported.
+2018-06-14 17:17:23.934 DEBUG group 173 _e-0000dfd8-690f-8000-9aee-01075c01075c_157 Begin transport.
+2018-06-14 17:17:23.934 DEBUG group 173 _e-0000dfd8-690f-8000-9aee-01075c01075c_157 Retrieving object data.
+2018-06-14 17:17:23.945 DEBUG group 173 _e-0000dfd8-690f-8000-9aee-01075c01075c_157 Setting uuids of object references.
+2018-06-14 17:17:23.945 DEBUG group 173 _e-0000dfd8-690f-8000-9aee-01075c01075c_157 Processing reference: Role[name=<null>,groupIds=[207]]
+2018-06-14 17:17:23.948 DEBUG group 173 _e-0000dfd8-690f-8000-9aee-01075c01075c_157 Processing reference: Group.groupTypeId
+2018-06-14 17:17:23.953 DEBUG group 173 _e-0000dfd8-690f-8000-9aee-01075c01075c_157 Processing reference: Group.parentId
+2018-06-14 17:17:23.954 DEBUG group 173 _e-0000dfd8-690f-8000-9aee-01075c01075c_157 Processing reference: Group.homePageId
+2018-06-14 17:17:23.954 DEBUG group 173 _e-0000dfd8-690f-8000-9aee-01075c01075c_157 Processing reference: Role[name=<null>]
+2018-06-14 17:17:23.954 DEBUG group 173 _e-0000dfd8-690f-8000-9aee-01075c01075c_157 Completing produce.
+2018-06-14 17:17:23.954 DEBUG group 173 _e-0000dfd8-690f-8000-9aee-01075c01075c_157 Exporting binary resources.
+2018-06-14 17:17:23.954 DEBUG group 173 _e-0000dfd8-690f-8000-9aee-01075c01075c_157 Serializing object to XML.
+2018-06-14 17:17:23.964 DEBUG group 173 _e-0000dfd8-690f-8000-9aee-01075c01075c_157 Object transported.
+2018-06-14 17:17:23.964 DEBUG group 205 _e-0000e067-d54a-8000-9aee-01075c01075c_281 Begin transport.
+2018-06-14 17:17:23.964 DEBUG group 205 _e-0000e067-d54a-8000-9aee-01075c01075c_281 Retrieving object data.
+2018-06-14 17:17:23.973 DEBUG group 205 _e-0000e067-d54a-8000-9aee-01075c01075c_281 Setting uuids of object references.
+2018-06-14 17:17:23.973 DEBUG group 205 _e-0000e067-d54a-8000-9aee-01075c01075c_281 Processing reference: Role[name=<null>,groupIds=[207]]
+2018-06-14 17:17:23.975 DEBUG group 205 _e-0000e067-d54a-8000-9aee-01075c01075c_281 Processing reference: Group.groupTypeId
+2018-06-14 17:17:23.977 DEBUG group 205 _e-0000e067-d54a-8000-9aee-01075c01075c_281 Processing reference: Group.parentId
+2018-06-14 17:17:23.978 DEBUG group 205 _e-0000e067-d54a-8000-9aee-01075c01075c_281 Processing reference: Group.homePageId
+2018-06-14 17:17:23.978 DEBUG group 205 _e-0000e067-d54a-8000-9aee-01075c01075c_281 Processing reference: Role[name=<null>]
+2018-06-14 17:17:23.978 DEBUG group 205 _e-0000e067-d54a-8000-9aee-01075c01075c_281 Completing produce.
+2018-06-14 17:17:23.978 DEBUG group 205 _e-0000e067-d54a-8000-9aee-01075c01075c_281 Exporting binary resources.
+2018-06-14 17:17:23.978 DEBUG group 205 _e-0000e067-d54a-8000-9aee-01075c01075c_281 Serializing object to XML.
+2018-06-14 17:17:23.988 DEBUG group 205 _e-0000e067-d54a-8000-9aee-01075c01075c_281 Object transported.
+2018-06-14 17:17:23.988 DEBUG group 206 _e-0000e067-d54a-8000-9aee-01075c01075c_283 Begin transport.
+2018-06-14 17:17:23.988 DEBUG group 206 _e-0000e067-d54a-8000-9aee-01075c01075c_283 Retrieving object data.
+2018-06-14 17:17:23.997 DEBUG group 206 _e-0000e067-d54a-8000-9aee-01075c01075c_283 Setting uuids of object references.
+2018-06-14 17:17:23.997 DEBUG group 206 _e-0000e067-d54a-8000-9aee-01075c01075c_283 Processing reference: Role[name=<null>,groupIds=[207]]
+2018-06-14 17:17:23.999 DEBUG group 206 _e-0000e067-d54a-8000-9aee-01075c01075c_283 Processing reference: Group.groupTypeId
+2018-06-14 17:17:24.001 DEBUG group 206 _e-0000e067-d54a-8000-9aee-01075c01075c_283 Processing reference: Group.parentId
+2018-06-14 17:17:24.001 DEBUG group 206 _e-0000e067-d54a-8000-9aee-01075c01075c_283 Processing reference: Group.homePageId
+2018-06-14 17:17:24.001 DEBUG group 206 _e-0000e067-d54a-8000-9aee-01075c01075c_283 Processing reference: Role[name=<null>]
+2018-06-14 17:17:24.001 DEBUG group 206 _e-0000e067-d54a-8000-9aee-01075c01075c_283 Completing produce.
+2018-06-14 17:17:24.001 DEBUG group 206 _e-0000e067-d54a-8000-9aee-01075c01075c_283 Exporting binary resources.
+2018-06-14 17:17:24.001 DEBUG group 206 _e-0000e067-d54a-8000-9aee-01075c01075c_283 Serializing object to XML.
+2018-06-14 17:17:24.013 DEBUG group 206 _e-0000e067-d54a-8000-9aee-01075c01075c_283 Object transported.
+2018-06-14 17:17:24.013 DEBUG group 210 _e-0000e067-d54a-8000-9aee-01075c01075c_291 Begin transport.
+2018-06-14 17:17:24.013 DEBUG group 210 _e-0000e067-d54a-8000-9aee-01075c01075c_291 Retrieving object data.
+2018-06-14 17:17:24.028 DEBUG group 210 _e-0000e067-d54a-8000-9aee-01075c01075c_291 Setting uuids of object references.
+2018-06-14 17:17:24.028 DEBUG group 210 _e-0000e067-d54a-8000-9aee-01075c01075c_291 Processing reference: Role[name=<null>,groupIds=[207]]
+2018-06-14 17:17:24.029 DEBUG group 210 _e-0000e067-d54a-8000-9aee-01075c01075c_291 Processing reference: Group.groupTypeId
+2018-06-14 17:17:24.032 DEBUG group 210 _e-0000e067-d54a-8000-9aee-01075c01075c_291 Processing reference: Group.parentId
+2018-06-14 17:17:24.032 DEBUG group 210 _e-0000e067-d54a-8000-9aee-01075c01075c_291 Processing reference: Group.homePageId
+2018-06-14 17:17:24.032 DEBUG group 210 _e-0000e067-d54a-8000-9aee-01075c01075c_291 Processing reference: Role[name=<null>]
+2018-06-14 17:17:24.032 DEBUG group 210 _e-0000e067-d54a-8000-9aee-01075c01075c_291 Completing produce.
+2018-06-14 17:17:24.032 DEBUG group 210 _e-0000e067-d54a-8000-9aee-01075c01075c_291 Exporting binary resources.
+2018-06-14 17:17:24.032 DEBUG group 210 _e-0000e067-d54a-8000-9aee-01075c01075c_291 Serializing object to XML.
+2018-06-14 17:17:24.047 DEBUG group 210 _e-0000e067-d54a-8000-9aee-01075c01075c_291 Object transported.
+2018-06-14 17:17:24.047 DEBUG application 60339 _a-0000e067-d58d-8000-9ba2-011c48011c48_297291 Completing produce.
+2018-06-14 17:17:24.047 DEBUG application 60339 _a-0000e067-d58d-8000-9ba2-011c48011c48_297291 Exporting binary resources.
+2018-06-14 17:17:24.047 DEBUG application 60339 _a-0000e067-d58d-8000-9ba2-011c48011c48_297291 Serializing object to XML.
+2018-06-14 17:17:24.056 DEBUG application 60339 _a-0000e067-d58d-8000-9ba2-011c48011c48_297291 Object transported.

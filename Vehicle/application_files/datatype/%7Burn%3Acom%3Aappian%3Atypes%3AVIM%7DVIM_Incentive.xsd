@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema targetNamespace="urn:com:appian:types:VIM"
+  xmlns:tns="urn:com:appian:types:VIM"
+  xmlns:types1="urn:com:appian:types" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:import namespace="urn:com:appian:types" schemaLocation="%7Burn%3Acom%3Aappian%3Atypes%7DVIM_Area_Ref.xsd"/>
+  <xsd:include schemaLocation="%7Burn%3Acom%3Aappian%3Atypes%3AVIM%7DVIM_Dealership.xsd"/>
+  <xsd:include schemaLocation="%7Burn%3Acom%3Aappian%3Atypes%3AVIM%7DVIM_ExclusionList.xsd"/>
+  <xsd:import namespace="urn:com:appian:types" schemaLocation="%7Burn%3Acom%3Aappian%3Atypes%7DVIM_IncentiveVehicles.xsd"/>
+  <xsd:include schemaLocation="%7Burn%3Acom%3Aappian%3Atypes%3AVIM%7DVIM_Model.xsd"/>
+  <xsd:include schemaLocation="%7Burn%3Acom%3Aappian%3Atypes%3AVIM%7DVIM_Paragraph.xsd"/>
+  <xsd:include schemaLocation="%7Burn%3Acom%3Aappian%3Atypes%3AVIM%7DVIM_PublishLocation.xsd"/>
+  <xsd:import namespace="urn:com:appian:types" schemaLocation="%7Burn%3Acom%3Aappian%3Atypes%7DVIM_Region_Ref.xsd"/>
+  <xsd:include schemaLocation="%7Burn%3Acom%3Aappian%3Atypes%3AVIM%7DVIM_Scope.xsd"/>
+  <xsd:include schemaLocation="%7Burn%3Acom%3Aappian%3Atypes%3AVIM%7DVIM_Status.xsd"/>
+  <xsd:complexType name="VIM_Incentive">
+    <xsd:annotation>
+      <xsd:appinfo source="appian.jpa">@Table(name="VIM_INCENTIVE")</xsd:appinfo>
+      <xsd:documentation><![CDATA[Base data structure for a single Incentiverecord]]></xsd:documentation>
+      <xsd:appinfo source="http://www.appian.com/ae/types/2009">
+        <ns2:Metadata xmlns:ns2="http://www.appian.com/ae/types/2009">
+          <ns2:versionUuid>0000e0d7-7af7-8000-f92f-7f0000014e7a</ns2:versionUuid>
+          <ns2:history>
+            <ns2:historyInfo versionUuid="0000e078-8ee1-8000-f92f-7f0000014e7a"/>
+            <ns2:historyInfo versionUuid="0001e07a-381a-8000-f92f-7f0000014e7a"/>
+            <ns2:historyInfo versionUuid="0000e092-c558-8000-f92f-7f0000014e7a"/>
+            <ns2:historyInfo versionUuid="0000e0bf-e819-8000-f92f-7f0000014e7a"/>
+            <ns2:historyInfo versionUuid="0000e0d7-7af7-8000-f92f-7f0000014e7a"/>
+          </ns2:history>
+        </ns2:Metadata>
+      </xsd:appinfo>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element name="id" nillable="true" type="xsd:int">
+        <xsd:annotation>
+          <xsd:appinfo source="appian.jpa">@Id @GeneratedValue</xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="title" nillable="true" type="xsd:string">
+        <xsd:annotation>
+          <xsd:appinfo source="appian.jpa">@Column(name="title")</xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="status" nillable="true" type="tns:VIM_Status">
+        <xsd:annotation>
+          <xsd:appinfo source="appian.jpa">@JoinColumn(name="status") @ManyToOne(cascade=REFRESH)</xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="offerDescription" nillable="true" type="tns:VIM_Paragraph">
+        <xsd:annotation>
+          <xsd:appinfo source="appian.jpa">@JoinColumn(name="offerdescription") @OneToOne(cascade=ALL)</xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="couponUrl" nillable="true" type="xsd:string">
+        <xsd:annotation>
+          <xsd:appinfo source="appian.jpa">@Column(name="couponurl")</xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="brand" nillable="true" type="xsd:string">
+        <xsd:annotation>
+          <xsd:appinfo source="appian.jpa">@Column(name="brand")</xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="country" nillable="true" type="xsd:string">
+        <xsd:annotation>
+          <xsd:appinfo source="appian.jpa">@Column(name="country")</xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element maxOccurs="unbounded" minOccurs="0"
+        name="publishLocation" type="tns:VIM_PublishLocation">
+        <xsd:annotation>
+          <xsd:appinfo source="appian.jpa">@ManyToMany(indexed=false) @JoinTable(name="qckapp_vim_join_publishlkjm", joinColumns=@JoinColumn(name="publishlocation"), inverseJoinColumns=@JoinColumn(name="inv_publishlocation"))</xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="bonusDescription" nillable="true" type="xsd:string">
+        <xsd:annotation>
+          <xsd:appinfo source="appian.jpa">@Column(name="bonusdescription")</xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element maxOccurs="unbounded" minOccurs="0" name="model" type="tns:VIM_Model">
+        <xsd:annotation>
+          <xsd:appinfo source="appian.jpa">@ManyToMany(indexed=false) @JoinTable(name="qckapp_vim_join_model", joinColumns=@JoinColumn(name="model"), inverseJoinColumns=@JoinColumn(name="inv_model"))</xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="offerSubtitle" nillable="true" type="xsd:string">
+        <xsd:annotation>
+          <xsd:appinfo source="appian.jpa">@Column(name="offersubtitle")</xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element maxOccurs="unbounded" minOccurs="0"
+        name="exclusionList" type="tns:VIM_ExclusionList">
+        <xsd:annotation>
+          <xsd:appinfo source="appian.jpa">@ManyToMany(indexed=false) @JoinTable(name="qckapp_vim_join_exclusioqhm", joinColumns=@JoinColumn(name="exclusionlist"), inverseJoinColumns=@JoinColumn(name="inv_exclusionlist"))</xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="aprRate" nillable="true" type="xsd:string">
+        <xsd:annotation>
+          <xsd:appinfo source="appian.jpa">@Column(name="aprrate")</xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="addExclusions" nillable="true" type="xsd:string">
+        <xsd:annotation>
+          <xsd:appinfo source="appian.jpa">@Column(name="addexclusions")</xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="mileageResponsibilityAndWearAndTear"
+        nillable="true" type="xsd:string">
+        <xsd:annotation>
+          <xsd:appinfo source="appian.jpa">@Column(name="mileageresponsibilityandorn")</xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="folderId" nillable="true" type="xsd:int"/>
+      <xsd:element name="createdBy" nillable="true" type="xsd:string"/>
+      <xsd:element name="createdOn" nillable="true" type="xsd:dateTime"/>
+      <xsd:element name="updatedBy" nillable="true" type="xsd:string"/>
+      <xsd:element name="updatedOn" nillable="true" type="xsd:dateTime"/>
+      <xsd:element name="approved" nillable="true" type="xsd:boolean"/>
+      <xsd:element name="approvedBy" nillable="true" type="xsd:string">
+        <xsd:annotation>
+          <xsd:appinfo source="appian.jpa">@Column(length=255)</xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="approvalComments" nillable="true" type="xsd:string">
+        <xsd:annotation>
+          <xsd:appinfo source="appian.jpa">@Column(length=255)</xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="approvedOn" nillable="true" type="xsd:dateTime"/>
+      <xsd:element name="programCode" nillable="true" type="xsd:string">
+        <xsd:annotation>
+          <xsd:appinfo source="appian.jpa">@Column(length=255)</xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="programName" nillable="true" type="xsd:string">
+        <xsd:annotation>
+          <xsd:appinfo source="appian.jpa">@Column(length=255)</xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="scope" nillable="true" type="tns:VIM_Scope">
+        <xsd:annotation>
+          <xsd:appinfo source="appian.jpa">@OneToOne(cascade=CascadeType.ALL)</xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="applicableVehicles" nillable="true" type="xsd:string">
+        <xsd:annotation>
+          <xsd:appinfo source="appian.jpa">@Column(length=255)</xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="applicableCustomerVehicle" nillable="true" type="xsd:string">
+        <xsd:annotation>
+          <xsd:appinfo source="appian.jpa">@Column(length=255)</xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="requiredDocumentation" nillable="true" type="xsd:string">
+        <xsd:annotation>
+          <xsd:appinfo source="appian.jpa">@Column(length=255)</xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="requiredInformation" nillable="true" type="xsd:string">
+        <xsd:annotation>
+          <xsd:appinfo source="appian.jpa">@Column(length=255)</xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="typeOfSale" nillable="true" type="xsd:string">
+        <xsd:annotation>
+          <xsd:appinfo source="appian.jpa">@Column(length=255)</xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="programBulletinUrl" nillable="true" type="xsd:string">
+        <xsd:annotation>
+          <xsd:appinfo source="appian.jpa">@Column(length=255)</xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="compatibility" nillable="true" type="xsd:string">
+        <xsd:annotation>
+          <xsd:appinfo source="appian.jpa">@Column(length=255)</xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="eligibilityCriteria" nillable="true" type="xsd:string">
+        <xsd:annotation>
+          <xsd:appinfo source="appian.jpa">@Column(length=255)</xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="overallStatus" nillable="true" type="xsd:string">
+        <xsd:annotation>
+          <xsd:appinfo source="appian.jpa">@Column(length=255)</xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element maxOccurs="unbounded" minOccurs="0" name="region" type="types1:VIM_Region_Ref">
+        <xsd:annotation>
+          <xsd:appinfo source="appian.jpa">@ManyToMany(cascade=CascadeType.REFRESH, indexed=false)</xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element maxOccurs="unbounded" minOccurs="0" name="area" type="types1:VIM_Area_Ref">
+        <xsd:annotation>
+          <xsd:appinfo source="appian.jpa">@OneToMany(cascade=CascadeType.ALL, indexed=false)</xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="awardType" nillable="true" type="xsd:string">
+        <xsd:annotation>
+          <xsd:appinfo source="appian.jpa">@Column(length=255)</xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element maxOccurs="unbounded" minOccurs="0"
+        name="incentiveVehicles" type="types1:VIM_IncentiveVehicles">
+        <xsd:annotation>
+          <xsd:appinfo source="appian.jpa">@OneToMany(cascade=CascadeType.ALL, indexed=false)</xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="offerStartDate2" nillable="true" type="xsd:date"/>
+      <xsd:element name="offerEndDate2" nillable="true" type="xsd:date"/>
+      <xsd:element name="offerCloseDate2" nillable="true" type="xsd:date"/>
+      <xsd:element name="hasAccess" nillable="true" type="xsd:string">
+        <xsd:annotation>
+          <xsd:appinfo source="appian.jpa">@Column(length=255)</xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="incentiveCode" nillable="true" type="xsd:string">
+        <xsd:annotation>
+          <xsd:appinfo source="appian.jpa">@Column(length=255)</xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element maxOccurs="unbounded" minOccurs="0"
+        name="associatedIncentives" type="tns:VIM_Incentive">
+        <xsd:annotation>
+          <xsd:appinfo source="appian.jpa">@ManyToMany(cascade=CascadeType.REFRESH, indexed=false)</xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element maxOccurs="unbounded" minOccurs="0" name="dealership" type="tns:VIM_Dealership">
+        <xsd:annotation>
+          <xsd:appinfo source="appian.jpa">@OneToMany(cascade=CascadeType.ALL, indexed=false)</xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="certifiedPreownedOffer" nillable="true" type="xsd:string">
+        <xsd:annotation>
+          <xsd:appinfo source="appian.jpa">@Column(length=255)</xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="couponAvailable" nillable="true" type="xsd:string">
+        <xsd:annotation>
+          <xsd:appinfo source="appian.jpa">@Column(length=255)</xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="modelMsrp" nillable="true" type="xsd:int"/>
+      <xsd:element name="dueAtSigning" nillable="true" type="xsd:int"/>
+      <xsd:element name="leasePricePerMonth" nillable="true" type="xsd:int"/>
+      <xsd:element name="offerStartDate" nillable="true" type="xsd:date"/>
+    </xsd:sequence>
+  </xsd:complexType>
+</xsd:schema>

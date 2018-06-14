@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<dataStoreHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <versionUuid>_a-0000e067-d58d-8000-9ba2-011c48011c48_308758</versionUuid>
+    <dataStore>
+        <uuid>_a-0000dfd8-6941-8000-9ba2-011c48011c48_185078</uuid>
+        <name>VIM Incentives</name>
+        <description>Data store containing all application's data store entities. [Data]</description>
+        <dataSourceKey>java:/jdbc/Appian</dataSourceKey>
+        <adaptingExplicitSqlNames>false</adaptingExplicitSqlNames>
+        <autoUpdateSchema>true</autoUpdateSchema>
+        <entities>
+            <entity>
+                <uuid>f9c51016-08d3-46c5-852e-64cafc0bb046</uuid>
+                <name>VIM_Status</name>
+                <type>{urn:com:appian:types:VIM}VIM_Status</type>
+            </entity>
+            <entity>
+                <uuid>95060389-cc5c-4949-bf53-1a6243723309</uuid>
+                <name>VIM_Priority</name>
+                <type>{urn:com:appian:types:VIM}VIM_Priority</type>
+            </entity>
+            <entity>
+                <uuid>a42fdea1-fdbf-4a11-9800-6c75c085394d</uuid>
+                <name>VIM_TypeOfOffer</name>
+                <type>{urn:com:appian:types:VIM}VIM_TypeOfOffer</type>
+            </entity>
+            <entity>
+                <uuid>eb91171c-bb1b-4a03-84a6-94589093a285</uuid>
+                <name>VIM_Paragraph</name>
+                <type>{urn:com:appian:types:VIM}VIM_Paragraph</type>
+            </entity>
+            <entity>
+                <uuid>1b40b423-7c08-4c27-ab7d-1fbe3a8731f9</uuid>
+                <name>VIM_Vehicle</name>
+                <type>{urn:com:appian:types:VIM}VIM_Vehicle</type>
+            </entity>
+            <entity>
+                <uuid>14649dfe-73cb-4c91-a9e6-bd7a1a39aacb</uuid>
+                <name>VIM_LoyaltyOfferCurrentOwner</name>
+                <type>{urn:com:appian:types:VIM}VIM_LoyaltyOfferCurrentOwner</type>
+            </entity>
+            <entity>
+                <uuid>ee522856-6a01-4437-bb63-cef2d8cd8f6a</uuid>
+                <name>VIM_CertifiedPreownedOffer</name>
+                <type>{urn:com:appian:types:VIM}VIM_CertifiedPreownedOffer</type>
+            </entity>
+            <entity>
+                <uuid>1541748a-28ae-4a19-b827-c90b22bb9fca</uuid>
+                <name>VIM_CouponAvailable</name>
+                <type>{urn:com:appian:types:VIM}VIM_CouponAvailable</type>
+            </entity>
+            <entity>
+                <uuid>8d287c3c-1aaf-476e-840a-6dcb469a5890</uuid>
+                <name>VIM_PublishLocation</name>
+                <type>{urn:com:appian:types:VIM}VIM_PublishLocation</type>
+            </entity>
+            <entity>
+                <uuid>63edd021-ac63-46c1-89cf-f93f68e0e7c1</uuid>
+                <name>VIM_Model</name>
+                <type>{urn:com:appian:types:VIM}VIM_Model</type>
+            </entity>
+            <entity>
+                <uuid>13eb3911-7922-405b-b492-31d32d59a427</uuid>
+                <name>VIM_ExclusionList</name>
+                <type>{urn:com:appian:types:VIM}VIM_ExclusionList</type>
+            </entity>
+            <entity>
+                <uuid>c3b9d5be-3d2e-428a-958e-c2000768fa17</uuid>
+                <name>VIM_Activity</name>
+                <type>{urn:com:appian:types:VIM}VIM_Activity</type>
+            </entity>
+            <entity>
+                <uuid>03a9c0f8-9513-4f96-974f-9dab500b6cf2</uuid>
+                <name>VIM_Incentive</name>
+                <type>{urn:com:appian:types:VIM}VIM_Incentive</type>
+            </entity>
+            <entity>
+                <uuid>04c7ccd1-d725-49f6-8a46-61e63e0c2e83</uuid>
+                <name>VIM_Vehicles</name>
+                <type>{urn:com:appian:types}VIM_Vehicles</type>
+            </entity>
+            <entity>
+                <uuid>6fe4c7c2-716e-40cf-802d-c35a5e594753</uuid>
+                <name>VIM_DEALERSHIP</name>
+                <type>{urn:com:appian:types:VIM}VIM_Dealership</type>
+            </entity>
+            <entity>
+                <uuid>aa3d699f-3866-4d22-85f0-cdd02d7ffc3b</uuid>
+                <name>VIM_SalesData</name>
+                <type>{urn:com:appian:types:VIM}VIM_SalesData</type>
+            </entity>
+            <entity>
+                <uuid>8a67452b-a249-4bbb-90b5-acdc0933371a</uuid>
+                <name>VIM_Vehicle_Model</name>
+                <type>{urn:com:appian:types}VIM_Vehicle_Model</type>
+            </entity>
+            <entity>
+                <uuid>5bc24d66-a6ef-48cd-ac5c-8ab508822eee</uuid>
+                <name>VIM_SalePaymentDetails</name>
+                <type>{urn:com:appian:types}VIM_SalePaymentDetails</type>
+            </entity>
+            <entity>
+                <uuid>50b5617c-f2cb-423b-9b1f-d81b0e2fc7d9</uuid>
+                <name>VIM_DealershipMain</name>
+                <type>{urn:com:appian:types}VIM_DealershipMain</type>
+            </entity>
+            <entity>
+                <uuid>5845c721-c38e-4848-82e0-d3f03c125ab9</uuid>
+                <name>VIM_Geography</name>
+                <type>{urn:com:appian:types}VIM_Geography</type>
+            </entity>
+            <entity>
+                <uuid>a8588b9f-4426-4fa5-860c-b75c469659a0</uuid>
+                <name>qckapp_vim_main_Incentives</name>
+                <type>{urn:com:appian:types}qckapp_vim_main</type>
+            </entity>
+            <entity>
+                <uuid>6643d0c1-f3ba-4e43-b5a6-3ad6ad32cf38</uuid>
+                <name>VIM_IncentiveVehicles</name>
+                <type>{urn:com:appian:types}VIM_IncentiveVehicles</type>
+            </entity>
+            <entity>
+                <uuid>c6c2ed24-9727-43e3-abe0-cef9aca1e1c8</uuid>
+                <name>VIM_REGION_REF</name>
+                <type>{urn:com:appian:types}VIM_Region_Ref</type>
+            </entity>
+            <entity>
+                <uuid>2826b83e-06b6-4676-aef0-c622f5cba162</uuid>
+                <name>VIM_AREA_REF</name>
+                <type>{urn:com:appian:types}VIM_Area_Ref</type>
+            </entity>
+            <entity>
+                <uuid>1a74e0e0-2268-4024-a9f6-c1d4dee8604c</uuid>
+                <name>VIM_COUNTRY_REF</name>
+                <type>{urn:com:appian:types}VIM_Country_Ref</type>
+            </entity>
+            <entity>
+                <uuid>26de0bfd-9eae-4b5f-88dc-35e1bd4da6aa</uuid>
+                <name>VIM_BRAND_REFf</name>
+                <type>{urn:com:appian:types}VIM_Brand_Ref</type>
+            </entity>
+            <entity>
+                <uuid>1856a8e0-3ff3-4f70-af59-b0e05323d966</uuid>
+                <name>VIM_SLA_ENTRY_REF</name>
+                <type>{urn:com:appian:types}VIM_SLA_Entry</type>
+            </entity>
+            <entity>
+                <uuid>4a30ae3c-ce46-4490-8ca9-086f5b1b5f99</uuid>
+                <name>VIM_INCENTIVESREPORT_VIEW</name>
+                <type>{urn:com:appian:types}VIM_INCENTIVEREPORT_VIEW</type>
+            </entity>
+        </entities>
+    </dataStore>
+    <isPublished>true</isPublished>
+    <roleMap>
+        <role inherit="false" allowForAll="false" name="administrators">
+            <users/>
+            <groups>
+                <groupUuid>_e-0000e067-d54a-8000-9aee-01075c01075c_285</groupUuid>
+            </groups>
+        </role>
+        <role inherit="false" allowForAll="false" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="readers">
+            <users/>
+            <groups>
+                <groupUuid>_e-0000e067-d54a-8000-9aee-01075c01075c_289</groupUuid>
+                <groupUuid>_e-0000e067-d54a-8000-9aee-01075c01075c_233</groupUuid>
+                <groupUuid>_e-0000e067-d54a-8000-9aee-01075c01075c_231</groupUuid>
+            </groups>
+        </role>
+    </roleMap>
+    <history>
+        <historyInfo versionUuid="_a-0000dfd8-6941-8000-9ba2-011c48011c48_194181"/>
+        <historyInfo versionUuid="_a-0000e067-d58d-8000-9ba2-011c48011c48_283680"/>
+        <historyInfo versionUuid="_a-0000e067-d58d-8000-9ba2-011c48011c48_284856"/>
+        <historyInfo versionUuid="_a-0000e044-c81a-8000-9ba2-011c48011c48_128758"/>
+        <historyInfo versionUuid="_a-0000e067-d58d-8000-9ba2-011c48011c48_287913"/>
+        <historyInfo versionUuid="_a-0000e067-d58d-8000-9ba2-011c48011c48_288040"/>
+        <historyInfo versionUuid="_a-0000e067-d58d-8000-9ba2-011c48011c48_294760"/>
+        <historyInfo versionUuid="_a-0000e067-d58d-8000-9ba2-011c48011c48_303464"/>
+        <historyInfo versionUuid="_a-0000e067-d58d-8000-9ba2-011c48011c48_308758"/>
+    </history>
+</dataStoreHaul>
