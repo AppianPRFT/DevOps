@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema targetNamespace="urn:com:appian:types:V"
+  xmlns:tns="urn:com:appian:types:V" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:complexType name="V_Activity">
+    <xsd:annotation>
+      <xsd:appinfo source="appian.jpa">@Table(name="qckapp_v_activity")</xsd:appinfo>
+      <xsd:documentation><![CDATA[Data structure to capture and show activity history for a Vehicle]]></xsd:documentation>
+      <xsd:appinfo source="http://www.appian.com/ae/types/2009">
+        <ns2:Metadata xmlns:ns2="http://www.appian.com/ae/types/2009">
+          <ns2:versionUuid>0006e078-c68a-8000-f92f-7f0000014e7a</ns2:versionUuid>
+          <ns2:history>
+            <ns2:historyInfo versionUuid="0006e078-c68a-8000-f92f-7f0000014e7a"/>
+          </ns2:history>
+        </ns2:Metadata>
+      </xsd:appinfo>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element name="id" nillable="true" type="xsd:int">
+        <xsd:annotation>
+          <xsd:appinfo source="appian.jpa">@Id @GeneratedValue</xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="recordId" nillable="true" type="xsd:int"/>
+      <xsd:element name="who" nillable="true" type="xsd:string"/>
+      <xsd:element name="action" nillable="true" type="xsd:string"/>
+      <xsd:element name="details" nillable="true" type="xsd:string">
+        <xsd:annotation>
+          <xsd:appinfo source="appian.jpa">@Column(columnDefinition="VARCHAR(4000)")</xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="when" nillable="true" type="xsd:dateTime"/>
+    </xsd:sequence>
+  </xsd:complexType>
+</xsd:schema>

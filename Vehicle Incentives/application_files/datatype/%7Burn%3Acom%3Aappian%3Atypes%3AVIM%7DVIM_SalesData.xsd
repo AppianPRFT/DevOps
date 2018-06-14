@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema targetNamespace="urn:com:appian:types:VIM"
+  xmlns:tns="urn:com:appian:types:VIM"
+  xmlns:types1="urn:com:appian:types" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:import namespace="urn:com:appian:types" schemaLocation="%7Burn%3Acom%3Aappian%3Atypes%7DVIM_Geography.xsd"/>
+  <xsd:complexType name="VIM_SalesData">
+    <xsd:annotation>
+      <xsd:appinfo source="appian.jpa">@Table(name="VIM_SALESDATA")</xsd:appinfo>
+      <xsd:documentation><![CDATA[Sales Data from Dealerships]]></xsd:documentation>
+      <xsd:appinfo source="http://www.appian.com/ae/types/2009">
+        <ns2:Metadata xmlns:ns2="http://www.appian.com/ae/types/2009">
+          <ns2:versionUuid>0000e0c1-77dd-8000-f92f-7f0000014e7a</ns2:versionUuid>
+          <ns2:history>
+            <ns2:historyInfo versionUuid="0004e078-c68a-8000-f92f-7f0000014e7a"/>
+            <ns2:historyInfo versionUuid="0000e081-e828-8000-f92f-7f0000014e7a"/>
+            <ns2:historyInfo versionUuid="0000e096-ee32-8000-f92f-7f0000014e7a"/>
+            <ns2:historyInfo versionUuid="0000e0c1-77dd-8000-f92f-7f0000014e7a"/>
+          </ns2:history>
+        </ns2:Metadata>
+      </xsd:appinfo>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element name="id" nillable="true" type="xsd:int">
+        <xsd:annotation>
+          <xsd:appinfo source="appian.jpa">@Id @GeneratedValue</xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="title" nillable="true" type="xsd:string">
+        <xsd:annotation>
+          <xsd:appinfo source="appian.jpa">@Column(name="title")</xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="brand" nillable="true" type="xsd:string">
+        <xsd:annotation>
+          <xsd:appinfo source="appian.jpa">@Column(name="brand")</xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="country" nillable="true" type="xsd:string">
+        <xsd:annotation>
+          <xsd:appinfo source="appian.jpa">@Column(name="country")</xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="bonusAmount" nillable="true" type="xsd:double">
+        <xsd:annotation>
+          <xsd:appinfo source="appian.jpa">@Column(name="bonusamount")</xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="aprRate" nillable="true" type="xsd:string">
+        <xsd:annotation>
+          <xsd:appinfo source="appian.jpa">@Column(name="aprrate")</xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="aprTerm" nillable="true" type="xsd:double">
+        <xsd:annotation>
+          <xsd:appinfo source="appian.jpa">@Column(name="aprterm")</xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="modelMsrp" nillable="true" type="xsd:double">
+        <xsd:annotation>
+          <xsd:appinfo source="appian.jpa">@Column(name="modelmsrp")</xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="createdBy" nillable="true" type="xsd:string"/>
+      <xsd:element name="createdOn" nillable="true" type="xsd:dateTime"/>
+      <xsd:element name="soldBy" nillable="true" type="xsd:string"/>
+      <xsd:element name="soldOn" nillable="true" type="xsd:dateTime"/>
+      <xsd:element name="vehicleId" nillable="true" type="xsd:int"/>
+      <xsd:element name="dealershipId" nillable="true" type="xsd:int"/>
+      <xsd:element name="incentiveId" nillable="true" type="xsd:int"/>
+      <xsd:element name="bonusPaid" nillable="true" type="xsd:string">
+        <xsd:annotation>
+          <xsd:appinfo source="appian.jpa">@Column(length=255)</xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="geography" nillable="true" type="types1:VIM_Geography">
+        <xsd:annotation>
+          <xsd:appinfo source="appian.jpa">@OneToOne(cascade=CascadeType.REFRESH)</xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="awardType" nillable="true" type="xsd:string">
+        <xsd:annotation>
+          <xsd:appinfo source="appian.jpa">@Column(length=255)</xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="comment" nillable="true" type="xsd:string">
+        <xsd:annotation>
+          <xsd:appinfo source="appian.jpa">@Column(length=255)</xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="hasAccess" nillable="true" type="xsd:string">
+        <xsd:annotation>
+          <xsd:appinfo source="appian.jpa">@Column(length=255)</xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="rejectCount" nillable="true" type="xsd:int"/>
+      <xsd:element name="rejectCode" nillable="true" type="xsd:int"/>
+      <xsd:element name="customerGender" nillable="true" type="xsd:string">
+        <xsd:annotation>
+          <xsd:appinfo source="appian.jpa">@Column(length=255)</xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="customerAge" nillable="true" type="xsd:int"/>
+      <xsd:element name="vin" nillable="true" type="xsd:string">
+        <xsd:annotation>
+          <xsd:appinfo source="appian.jpa">@Column(length=255)</xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="incentiveCode" nillable="true" type="xsd:string">
+        <xsd:annotation>
+          <xsd:appinfo source="appian.jpa">@Column(length=255)</xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="vehicleClass" nillable="true" type="xsd:string">
+        <xsd:annotation>
+          <xsd:appinfo source="appian.jpa">@Column(length=255)</xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="model" nillable="true" type="xsd:string">
+        <xsd:annotation>
+          <xsd:appinfo source="appian.jpa">@Column(length=255)</xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="year" nillable="true" type="xsd:int"/>
+      <xsd:element name="vehicleTrim" nillable="true" type="xsd:string">
+        <xsd:annotation>
+          <xsd:appinfo source="appian.jpa">@Column(length=255)</xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+</xsd:schema>
