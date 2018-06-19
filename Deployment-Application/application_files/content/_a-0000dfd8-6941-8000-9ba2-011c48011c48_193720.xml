@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <versionUuid>_a-0000dfd8-6941-8000-9ba2-011c48011c48_193729</versionUuid>
+    <rule>
+        <name>DQ_Summary</name>
+        <uuid>_a-0000dfd8-6941-8000-9ba2-011c48011c48_193720</uuid>
+        <description></description>
+        <parentUuid>_a-0000dfd8-6941-8000-9ba2-011c48011c48_193714</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>=#"SYSTEM_SYSRULES_dashboardLayout_v1"(
+  contents: {
+    #"SYSTEM_SYSRULES_milestoneField"(
+      labelPosition: "COLLAPSED",
+      steps: {"Requested", "Approved", "Submitted to Vendor", "Received"},
+      active: 3
+    ),
+    #"SYSTEM_SYSRULES_sectionLayout_v1"(
+      contents: {
+        #"SYSTEM_SYSRULES_columnsLayout"(
+          columns: {
+            #"SYSTEM_SYSRULES_columnLayout"(
+              contents: {
+                #"SYSTEM_SYSRULES_textField"(
+                  label: "PR #",
+                  labelPosition: "ADJACENT",
+                  value: "123456789",
+                  readOnly: true
+                ),
+                #"SYSTEM_SYSRULES_pickerFieldUsers"(
+                  label: "Requested By",
+                  labelPosition: "ADJACENT",
+                  value: loggedInUser(),
+                  readOnly: true
+                ),
+                #"SYSTEM_SYSRULES_textField"(
+                  label: "Department",
+                  labelPosition: "ADJACENT",
+                  value: "Sales",
+                  readOnly: true
+                ),
+                #"SYSTEM_SYSRULES_dateField"(
+                  label: "Due Date",
+                  labelPosition: "ADJACENT",
+                  value: today(),
+                  readOnly: true
+                )
+              }
+            ),
+            #"SYSTEM_SYSRULES_columnLayout"(
+              contents: {
+                #"SYSTEM_SYSRULES_textField"(
+                  label: "Shipping Address",
+                  labelPosition: "ADJACENT",
+                  value: "123 Sesame Street",
+                  readOnly: true
+                ),
+                #"SYSTEM_SYSRULES_textField"(
+                  label: "City",
+                  labelPosition: "ADJACENT",
+                  value: "New York",
+                  readOnly: true
+                ),
+                #"SYSTEM_SYSRULES_textField"(
+                  label: "State/Province",
+                  labelPosition: "ADJACENT",
+                  value: "NY",
+                  readOnly: true
+                ),
+                #"SYSTEM_SYSRULES_textField"(
+                  label: "Zip/Postal Code",
+                  labelPosition: "ADJACENT",
+                  value: "12345",
+                  readOnly: true
+                )
+              }
+            )
+          }
+        )
+      }
+    ),
+    #"SYSTEM_SYSRULES_sectionLayout_v1"(
+      label: "Items",
+      contents: {
+        /* This grid is not configured to page or sort */
+        #"SYSTEM_SYSRULES_gridField"(
+          labelPosition: "ABOVE",
+          totalCount: 5,
+          columns: {
+            #"SYSTEM_SYSRULES_gridTextColumn"(label: "Description", data: {"Mobile device for demos", "Video software upgrade", "Device accessories"}),
+            #"SYSTEM_SYSRULES_gridTextColumn"(label: "Category", data: {"Hardware", "Software", "Miscellaneous"}),
+            #"SYSTEM_SYSRULES_gridTextColumn"(label: "Qty", data: {2, 1, 2}, alignment: "RIGHT"),
+            #"SYSTEM_SYSRULES_gridTextColumn"(label: "Unit Price", data: {dollar({150, 50.99, 30.99}), "Total"}, alignment: "RIGHT"),
+            #"SYSTEM_SYSRULES_gridTextColumn"(label: "Amount", data: dollar({300, 50.99, 61.98, 412.97}), alignment: "RIGHT")
+          },
+          value: #"SYSTEM_SYSRULES_pagingInfo"(startIndex: 1, batchSize: 5),
+          saveInto: {}
+        )
+      }
+    ),
+    #"SYSTEM_SYSRULES_sectionLayout_v1"(
+      label: "Approval",
+      contents: {
+        #"SYSTEM_SYSRULES_columnsLayout"(
+          columns: {
+            #"SYSTEM_SYSRULES_columnLayout"(
+              contents: {
+                #"SYSTEM_SYSRULES_textField"(
+                  label: "Approved By",
+                  labelPosition: "ADJACENT",
+                  value: "Paul Smith",
+                  readOnly: true
+                ),
+                #"SYSTEM_SYSRULES_dateField"(
+                  label: "Approved On",
+                  labelPosition: "ADJACENT",
+                  value: today(),
+                  readOnly: true
+                ),
+                #"SYSTEM_SYSRULES_paragraphField"(
+                  label: "Comments",
+                  labelPosition: "ADJACENT",
+                  value: "These items are necessary for an upcoming client demo and there is sufficient budget to cover the cost of the items.",
+                  readOnly: true
+                )
+              }
+            ),
+            #"SYSTEM_SYSRULES_columnLayout"(
+              contents: {
+                #"SYSTEM_SYSRULES_imageField_v1"(
+                  labelPosition: "COLLAPSED",
+                  images: {
+                    #"SYSTEM_SYSRULES_documentImage"(
+                      document: #"SYSTEM_SYSRULES_expd_exampleSignatureImage"(),
+                      altText: "Paul Smith signature",
+                      /* This is an example image that should not be used outside of this template. Instead, use a constant or variable that references your image. */
+                      caption: "Paul Smith"
+                    )
+                  },
+                  size: "FIT"
+                )
+              }
+            )
+          }
+        )
+      }
+    ),
+    #"SYSTEM_SYSRULES_sectionLayout_v1"(
+      label: "Vendor Information",
+      contents: {
+        #"SYSTEM_SYSRULES_columnsLayout"(
+          columns: {
+            #"SYSTEM_SYSRULES_columnLayout"(
+              contents: {
+                #"SYSTEM_SYSRULES_textField"(
+                  label: "Vendor",
+                  labelPosition: "ADJACENT",
+                  value: "Mobile Device Company",
+                  readOnly: true
+                ),
+                #"SYSTEM_SYSRULES_textField"(
+                  label: "Contact",
+                  labelPosition: "ADJACENT",
+                  value: "John Coleman",
+                  readOnly: true
+                ),
+                #"SYSTEM_SYSRULES_textField"(
+                  label: "Phone",
+                  labelPosition: "ADJACENT",
+                  value: "(123) 456-7890",
+                  readOnly: true
+                ),
+                #"SYSTEM_SYSRULES_textField"(
+                  label: "Email",
+                  labelPosition: "ADJACENT",
+                  value: "companyA@example.com",
+                  readOnly: true
+                )
+              }
+            ),
+            #"SYSTEM_SYSRULES_columnLayout"(
+              contents: {
+                #"SYSTEM_SYSRULES_textField"(
+                  label: "Address",
+                  labelPosition: "ADJACENT",
+                  value: "456 Sesame Street",
+                  readOnly: true
+                ),
+                #"SYSTEM_SYSRULES_textField"(
+                  label: "City",
+                  labelPosition: "ADJACENT",
+                  value: "New York",
+                  readOnly: true
+                ),
+                #"SYSTEM_SYSRULES_textField"(
+                  label: "State/Province",
+                  labelPosition: "ADJACENT",
+                  value: "NY",
+                  readOnly: true
+                ),
+                #"SYSTEM_SYSRULES_textField"(
+                  label: "Zip/Postal Code",
+                  labelPosition: "ADJACENT",
+                  value: "12345",
+                  readOnly: true
+                )
+              }
+            )
+          }
+        )
+      }
+    )
+  }
+)</definition>
+        <metadataExpr></metadataExpr>
+        <preferredEditor>interface</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role inherit="true" allowForAll="false" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="administrators">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <history>
+        <historyInfo versionUuid="_a-0000dfd8-6941-8000-9ba2-011c48011c48_193729"/>
+    </history>
+</contentHaul>
