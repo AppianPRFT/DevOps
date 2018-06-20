@@ -62,7 +62,7 @@ cd "`dirname \"$PRG\"`" >&-
 APP_HOME="`pwd -P`"
 cd "$SAVED" >&-
 
-CLASSPATH=$APP_HOME/lib/.:$APP_HOME/lib/appian-adm-versioning-client-2.4.2.jar
+CLASSPATH=$APP_HOME/lib/.:$APP_HOME/lib/appian-adm-versioning-client-2.4.5.jar
 
 # Determine the Java command to use to start the JVM.
 if [ -n "$JAVA_HOME" ] ; then
