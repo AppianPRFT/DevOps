@@ -68,7 +68,7 @@ set CMD_LINE_ARGS=%$
 :execute
 @rem Setup the command line
 
-set CLASSPATH=%APP_HOME%\lib\.;%APP_HOME%\lib\appian-adm-deployment-client-2.4.3.jar
+set CLASSPATH=%APP_HOME%\lib\.;%APP_HOME%\lib\appian-adm-deployment-client-2.4.5.jar
 
 @rem Execute menu
 @rem echo "%JAVA_EXE%" %DEFAULT_JVM_OPTS% %JAVA_OPTS% %MENU_OPTS%  -classpath "%CLASSPATH%" com.appiancorp.ps.plugins.automatedimport.remote.DeployApplication %CMD_LINE_ARGS% 
